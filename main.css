@@ -27,6 +27,7 @@ a.active { color:#c20114; }
   padding:15px;
   min-height:100%;
   max-width:1024px;
+  min-width:600px;
   margin-left:250px;
   margin-right:250px;
   background:#f5f8de;
