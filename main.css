@@ -20,27 +20,21 @@ a.active { color:#c20114; }
   padding:10pt;
   line-height: 150%;
   float:left;
+  position:fixed;
 }
 
 .content {
   padding:15px;
   min-height:100%;
-  margin-left:220px;
+  max-width:1024px;
+  margin-left:250px;
+  margin-right:250px;
   background:#f5f8de;
-}
-
-p, h2 {
-  width:900px;
-}
-
-li {
-  width:850px;
 }
 
 td.date {
   font-weight:bold;
 }
-
 
 table, th, td {
   border:1px solid gray;
