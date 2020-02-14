@@ -23,6 +23,13 @@ a.active { color:#c20114; }
   position:fixed;
 }
 
+.navigation ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  color: #45503b;
+}
+
 .content {
   padding:15px;
   min-height:100%;
