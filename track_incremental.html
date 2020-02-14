@@ -15,26 +15,15 @@
 
   <div class="content">
     <h1>SAT Competition 2020</h1>
-	<h2><a name="api">Incremental Library Track Rules</a></h2>
-
-	<!--<h4 style="color:red">News</h4>
-	<ul>
-	<li>The IPASIR interface has one new function:
-	<pre>void ipasir_set_learn (void * solver, void * state, int max_length, void (*learn)(void * state, int * clause));</pre>
-	It is used to retrieve learned clauses from the SAT solver by setting up a callback function. See <a href="downloads/ipasir.h">ipasir.h</a> for more details.
-	</li>
-	<li>The IPASIR package is now maintaned via <a href="https://github.com/biotomas/ipasir">GitHub</a></li>
-	</ul>-->
-
-	<h4>Motivation</h4>
-	<p>
+	<h2><a name="api">Incremental Library Track</a></h2>
+	
 	Many applications of SAT are based on solving a sequence of incrementally generated SAT instances.
 	In such scenarios the SAT solver is invoked multiple times on the same formula under different assumptions.
 	Also the formula is extended by adding new clauses and variables between the invocations. It is possible
 	to solve such problem by solving the incrementally generated instances independently, however this might be
 	very inefficient compared to an incremental SAT solver, which can reuse knowledge acquired while solving the previous
 	instances (for example the learned clauses).
-	</p>
+	
 	<p>
 	There are several SAT solvers that support incremental SAT solving, however each has its own interface, which
 	differs from the others. That makes comparing them difficult. Our goal is to have a single interface implemented by
@@ -47,28 +36,20 @@
 	<p>
 	The name IPASIR is the reversed acronym for "Re-entrant Incremental Satisfiability Application Program Interface".
 	With an additional space and question mark it can also serve as an expression for offering a brewed beverage to a gentleman.
-	</p>
-	<p>
 	The interface was designed to have the following properties:
-	</p>
 	<ul>
 	<li>Easy to implement, so that SAT solver developers would be willing to support it.</li>
 	<li>Easy to use, so that anyone can easily build SAT based applications (can be used for educational purposes).</li>
 	<li>Universal and powerful, so that it can be used for a broad range of industrial and research applications.</li>
 	</ul>
-	<p>
 	The interface consists of only 9 functions which are inspired by the incremental interfaces of <a href="http://fmv.jku.at/picosat/">PicoSAT</a>
 	and <a href="http://fmv.jku.at/lingeling/">Lingeling</a>. It is defined in the form of a C language header file <a href="downloads/ipasir.h">ipasir.h</a>.
 	Please refer to the comments in the header file for more information about the specifications of the interface.
-	</p>
-	<p>
 	We have prepared a package (<a href="downloads/ipasir.zip">ipasir.zip</a>, also available via <a href="https://github.com/biotomas/ipasir">GitHub</a>) containing two SAT solvers adapted to IPASIR and a few simple IPASIR based applications.
 	</p>
 
 	<h4>Solver Submission</h4>
-	<p>
 	In order to participate in the Incremental Library Track please follow these steps:
-	</p>
 	<ol>
 	<li>Implement all the functions defined in the <a href="downloads/ipasir.h">ipasir.h</a> header file.</li>
 	<li>Create a directory with your code and makefile following the style of the three example solvers in
@@ -81,12 +62,10 @@
 	</ol>
 
 	<h4>Benchmark Submission</h4>
-	<p>
 	The benchmarks for the Incremental Library Track are command line applications that solve
 	a problem specified by an input file given as a parameter to the application.
 	Please take a look at the example applications in the <a href="downloads/ipasir.zip">ipasir.zip</a> package.
 	To create your own benchmark applications follow the style of the  directories in the "ipasir/app/" directory.
-	</p>
 	<p>
 	Prepare your application directory in such a way that placing it in the "ipasir/app/" directory and
 	issuing "make" in the "ipasir/" directory results in a successful build of your application (along with the original example applications)
@@ -96,10 +75,8 @@
 	</p>
 
 	<h4>Benchmark Selection and Evaluation of Solvers</h4>
-	<p>
 	The benchmarks used for the competition will be selected by the organizers. The solvers will be evaluated by
 	the number of problem instances (application + input pairs) solved within a given time limit.
-	</p>
   </div>
 </div>
 </body>
