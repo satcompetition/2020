@@ -16,6 +16,10 @@ a.active { color:#c20114; }
   overflow-y:scroll;
 }
 
+.main ul li {
+  margin:10pt
+}
+
 .navigation {
   padding:10pt;
   line-height: 150%;
