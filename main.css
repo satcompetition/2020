@@ -16,10 +16,6 @@ a.active { color:#c20114; }
   overflow-y:scroll;
 }
 
-.main ul li {
-  margin:10pt
-}
-
 .navigation {
   padding:10pt;
   line-height: 150%;
@@ -42,6 +38,10 @@ a.active { color:#c20114; }
   margin-left:250px;
   margin-right:250px;
   background:#f5f8de;
+}
+
+.content ul li {
+  margin:10pt
 }
 
 td.date {
