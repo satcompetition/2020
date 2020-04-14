@@ -67,6 +67,18 @@
 	Note, that the answer line ("s SATISFIABLE" and "s UNSATISFIABLE") and the solution in case of a satisfiable instance (lines starting with "v") must still go to stdout (not into "proof.out").
 	</p>
 
+  <h4>Testing proof output validation</h4>
+  <p>
+  To test that your proofs are correctly validated by the version of <a href="http://www.cs.utexas.edu/~marijn/drat-trim/">drat-trim</a>
+  installed on StarExec, it is easiest to download <a href="downloads/jobxml.zip">this job xml description</a>,
+  unzip it, replace (while keeping the quotes) "YOUR-SOLVER-CONFIGURAION-ID-GOES-HERE" in the xml file there
+  with your solver's configuration id as found on StarExec (<a href="downloads/confId.png">example here</a>),
+  zipping again and uploading the result to the testing space Sat2020Testing using Jobs/"upload job xml" button.
+  This will run your solver on the five testing benchmarks out of which three are unsatisfiable.
+  If your solver solves at least one of them under 300s, drat-trim will be subsequently run on the produced proofs.
+  When inspecting the finished job, do not forget to check both "job information" and (the more detailed) "job output".
+  </p>
+
 	<h4>Uploading the final version of your solver</h4>
 
 	<p>
