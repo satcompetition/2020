@@ -20,8 +20,10 @@
 
 The Parallel Track will be run on Amazon Web Services. The solvers participating in this track
 will be executed with a wall-clock time limit of 5000 seconds, thus similar to the Main Track.
-Details regarding the machine specifications used in this track, including the number of cores and the amount 
-of memory, will be made available soon.<BR><BR>
+Each solver will be run an a single AWS machine of the type m4.16xlarge, which has 64 virtual
+cores and 256GB of memory. More details about m4.16xlarge nodes can be found 
+<a href="https://aws.amazon.com/about-aws/whats-new/2016/09/introducing-new-m4-instance-size-m4-16xlarge-and-new-region-availability-of-m4-instances/">here</a>.
+<BR><BR>
 
 Similar to the Cloud Track, participants of this track are required to submit their solver 
 via a GitHub repository (which can be private). The repository should contain a docker file
