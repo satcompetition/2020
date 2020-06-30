@@ -21,15 +21,24 @@
 A new track in SAT Competition 2020 is the Cloud Track, which will evaluate the effectiveness of
 parallel SAT solvers to run in a distributed manner. This track will be run on Amazon Web Services.
 The solvers participating in this track will be executed with a wall-clock time limit of 1000 seconds running 
-on 100 machines in parallel. Communication between the machines is possible using MPI and SSH. 
-Details regarding the machine specifications used in this track, including the number of
-cores and the amount of memory, will be made available soon.<BR><BR>
+on 100 m4.4xlarge machines in parallel. Each m4.4xlarge machine has 16 virtual CPUs and 64 GB memory. 
+Communication between the machines is possible using MPI and SSH. 
+<BR><BR>
 
 Similar to the Parallel Track, participants of this track are required to submit their solver 
 via a GitHub repository (which can be private). The repository should contain a docker file
 that compiles the solver. Scripts for account configuration and instructions to run HordeSAT
 in the default configuration are available at: 
 <a href="https://github.com/aws-samples/aws-batch-comp-infrastructure-sample">https://github.com/aws-samples/aws-batch-comp-infrastructure-sample</a>.
+
+<h4>Solver Submission</h4>
+In order to participate in the Cloud Track please send an email to "sat-comp-2020@amazon.com" containing the following:
+<ol>
+<li> name of the solver and a list of the authors
+<li> your AWS account number
+<li> the URL of the GitHub repository including the branch
+<li> the full, 40-character SHA-1 hash of the commit
+</ol>
 
   </div>
 </div>
