@@ -24,31 +24,28 @@
 	</ul>
 	<h3>Benchmark Instances</h3>
 	<ul>
-	<h4>Main Track</h3>
-	<ul>
-		<li><a href="downloads/sc2020-main.uri">Main Track Instances, all (URIs)</a></li>
-		<li><a href="downloads/sc2020-main-new.uri">Main Track Instances, 300 new (URIs)</a></li>
-		<li><a href="downloads/sc2020-main-old.uri">Main Track Instances, 100 old (URIs)</a></li>
-		<li><a href="https://baldur.iti.kit.edu/sat-competition-2020/sc2020-main.tar.gz">Main Track Instances (3.6 GB Package)</a></li>
-	</ul>
-	<h4>Planning Track</h3>
-	<ul>
-		<li><a href="downloads/sc2020-planning.uri">Planning Track Instances (URIs)</a></li>
-	</ul>
-	<h4>Incremental Track</h3>
-	<ul>
-		<li><a href="https://baldur.iti.kit.edu/sat-competition-2020/sc2020-incremental-applications.tar.xz">Benchmark Applications (26 MB Package)</a></li>
-		<li><a href="https://baldur.iti.kit.edu/sat-competition-2020/sc2020-incremental-benchmarks.tar.xz">Benchmark Instances (75 MB Package)</a></li>
-	</ul>
-<h4>Download Instructions for URI Lists</h4>
+		<li><a href="downloads/sc2020-main.uri">Main Track Instances</a>
+			(<a href="downloads/sc2020-main-new.uri">300 new</a>, 
+			<a href="downloads/sc2020-main-old.uri">100 old</a>)
+		</li>
+		<li><a href="downloads/sc2020-planning.uri">Planning Track Instances</a>
+		<!--[2020-07-19] Fixed file-corruption. Update with: 
+<pre>
+wget --content-disposition https://gbd.iti.kit.edu/file/51e4929accfa3a0e68bff09974c7f0f4
+</pre>-->
+		</li>
+		<li><a href="https://baldur.iti.kit.edu/sat-competition-2020/sc2020-incremental-applications.tar.xz">Incremental Track Applications</a></li>
+		<li><a href="https://baldur.iti.kit.edu/sat-competition-2020/sc2020-incremental-benchmarks.tar.xz">Incremental Track Instances</a></li>
+		<h4>Download Instructions for URI Lists</h4>
 <pre>
 wget https://satcompetition.github.io/2020/downloads/sc2020-main.uri
 wget --content-disposition -i sc2020-main.uri
 </pre>
-<pre>
+	</ul>
+<!--<pre>
 To resume type:
 wget --content-disposition --continue -i sc2020-main.uri
-</pre>
+</pre>-->
 	</ul>
 	<h3>Submissions</h3>
 	<ul>
@@ -57,6 +54,9 @@ wget --content-disposition --continue -i sc2020-main.uri
 	<h3>Results</h3>
 	<ul>
 	<li><a href="downloads/satcomp20slides.pdf">Presentation of Results (Slides)</a>. Slides were updated on July 31 to account for disqualification of abcd-para-scavel in the parallel track due to incorrect results.</li>
+	<li><a href="downloads/results.csv">Main Track (CSV)</a></li>
+	<li><a href="downloads/parallel.csv">Parallel Track (CSV)</a></li>
+	<li><a href="downloads/cloud.csv">Cloud Track (CSV)</a></li>
 	</ul>
   </div>
 </div>
