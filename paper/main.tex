@@ -10,10 +10,8 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{float,lscape}
-\usepackage{listings}
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 \usepackage{tkz-graph}
-\lstset{language=C}
-\rowcolors{3}{gray!10}{white}
 
 \title{SAT Competition 2020\tnoteref{title}}
 \tnotetext[title]{\url{satcompetition.github.io/2020}}
@@ -70,9 +68,57 @@ SAT, Competition, Retrospective
 \subsection{Cloud Track}
 
 
-\section{Selection of Benchmark Instances}
+\section{Selection and Maintenance of Benchmark Instances}
 
-\subsection{Main Instances}
+GBD Tools is a new tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
+Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities\footnote{https://pypi.org/project/gbd-tools/} to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.\footnote{\url{https://gbd.iti.kit.edu}}
+
+For selection of benchmarks in this competition, we used a database which contains information about instance author, family and result for a collection of instances used in all SAT competitive events dating back to 2006.\footnote{\url{https://gbd.iti.kit.edu/getdatabase/meta.db}} 
+Like this it was possible to query for instances with desired properties, which gives the instance selection process a new quality. 
+Using GBD Server, each instance also has an URL, such that instances can also be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
+
+
+\subsection{Selection of Instances}
+
+The ``Bring Your Own Benchmarks'' (BYOB) rule (applied as of SAT Competition 2017~\cite{SC2017}) requires solver authors to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', whereby interesting is defined as Minisat~\cite{Niklas:2003:Minisat} needs at least one minute to solve it and the authors own solver does not run into a timeout for the instance. 
+
+In total, $28$ authors followed our calls for participation and benchmark instances, thus contributing to a set of $1260$ previously unseen benchmark instances with a variety of $27$ different instance families. 
+By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
+
+In order to compile a balanced set of $300$ benchmark instances, we used the procedure which is depicted in Algorithm~\ref{algo:select} to select a maximium of $14$ submissions per author. 
+Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
+If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5-7). 
+Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
+
+\begin{algorithm}[t]
+\DontPrintSemicolon
+
+\KwData{$I$ : Set of Instances, $A$ : Set of Authors}
+\KwData{Functions $\alpha : I \rightarrow A$ and $\sigma : I \rightarrow \{\mathsf{sat}, \mathsf{unsat}, \mathsf{unknown}\}$}
+\KwResult{$S$ : Set of Selected Instances}
+\SetKwFunction{rand}{$\mathsf{random.choice}$}
+\BlankLine
+$S \leftarrow \emptyset$\;
+
+\For {$a \in A$} {
+	$I_a^+ \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{sat} \}$, $k=7$}\;	
+	$I_a^- \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unsat} \}$, $k=7$}\;	
+	\If {$|I_a^+|+|I_a^-| < 14$}{
+		$l \leftarrow 14 - (|I_a^+|+|I_a^-|)$\;
+		$I_a^? \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unknown} \}$, $k=l$}\;
+	}
+	$S \leftarrow S \cup I_a^+ \cup I_a^- \cup I_a^?$\;	
+}
+\Return $S$\;
+
+\caption{Benchmark Instance Selection}
+\label{algo:select}
+\end{algorithm}
+
+To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
+We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unkown result. 
+Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
+
 
 \subsection{Planning Instances}
 
