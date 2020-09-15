@@ -1,4 +1,4 @@
 slides/* linguist-vendored
 paper/* linguist-vendored
-IEEEtran.cls
-tournament.tex
+IEEEtran.cls linguist-vendored
+tournament.tex linguist-vendored
