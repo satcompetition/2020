@@ -12,6 +12,7 @@
 \usepackage{float,lscape}
 \usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 \usepackage{tkz-graph}
+\usepackage{lscape} 
 
 \title{SAT Competition 2020\tnoteref{title}}
 \tnotetext[title]{\url{satcompetition.github.io/2020}}
@@ -41,7 +42,7 @@ We describe the 2020 SAT Competition and provide a detailed analysis of its resu
 \end{abstract}
 
 \begin{keyword}
-SAT, Competition, Retrospective
+SAT, Competition
 \end{keyword}
 
 \maketitle
@@ -58,6 +59,119 @@ SAT, Competition, Retrospective
 \section{Overview: Descriptions of Tracks, List of Participants}
 
 \subsection{Main Track}
+
+%\newcommand{\stack}[2]{\begin{tabular}{@{}c@{}}#1 \\#2\end{tabular}}
+
+% Stack a variable number of arguments:
+\makeatletter
+\newcommand{\stack}[1]{%
+    \begin{tabular}{@{}l@{}}#1\checknextarg}
+\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{ \end{tabular}}}
+\newcommand{\gobblenextarg}[1]{\\#1\@ifnextchar\bgroup{\gobblenextarg}{ \end{tabular}}}
+\makeatother
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|}
+\hline
+Team & Solver & Configuration / Variant / Hack \\
+\hline
+
+\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} 
+ & \multirow{3}{*}{Kissat-sc2020} & --\\
+ &  & sat\\
+ &  & unsat\\
+\cline{2-3}
+ & Cadical-sc2020 & --\\
+\hline
+
+\multirow{3}{*}{Zhang, Cai}
+ & \multirow{3}{*}{Relaxed\_LCMDCBDL} & --\\
+ &  & noTimeParam\\
+ &  & newTech\\
+\hline
+
+\multirow{2}{*}{\stack{Soos, Cai, }{Devriendt, Shaw}}
+ & \multirow{2}{*}{CryptoMiniSat-CCAnr} & --\\
+ &  & lsids\\
+\hline
+
+\stack{Soos, Selman, }{Kautz}~ & CryptoMiniSat-WalkSAT & -- \\
+\hline
+
+\multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
+ & \multirow{3}{*}{Cadical} & trail\\
+ &  & alluip\\
+ &  & alluip-trail\\
+ \cline{2-3}
+ & Maple-LCM-Dist & alluip-trail\\
+\hline
+
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistChronoBT} & f2trc\\
+ & & f2trc-s\\
+ \cline{2-3}
+ & MapleLCMDistChronoBT-DL & f2trc\\
+\hline
+
+\stack{Kochemazov, }{Zaikin, }{Kondratiev, }{Semenov} ~& MapleLCMDistChronoBT-DL-v3 & --\\
+\hline
+
+\multirow{4}{*}{\stack{Lonlac, }{Nguifo}} & \multirow{4}{*}{Undominated-LC-MapleLCMDistChronoBT-DL} & --\\
+ &  & top16\\
+ &  & top24\\
+ &  & top36\\
+\hline
+
+\multirow{5}{*}{\stack{Tchinda, }{Djamegni}}
+ & \multirow{4}{*}{Painless-ExMapleLCMDistChronoBT} & padc\_dl\\
+ &  & padc\_dl\_ovau\_lin\\
+ &  & padc\_dl\_ovau\_exp\\
+ &  & psids\_dl\\
+ \cline{2-3}
+ & Glucose 3.0 & upGlucose-3.0\_PADC\\
+\hline
+
+Shaw, Meel & DurianSat & --\\
+\hline
+
+\multirow{2}{*}{Chen}
+ & Maple & Mix\\
+ & Maple & Simp\\
+\hline
+
+Riveros & SLIME & --\\
+\hline
+
+\multirow{3}{*}{Li, Wu, Xu, Chen} & MLCMDChronoBT-DL-Scavel & --\\
+ & MapleLCMDistChronoBT-DL-Scavel01 & --\\
+ & MapleLCMDistChronoBT-DL-Scavel02 & --\\
+\hline
+
+\multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
+ & MapleCOMSPS\_LRB\_VSIDS\_2 & --\\
+ & MapleCOMSPS\_LRB\_VSIDS\_2 & LRB\_VSIDS\_2\_init\\
+\hline
+
+\multirow{4}{*}{\stack{Chowdhury, }{Müller, You}} & exp-V-LGB-MLD-CBT-DL & --\\
+ & exp-V-L-MLDCBT-DL & --\\
+ & exp-L-MLD-CBT-DL & -- \\
+ & exp-V-MLD-CBT-DL & -- \\
+\hline
+
+\multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
+ & \multirow{3}{*}{MapleCM} & +dist \\
+ &  & +dist+sattime2s+- \\
+ &  & +dist+simp2-- \\
+ & MapleCMused & +dist \\
+\hline
+
+Kaiser, Hartung & PauSat & -- \\
+\hline
+
+Osama, Wijs & ParaFROST, ParaFROST-CBT & -- \\
+\hline
+\end{tabular}
+\caption{Teams, Solvers and Hacks participating in the Main Tracks}
+\end{table}
 
 \subsection{Planning Track}
 
