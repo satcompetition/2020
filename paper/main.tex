@@ -58,7 +58,11 @@ SAT, Competition
 
 \section{Overview: Descriptions of Tracks, List of Participants}
 
-\subsection{Main Track}
+\subsection{Main Tracks}
+
+This year in the Main Track, we had a Planning Sub-Track. 
+The general idea is, that next to a balanced selection of benchmark instances in main track, to each year also offer one domain-specific sub-track. 
+
 
 %\newcommand{\stack}[2]{\begin{tabular}{@{}c@{}}#1 \\#2\end{tabular}}
 
@@ -73,7 +77,7 @@ SAT, Competition
 \begin{table}[h]
 \begin{tabular}{|l|l|l|}
 \hline
-Team & Solver & Configuration / Variant / Hack \\
+Team & Solver & Variant \\
 \hline
 
 \multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} 
@@ -90,7 +94,7 @@ Team & Solver & Configuration / Variant / Hack \\
  &  & newTech\\
 \hline
 
-\multirow{2}{*}{\stack{Soos, Cai, }{Devriendt, Shaw}}
+\multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
  & \multirow{2}{*}{CryptoMiniSat-CCAnr} & --\\
  &  & lsids\\
 \hline
@@ -151,17 +155,18 @@ Riveros & SLIME & --\\
  & MapleCOMSPS\_LRB\_VSIDS\_2 & LRB\_VSIDS\_2\_init\\
 \hline
 
-\multirow{4}{*}{\stack{Chowdhury, }{Müller, You}} & exp-V-LGB-MLD-CBT-DL & --\\
- & exp-V-L-MLDCBT-DL & --\\
- & exp-L-MLD-CBT-DL & -- \\
- & exp-V-MLD-CBT-DL & -- \\
+\multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
+ & \multirow{4}{*}{MapleLCMDistChronoBT-DL-v2.2} & exp-V-LGB-MLD-CBT-DL \\
+ &  & exp-V-L-MLDCBT-DL \\
+ &  & exp-L-MLD-CBT-DL \\
+ &  & exp-V-MLD-CBT-DL \\
 \hline
 
 \multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{3}{*}{MapleCM} & +dist \\
- &  & +dist+sattime2s+- \\
- &  & +dist+simp2-- \\
- & MapleCMused & +dist \\
+ & \multirow{4}{*}{MapleCM} & \texttt{+}dist \\
+ &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} \\
+ &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} \\
+ &  & used\texttt{+}dist \\
 \hline
 
 Kaiser, Hartung & PauSat & -- \\
@@ -170,16 +175,73 @@ Kaiser, Hartung & PauSat & -- \\
 Osama, Wijs & ParaFROST, ParaFROST-CBT & -- \\
 \hline
 \end{tabular}
-\caption{Teams, Solvers and Hacks participating in the Main Tracks}
+\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack)}
 \end{table}
-
-\subsection{Planning Track}
 
 \subsection{Incremental Library Track}
 
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Chen & abcdsat-i20 \\
+\hline
+\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 \\
+\hline
+\stack{Soos, Cai, }{Devriendt, Gocht, }{Shaw, Meel}~ & Cryptominisat-5 \\
+\hline
+Manthey & Riss-7.1.2\\
+\hline
+\end{tabular}
+\caption{}
+\end{table}
+
 \subsection{Parallel Track}
 
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+\multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
+ & P-MCOMSPS-STR-32\\
+ & P-MCOMSPS-STR-64\\
+\hline
+\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}
+ & Plingeling\\
+ & Treengeling\\
+\hline
+\multirow{2}{*}{Nabeshima, Inoue}
+ & ManyGlucose-32\\
+ & ManyGlucose-64\\
+\hline
+\multirow{2}{*}{Tchinda, Djamegni}
+ & painlessmaplevone\\
+ & painlessmaplevtwo\\
+\hline
+Li, Wu, Xu, Chen & syrupscavel\\
+\hline
+Chen & abcdsatptwenty\\
+\hline
+\end{tabular}
+\caption{}
+\end{table}
+
 \subsection{Cloud Track}
+
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Schreiber & mallob-mono\\
+\hline
+\stack{Ehlers, Kulczynski, }{Nowotka, Sieweck}~ & TopoSAT2\\
+\hline
+Riveros & Slime\\
+\hline
+\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}~ & Paracooba\\
+& Paracooba-March\\
+\hline
+Hartung & CTSat\\
+\hline
+\end{tabular}
+\end{table}
 
 
 \section{Selection and Maintenance of Benchmark Instances}
