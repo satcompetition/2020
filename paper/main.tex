@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{url}
 \usepackage{graphicx}
-\usepackage{color}
+\usepackage[table]{xcolor}
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{float,lscape}
@@ -69,50 +69,69 @@ The general idea is, that next to a balanced selection of benchmark instances in
 % Stack a variable number of arguments:
 \makeatletter
 \newcommand{\stack}[1]{%
-    \begin{tabular}{@{}l@{}}#1\checknextarg}
-\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{ \end{tabular}}}
-\newcommand{\gobblenextarg}[1]{\\#1\@ifnextchar\bgroup{\gobblenextarg}{ \end{tabular}}}
+\begin{tabular}{@{}l@{}}#1\checknextarg}
+\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
+\newcommand{\gobblenextarg}[1]{\\#1\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
 \makeatother
+
+\definecolor{gold}{HTML}{FFF3D6}
+\definecolor{silver}{HTML}{F3F5F7}
+\definecolor{cupper}{HTML}{EAD9D7}
+
+\newcommand{\firsto}{\texttt{\colorbox{gold}{[1]}}}
+\newcommand{\firsts}{\texttt{\colorbox{gold}{[1S]}}}
+\newcommand{\firstu}{\texttt{\colorbox{gold}{[1U]}}}
+\newcommand{\firstp}{\texttt{\colorbox{gold}{[1P]}}}
+\newcommand{\secondo}{\texttt{\colorbox{silver}{[2]}}}
+\newcommand{\seconds}{\texttt{\colorbox{silver}{[2S]}}}
+\newcommand{\secondu}{\texttt{\colorbox{silver}{[2U]}}}
+\newcommand{\secondp}{\texttt{\colorbox{silver}{[2P]}}}
+\newcommand{\thirdo}{\texttt{\colorbox{cupper}{[3]}}}
+\newcommand{\thirds}{\texttt{\colorbox{cupper}{[3S]}}}
+\newcommand{\thirdu}{\texttt{\colorbox{cupper}{[3U]}}}
+\newcommand{\thirdp}{\texttt{\colorbox{cupper}{[3P]}}}
 
 \begin{table}[h]
 \smaller
+\arrayrulecolor{gray}
+
 \begin{tabular}{|l|l|l|}
 \hline
-Team & Solver & Variant \\
+\bf Team & \bf Solver & \bf Variant \\
 \hline
 
 \multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} 
- & \multirow{3}{*}{Kissat-sc2020} & --\\
- &  & sat\\
- &  & unsat\\
+ &  &  -- \firsto\firstu\\
+ &  &  sat \firsto\seconds\firstu\\
+ &  \multirow{-3}{*}{Kissat-sc2020} &  unsat \firstu\thirdp\\
 \cline{2-3}
- & Cadical-sc2020 & --\\
+ &  Cadical-sc2020 &  -- \\
 \hline
-
+ 
 \multirow{3}{*}{Zhang, Cai}
- & \multirow{3}{*}{MapleLCMDistChronoBT-DL} & Relaxed\\
+ &  & Relaxed\\
  &  & Relaxed noTimeParam\\
- &  & Relaxed newTech\\
+ &  \multirow{-3}{*}{MapleLCMDistChronoBT-DL} &  Relaxed newTech \secondo\firsts\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- & \multirow{2}{*}{CryptoMiniSat-CCAnr} & --\\
- &  & lsids\\
+ &  &  -- \thirdo\thirds\secondp\\
+ &  \multirow{-2}{*}{CryptoMiniSat-CCAnr} &  lsids \thirdo\thirds\secondp\\
 \hline
 
 \stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- & \multirow{3}{*}{Cadical} & trail\\
- &  & alluip\\
- &  & alluip-trail\\
+ &  &  trail \secondu \\
+ &  &  alluip \firstp\\
+ & \multirow{-3}{*}{Cadical} &  alluip-trail \firstp \\
  \cline{2-3}
  & Maple-LCM-Dist & alluip-trail\\
 \hline
 
 \multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistChronoBT} & f2trc\\
- & & f2trc-s\\
+ & & f2trc-s\thirdu\\
  \cline{2-3}
  & MapleLCMDistChronoBT-DL & f2trc\\
 \hline
