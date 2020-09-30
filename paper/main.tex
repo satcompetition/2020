@@ -75,6 +75,7 @@ The general idea is, that next to a balanced selection of benchmark instances in
 \makeatother
 
 \begin{table}[h]
+\smaller
 \begin{tabular}{|l|l|l|}
 \hline
 Team & Solver & Variant \\
@@ -89,9 +90,9 @@ Team & Solver & Variant \\
 \hline
 
 \multirow{3}{*}{Zhang, Cai}
- & \multirow{3}{*}{Relaxed\_LCMDCBDL} & --\\
- &  & noTimeParam\\
- &  & newTech\\
+ & \multirow{3}{*}{MapleLCMDistChronoBT-DL} & Relaxed\\
+ &  & Relaxed noTimeParam\\
+ &  & Relaxed newTech\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
@@ -99,7 +100,7 @@ Team & Solver & Variant \\
  &  & lsids\\
 \hline
 
-\stack{Soos, Selman, }{Kautz}~ & CryptoMiniSat-WalkSAT & -- \\
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
@@ -116,43 +117,44 @@ Team & Solver & Variant \\
  & MapleLCMDistChronoBT-DL & f2trc\\
 \hline
 
-\stack{Kochemazov, }{Zaikin, }{Kondratiev, }{Semenov} ~& MapleLCMDistChronoBT-DL-v3 & --\\
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistChronoBT-DL-v3 & --\\
 \hline
 
-\multirow{4}{*}{\stack{Lonlac, }{Nguifo}} & \multirow{4}{*}{Undominated-LC-MapleLCMDistChronoBT-DL} & --\\
- &  & top16\\
- &  & top24\\
- &  & top36\\
+\multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
+ & \multirow{4}{*}{MapleLCMDiscChronoBT-DL-v3} & Undominated\\
+ &  & Undominated Top16\\
+ &  & Undominated Top24\\
+ &  & Undominated Top36\\
 \hline
 
-\multirow{5}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{Painless-ExMapleLCMDistChronoBT} & padc\_dl\\
+\multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
+ & \multirow{4}{*}{ExMapleLCMDistChronoBT} & padc\_dl\\
  &  & padc\_dl\_ovau\_lin\\
  &  & padc\_dl\_ovau\_exp\\
  &  & psids\_dl\\
- \cline{2-3}
- & Glucose 3.0 & upGlucose-3.0\_PADC\\
+% \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
 \hline
 
 Shaw, Meel & DurianSat & --\\
 \hline
 
 \multirow{2}{*}{Chen}
- & Maple & Mix\\
- & Maple & Simp\\
+ & \multirow{2}{*}{MapleLCMDistChronoBT-DL} & Maple\_Mix\\
+ &  & Maple\_Simp\\
 \hline
 
 Riveros & SLIME & --\\
 \hline
 
-\multirow{3}{*}{Li, Wu, Xu, Chen} & MLCMDChronoBT-DL-Scavel & --\\
- & MapleLCMDistChronoBT-DL-Scavel01 & --\\
- & MapleLCMDistChronoBT-DL-Scavel02 & --\\
+\multirow{3}{*}{Li, Wu, Xu, Chen}
+ & \multirow{3}{*}{MapleLCMDistChronoBT-DL} & Scavel\\
+ &  & Scavel01\\
+ &  & Scavel02\\
 \hline
 
 \multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & MapleCOMSPS\_LRB\_VSIDS\_2 & --\\
- & MapleCOMSPS\_LRB\_VSIDS\_2 & LRB\_VSIDS\_2\_init\\
+ & \multirow{2}{*}{MapleCOMSPS\_LRB\_VSIDS\_2} & --\\
+ &  & init\\
 \hline
 
 \multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
@@ -172,10 +174,12 @@ Riveros & SLIME & --\\
 Kaiser, Hartung & PauSat & -- \\
 \hline
 
-Osama, Wijs & ParaFROST, ParaFROST-CBT & -- \\
+\multirow{2}{*}{Osama, Wijs} 
+ & \multirow{2}{*}{ParaFROST} & -- \\
+ &  & CBT \\
 \hline
 \end{tabular}
-\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack)}
+\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). Note that many teams are only responsible for the variant of a previously existing base solver.}
 \end{table}
 
 \subsection{Incremental Library Track}
