@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
-\usepackage{multirow}
+\usepackage{multirow,makecell}
 \usepackage{float,lscape}
 \usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 \usepackage{tkz-graph}
@@ -77,125 +77,124 @@ The general idea is, that next to a balanced selection of benchmark instances in
 \definecolor{gold}{HTML}{FFF3D6}
 \definecolor{silver}{HTML}{F3F5F7}
 \definecolor{cupper}{HTML}{EAD9D7}
-
-\newcommand{\firsto}{\texttt{\colorbox{gold}{[1]}}}
-\newcommand{\firsts}{\texttt{\colorbox{gold}{[1S]}}}
-\newcommand{\firstu}{\texttt{\colorbox{gold}{[1U]}}}
-\newcommand{\firstp}{\texttt{\colorbox{gold}{[1P]}}}
-\newcommand{\secondo}{\texttt{\colorbox{silver}{[2]}}}
-\newcommand{\seconds}{\texttt{\colorbox{silver}{[2S]}}}
-\newcommand{\secondu}{\texttt{\colorbox{silver}{[2U]}}}
-\newcommand{\secondp}{\texttt{\colorbox{silver}{[2P]}}}
-\newcommand{\thirdo}{\texttt{\colorbox{cupper}{[3]}}}
-\newcommand{\thirds}{\texttt{\colorbox{cupper}{[3S]}}}
-\newcommand{\thirdu}{\texttt{\colorbox{cupper}{[3U]}}}
-\newcommand{\thirdp}{\texttt{\colorbox{cupper}{[3P]}}}
+\fboxsep0pt
+\newcommand{\firsto}{\colorbox{gold}{$m^1$}}
+\newcommand{\firsts}{\colorbox{gold}{$s^1$}}
+\newcommand{\firstu}{\colorbox{gold}{$u^1$}}
+\newcommand{\firstp}{\colorbox{gold}{$p^1$}}
+\newcommand{\secondo}{\colorbox{silver}{$m^2$}}
+\newcommand{\seconds}{\colorbox{silver}{$s^2$}}
+\newcommand{\secondu}{\colorbox{silver}{$u^2$}}
+\newcommand{\secondp}{\colorbox{silver}{$p^2$}}
+\newcommand{\thirdo}{\colorbox{cupper}{$m^3$}}
+\newcommand{\thirds}{\colorbox{cupper}{$s^3$}}
+\newcommand{\thirdu}{\colorbox{cupper}{$u^3$}}
+\newcommand{\thirdp}{\colorbox{cupper}{$p^3$}}
 
 \begin{table}[h]
 \smaller
 \arrayrulecolor{gray}
-
-\begin{tabular}{|l|l|l|}
+%\centering
+\begin{tabular}{|l|l|l|l|}
 \hline
-\bf Team & \bf Solver & \bf Variant \\
+\bf Team & \bf Solver & \bf Variant & \bf Award \\
 \hline
 
-\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} 
- &  &  -- \firsto\firstu\\
- &  &  sat \firsto\seconds\firstu\\
- &  \multirow{-3}{*}{Kissat-sc2020} &  unsat \firstu\thirdp\\
-\cline{2-3}
- &  Cadical-sc2020 &  -- \\
+\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} & \multirow{3}{*}{Kissat-sc2020} &  -- & \firsto\firstu\\
+ &  &  sat & \firsto\firstu\seconds\\
+ &  &  unsat & \firstu\thirdp\\
+\cline{2-4}
+ &  Cadical-sc2020 &  -- & \\
 \hline
  
 \multirow{3}{*}{Zhang, Cai}
- &  & Relaxed\\
- &  & Relaxed noTimeParam\\
- &  \multirow{-3}{*}{MapleLCMDistChronoBT-DL} &  Relaxed newTech \secondo\firsts\\
+    & \multirow{3}{*}{MapleLCMDistCBT-DL} & Relaxed & \\
+ &  & Rel. noTimeParam & \\
+ &  & Rel. newTech & \secondo\firsts\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  &  -- \thirdo\thirds\secondp\\
- &  \multirow{-2}{*}{CryptoMiniSat-CCAnr} &  lsids \thirdo\thirds\secondp\\
+ &  \multirow{2}{*}{CryptoMiniSat-CCAnr} &  -- & \thirdo\thirds\secondp\\
+ &  &  lsids & \thirdo\thirds\secondp\\
 \hline
 
-\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- \\
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- & \\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- &  &  trail \secondu \\
- &  &  alluip \firstp\\
- & \multirow{-3}{*}{Cadical} &  alluip-trail \firstp \\
- \cline{2-3}
- & Maple-LCM-Dist & alluip-trail\\
+ &  &  trail & \secondu\\
+ &  &  alluip & \firstp\\
+ & \multirow{-3}{*}{Cadical} &  alluip-trail & \firstp\\
+ \cline{2-4}
+ & MapleLCMDist & alluip-trail & \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistChronoBT} & f2trc\\
- & & f2trc-s\thirdu\\
- \cline{2-3}
- & MapleLCMDistChronoBT-DL & f2trc\\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistChronoBT} & f2trc & \\
+ & & f2trc-s & \thirdu\\
+ \cline{2-4}
+ & MapleLCMDistCBT-DL & f2trc & \\
 \hline
 
-\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistChronoBT-DL-v3 & --\\
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistCBT-DL-v3 & -- & \\
 \hline
 
 \multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
- & \multirow{4}{*}{MapleLCMDiscChronoBT-DL-v3} & Undominated\\
- &  & Undominated Top16\\
- &  & Undominated Top24\\
- &  & Undominated Top36\\
+ & \multirow{4}{*}{MapleLCMDistCBT-DL-v3} & Undominated & \\
+ &  & Undom. Top16 & \\
+ &  & Undom. Top24 & \\
+ &  & Undom. Top36 & \\
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{ExMapleLCMDistChronoBT} & padc\_dl\\
- &  & padc\_dl\_ovau\_lin\\
- &  & padc\_dl\_ovau\_exp\\
- &  & psids\_dl\\
+ & \multirow{4}{*}{ExMapleLCMDistChronoBT} & padc\_dl & \\
+ &  & padc\_dl\_ovau\_lin & \\
+ &  & padc\_dl\_ovau\_exp & \\
+ &  & psids\_dl & \\
 % \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
 \hline
 
-Shaw, Meel & DurianSat & --\\
+Shaw, Meel & DurianSat & -- & \\
 \hline
 
 \multirow{2}{*}{Chen}
- & \multirow{2}{*}{MapleLCMDistChronoBT-DL} & Maple\_Mix\\
- &  & Maple\_Simp\\
+ & \multirow{2}{*}{MapleLCMDistCBT-DL} & Maple\_Mix & \\
+ &  & Maple\_Simp & \\
 \hline
 
-Riveros & SLIME & --\\
+Riveros & SLIME & -- & \\
 \hline
 
 \multirow{3}{*}{Li, Wu, Xu, Chen}
- & \multirow{3}{*}{MapleLCMDistChronoBT-DL} & Scavel\\
- &  & Scavel01\\
- &  & Scavel02\\
+ & \multirow{3}{*}{MapleLCMDistCBT-DL} & Scavel & \\
+ &  & Scavel01 & \\
+ &  & Scavel02 & \\
 \hline
 
 \multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & \multirow{2}{*}{MapleCOMSPS\_LRB\_VSIDS\_2} & --\\
- &  & init\\
+ & \multirow{2}{*}{MapleCoMsPS\_LRB\_VSIDS\_2} & -- & \\
+ &  & init & \\
 \hline
 
 \multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
- & \multirow{4}{*}{MapleLCMDistChronoBT-DL-v2.2} & exp-V-LGB-MLD-CBT-DL \\
- &  & exp-V-L-MLDCBT-DL \\
- &  & exp-L-MLD-CBT-DL \\
- &  & exp-V-MLD-CBT-DL \\
+ & \multirow{4}{*}{MapleLCMDistCBT-DL-v2.2} & exp-V-LGB & \\
+ &  & exp-V-L & \\
+ &  & exp-L & \\
+ &  & exp-V & \\
 \hline
 
 \multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{4}{*}{MapleCM} & \texttt{+}dist \\
- &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} \\
- &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} \\
- &  & used\texttt{+}dist \\
+ & \multirow{4}{*}{MapleCM} & \texttt{+}dist & \\
+ &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} & \\
+ &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} & \\
+ &  & used\texttt{+}dist & \\
 \hline
 
-Kaiser, Hartung & PauSat & -- \\
+Kaiser, Hartung & PauSat & -- & \\
 \hline
 
 \multirow{2}{*}{Osama, Wijs} 
- & \multirow{2}{*}{ParaFROST} & -- \\
- &  & CBT \\
+ & \multirow{2}{*}{ParaFROST} & -- & \\
+ &  & CBT & \\
 \hline
 \end{tabular}
 \caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). Note that many teams are only responsible for the variant of a previously existing base solver.}
