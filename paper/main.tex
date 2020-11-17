@@ -91,7 +91,7 @@ The general idea is, that next to a balanced selection of benchmark instances in
 \newcommand{\thirdu}{\colorbox{cupper}{$u^3$}}
 \newcommand{\thirdp}{\colorbox{cupper}{$p^3$}}
 
-\begin{table}[h]
+\begin{table}[h!]
 \smaller
 \arrayrulecolor{gray}
 \centering
@@ -281,7 +281,7 @@ Hartung & CTSat & -\\
 
 \section{Selection and Maintenance of Benchmark Instances}
 
-GBD Tools is a new tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
+GBD Tools is a tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
 Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities\footnote{https://pypi.org/project/gbd-tools/} to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.\footnote{\url{https://gbd.iti.kit.edu}}
 
 For selection of benchmarks in this competition, we used a database which contains information about instance author, family and result for a collection of instances used in all SAT competitive events dating back to 2006.\footnote{\url{https://gbd.iti.kit.edu/getdatabase/meta.db}} 
@@ -337,8 +337,48 @@ Furthermore, we made sure not to select instances of a family which is already r
 
 
 \section{Competition Results}
-
 \todo{for each track summarize the descriptions of the winning solvers}
+
+\subsection{Main Track}
+
+\paragraph{Kissat} 
+three configurations submitted, four awards won, cdcl by several mixed strategies
+
+\paragraph{CryptoMiniSat-CCAnr}
+two variants: with and without lsids, with lsids slightly better, three awards won,  combination of cdcl and sls
+
+\paragraph{Cadical Hack}
+three configurations, two awards
+
+\paragraph{MapleLCMDistCBT-DL Relaxed newTech}
+this variant won two awards
+
+\paragraph{MapleLCMDistCBT f2trc-s}
+this variant won onw awards
+
+
+\subsection{Incremental Library Track}
+\paragraph{Cryptominisat-5}
+
+
+\subsection{Parallel Track}
+
+\paragraph{P-MCOMSPS-STR} three awards
+
+\paragraph{Plingeling} three awards
+
+\paragraph{ManyGlucose} two awards
+
+\paragraph{Painless Maple} one award
+
+
+\subsection{Cloud Track}
+
+\paragraph{Mallob Mono}
+
+\paragraph{TopoSAT 2}
+
+\paragraph{Slime}
 
 
 \section{Analysis of Results}
