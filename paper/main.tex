@@ -49,22 +49,39 @@ SAT, Competition
 
 \section{Introduction}
 
-\todo{Motivational paragraphs for SAT and the Competitions and what made this Competition Special}
+Propositional satisfiability (SAT) is the archetypal NP-complete problem. 
+Despite its complexity, there is ongoing progress in solving methods and their implementations in SAT solvers. 
+The generic nature of the SAT problem as well as the performance of state-of-the-art SAT solvers facilitate their use as the algorithmic backend in a plethora of applications. 
+Today, SAT solvers are used for verification of hard- and software, product configuration, cryptography, planning and scheduling, to name a few. 
+In mathematics, SAT solvers were recently even used to generate a record sized proof (200 TB) for an until then unsolved problem in Ramsey theory. 
+
+SAT Competitions are organized regularly since 1992 in order to drive progress and to serve as a public assessment of the state-of-the-art in SAT solving. 
+For each SAT Competitions, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
+
+In this competition, we initiated a new application-specific subtrack. 
+The idea is to provide a large amount of benchmark instances of a specific application, and to evaluate all solvers with respect to these instance in a special track. 
+In this competition, we used 200 instances of the planning domain to run a planning subtrack. 
+
+Faster networks, distributed systems, and the increasing number of processors in modern computers show that the trend of increasing parallelism is about to continue.  
+In the new cloud track, for the first time, solver authors could compete in SAT technologies that allow hundreds of SAT solvers to cooperate in solving a SAT instance. 
 
 \todo{Present some important pointers for SAT and CDCL}
 
-\todo{Present the structure of the paper}
+In Section~\ref{sec:tracks}, we start with a detailed description of the competition tracks and their purpose. 
+Section~\ref{sec:instances} contains an overview on the selected benchmark instances and details about the selection process. 
+In Section~\ref{sec:results} we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
+A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
 
 
-\section{Overview: Descriptions of Tracks, List of Participants}
+
+\section{Descriptions of Tracks}
+\label{sec:tracks}
 
 \subsection{Main Tracks}
 
 This year in the Main Track, we had a Planning Sub-Track. 
 The general idea is, that next to a balanced selection of benchmark instances in main track, to each year also offer one domain-specific sub-track. 
 
-
-%\newcommand{\stack}[2]{\begin{tabular}{@{}c@{}}#1 \\#2\end{tabular}}
 
 % Stack a variable number of arguments:
 \makeatletter
@@ -97,7 +114,7 @@ The general idea is, that next to a balanced selection of benchmark instances in
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-\bf Team & \bf Solver & \bf Variant & \bf Award \\
+\bf Team & \bf Base Solver & \bf Variant & \bf Award \\
 \hline
 
 \multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} & \multirow{3}{*}{Kissat-sc2020} &  -- & \firsto\firstu\\
@@ -129,7 +146,7 @@ The general idea is, that next to a balanced selection of benchmark instances in
  & MapleLCMDist & alluip-trail & \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistChronoBT} & f2trc & \\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \\
  & & f2trc-s & \thirdu\\
  \cline{2-4}
  & MapleLCMDistCBT-DL & f2trc & \\
@@ -146,7 +163,7 @@ The general idea is, that next to a balanced selection of benchmark instances in
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{ExMapleLCMDistChronoBT} & padc\_dl & \\
+ & \multirow{4}{*}{MapleLCMDistCBT} & padc\_dl & \\
  &  & padc\_dl\_ovau\_lin & \\
  &  & padc\_dl\_ovau\_exp & \\
  &  & psids\_dl & \\
@@ -279,7 +296,8 @@ Hartung & CTSat & -\\
 \end{table}
 
 
-\section{Selection and Maintenance of Benchmark Instances}
+\section{Description of Benchmark Instances}
+\label{sec:instances}
 
 GBD Tools is a tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
 Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities\footnote{https://pypi.org/project/gbd-tools/} to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.\footnote{\url{https://gbd.iti.kit.edu}}
@@ -337,6 +355,7 @@ Furthermore, we made sure not to select instances of a family which is already r
 
 
 \section{Competition Results}
+\label{sec:results}
 \todo{for each track summarize the descriptions of the winning solvers}
 
 \subsection{Main Track}
@@ -382,6 +401,7 @@ this variant won onw awards
 
 
 \section{Analysis of Results}
+\label{sec:analysis}
 
 \subsection{Essential Improvements in Winning Solvers}
 
@@ -393,6 +413,7 @@ this variant won onw awards
 
 
 \section{Conclusion}
+\label{sec:conclusion}
 
 
 
