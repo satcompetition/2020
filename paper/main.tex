@@ -35,10 +35,23 @@ KIT Department of Informatics\\
 
 \newcommand{\todo}[1]{{\color{purple}Todo: #1}}
 
+% Stack a variable number of arguments:
+\makeatletter
+\newcommand{\stack}[1]{%
+\begin{tabular}{@{}l@{}}#1\checknextarg}
+\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
+\newcommand{\gobblenextarg}[1]{\\#1\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
+\makeatother
+
 \begin{document}
 
 \begin{abstract}
-We describe the 2020 SAT Competition and provide a detailed analysis of its results.
+SAT Competition 2020 stands in the tradition of the series of annual competitive events which motivate and assess the progress in SAT solving. 
+This competition was special as it introduced the new cloud track where SAT Solvers that run on hundreds of processors can compete. 
+Another novelty is the application-specific sub-track of the main track, where solvers compete in solving benchmark instances from one specific domain only, and in this year that was the planning domain. 
+We use new tools to select and distribute benchmark instances and their attributes. 
+In this paper we provide a description of the well-known and the new competition tracks and how we organized them. 
+It follows then a detailed analysis of the results and the strategies of the award winning solvers. 
 \end{abstract}
 
 \begin{keyword}
@@ -56,7 +69,7 @@ Today, SAT solvers are used for verification of hard- and software, product conf
 In mathematics, SAT solvers were recently even used to generate a record sized proof (200 TB) for an until then unsolved problem in Ramsey theory. 
 
 SAT Competitions are organized regularly since 1992 in order to drive progress and to serve as a public assessment of the state-of-the-art in SAT solving. 
-For each SAT Competitions, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
+For each SAT Competition, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
 
 In this competition, we initiated a new application-specific subtrack. 
 The idea is to provide a large amount of benchmark instances of a specific application, and to evaluate all solvers with respect to these instance in a special track. 
@@ -69,7 +82,7 @@ In the new cloud track, for the first time, solver authors could compete in SAT 
 
 In Section~\ref{sec:tracks}, we start with a detailed description of the competition tracks and their purpose. 
 Section~\ref{sec:instances} contains an overview on the selected benchmark instances and details about the selection process. 
-In Section~\ref{sec:results} we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
+In Section~\ref{sec:results}, we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
 A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
 
 
@@ -79,17 +92,7 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 
 \subsection{Main Tracks}
 
-This year in the Main Track, we had a Planning Sub-Track. 
-The general idea is, that next to a balanced selection of benchmark instances in main track, to each year also offer one domain-specific sub-track. 
 
-
-% Stack a variable number of arguments:
-\makeatletter
-\newcommand{\stack}[1]{%
-\begin{tabular}{@{}l@{}}#1\checknextarg}
-\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
-\newcommand{\gobblenextarg}[1]{\\#1\@ifnextchar\bgroup{\gobblenextarg}{\end{tabular}}}
-\makeatother
 
 \definecolor{gold}{HTML}{FFF3D6}
 \definecolor{silver}{HTML}{F3F5F7}
@@ -222,6 +225,7 @@ Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
 \subsection{Incremental Library Track}
 
 \begin{table}[h]
+\smaller
 \arrayrulecolor{gray}
 \centering
 \begin{tabular}{|l|l|c|}
@@ -243,6 +247,7 @@ Manthey & Riss-7.1.2 & 1 \\
 \subsection{Parallel Track}
 
 \begin{table}[h]
+\smaller
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
@@ -275,6 +280,7 @@ Chen & abcdsatptwenty & \\
 \subsection{Cloud Track}
 
 \begin{table}[h]
+\smaller
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
@@ -299,12 +305,13 @@ Hartung & CTSat & -\\
 \section{Description of Benchmark Instances}
 \label{sec:instances}
 
+For selection of benchmark instances in this competition, we used GBD Tools\footnote{\url{https://pypi.org/project/gbd-tools/}}. 
 GBD Tools is a tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
-Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities\footnote{https://pypi.org/project/gbd-tools/} to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.\footnote{\url{https://gbd.iti.kit.edu}}
+Its database\footnote{\url{https://gbd.iti.kit.edu}} contains information about all instances used in SAT competitive events dating back to 2006. 
+In GBD Server, each instance also has an URL, such that instances can also be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
 
-For selection of benchmarks in this competition, we used a database which contains information about instance author, family and result for a collection of instances used in all SAT competitive events dating back to 2006.\footnote{\url{https://gbd.iti.kit.edu/getdatabase/meta.db}} 
-Like this it was possible to query for instances with desired properties, which gives the instance selection process a new quality. 
-Using GBD Server, each instance also has an URL, such that instances can also be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
+Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.
+Like this it is possible to query for instances with desired properties, e.g., instance author, family and result, which gives the instance selection process a new quality. 
 
 
 \subsection{Selection of Instances}
@@ -412,7 +419,7 @@ this variant won onw awards
 \todo{Rank Correlation}
 
 
-\section{Conclusion}
+\section{Conclusion and Prospects}
 \label{sec:conclusion}
 
 
