@@ -367,44 +367,87 @@ Furthermore, we made sure not to select instances of a family which is already r
 
 \subsection{Main Track}
 
-\paragraph{Kissat} 
-three configurations submitted, four awards won, cdcl by several mixed strategies
+\subsubsection{Kissat} 
 
-\paragraph{CryptoMiniSat-CCAnr}
-two variants: with and without lsids, with lsids slightly better, three awards won,  combination of cdcl and sls
+If it came to determine an overall winner of all the subtracks in the Main Track of this competition, then it would clearly be Kissat. 
+Kissat was submitted in three configurations, including one default configuration and specialized configurations specifically tailored towards satisfiable or unsatisfiable instances, respectively.
+Kissat won four awards, by achieving first place in the overall Main Track, first place in its Unsat Sub-Track, second place in the Sat Sub-Track and third place in the Planning Sub-Track. 
 
-\paragraph{Cadical Hack}
-three configurations, two awards
+Kissat is a reimplementation of Cadical~\cite{} in C, thus, taking advantage of finegrained control on the memory layout of new sophisticated data-structures used to manage watchers and clauses, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{}. 
 
-\paragraph{MapleLCMDistCBT-DL Relaxed newTech}
-this variant won two awards
+In Kissat forward subsumption for learned clauses was entirely replaced by more powerful vivification algorithms~\cite{}. 
+For irredundant clauses forward subsumption is still executed together with variable eliminiation during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurences~\cite{}.
 
-\paragraph{MapleLCMDistCBT f2trc-s}
-this variant won onw awards
+Kissat also comes with a refined scheduling of inprocessing procedures based on growing conflict intervals. 
+Regarding the duration of alternating restart modes, the Kissat authors considered conflict-rate being too unstable, and come up with ``ticks'', which is a new method to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses. 
+
+Considering target phases~\cite{}, Kissat authors come up with an innovative use-case for autarkies to account for saved phases. 
+Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{}. 
+The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
+
+
+\subsubsection{CryptoMiniSat-CCAnr}
+
+This solver won three awards, two third places in the Main Track and its Sat Subtrack, and one second place in the Planning Subtrack. 
+It was submitted in two variants, with and without LSIDS~\cite{}, which is a phase selection heuristic similar to VSIDS and if active it is used only when backtracking is chronological. 
+The version with LSIDS overall performed slightly better.
+
+By tight integration of CCAnr, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies SLS and CDCL in a unique way. 
+As in CaDiCal, they run local search for a short period of time in regular intervals and (just in case SLS finds no solution) change the polarities according to the best assignment found by the SLS solver~\cite{}.
+In addition to this technique known as ``rephasing'' from CaDiCal, they bump VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy. 
+
+This version of CryptoMiniSat comes with an highly optimized implementation of Gauss-Jordan Elimination. 
+CryptoMiniSat includes BreakId, a sub-system that calculates symmetry breaking clauses, which it calls on every 5th inprocessing iteration.
+
+CryptoMiniSat changes decay factors of VSIDS and Maple heuristics dynamically after each inprocessing step to avoid sticking to a single best configuration.
+As in CaDiCal (and now Kissat) CryptoMiniSat is switching between Polarity Caching and Stable Phases. \todo{It is not clear if this is also the case when LSIDS is activated.}
+Inprocessing now also include ternary resolution. 
+
+
+\subsubsection{Cadical Hacks: Trail and AllUip}
+
+This modified version of last years CaDiCal was submitted with the two new methods ``trail'' and ``alluip''. 
+It was submitted in three configurations, one with both methods activated and two other with each having only one of them active. 
+These hacks got two awards, second price in the Unsat Sub-Track of the Main Track and first price in the Planning Track. 
+
+\todo{describe trail and alluip hacks}
+
+
+\subsubsection{MapleLCMDistCBT-DL Relaxed newTech}
+
+The variant Relaxed-newTech of the MapleLCMDistCBT-DL solver won two awards, second price in Main Track and first price in its Sat Sub-Track.
+
+\todo{}
+
+\subsubsection{MapleLCMDistCBT f2trc-s}
+
+The variant f2trc-s of the MapleLCMDistCBT solver was ranked third in the Unsat Sub-Track of the Main-Track.
+
+\todo{}
 
 
 \subsection{Incremental Library Track}
-\paragraph{Cryptominisat-5}
-
+\subsubsection{Cryptominisat-5}
+\todo{Merge with Main-Track winner description}
 
 \subsection{Parallel Track}
 
-\paragraph{P-MCOMSPS-STR} three awards
+\subsubsection{P-MCOMSPS-STR} three awards
 
-\paragraph{Plingeling} three awards
+\subsubsection{Plingeling} three awards
 
-\paragraph{ManyGlucose} two awards
+\subsubsection{ManyGlucose} two awards
 
-\paragraph{Painless Maple} one award
+\subsubsection{Painless Maple} one award
 
 
 \subsection{Cloud Track}
 
-\paragraph{Mallob Mono}
+\subsubsection{Mallob Mono}
 
-\paragraph{TopoSAT 2}
+\subsubsection{TopoSAT 2}
 
-\paragraph{Slime}
+\subsubsection{Slime}
 
 
 \section{Analysis of Results}
