@@ -143,16 +143,16 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
  &  &  trail & \secondu\\
- &  &  alluip & \firstp\\
- & \multirow{-3}{*}{Cadical} &  alluip-trail & \firstp\\
+ &  &  alluip & \secondu\firstp\\
+ & \multirow{-3}{*}{Cadical} &  alluip-trail & \secondu\firstp\\
  \cline{2-4}
  & MapleLCMDist & alluip-trail & \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \thirdu\\
  & & f2trc-s & \thirdu\\
  \cline{2-4}
- & MapleLCMDistCBT-DL & f2trc & \\
+ & MapleLCMDistCBT-DL & f2trc & \thirdu\\
 \hline
 
 \stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistCBT-DL-v3 & -- & \\
@@ -365,7 +365,7 @@ Furthermore, we made sure not to select instances of a family which is already r
 \label{sec:results}
 \todo{for each track summarize the descriptions of the winning solvers}
 
-\subsection{Main Track}
+\subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
 
 \subsubsection{Kissat} 
 
@@ -386,49 +386,65 @@ Before each rephasing step they compute the largest autarky of the full assignme
 The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
 
 
-\subsubsection{CryptoMiniSat-CCAnr}
+\subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
 
-This solver won three awards, two third places in the Main Track and its Sat Subtrack, and one second place in the Planning Subtrack. 
-It was submitted in two variants, with and without LSIDS~\cite{}, which is a phase selection heuristic similar to VSIDS and if active it is used only when backtracking is chronological. 
-The version with LSIDS overall performed slightly better.
+This solver won four awards, two third places in the Main Track and its Sat Subtrack, one second place in the Planning Subtrack, and the first place in the Incremental Library Track. 
+
+To the Main track, the solver was submitted in two variants, with and without LSIDS~\cite{}, which is a phase selection heuristic similar to VSIDS and if active it is used whenever backtracking is chronological~\cite{}. 
+On top of that, as in CaDiCal (and now Kissat), CryptoMiniSat is periodically switching between polarity saving and stable phases. 
+
 
 By tight integration of CCAnr, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies SLS and CDCL in a unique way. 
 As in CaDiCal, they run local search for a short period of time in regular intervals and (just in case SLS finds no solution) change the polarities according to the best assignment found by the SLS solver~\cite{}.
 In addition to this technique known as ``rephasing'' from CaDiCal, they bump VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy. 
 
+CryptoMiniSat periodically changes decay factors of its branching heuristics, thus avoiding usage of a ``single best'' configuration.
+
 This version of CryptoMiniSat comes with an highly optimized implementation of Gauss-Jordan Elimination. 
 CryptoMiniSat includes BreakId, a sub-system that calculates symmetry breaking clauses, which it calls on every 5th inprocessing iteration.
 
-CryptoMiniSat changes decay factors of VSIDS and Maple heuristics dynamically after each inprocessing step to avoid sticking to a single best configuration.
-As in CaDiCal (and now Kissat) CryptoMiniSat is switching between Polarity Caching and Stable Phases. \todo{It is not clear if this is also the case when LSIDS is activated.}
+SLS is tightly integrated and thus is aware of changes occurring during inprocessing. 
 Inprocessing now also include ternary resolution. 
+All modifictions in CrytoMiniSat are fully integrated with resprect to incremental use-cases including the use of assumptions. 
 
 
 \subsubsection{Cadical Hacks: Trail and AllUip}
 
-This modified version of last years CaDiCal was submitted with the two new methods ``trail'' and ``alluip''. 
+This modified version of last years CaDiCal was submitted with the two new methods \emph{Trail Saving}\cite{} and \emph{Stable AllUIP}. 
 It was submitted in three configurations, one with both methods activated and two other with each having only one of them active. 
-These hacks got two awards, second price in the Unsat Sub-Track of the Main Track and first price in the Planning Track. 
+The \emph{Stable AllUIP} variants seemed most successful, in most tracks they were the hightest ranked variants and won the first price in the Planning Sub-Track. 
+However, in the Unsat Sub-Track, the \emph{Trail Saving} variant performed best.
 
-\todo{describe trail and alluip hacks}
+With \emph{Trail Saving}, the solver caches backtracked slices of the assignment trail in order to reuse them when the same decisions are repeated. 
+The authors came up with sophisticated control mechanisms on when and how to reuse the cached trail slices and when to flush that cache. 
 
-
-\subsubsection{MapleLCMDistCBT-DL Relaxed newTech}
-
-The variant Relaxed-newTech of the MapleLCMDistCBT-DL solver won two awards, second price in Main Track and first price in its Sat Sub-Track.
-
-\todo{}
-
-\subsubsection{MapleLCMDistCBT f2trc-s}
-
-The variant f2trc-s of the MapleLCMDistCBT solver was ranked third in the Unsat Sub-Track of the Main-Track.
-
-\todo{}
+With \emph{Stable AllUip}, the solver continues resolution beyond the 1st Unit Implication Point (1-UIP) during clause-learning as long that does not increase the LBD value of the learnt clause and then keeps that clause only if it has a smaller size than then 1-UIP clause. 
+The authors came up with an additional heuristic to limit the amount of attempted AllUip learning attempts, if the fraction of unsuccessful alluip learning attempts gets to high, which they check and adapt on every restart. 
 
 
-\subsection{Incremental Library Track}
-\subsubsection{Cryptominisat-5}
-\todo{Merge with Main-Track winner description}
+\subsubsection{Relaxed MapleLCMDistCBT-DL newTech}
+
+The variant \emph{newTech} of the \emph{Relaxed} fork of the MapleLCMDistCBT-DL was especially successful on satisfiable instances. 
+The solver won two awards, second price in Main Track and first price in its Sat Sub-Track.
+
+The \emph{Relaxed} fork of MapleLCMDistCBT-DL already participated in SAT Race 2019.
+They integrated the local search solver CCAnr by extending the current partial assignment of the CDCL solver to a full assignment and for a fixed interval start the local search solver to try to find a nearby solution. 
+In the new versions of the Relaxed family of Maple solvers, they probabilistically switch between several modes of phase selection, and some of these modes reuse the maximal partially satisfying assignments as determined by the local search solver.
+
+For their successful newTech variant of their fork, they count the number of variable-occurrences in unsat clauses for each flip in the local search solver. 
+Then they reuse this information to priorize variables in a modified branching heuristic. 
+
+
+\subsubsection{MapleLCMDistCBT F2TRC}
+
+The MapleLCMDistCBT F2TRC forks were ranked third in the Unsat Sub-Track of the Main-Track.
+
+The F2TRC forks aim at introducing determinism in winning solvers of previous competition, e.g., by replacing time-based intervals for LRB-VSIDS switches by a heuristic based on the conflict-count~\cite{}. 
+
+Another modification aims at improving three-tier clause management based on the three tiers core, tier2 and local as it was introduced by Chanseok Oh.
+In order to limit growth of the core-tier, they introduce a limit on the number of core clauses, and whenever that is reached some of the low-ranked inactive core clauses are moved from core to tier2 and the limit is increased. 
+In order to prevent tier2 from starving, they replaced the conflict limit for tier2 reduction by a size limit, then only half of the most recently inactive clauses is moved to local tier. 
+
 
 \subsection{Parallel Track}
 
