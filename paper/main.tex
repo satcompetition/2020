@@ -103,7 +103,6 @@ In Section~\ref{sec:results}, we present the competition results alongside a sur
 A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
 
 
-
 \section{Descriptions of Tracks}
 \label{sec:tracks}
 
@@ -388,8 +387,8 @@ Kissat won four awards, by achieving first place in the overall Main Track, firs
 
 Kissat is a reimplementation of Cadical~\cite{Biere:SC2019} in C, thus, taking advantage of finegrained control on the memory layout of new sophisticated data-structures used to manage watchers and clauses, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2020}. 
 
-In Kissat forward subsumption for learned clauses was entirely replaced by more powerful vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-For irredundant clauses forward subsumption is still executed together with variable eliminiation during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurences~\cite{Biere:SC2020}.
+In Kissat, forward subsumption for learned clauses was entirely replaced by more powerful vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
+For irredundant clauses, forward subsumption is still executed together with variable eliminiation during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurences~\cite{Biere:SC2020}.
 
 Kissat also comes with a refined scheduling of inprocessing procedures based on growing conflict intervals. 
 Regarding the duration of alternating restart modes, the Kissat authors considered conflict-rate being too unstable, and come up with ``ticks'', which is a new method to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses. 
@@ -510,7 +509,19 @@ Chen & abcdsatptwenty & \\
 \caption{Teams and Solvers participating in the parallel track.}
 \end{table}
 
-\subsubsection{P-MCOMSPS-STR} three awards
+\subsubsection{P-MCOMSPS-STR} 
+
+P-MCOMSPS-STR is built from the Painless framework~\cite{Frioux:2017:Painless} for solver parallization and uses the MapleCOMSPS solver~\cite{Liang:2017:Maplecomsps} as a building block. 
+The authors submitted a 32 and 64 core version and won 3 awards, first place in the overall ranking, first place in the SAT ranking and second in the UNSAT ranking. 
+The 64 core version performed slightly worse than the 32 core version in the overall ranking, and that gap is bigger for the SAT-only ranking and worst for the UNSAT-only ranking, such that in the separate rankings only the 32 core version is responsible for winning the prices. 
+
+The painless framework uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrenct data-structures, such that implementations within the framework boil down to implementing parallelization and clause sharing strategies. 
+
+In the submitted version of P-MCOMSPS-STR, diversification is done via diverse fixed configurations of branching strategies (LRB and VSIDS) and sparse random intialization of variable polarities like in~\cite{Balyo:2015:Hordesat}. 
+One instance of their ``sequential engines'' performs concurrent clause strengtheing as described in~\cite{Wieringa:2013:CCS} and another single instance is configured to perform Gaussian eliminiation during preprocessing. 
+
+For sharing they use an all-to-all strategy with a regular exchange of a fixed size buffer and a dynamic clause lbd limit. 
+
 
 \subsubsection{Plingeling} three awards
 
