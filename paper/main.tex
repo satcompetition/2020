@@ -14,6 +14,23 @@
 \usepackage{tkz-graph}
 \usepackage{lscape} 
 
+\definecolor{gold}{HTML}{FFF3D6}
+\definecolor{silver}{HTML}{F3F5F7}
+\definecolor{cupper}{HTML}{EAD9D7}
+\fboxsep0pt
+\newcommand{\firsto}{\colorbox{gold}{$m^1$}}
+\newcommand{\firsts}{\colorbox{gold}{$s^1$}}
+\newcommand{\firstu}{\colorbox{gold}{$u^1$}}
+\newcommand{\firstp}{\colorbox{gold}{$p^1$}}
+\newcommand{\secondo}{\colorbox{silver}{$m^2$}}
+\newcommand{\seconds}{\colorbox{silver}{$s^2$}}
+\newcommand{\secondu}{\colorbox{silver}{$u^2$}}
+\newcommand{\secondp}{\colorbox{silver}{$p^2$}}
+\newcommand{\thirdo}{\colorbox{cupper}{$m^3$}}
+\newcommand{\thirds}{\colorbox{cupper}{$s^3$}}
+\newcommand{\thirdu}{\colorbox{cupper}{$u^3$}}
+\newcommand{\thirdp}{\colorbox{cupper}{$p^3$}}
+
 \title{SAT Competition 2020\tnoteref{title}}
 \tnotetext[title]{\url{satcompetition.github.io/2020}}
 
@@ -92,214 +109,11 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 
 \subsection{Main Tracks}
 
-
-
-\definecolor{gold}{HTML}{FFF3D6}
-\definecolor{silver}{HTML}{F3F5F7}
-\definecolor{cupper}{HTML}{EAD9D7}
-\fboxsep0pt
-\newcommand{\firsto}{\colorbox{gold}{$m^1$}}
-\newcommand{\firsts}{\colorbox{gold}{$s^1$}}
-\newcommand{\firstu}{\colorbox{gold}{$u^1$}}
-\newcommand{\firstp}{\colorbox{gold}{$p^1$}}
-\newcommand{\secondo}{\colorbox{silver}{$m^2$}}
-\newcommand{\seconds}{\colorbox{silver}{$s^2$}}
-\newcommand{\secondu}{\colorbox{silver}{$u^2$}}
-\newcommand{\secondp}{\colorbox{silver}{$p^2$}}
-\newcommand{\thirdo}{\colorbox{cupper}{$m^3$}}
-\newcommand{\thirds}{\colorbox{cupper}{$s^3$}}
-\newcommand{\thirdu}{\colorbox{cupper}{$u^3$}}
-\newcommand{\thirdp}{\colorbox{cupper}{$p^3$}}
-
-\begin{table}[ht!]
-\smaller
-\arrayrulecolor{gray}
-\centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-\bf Team & \bf Base Solver & \bf Variant & \bf Award \\
-\hline
-
-\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} & \multirow{3}{*}{Kissat-sc2020} &  -- & \firsto\firstu\\
- &  &  sat & \firsto\firstu\seconds\\
- &  &  unsat & \firstu\thirdp\\
-\cline{2-4}
- &  Cadical-sc2020 &  -- & \\
-\hline
- 
-\multirow{3}{*}{Zhang, Cai}
-    & \multirow{3}{*}{MapleLCMDistCBT-DL} & Relaxed & \\
- &  & Rel. noTimeParam & \\
- &  & Rel. newTech & \secondo\firsts\\
-\hline
-
-\multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  \multirow{2}{*}{CryptoMiniSat-CCAnr} &  -- & \thirdo\thirds\secondp\\
- &  &  lsids & \thirdo\thirds\secondp\\
-\hline
-
-\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- & \\
-\hline
-
-\multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- &  &  trail & \secondu\\
- &  &  alluip & \secondu\firstp\\
- & \multirow{-3}{*}{Cadical} &  alluip-trail & \secondu\firstp\\
- \cline{2-4}
- & MapleLCMDist & alluip-trail & \\
-\hline
-
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \thirdu\\
- & & f2trc-s & \thirdu\\
- \cline{2-4}
- & MapleLCMDistCBT-DL & f2trc & \thirdu\\
-\hline
-
-\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistCBT-DL-v3 & -- & \\
-\hline
-
-\multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
- & \multirow{4}{*}{MapleLCMDistCBT-DL-v3} & Undominated & \\
- &  & Undom. Top16 & \\
- &  & Undom. Top24 & \\
- &  & Undom. Top36 & \\
-\hline
-
-\multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{MapleLCMDistCBT} & padc\_dl & \\
- &  & padc\_dl\_ovau\_lin & \\
- &  & padc\_dl\_ovau\_exp & \\
- &  & psids\_dl & \\
-% \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
-\hline
-
-Shaw, Meel & DurianSat & -- & \\
-\hline
-
-\multirow{2}{*}{Chen}
- & \multirow{2}{*}{MapleLCMDistCBT-DL} & Maple\_Mix & \\
- &  & Maple\_Simp & \\
-\hline
-
-Riveros & SLIME & -- & \\
-\hline
-
-\multirow{3}{*}{Li, Wu, Xu, Chen}
- & \multirow{3}{*}{MapleLCMDistCBT-DL} & Scavel & \\
- &  & Scavel01 & \\
- &  & Scavel02 & \\
-\hline
-
-\multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & \multirow{2}{*}{MapleCoMsPS\_LRB\_VSIDS\_2} & -- & \\
- &  & init & \\
-\hline
-
-\multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
- & \multirow{4}{*}{MapleLCMDistCBT-DL-v2.2} & exp-V-LGB & \\
- &  & exp-V-L & \\
- &  & exp-L & \\
- &  & exp-V & \\
-\hline
-
-\multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{4}{*}{MapleCM} & \texttt{+}dist & \\
- &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} & \\
- &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} & \\
- &  & used\texttt{+}dist & \\
-\hline
-
-Kaiser, Hartung & PauSat & -- & \\
-\hline
-
-\multirow{2}{*}{Osama, Wijs} 
- & \multirow{2}{*}{ParaFROST} & -- & \\
- &  & CBT & \\
-\hline
-\end{tabular}
-\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). 
-Note that many teams are only responsible for the variant of a previously existing base solver.
-Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
-\end{table}
-
 \subsection{Incremental Library Track}
-
-\begin{table}[ht]
-\smaller
-\arrayrulecolor{gray}
-\centering
-\begin{tabular}{|l|l|c|}
-\hline
-\bf Team & \bf Solver & \bf Score\\
-\hline
-\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
-\hline
-\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 & 1 \\
-\hline
-Chen & abcdsat-i20 & 1 \\
-\hline
-Manthey & Riss-7.1.2 & 1 \\
-\hline
-\end{tabular}
-\caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
-\end{table}
 
 \subsection{Parallel Track}
 
-\begin{table}[ht]
-\smaller
-\centering
-\begin{tabular}{|l|l|l|}
-\hline
-\bf Team & \bf Solver & \bf Awards\\
-\hline
-\multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
- & P-MCOMSPS-STR-32 & \firsto \firsts \secondu \\
- & P-MCOMSPS-STR-64 & \firsto \\
-\hline
-\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}
- & Plingeling & \secondo \thirds \firstu \\
- & Treengeling & \\
-\hline
-\multirow{2}{*}{Nabeshima, Inoue}
- & ManyGlucose-32 & \thirdo \thirdu \\
- & ManyGlucose-64 & \thirdu \\
-\hline
-\multirow{2}{*}{Tchinda, Djamegni}
- & painlessmaplevone & \seconds \\
- & painlessmaplevtwo & \seconds \\
-\hline
-Li, Wu, Xu, Chen & syrupscavel & \\
-\hline
-Chen & abcdsatptwenty & \\
-\hline
-\end{tabular}
-\caption{Teams and Solvers participating in the parallel track.}
-\end{table}
-
 \subsection{Cloud Track}
-
-\begin{table}[ht]
-\smaller
-\centering
-\begin{tabular}{|l|l|l|}
-\hline
-\bf Team & \bf Solver & \bf Rank\\
-\hline
-Schreiber & mallob-mono & 1\\
-\hline
-\stack{Ehlers, Kulczynski, }{Nowotka, Sieweck}~ & TopoSAT2 & 2\\
-\hline
-Riveros & Slime & 3\\
-\hline
-\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}~ & Paracooba & -\\
-& Paracooba-March & -\\
-\hline
-Hartung & CTSat & -\\
-\hline
-\end{tabular}
-\caption{Teams and Solvers participating in the cloud track.}
-\end{table}
 
 
 \section{Description of Benchmark Instances}
@@ -437,12 +251,134 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 
 \subsection{Incremental Library Applications and Instances}
 
+\todo{}
+
 
 \section{Competition Results}
 \label{sec:results}
+
+\todo{Winners and Runtime Plots for all the tracks}
+
+\todo{Similarity of Solvers: Rank Correlation}
+
+
+\section{Analysis of Results}
+\label{sec:analysis}
+
 \todo{for each track summarize the descriptions of the winning solvers}
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
+
+\begin{table}[ht!]
+\smaller
+\arrayrulecolor{gray}
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\bf Team & \bf Base Solver & \bf Variant & \bf Award \\
+\hline
+
+\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} & \multirow{3}{*}{Kissat-sc2020} &  -- & \firsto\firstu\\
+ &  &  sat & \firsto\firstu\seconds\\
+ &  &  unsat & \firstu\thirdp\\
+\cline{2-4}
+ &  Cadical-sc2020 &  -- & \\
+\hline
+ 
+\multirow{3}{*}{Zhang, Cai}
+    & \multirow{3}{*}{MapleLCMDistCBT-DL} & Relaxed & \\
+ &  & Rel. noTimeParam & \\
+ &  & Rel. newTech & \secondo\firsts\\
+\hline
+
+\multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
+ &  \multirow{2}{*}{CryptoMiniSat-CCAnr} &  -- & \thirdo\thirds\secondp\\
+ &  &  lsids & \thirdo\thirds\secondp\\
+\hline
+
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- & \\
+\hline
+
+\multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
+ &  &  trail & \secondu\\
+ &  &  alluip & \secondu\firstp\\
+ & \multirow{-3}{*}{Cadical} &  alluip-trail & \secondu\firstp\\
+ \cline{2-4}
+ & MapleLCMDist & alluip-trail & \\
+\hline
+
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \thirdu\\
+ & & f2trc-s & \thirdu\\
+ \cline{2-4}
+ & MapleLCMDistCBT-DL & f2trc & \thirdu\\
+\hline
+
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistCBT-DL-v3 & -- & \\
+\hline
+
+\multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
+ & \multirow{4}{*}{MapleLCMDistCBT-DL-v3} & Undominated & \\
+ &  & Undom. Top16 & \\
+ &  & Undom. Top24 & \\
+ &  & Undom. Top36 & \\
+\hline
+
+\multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
+ & \multirow{4}{*}{MapleLCMDistCBT} & padc\_dl & \\
+ &  & padc\_dl\_ovau\_lin & \\
+ &  & padc\_dl\_ovau\_exp & \\
+ &  & psids\_dl & \\
+% \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
+\hline
+
+Shaw, Meel & DurianSat & -- & \\
+\hline
+
+\multirow{2}{*}{Chen}
+ & \multirow{2}{*}{MapleLCMDistCBT-DL} & Maple\_Mix & \\
+ &  & Maple\_Simp & \\
+\hline
+
+Riveros & SLIME & -- & \\
+\hline
+
+\multirow{3}{*}{Li, Wu, Xu, Chen}
+ & \multirow{3}{*}{MapleLCMDistCBT-DL} & Scavel & \\
+ &  & Scavel01 & \\
+ &  & Scavel02 & \\
+\hline
+
+\multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
+ & \multirow{2}{*}{MapleCoMsPS\_LRB\_VSIDS\_2} & -- & \\
+ &  & init & \\
+\hline
+
+\multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
+ & \multirow{4}{*}{MapleLCMDistCBT-DL-v2.2} & exp-V-LGB & \\
+ &  & exp-V-L & \\
+ &  & exp-L & \\
+ &  & exp-V & \\
+\hline
+
+\multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
+ & \multirow{4}{*}{MapleCM} & \texttt{+}dist & \\
+ &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} & \\
+ &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} & \\
+ &  & used\texttt{+}dist & \\
+\hline
+
+Kaiser, Hartung & PauSat & -- & \\
+\hline
+
+\multirow{2}{*}{Osama, Wijs} 
+ & \multirow{2}{*}{ParaFROST} & -- & \\
+ &  & CBT & \\
+\hline
+\end{tabular}
+\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). 
+Note that many teams are only responsible for the variant of a previously existing base solver.
+Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
+\end{table}
 
 \subsubsection{Kissat} 
 
@@ -462,6 +398,25 @@ Considering target phases~\cite{Biere:SC2019}, Kissat authors come up with an in
 Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{Kiesl:2019:Autarkies}. 
 The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
 
+\begin{table}[ht]
+\smaller
+\arrayrulecolor{gray}
+\centering
+\begin{tabular}{|l|l|c|}
+\hline
+\bf Team & \bf Solver & \bf Score\\
+\hline
+\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
+\hline
+\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 & 1 \\
+\hline
+Chen & abcdsat-i20 & 1 \\
+\hline
+Manthey & Riss-7.1.2 & 1 \\
+\hline
+\end{tabular}
+\caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
+\end{table}
 
 \subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
 
@@ -524,6 +479,37 @@ In order to prevent tier2 from starving, they replaced the conflict limit for ti
 
 \subsection{Parallel Track}
 
+\begin{table}[ht]
+\smaller
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\bf Team & \bf Solver & \bf Awards\\
+\hline
+\multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
+ & P-MCOMSPS-STR-32 & \firsto \firsts \secondu \\
+ & P-MCOMSPS-STR-64 & \firsto \\
+\hline
+\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}
+ & Plingeling & \secondo \thirds \firstu \\
+ & Treengeling & \\
+\hline
+\multirow{2}{*}{Nabeshima, Inoue}
+ & ManyGlucose-32 & \thirdo \thirdu \\
+ & ManyGlucose-64 & \thirdu \\
+\hline
+\multirow{2}{*}{Tchinda, Djamegni}
+ & painlessmaplevone & \seconds \\
+ & painlessmaplevtwo & \seconds \\
+\hline
+Li, Wu, Xu, Chen & syrupscavel & \\
+\hline
+Chen & abcdsatptwenty & \\
+\hline
+\end{tabular}
+\caption{Teams and Solvers participating in the parallel track.}
+\end{table}
+
 \subsubsection{P-MCOMSPS-STR} three awards
 
 \subsubsection{Plingeling} three awards
@@ -535,6 +521,28 @@ In order to prevent tier2 from starving, they replaced the conflict limit for ti
 
 \subsection{Cloud Track}
 
+\begin{table}[ht]
+\smaller
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\bf Team & \bf Solver & \bf Rank\\
+\hline
+Schreiber & mallob-mono & 1\\
+\hline
+\stack{Ehlers, Kulczynski, }{Nowotka, Sieweck}~ & TopoSAT2 & 2\\
+\hline
+Riveros & Slime & 3\\
+\hline
+\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}~ & Paracooba & -\\
+& Paracooba-March & -\\
+\hline
+Hartung & CTSat & -\\
+\hline
+\end{tabular}
+\caption{Teams and Solvers participating in the cloud track.}
+\end{table}
+
 \subsubsection{Mallob Mono}
 
 \subsubsection{TopoSAT 2}
@@ -542,21 +550,12 @@ In order to prevent tier2 from starving, they replaced the conflict limit for ti
 \subsubsection{Slime}
 
 
-\section{Analysis of Results}
-\label{sec:analysis}
-
-\subsection{Essential Improvements in Winning Solvers}
-
-\todo{Common and Specific Winning Strategies}
-
-\subsection{Similarity of Solvers}
-
-\todo{Rank Correlation}
-
-
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
 
+\todo{Summarize Winning Strategies}
+
+\todo{Ideas for Future Competitions}
 
 
 \bibliographystyle{elsarticle-num}
