@@ -428,15 +428,16 @@ Manthey & Riss-7.1.2 & 1 \\
 
 This solver won four awards, two third places in the Main Track and its Sat Subtrack, one second place in the Planning Subtrack, and the first place in the Incremental Library Track. 
 
-To the Main track, the solver was submitted in two variants, with and without LSIDS~\cite{Shaw:2020:LSIDS}, which is a phase selection heuristic similar to VSIDS and if active it is used whenever backtracking is chronological~\cite{Nadel:2018:CBT}. 
-On top of that, CryptoMiniSat is periodically switching between polarity saving and stable phases~\cite{Biere:SC2019}.
+To the Main track, the solver was submitted in two variants, with and without LSIDS~\cite{Shaw:2020:LSIDS},
+which is a phase selection heuristic similar to VSIDS and, if active, it is used whenever backtracking is chronological~\cite{Nadel:2018:CBT}. On top of that, CryptoMiniSat is periodically switching between polarity saving and stable phases~\cite{Biere:SC2019}.
 
-By tight integration of CCAnr~\cite{Cai:2015:CCAnr}, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies SLS and CDCL in a unique way. 
-They run local search for a short period of time in regular intervals and (just in case SLS finds no solution) change the polarities according to the best assignment found by the SLS solver, which is known as ``rephasing'' from CaDiCal~\cite{Biere:SC2019}.
-Moreover, they bump VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy~\cite{Soos:SC2020}. 
+By tight integration of CCAnr~\cite{Cai:2015:CCAnr}, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies, SLS and CDCL, in a unique way. 
+The solver runs local search for a short period of time in regular intervals and (just in case SLS finds no solution)
+changes the polarities according to the best assignment found by the SLS solver, which is known as ``rephasing'' from CaDiCal~\cite{Biere:SC2019}.
+Moreover, it bumps VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy~\cite{Soos:SC2020}.
 
 SLS is tightly integrated and thus is aware of changes occurring during inprocessing. 
-Inprocessing now also include ternary resolution and vivification is used a lot more~\cite{ChuMinLi:2020:Vivification}. 
+Inprocessing now also includes ternary resolution and vivification is used a lot more~\cite{ChuMinLi:2020:Vivification}. 
 All modifictions in CrytoMiniSat are fully integrated with resprect to incremental use-cases including the use of assumptions. 
 
 CryptoMiniSat periodically changes decay factors of its branching heuristics, thus avoiding usage of a ``single best'' configuration.
