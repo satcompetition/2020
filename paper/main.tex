@@ -132,7 +132,25 @@ TODO: Maybe mention proceedings \cite{SC2020}
 \subsection{Rules, ranking, etc.}
 
 
-DRAT checking; cake\_lpr\_array
+\subsection{Certificates}
+
+In all tracks it was required to output a model to certify recognising a satisfiable instance.
+On the other hand, certificates for unsatisfiable instances (proofs) were required only 
+in the Main Track (besides the No Limits subtrack).
+
+Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
+either in its textual version, which is very similar to the DIMACS input format,
+or on a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
+
+The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
+was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
+Afterwards, an independent, formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}, 
+was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
+An unsatisfiable formula was considered solved if {\tt cake\_lpr} could validate
+the corresponding LRAT proof.
+Otherwise the formula was considered unsolved by the solver in question.
+
+TODO: Markus, did we really wait for cake to confirm, otherwise not calling it solved?
 
 \subsection{Computing environments}
 
@@ -147,7 +165,10 @@ was by mistake advertised on the competition web page prior to solver submission
 This could result in some solvers not ``daring'' to use the full \SI{128}{\giga\byte}
 in the competition.}
 
-TODO: Incremental / Parallel / Cloud ?
+The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{2.66}{\giga\hertz}
+(4-Core) processors and \SI{24}{\giga\byte} of RAM.
+
+TODO: Parallel / Cloud ?
 
 \section{Description of Benchmark Instances}
 \label{sec:instances}
