@@ -298,9 +298,17 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 \section{Analysis of Results}
 \label{sec:analysis}
 
-\todo{for each track summarize the descriptions of the winning solvers}
+In the following we provide a summary of the new strategies implemented in the award winning solvers in this competition. 
+
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
+
+In the main track, a total of $18$ teams submitted their solvers to the competition.  
+Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
+$11$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or Cadical~\cite{}. 
+
+In the incremental track, four teams submitted their solvers. 
+Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
 
 \begin{table}[ht!]
 \smaller
@@ -411,6 +419,28 @@ Kaiser, Hartung & PauSat & -- & \\
 \caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). 
 Note that many teams are only responsible for the variant of a previously existing base solver.
 Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
+\label{tab:solvers-main}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht]
+\smaller
+\arrayrulecolor{gray}
+\centering
+\begin{tabular}{|l|l|c|}
+\hline
+\bf Team & \bf Solver & \bf Score\\
+\hline
+\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
+\hline
+\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 & 1 \\
+\hline
+Chen & abcdsat-i20 & 1 \\
+\hline
+Manthey & Riss-7.1.2 & 1 \\
+\hline
+\end{tabular}
+\caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
+\label{tab:solvers-incremental}
 \end{table}
 
 \subsubsection{Kissat} 
@@ -430,26 +460,6 @@ Regarding the duration of alternating restart modes, the Kissat authors consider
 Considering target phases~\cite{Biere:SC2019}, Kissat authors come up with an innovative use-case for autarkies to account for saved phases. 
 Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{Kiesl:2019:Autarkies}. 
 The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
-
-\begin{table}[ht]
-\smaller
-\arrayrulecolor{gray}
-\centering
-\begin{tabular}{|l|l|c|}
-\hline
-\bf Team & \bf Solver & \bf Score\\
-\hline
-\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
-\hline
-\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 & 1 \\
-\hline
-Chen & abcdsat-i20 & 1 \\
-\hline
-Manthey & Riss-7.1.2 & 1 \\
-\hline
-\end{tabular}
-\caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
-\end{table}
 
 \subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
 
@@ -558,11 +568,34 @@ One instance of their ``sequential engines'' performs concurrent clause strength
 For sharing they use an all-to-all strategy with a regular exchange of a fixed size buffer and a dynamic clause lbd limit. 
 
 
-\subsubsection{Plingeling} three awards
+\subsubsection{Plingeling} 
 
-\subsubsection{ManyGlucose} two awards
+Plingeling got three awards, first place in the Unsat Category, third place in Sat and second place in the overall evaluation. 
+Plingeling is an extension of the well-known SAT solver Lingeling~\cite{} and did not change since 2016. 
+Via a global master queue, Plingeling shares unit clauses, equivalences and short clauses with clauses with at most 40 literals and glucose LBD level of at most 8 and random seeds, e.g., for diversification via default polarities.~\cite{} 
 
-\subsubsection{Painless Maple} one award
+
+\subsubsection{ManyGlucose}
+
+The authors of ManyGlucose received two awards in this competition. 
+ManyGlucose was submitted in 32-core and 64-core variants~\cite{}.
+The 32-core variant won third prices in the overall evaluation and in the unsat sub-track. 
+ManyGlucose is a fork of GlucoseSyrup~\cite{} and uses strategies similar to those known from ManySAT~\cite{} in order to achive deterministic solver runs. 
+
+
+\subsubsection{Painless Maple} 
+
+The authors Painless Maple received one award for second best performance in the Sat sub-track of the parallel track. 
+However, the solver was last in the Unsat sub-track. 
+
+The authors implemented a couple of modifications (\todo{name them}) on top of the MapleLCMDistChronoBT~\cite{} solver, which they also submitted in various configurations to the main track. 
+The two submissions in the parallel track use painless as a parallelization framework. 
+
+Their sharing strategy includes splitting their workers into two categories, where the solvers in the first category only export clauses and only solvers in the second category import and export clauses. 
+
+They submitted two variants with different diversification strategies. 
+In their first variant they use different configurations of configurations of the newly implemented strategies. 
+The second variant uses a more classic diverisification strategy by randomizing polarities and variable scores. 
 
 
 \subsection{Cloud Track}
