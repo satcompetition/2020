@@ -13,6 +13,7 @@
 \usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 \usepackage{tkz-graph}
 \usepackage{lscape} 
+\usepackage[binary-units=true]{siunitx}
 
 \definecolor{gold}{HTML}{FFF3D6}
 \definecolor{silver}{HTML}{F3F5F7}
@@ -130,8 +131,23 @@ TODO: Maybe mention proceedings \cite{SC2020}
 
 \subsection{Rules, ranking, etc.}
 
+
+DRAT checking; cake\_lpr\_array
+
 \subsection{Computing environments}
 
+\label{sec:computing}
+The Main Track with its subtracks was run on the StarExec cluster \cite{starexec},
+whose nodes are equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
+and \SI{128}{\giga\byte} of memory.
+The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
+The solvers were allowed to use up to the full \SI{128}{\giga\byte} of RAM.\footnote{
+Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
+was by mistake advertised on the competition web page prior to solver submission.
+This could result in some solvers not ``daring'' to use the full \SI{128}{\giga\byte}
+in the competition.}
+
+TODO: Incremental / Parallel / Cloud ?
 
 \section{Description of Benchmark Instances}
 \label{sec:instances}
