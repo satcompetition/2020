@@ -311,6 +311,8 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 \section{Competition Results}
 \label{sec:results}
 
+\todo{New Codebases}
+
 \todo{Winners and Runtime Plots for all the tracks}
 
 \todo{Similarity of Solvers: Rank Correlation}
@@ -542,7 +544,7 @@ In order to limit growth of the core-tier, they introduce a limit on the number 
 In order to prevent tier2 from starving, they replaced the conflict limit for tier2 reduction by a size limit, then only half of the most recently inactive clauses is moved to local tier~\cite{Kochemazov:SC2020}. 
 
 
-\subsection{Parallel Track}
+\subsection{Parallel SAT Solving: Winners of the Parallel Track}
 
 \begin{table}[ht]
 \smaller
@@ -600,7 +602,7 @@ Via a global master queue, Plingeling shares unit clauses, equivalences and shor
 
 The authors of ManyGlucose received two awards in this competition. 
 ManyGlucose was submitted in 32-core and 64-core variants~\cite{}.
-The 32-core variant won third prices in the overall evaluation and in the unsat sub-track. 
+The 32-core variant won two third prices, one in the overall evaluation and one in the unsat sub-track. 
 ManyGlucose is a fork of GlucoseSyrup~\cite{} and uses strategies similar to those known from ManySAT~\cite{} in order to achive deterministic solver runs. 
 
 
@@ -619,7 +621,7 @@ In their first variant they use different configurations of configurations of th
 The second variant uses a more classic diverisification strategy by randomizing polarities and variable scores. 
 
 
-\subsection{Cloud Track}
+\subsection{Massively Parallel SAT Solving: Winners of the Cloud Track}
 
 \begin{table}[ht]
 \smaller
@@ -643,11 +645,42 @@ Hartung & CTSat & -\\
 \caption{Teams and Solvers participating in the cloud track.}
 \end{table}
 
+
 \subsubsection{Mallob Mono}
+
+The massively parallel SAT solver Mallob is based on HordeSAT~\cite{}. 
+Mallob is a framework for massivley parallel and distributed \emph{malleable job scheduling}, and thus can perform dynamic load balancing on many jobs of varying priorty.
+However, in the submitted version Mallob Mono, this functionality is disabled, as traditionally in SAT Competition all resources are busy solving one single instance only. 
+
+Mallob uses the the 2018 version \emph{bcj} of Lingeling~\cite{} and employs diversification via randomized sparse initialization of branching scores just like it is done in Plingeling~\cite{}. 
+Every 14th process, however, runs the local search solver YalSAT~\cite{}. 
+
+Clause exchange is handled considerably different from previous approach. 
+Workers are organized in a binary tree and clauses are asynchronously aggregated in a buffer which is passed along this tree from leafs to the root. 
+Each node performs a three way merge of the local and the two incoming buffers. 
+Only the final aggragate at the root of that binary tree is broadcast to all the solvers. 
+
+To limit sharing, there is a global size limit of $5$ for all the shared clauses. 
+The buffer has a limited size as well, but that size depends on the position in the binary tree, with root having the largest buffer and leaves the smallest. 
+Clauses are sorted by there size during aggregation, such that smaller clauses are preferred over longer clauses. 
+Duplicates are filtered out using a bloom filter, which is cleared periodically. 
+There is a special filter for duplicate unit-clause which especially useful during startup. 
+
 
 \subsubsection{TopoSAT 2}
 
+TopoSAT~2 is a massively parallel SAT solver using Glucose~3 with lockfree clause-exchange as in ManySAT~\cite{} on each node, and using MPI to share clauses between nodes. 
+
+In Toposat~2, diversification is done via different strategies used for branching, restarting and clause forgetting. 
+Clauses are strengthened before they are exported. 
+Locally, clause import is delayed until the local trail-size is low in a monitored period. 
+
+
 \subsubsection{Slime}
+
+Slime is build on top of MapleLCMDistChronoBT and was first submitted to SAT Race 2019 suggesting the new phase selection heuristic~\cite{}. 
+The 2020 version apparently adds some kind of periodic randomization in geometrically increasing intervals~\cite{}. 
+Even thought the sequential solver was unsuccessful in the Main Track, its MPI-based cloud version, won the third price in this competitions cloud track. 
 
 
 \section{Conclusion and Prospects}
