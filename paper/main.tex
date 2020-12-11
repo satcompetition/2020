@@ -112,16 +112,27 @@ Section~\ref{sec:instances} contains an overview on the selected benchmark insta
 In Section~\ref{sec:results}, we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
 A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
 
-TODO: maybe mention \url{https://satcompetition.github.io/2020/}
+\todo{maybe mention \url{https://satcompetition.github.io/2020/}}
 
-TODO: Maybe mention proceedings \cite{SC2020}
+\todo{Maybe mention proceedings \cite{SC2020}}
 
 \section{Overview of the competition}
 \label{sec:overview}
 
+
 \subsection{Competition tracks}
 
+SAT Competition 2020 consisted of four tracks, 
+the Main track, Incremental Library track, Parallel track,
+and the Cloud Track for massively parallel SAT solvers using up to 1024 cores. 
+
 \subsubsection{Main Tracks}
+
+
+
+
+\todo{Did we have a glucose hack track in the end?
+(Mentioned on the web, not in the result slides.)}
 
 \subsubsection{Incremental Library Track}
 
@@ -129,8 +140,13 @@ TODO: Maybe mention proceedings \cite{SC2020}
 
 \subsubsection{Cloud Track}
 
-\subsection{Rules, ranking, etc.}
+\subsection{Mandatory participation requirements}
 
+
+
+\todo{Should we have a discussion (maybe later sections)
+about the future of the portfolio solver rule
+concerning the point raised by Mate Soos (in emails)?}
 
 \subsection{Certificates}
 
@@ -146,11 +162,10 @@ The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
 Afterwards, an independent, formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}, 
 was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
-An unsatisfiable formula was considered solved if {\tt cake\_lpr} could validate
-the corresponding LRAT proof.
-Otherwise the formula was considered unsolved by the solver in question.
-
-TODO: Markus, did we really wait for cake to confirm, otherwise not calling it solved?
+We only considered solved those unsatisfiable formulas that could be validated by {\tt DRAT-trim}.
+There were several cases where {\tt cake\_lpr} ran out of resources before being able to 
+confirm after {\tt DRAT-trim}. However, there was no case where {\tt DRAT-trim} would accept
+a proof and {\tt cake\_lpr} would later disagree with the verdict.
 
 \subsection{Computing environments}
 
@@ -168,7 +183,7 @@ in the competition.}
 The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{2.66}{\giga\hertz}
 (4-Core) processors and \SI{24}{\giga\byte} of RAM.
 
-TODO: Parallel / Cloud ?
+\todo{Parallel / Cloud}
 
 \section{Description of Benchmark Instances}
 \label{sec:instances}
