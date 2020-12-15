@@ -1,0 +1,13 @@
+\documentclass{article}
+
+\usepackage{tkz-graph}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw[scale=1, domain=0:180, variable=\t, samples=500, fill=red]
+plot ({(1 + (cos(6*\t))^2 + (1/5)*(cos(6*\t)*cos(24*\t))^10 + ( (1/4)*(cos(30*\t))^2 + (1/9)*(cos(30*\t))^12) *  (1-(sin(6*\t))^10)) * (sin(2*\t)) * (1-(cos(\t))^4) * (1 - (cos(\t))^10 * (cos(3*\t))^2) + (1/70)*(cos(\t))^9},
+{(-21/20)*cos(2*\t)*(1 - (cos(\t))^4 + (1/2)*(cos(\t)*cos(3*\t))^10) * (1 + (cos(6*\t))^2 + (1/5)*(cos(6*\t)*cos(18*\t))^10 + ( (1/4)*(cos(30*\t))^4 + (1/10)*(cos(30*\t))^12 ) * ( 1 - ((cos(\t))^10) * (cos(3*\t))^2 ) * ( 1 - (sin(6*\t))^10 )) });
+\end{tikzpicture}
+
+\end{document}
