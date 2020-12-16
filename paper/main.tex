@@ -334,19 +334,52 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 \todo{Similarity of Solvers: Rank Correlation}
 
 
-\section{Analysis of Results}
+\section{History of Code and Winning Strategies}
 \label{sec:analysis}
 
-In the following we provide a summary of the new strategies implemented in the award winning solvers in this competition. 
+In the following we provide an overview on the participating teams and solvers,  and summarize new strategies which are implemented in the award winning solvers of this competition. 
+
+We start with a few remarks on the evolution of code-bases of well known SAT solvers in Section~\ref{sec:codebases}. 
+Our survey of the winning strategies in this competition starts with sequential (including incremental) SAT solving in Section~\ref{sec:part:seq}, then we continue with parallel SAT solving in Section~\ref{sec:part:par} and conclude with solvers in the cloud track in Section~\ref{sec:part:cloud}. 
+
+
+\subsection{On the Shoulders of Giants: The Evolution of SAT Solvers}
+\label{sec:codebases}
+
+With a few exceptions, progress in SAT solvers emerged as extensions or forks from existing code bases. 
+One well-known tree of development is rooted in the Codebase of the Minisat solver by Niklas Éen and Niklas Sörenson~\cite{}. 
+The most well-known fork of Minisat is the Glucose solver by Gilles Audemard and Laurent Simon~\cite{}.  
+The authors of Glucose introduced numerous implementations of successful new methods, e.g., Literal Block Distance (LBD)~\cite{}, which they recently summarized in~\cite{}. 
+
+The SAT solver RISS by Norbert Manthey is a successful and award winning fork of Glucose (version 2.2) in combination with the state-of-the-art preprocessor Coprocessor~\cite{}. 
+
+
+Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh~\cite{}. 
+Maple first emerged as a series of forks submitted to SAT Competition 2016, introducing the two new branching heuristics Learning Rate based Branching (LRB) and Conflict History based Branching (CHB)~\cite{}. 
+The then award winning variant MapleCOMSPS is an implementation of the LRB heuristic on top of CoMinisatPS~\cite{}. 
+The award winning derivatives of MapleCOMSPS in SAT Competition 2017 include a new Learnt Clause Minimization (LCM) procedure and the new branching heuristic Distance (Dist). 
+This was extended with case-based Chronological Backtracking (ChronoBT) by Ryvchin and Nadel~\cite{}, which resulted in the award winning solver Maple\_LCM\_Dist\_ChronoBT of SAT Competition 2018~\cite{}. 
+Its extension MapleLCMDistChronoBT-DL with a new clause learning/forgetting heuristic Duplicate Learnts (DL)~\cite{} won SAT Race 2019. 
+The success story of Maple resulted also in numerous submissions of modified Maple solvers in this competition, some of which have been successful (see Section~\ref{}). 
+
+CryptoMinisat by Mate Soos emerged as a fork of Minisat with an extension that brings special handling of xor clauses via gaussian elimination, which is especially effective when solving cryptographic instances~\cite{}. 
+Today, CryptoMinisat is more of an independent code base than a Minisat fork coming with award winning individual implementations of recent SAT technology (see Section~\ref{}). 
+
+The SAT solvers of Armin Biere arguably belong to the best and most well-known independent code-bases. 
+Lingeling has been around for years now and still we had competitive submissions of its parallel versions Plingeling in this competition. 
+CaDiCal came up in SAT Competition 2017 and has been award winning since then. 
+The reimplementation of CaDiCal in the new SAT solver Kissat set a new standard in sequential SAT solving in this competition (see Section~\ref{}). 
 
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
+\label{sec:part:seq}
 
-In the main track, a total of $18$ teams submitted their solvers to the competition.  
+A total of $18$ teams submitted their solvers to the main track of the competition.  
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-$11$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or Cadical~\cite{}. 
+$14$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or Cadical~\cite{}. 
 
 In the incremental track, four teams submitted their solvers. 
+All solvers in the incremental library track are created from independent code bases. 
 Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
 
 \begin{table}[ht!]
@@ -561,6 +594,7 @@ In order to prevent tier2 from starving, they replaced the conflict limit for ti
 
 
 \subsection{Parallel SAT Solving: Winners of the Parallel Track}
+\label{sec:part:par}
 
 \begin{table}[ht]
 \smaller
@@ -638,6 +672,7 @@ The second variant uses a more classic diverisification strategy by randomizing 
 
 
 \subsection{Massively Parallel SAT Solving: Winners of the Cloud Track}
+\label{sec:part:cloud}
 
 \begin{table}[ht]
 \smaller
