@@ -239,6 +239,62 @@ To obtain the final compilation of $400$ benchmark instances, we augmented this 
 We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unkown result. 
 Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
 
+Table~\ref{tab:families} displays the numbers of submitted, interesting and finally selected instances grouped by problem family. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrr||l}
+submitted & interesting & selected & family\\
+\hline\hline
+6 & 2 & 2 & 01-integer-programming\\
+187 & 139 & 14 & antibandwidth\\
+40 & 20 & 13 & baseball-lineup\\
+393 & 333 & 14 & bitvector\\
+20 & 15 & 12 & cellular-automata\\
+38 & 18 & 7 & cnf-miter\\
+14 & 14 & 14 & coloring\\
+20 & 20 & 14 & core-based-generator\\
+18 & 13 & 13 & cover\\
+106 & 93 & 34 & cryptography\\
+20 & 19 & 7 & discrete-logarithm\\
+58 & 57 & 7 & edge-matching\\
+8 & 5 & 5 & fermat\\
+40 & 3 & 0 & flood-it-puzzle\\
+20 & 19 & 13 & hgen\\
+56 & 48 & 14 & hypertree-decomposition\\
+20 & 16 & 14 & influence-maximization\\
+20 & 20 & 9 & lam-discrete-geometry\\
+20 & 20 & 8 & polynomial-multiplication\\
+4 & 2 & 2 & schur-coloring\\
+20 & 20 & 12 & station-repacking\\
+23 & 19 & 7 & stedman-triples\\
+5 & 2 & 2 & sum-subset\\
+20 & 20 & 14 & tensors\\
+12 & 7 & 7 & termination\\
+20 & 16 & 14 & timetable\\
+16 & 16 & 14 & tournament\\
+36 & 36 & 14 & vlsat\\
+\hline
+1260 & 1012 & 300 & $\Sigma$
+\end{tabular}
+\caption{Families and amounts of newly submitted instances}
+\label{tab:families}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c||ccc|c}
+ & SAT & UNSAT & UNKNOWN & $\Sigma$\\
+\hline\hline
+new instances & 114 & 78 & 108 & 300 \\
+old instances & 21 & 57 & 22 & 100\\
+\hline
+$\Sigma$ & 135 & 135 & 130 & 400
+\end{tabular}
+\caption{Amount of old and new instances by result}
+\label{tab:final}
+\end{table}
+
 
 \subsection{Planning Instances}
 Classical planning is the problem of finding a sequence of actions -- a plan --
@@ -321,7 +377,40 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 
 \subsection{Incremental Library Applications and Instances}
 
-\todo{}
+With the introduction of IPASIR (Re-entrant Incremental Solver API), the incremental library track took place for the first time in SAT~Race~2015~\cite{Balyo:2015:SATRace}, and then again in SAT~Competitions 2016 and 2017. 
+In SAT~Competitions 2020, we run the track again and selected a total $300$ benchmark instances for the six applications described below. 
+
+\paragraph{Backbone Detection}
+
+The application $\mathsf{genipabones}$ reads a formula from a given file and transforms it using the dual rail encoding, i.e., it replaces each $x$ by $p_x$ and each $\overline{x}$ by $n_x$ and adds clauses of the form ($\overline{p_x} \vee \overline{n_x}$). 
+Incrementally, each variable is then checked if it is a backbone variable or not. 
+For this application, we selected $50$ of the smallest and easiest satisfiable problems of previous SAT competitions. 
+
+\paragraph{Essential Variables Calculation}
+
+%Given a satisfiable formula $F$, a variable $x$ is essential for the satisfiability of $F$ if a truth value must be assigned to $x$ in each satisfying partial assignment of F. 
+The application $\mathsf{genipaessentials}$ incrementally finds all the variables essential for the satisfiability of a given formula by testing each variable using the dual-rail encoded formula. 
+For this application, we used the same easy satisfiable problems as in the Backbone Detection application. 
+
+\paragraph{Longest Simple Path Computation}
+
+The application $\mathsf{genipalsp}$ finds the longest simple path in a graph. 
+For this application, we selected $50$ instances of the smallest graphs provided by Balyo et al.~\cite{Balyo:2019:LSP}. 
+
+\paragraph{MaxSAT}
+
+The application $\mathsf{genipamax}$ is a trivial partial MaxSAT solver based on adding activation literals to soft clauses and 
+subsequent incremental optimization using a cardinality constraint~\cite{Philipp:2015:PBLib} and assumptions. 
+For this application, we selected $50$ instances from MaxSAT Evaluation 2019\footnote{\url{https://maxsat-evaluations.github.io/2019/}}. 
+
+\paragraph{QBF}
+$\mathsf{Ijtihad}$ is a solver for Quantified Boolean Formulas (QBFs). 
+The solver tackles the a formula iteratively, using counterexample-guided expansion~\cite{Bloem:2018:QBFSAT}.
+For this application, we selected $50$ instances from QBF Evaluation 2019\footnote{\url{http://www.qbflib.org/qbfeval19.php}}. 
+
+\paragraph{Planning}
+$\mathsf{Pasar}$ is a planer which is based on the principles of counter-example guided abstraction refinement(CEGAR)~\cite{Froleyks:2019:Pasar}. 
+For this application, we selected $50$ sas planning instances. 
 
 
 \section{Competition Results}
