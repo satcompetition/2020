@@ -158,44 +158,84 @@ in the results section.
 
 \subsubsection{Incremental Library Track}
 
+\todo{MS; look at what Marcus already wrote}
+
 \subsubsection{Parallel Track}
+
+\todo{MH?}
 
 \subsubsection{Cloud Track}
 
-\subsection{Mandatory participation requirements}
+\todo{MH?}
+
+\subsection{Mandatory Participation Requirements}
 \label{sec:rules}
 
-The source code of submitted SAT solvers must be made available (licensed for research purposes) except for the solvers participating only in the No-Limits Track.
+The following requirements were imposed for 
+the participation in the competition.
 
+\paragraph{Source Code}
+The source code of submitted SAT solvers had to be made available 
+(licensed for research purposes) except for the solvers participating only in the No-Limits sub-track.
 
+\paragraph{Description}
+A short system description was required for each solver submission,
+including a list of all the solver's authors and explaining any non-standard algorithmic
+techniques and data structures, as well as references to the relevant literature.
+These system descriptions have been collected and published in the competition
+proceedings \cite{SC2020}.
 
-A 1-2 page system description document (see below for details).
+\paragraph{Benchmarks}
+To participate in the Main track, each team had to submit 20 new benchmark instances.
+This rule guaranteed that the competition could be run on instances mostly unseen to the solver
+developers prior to the competition. Moreover, by making these benchmarks publicly available
+after the competition, the SAT community benefits by having an ever growing repository 
+of diverse problems to target with the next developments.
 
-BYOB, see also Sect.~\ref{sec:byob}
+The exact details of this rule are further explained in Section~\ref{sec:byob}.
+Also the descriptions of the benchmarks have been published \cite{SC2020}.
 
-Also these have description
+\paragraph{Input and Output Format}
 
-\cite{SC2020}
+The benchmark instances were presented to the solvers in the de facto standard
+DIMACS input format for propositional formulas in conjunctive normal form.
+A simple extension of this format was to be adhered to when printing 
+the satisfying assignment 
+(see, e.g., \cite{DBLP:journals/jsat/HeuleJS19}, Section 2.4).
 
-% input/output and proof formats
-SAT solvers must conform to DIMACS input/output requirements
+Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
+either in its textual version, which is also very similar to the DIMACS input format,
+or on a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
+%
+Details on certification are further discussed below in Section~\ref{sec:certif}.
 
+\paragraph{Number of submissions}
 
-SAT solvers that are planning to participate in the Main track must be able to produce certificates for UNSAT
+Each participant was restricted to be an author of at most four different sequential solvers,
+two different parallel solvers, and one ``Glucose hack'' sub-track solver.
+Two solvers were considered different as soon as their sources differed
+or the compilation options were different, or different command line options were used
+(with the exception of an option enabling or disabling the proof output).
 
+\paragraph{Portfolio Solvers}
 
-Each Main Track participant (team) is required to submit 20 new benchmark instances. 
+Apart from the No-limits sub-track, participants were not allowed to submit a portfolio of solvers,
+i.e., a combination of two or more core SAT solvers developed by different groups of authors.\footnote{
+In other words, a submission of a combination of solvers was only possible if all the authors of all the parts
+were explicitly listed. This means that all the authors had to be notified if such participation
+was planned and had to consider it carefully, also taking into account the limited number of submissions per author
+as specified by the previous rule.}
 
+This rule is mainly meant to encourage the SAT community to invest more effort into developing new solver code bases.
+Moreover, while acknowledge that research on solver selection tools that typically orchestrate portfolio solvers 
+is interesting, it is not the focus of the SAT competition.
 
-Participation of Portfolios / Number of submissions
-
-
-\todo{Should we have a discussion (maybe later sections)
+\todo{Should we have a discussion (maybe in later sections)
 about the future of the portfolio solver rule
 concerning the point raised by Mate Soos (in emails)?}
 
-The organizers of SAT Competition 2020 are not allowed to compete.
-
+\paragraph{Organizers}
+The organizers of the competition were not allowed to participate.
 
 \subsection{Solver Ranking and Disqualification}
 
@@ -214,13 +254,11 @@ not eligible to win any award.
 
 \subsection{Certificates}
 
+\label{sec:certif}
+
 In all tracks it was required to output a model to certify recognising a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only 
 in the Main track (besides the No Limits sub-track).
-
-Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
-either in its textual version, which is very similar to the DIMACS input format,
-or on a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
 
 The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
