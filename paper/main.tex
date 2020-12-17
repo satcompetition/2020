@@ -377,40 +377,37 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 
 \subsection{Incremental Library Applications and Instances}
 
-With the introduction of IPASIR (Re-entrant Incremental Solver API), the incremental library track took place for the first time in SAT~Race~2015~\cite{Balyo:2015:SATRace}, and then again in SAT~Competitions 2016 and 2017. 
+Ihe incremental library track was first introduced in SAT~Race~2015 and then took place again in SAT~Competitions 2016 and 2017. 
+Numerous applications, e.g., SMT solvers or SAT-based planners, use SAT solvers incrementaly, i.e., formulas are repeatedly refined between solve-calls. 
+One important contribution of the founders of this track is the specification of the general incremental interface IPASIR (Re-entrant Incremental Solver API) for SAT applications~\cite{Balyo:2015:SATRace}. 
 In SAT~Competitions 2020, we run the track again and selected a total $300$ benchmark instances for the six applications described below. 
 
-\paragraph{Backbone Detection}
+\paragraph{Backbone Variables}
 
-The application $\mathsf{genipabones}$ reads a formula from a given file and transforms it using the dual rail encoding, i.e., it replaces each $x$ by $p_x$ and each $\overline{x}$ by $n_x$ and adds clauses of the form ($\overline{p_x} \vee \overline{n_x}$). 
-Incrementally, each variable is then checked if it is a backbone variable or not. 
-For this application, we selected $50$ of the smallest and easiest satisfiable problems of previous SAT competitions. 
+The application $\mathsf{genipabones}$ creates the dual rail encoding~\cite{Balyo:2015:SATRace} of a given formula and incrementally checks for each variable if it is a backbone variable or not~\cite{Janota:2015:Backbones}. 
+For this application, we selected $50$ of the smallest and easiest satisfiable problems from previous SAT competitions. 
 
-\paragraph{Essential Variables Calculation}
+\paragraph{Essential Variables}
 
-%Given a satisfiable formula $F$, a variable $x$ is essential for the satisfiability of $F$ if a truth value must be assigned to $x$ in each satisfying partial assignment of F. 
-The application $\mathsf{genipaessentials}$ incrementally finds all the variables essential for the satisfiability of a given formula by testing each variable using the dual-rail encoded formula. 
-For this application, we used the same easy satisfiable problems as in the Backbone Detection application. 
+The application $\mathsf{genipaessentials}$ incrementally finds all the variables essential for the satisfiability of a given formula~\cite{Bryant:1987:Essentials} by incrementally testing each variable using the dual-rail encoded formula. 
+For this application, we used the same $50$ easy satisfiable problems as in the backbone variable detection application. 
 
-\paragraph{Longest Simple Path Computation}
+\paragraph{Longest Simple Paths}
 
 The application $\mathsf{genipalsp}$ finds the longest simple path in a graph. 
 For this application, we selected $50$ instances of the smallest graphs provided by Balyo et al.~\cite{Balyo:2019:LSP}. 
 
-\paragraph{MaxSAT}
+\paragraph{Maximum Satisfiability (MaxSAT)}
 
-The application $\mathsf{genipamax}$ is a trivial partial MaxSAT solver based on adding activation literals to soft clauses and 
-subsequent incremental optimization using a cardinality constraint~\cite{Philipp:2015:PBLib} and assumptions. 
+The application $\mathsf{genipamax}$ solves partial MaxSAT problems by augmenting soft clauses with activation literals which are then input to a cardinality constraint~\cite{Philipp:2015:PBLib}. The MaxSAT problem is then solved by incrementally minimizing the bound of that cardinality constraint. 
 For this application, we selected $50$ instances from MaxSAT Evaluation 2019\footnote{\url{https://maxsat-evaluations.github.io/2019/}}. 
 
-\paragraph{QBF}
-$\mathsf{Ijtihad}$ is a solver for Quantified Boolean Formulas (QBFs). 
-The solver tackles the a formula iteratively, using counterexample-guided expansion~\cite{Bloem:2018:QBFSAT}.
-For this application, we selected $50$ instances from QBF Evaluation 2019\footnote{\url{http://www.qbflib.org/qbfeval19.php}}. 
+\paragraph{Quantified Boolean Formulas (QBF)}
+The application $\mathsf{Ijtihad}$ is a QBF solver based on counterexample-guided expansion~\cite{Bloem:2018:QBFSAT}. For this application, we selected $50$ instances from QBF Evaluation 2019\footnote{\url{http://www.qbflib.org/qbfeval19.php}}. 
 
 \paragraph{Planning}
-$\mathsf{Pasar}$ is a planer which is based on the principles of counter-example guided abstraction refinement(CEGAR)~\cite{Froleyks:2019:Pasar}. 
-For this application, we selected $50$ sas planning instances. 
+The application $\mathsf{Pasar}$ is a planner which is based on the principles of counter-example guided abstraction refinement (CEGAR)~\cite{Froleyks:2019:Pasar}. 
+For this application, we selected $50$ SAS planning instances. 
 
 
 \section{Competition Results}
@@ -442,7 +439,6 @@ The authors of Glucose introduced numerous implementations of successful new met
 
 The SAT solver RISS by Norbert Manthey is a successful and award winning fork of Glucose (version 2.2) in combination with the state-of-the-art preprocessor Coprocessor~\cite{}. 
 
-
 Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh~\cite{}. 
 Maple first emerged as a series of forks submitted to SAT Competition 2016, introducing the two new branching heuristics Learning Rate based Branching (LRB) and Conflict History based Branching (CHB)~\cite{}. 
 The then award winning variant MapleCOMSPS is an implementation of the LRB heuristic on top of CoMinisatPS~\cite{}. 
@@ -457,7 +453,10 @@ Today, CryptoMinisat is more of an independent code base than a Minisat fork com
 The SAT solvers of Armin Biere arguably belong to the best and most well-known independent code-bases. 
 Lingeling has been around for years now and still we had competitive submissions of its parallel versions Plingeling in this competition. 
 CaDiCal came up in SAT Competition 2017 and has been award winning since then. 
-The reimplementation of CaDiCal in the new SAT solver Kissat set a new standard in sequential SAT solving in this competition (see Section~\ref{}). 
+Despite the fact that it seems very hard to lift the state-of-the-art with a completly new codebase, the new SAT solver Kissat by Armin Biere which was submitted for the first time this year set a new standard in sequential SAT solving in this competition (see Section~\ref{}). 
+
+ParaFrost by Osama and Wijs is another new codebase introducing several interesting new concepts~\cite{}. 
+Its sequential variant was submitted for the first time in this competition. 
 
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
