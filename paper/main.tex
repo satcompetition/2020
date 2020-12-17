@@ -213,16 +213,6 @@ Like this it is possible to query for instances with desired properties, e.g., i
 
 \subsection{Selection of Instances}
 
-The ``Bring Your Own Benchmarks'' (BYOB) rule (applied as of SAT Competition 2017~\cite{SC2017}) requires solver authors to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', whereby interesting is defined as Minisat~\cite{Niklas:2003:Minisat} needs at least one minute to solve it and the authors own solver does not run into a timeout for the instance. 
-
-In total, $28$ authors followed our calls for participation and benchmark instances, thus contributing to a set of $1260$ previously unseen benchmark instances with a variety of $27$ different instance families. 
-By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
-
-In order to compile a balanced set of $300$ benchmark instances, we used the procedure which is depicted in Algorithm~\ref{algo:select} to select a maximium of $14$ submissions per author. 
-Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
-If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5-7). 
-Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
-
 \begin{algorithm}[t]
 \DontPrintSemicolon
 
@@ -248,61 +238,76 @@ $S \leftarrow \emptyset$\;
 \label{algo:select}
 \end{algorithm}
 
-To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
-We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unkown result. 
-Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
-
-Table~\ref{tab:families} displays the numbers of submitted, interesting and finally selected instances grouped by problem family. 
-
-\begin{table}[h]
+\begin{table}[t]
+\small
 \centering
-\begin{tabular}{rrr||l}
-submitted & interesting & selected & family\\
-\hline\hline
-6 & 2 & 2 & 01-integer-programming\\
-187 & 139 & 14 & antibandwidth\\
-40 & 20 & 13 & baseball-lineup\\
-393 & 333 & 14 & bitvector\\
-20 & 15 & 12 & cellular-automata\\
-38 & 18 & 7 & cnf-miter\\
-14 & 14 & 14 & coloring\\
-20 & 20 & 14 & core-based-generator\\
-18 & 13 & 13 & cover\\
-106 & 93 & 34 & cryptography\\
-20 & 19 & 7 & discrete-logarithm\\
-58 & 57 & 7 & edge-matching\\
-8 & 5 & 5 & fermat\\
-40 & 3 & 0 & flood-it-puzzle\\
-20 & 19 & 13 & hgen\\
-56 & 48 & 14 & hypertree-decomposition\\
-20 & 16 & 14 & influence-maximization\\
-20 & 20 & 9 & lam-discrete-geometry\\
-20 & 20 & 8 & polynomial-multiplication\\
-4 & 2 & 2 & schur-coloring\\
-20 & 20 & 12 & station-repacking\\
-23 & 19 & 7 & stedman-triples\\
-5 & 2 & 2 & sum-subset\\
-20 & 20 & 14 & tensors\\
-12 & 7 & 7 & termination\\
-20 & 16 & 14 & timetable\\
-16 & 16 & 14 & tournament\\
-36 & 36 & 14 & vlsat\\
+\begin{tabular}{|l|l||rr|}
 \hline
-1260 & 1012 & 300 & $\Sigma$
+Family & Author & Submitted & Selected\\
+\hline\hline
+0-1 Integer Programming & Riveros & 6 & 2 \\
+Anti-Bandwidth & Biere & 187 & 14 \\
+Baseball Lineup & Hickey & 40 & 13 \\
+Bit-Vector & Preiner & 393 & 14 \\
+Cellular Automata & Chowdhury & 20 & 12 \\
+CNF Miter & Manthey & 38 & 7 \\
+Coloring & Oostema & 14 & 14 \\
+Core-based Generator & Hartung & 20 & 14 \\
+Cover & Gacek & 18 & 13 \\
+Cryptography & Paxian, Shaw, Soos & 106 & 34 \\
+Discrete Logarithm & Jingchao & 20 & 7 \\
+Edge Matching & Holten & 58 & 7 \\
+Fermat & Riveros & 8 & 5 \\
+Flood-It Puzzle & Stiphout & 40 & 0 \\
+HGen & Guanfeng & 20 & 13 \\
+Hypertree Decomposition & Schidler & 56 & 14 \\
+Influence Maximization & Kochemazov & 20 & 14 \\
+Lam Discrete Geometry & Nejati & 20 & 9 \\
+Polynomial Multiplication & Maoluo & 20 & 8 \\
+Schur Coloring & Riveros & 4 & 2 \\
+Station Repacking & Newman & 20 & 12 \\
+Stedman Triples & Johnson & 23 & 7 \\
+Sum Subset & Riveros & 5 & 2 \\
+Tensors & Savicky & 20 & 14 \\
+Termination & Yolcu & 12 & 7 \\
+Timetable & Djamegni & 20 & 14 \\
+Tournament & Heule & 16 & 14 \\
+Vlsat & Bouvier & 36 & 14 \\
+\hline
+\multicolumn{2}{|r||}{$\Sigma$} & 1260 & 300 \\
+\hline
 \end{tabular}
 \caption{Families and amounts of newly submitted instances}
 \label{tab:families}
 \end{table}
 
-\begin{table}[h]
+The ``Bring Your Own Benchmarks'' (BYOB) rule (applied as of SAT Competition 2017~\cite{SC2017}) requires solver authors to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', whereby interesting is defined as Minisat~\cite{Niklas:2003:Minisat} needs at least one minute to solve it and the authors own solver does not run into a timeout for the instance. 
+
+In total, $28$ authors followed our calls for participation and benchmark instances, thus contributing to a set of $1260$ previously unseen benchmark instances with a variety of $27$ different instance families. 
+By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
+
+In order to compile a balanced set of $300$ benchmark instances, we used the procedure which is depicted in Algorithm~\ref{algo:select} to select a maximium of $14$ submissions per author. 
+Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
+If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5-7). 
+Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
+
+To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
+We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unkown result. 
+Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
+
+Table~\ref{tab:families} displays the numbers of submitted and selected instances grouped by problem family and author. 
+
+\begin{table}[t]
 \centering
-\begin{tabular}{c||ccc|c}
+\begin{tabular}{|r|ccc|c|}
+\hline
  & SAT & UNSAT & UNKNOWN & $\Sigma$\\
 \hline\hline
-new instances & 114 & 78 & 108 & 300 \\
-old instances & 21 & 57 & 22 & 100\\
+New Instances & 114 & 78 & 108 & 300 \\
+Old Instances & 21 & 57 & 22 & 100\\
 \hline
-$\Sigma$ & 135 & 135 & 130 & 400
+$\Sigma$ & 135 & 135 & 130 & 400\\
+\hline
 \end{tabular}
 \caption{Amount of old and new instances by result}
 \label{tab:final}
@@ -455,7 +460,7 @@ The SAT solver RISS by Norbert Manthey is a successful and award winning fork of
 Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh~\cite{}. 
 Maple first emerged as a series of forks submitted to SAT Competition 2016, introducing the two new branching heuristics Learning Rate based Branching (LRB) and Conflict History based Branching (CHB)~\cite{}. 
 The then award winning variant MapleCOMSPS is an implementation of the LRB heuristic on top of CoMinisatPS~\cite{}. 
-The award winning derivatives of MapleCOMSPS in SAT Competition 2017 include a new Learnt Clause Minimization (LCM) procedure and the new branching heuristic Distance (Dist). 
+The next award winning derivative Maple\_LCM\_Dist in SAT Competition 2017 came with a new Learnt Clause Minimization (LCM) procedure and the new branching heuristic Distance (Dist). 
 This was extended with case-based Chronological Backtracking (ChronoBT) by Ryvchin and Nadel~\cite{}, which resulted in the award winning solver Maple\_LCM\_Dist\_ChronoBT of SAT Competition 2018~\cite{}. 
 Its extension MapleLCMDistChronoBT-DL with a new clause learning/forgetting heuristic Duplicate Learnts (DL)~\cite{} won SAT Race 2019. 
 The success story of Maple resulted also in numerous submissions of modified Maple solvers in this competition, some of which have been successful (see Section~\ref{}). 
@@ -538,7 +543,7 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{ExMapleLCMDistCBT} & padc\_dl & \\
+ & \multirow{4}{*}{MapleLCMDistCBT} & padc\_dl & \\
  &  & padc\_dl\_ovau\_lin & \\
  &  & padc\_dl\_ovau\_exp & \\
  &  & psids\_dl & \\
