@@ -158,7 +158,21 @@ in the results section.
 
 \subsubsection{Incremental Library Track}
 
-\todo{MS; look at what Marcus already wrote}
+In the Incremental Library track we mimic scenarios
+where a SAT solver is used as a backend solver in a more complex tool
+(typically solving a harder problem than SAT) and is called multiple times before 
+the enclosing tool reaches its final state. Incrementality means that
+the individual calls to the SAT solver are not independent, but may share 
+a common subset of the input clauses or differ in the presence of additional 
+unit clause assumptions \cite{TODO}. 
+
+Instead of using or extending the DIMACS input format, we realize the Incremental track
+by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
+for SAT applications~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
+enclosing tool on its own benchmark and communicate with the competing SAT solver 
+through this interface API. Not only does the SAT solver in this track
+need to solve a sequence of related problems fast, but its answers to the early questions
+may in general influence which questions will follow next.
 
 \subsubsection{Parallel Track}
 
@@ -486,10 +500,12 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 
 \subsection{Incremental Library Applications and Instances}
 
-Ihe incremental library track was first introduced in SAT~Race~2015 and then took place again in SAT~Competitions 2016 and 2017. 
-Numerous applications, e.g., SMT solvers or SAT-based planners, use SAT solvers incrementaly, i.e., formulas are repeatedly refined between solve-calls. 
-One important contribution of the founders of this track is the specification of the general incremental interface IPASIR (Re-entrant Incremental Solver API) for SAT applications~\cite{Balyo:2015:SATRace}. 
-In SAT~Competitions 2020, we run the track again and selected a total $300$ benchmark instances for the six applications described below. 
+The incremental library track was first introduced in SAT~Race~2015 and 
+then took place again in SAT~Competitions 2016 and 2017. 
+Numerous applications, e.g., SMT solvers or SAT-based planners,
+use SAT solvers incrementally, i.e., formulas are repeatedly refined between the solver calls.
+In SAT~Competitions 2020, we selected a total \num{300} benchmark instances for the Incremental track
+from the six applications described below.
 
 \paragraph{Backbone Variables}
 
