@@ -117,24 +117,36 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 
 \todo{Maybe mention proceedings \cite{SC2020}}
 
-\section{Overview of the competition}
+\section{Overview of the Competition}
 \label{sec:overview}
 
 TODO: Fugenelement
 
-\subsection{Competition tracks}
+\subsection{Competition Tracks}
 
 SAT Competition 2020 consisted of four tracks:
 the Main track, Incremental Library track, Parallel track,
 and the Cloud Track for massively parallel SAT solvers using up to 1024 cores. 
+Furthermore, the Main track comprised of several sub-tracks.
 
-\subsubsection{Main Tracks}
+\subsubsection{Main Track}
 
+The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
 
+Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits sub-track and were not eligible for the Main track awards. The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.\ Rules below). However, solvers in No-Limits still competed against all other solvers in the Main Track (hence, we consider it a sub-track). The No-Limits sub-track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
 
+Part of the Main track was the Planning sub-track, in which we evaluated the solvers on 200 benchmarks 
+which all came from the same application domain - automated planning. 
+Solver submitted to the Main track automatically participated in the Planning sub-track.
+It is envisioned, that also in the future there will be an application sub-track of the Main track, each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
-\todo{Did we have a glucose hack track in the end?
-(Mentioned on the web, not in the result slides.)}
+Finally, the Main Track also had the so-called ``Glucose hack'' sub-track. 
+Since in the past several advances in SAT solving required only a small modification of an established solver
+to achieve a considerable contribution, this sub-track encouraged participation 
+of small modifications of the Glucose 3.0 SAT solver. The limit for being considered a ``hack''
+was set to 1000 non-space character edit distance from the sources of Glucose provided by the organisers. 
+Unfortunately, in 2020 there were not enough participants in this sub-track and we do not report on it 
+in the results section.
 
 \subsubsection{Incremental Library Track}
 
