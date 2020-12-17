@@ -125,7 +125,10 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 \section{Overview of the Competition}
 \label{sec:overview}
 
-TODO: Fugenelement
+In this section, we describe the individual 2020 SAT Competition tracks,
+explain the requirements for participation % input/output and proof formats,
+and the ranking criteria, as well as
+the computing infrastructure used for executing the competition.
 
 \subsection{Competition Tracks}
 
@@ -138,10 +141,10 @@ Furthermore, the Main track comprised of several sub-tracks.
 
 The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
 
-Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits sub-track and were not eligible for the Main track awards. The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.\ Rules below). However, solvers in No-Limits still competed against all other solvers in the Main Track (hence, we consider it a sub-track). The No-Limits sub-track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
+Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits sub-track and were not eligible for the Main track awards. The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.~Sect.~\ref{sec:rules}). However, solvers in No-Limits still competed against all other solvers in the Main Track (hence, we consider it a sub-track). The No-Limits sub-track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
 
 Part of the Main track was the Planning sub-track, in which we evaluated the solvers on 200 benchmarks 
-which all came from the same application domain - automated planning. 
+which all came from the same application domain -- automated planning. 
 Solver submitted to the Main track automatically participated in the Planning sub-track.
 It is envisioned, that also in the future there will be an application sub-track of the Main track, each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
@@ -160,18 +163,60 @@ in the results section.
 \subsubsection{Cloud Track}
 
 \subsection{Mandatory participation requirements}
+\label{sec:rules}
 
+The source code of submitted SAT solvers must be made available (licensed for research purposes) except for the solvers participating only in the No-Limits Track.
+
+
+
+A 1-2 page system description document (see below for details).
+
+BYOB, see also Sect.~\ref{sec:byob}
+
+Also these have description
+
+\cite{SC2020}
+
+% input/output and proof formats
+SAT solvers must conform to DIMACS input/output requirements
+
+
+SAT solvers that are planning to participate in the Main track must be able to produce certificates for UNSAT
+
+
+Each Main Track participant (team) is required to submit 20 new benchmark instances. 
+
+
+Participation of Portfolios / Number of submissions
 
 
 \todo{Should we have a discussion (maybe later sections)
 about the future of the portfolio solver rule
 concerning the point raised by Mate Soos (in emails)?}
 
+The organizers of SAT Competition 2020 are not allowed to compete.
+
+
+\subsection{Solver Ranking and Disqualification}
+
+Solvers were ranked using a PAR-2 score based on a \num{5000}-second timeout.
+A PAR-2 system assigns as many points as the number of seconds it took the solver
+to solve a particular instance and twice the time limit, i.e.~\num{10000} points,
+if the instance was not solved. This means that lowers scores are better.
+We generally report the average score of each solver
+across a benchmark set.
+
+A SAT solver was disqualified if it produced a wrong answer. 
+Specifically, if a solver reported ``unsatisfiable'' on an instance that 
+was proven to be satisfiable by some other solver, or reported ``satisfiable'' 
+but provided a wrong certificate. Solvers disqualified from the competition were
+not eligible to win any award. 
+
 \subsection{Certificates}
 
 In all tracks it was required to output a model to certify recognising a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only 
-in the Main Track (besides the No Limits subtrack).
+in the Main track (besides the No Limits sub-track).
 
 Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
 either in its textual version, which is very similar to the DIMACS input format,
@@ -181,7 +226,8 @@ The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
 Afterwards, an independent, formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}, 
 was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
-We only considered solved those unsatisfiable formulas that could be validated by {\tt DRAT-trim}.
+In the Main track, we only considered solved those unsatisfiable formulas that 
+could be validated by {\tt DRAT-trim}.
 There were several cases where {\tt cake\_lpr} ran out of resources before being able to 
 confirm after {\tt DRAT-trim}. However, there was no case where {\tt DRAT-trim} would accept
 a proof and {\tt cake\_lpr} would later disagree with the verdict.
@@ -189,10 +235,11 @@ a proof and {\tt cake\_lpr} would later disagree with the verdict.
 \subsection{Computing environments}
 
 \label{sec:computing}
-The Main Track with its subtracks was run on the StarExec cluster \cite{starexec},
+The Main Track with its sub-tracks was run on the StarExec cluster \cite{starexec},
 whose nodes are equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
+(In the Main track, validation then continued for up to \SI{45000}{\second}.)
 The solvers were allowed to use up to the full \SI{128}{\giga\byte} of RAM.\footnote{
 Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
 was by mistake advertised on the competition web page prior to solver submission.
@@ -208,7 +255,7 @@ The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{
 \label{sec:instances}
 
 For selection of benchmark instances in this competition, we used GBD Tools\footnote{\url{https://pypi.org/project/gbd-tools/}}. 
-GBD Tools is a tool-chain for maintenance and distribuation of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
+GBD Tools is a tool-chain for maintenance and distribution of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
 Its database\footnote{\url{https://gbd.iti.kit.edu}} contains information about all instances used in SAT competitive events dating back to 2006. 
 In GBD Server, each instance also has an URL, such that instances can also be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
 
@@ -217,6 +264,7 @@ Like this it is possible to query for instances with desired properties, e.g., i
 
 
 \subsection{Selection of Instances}
+\label{sec:byob}
 
 \begin{algorithm}[t]
 \DontPrintSemicolon
