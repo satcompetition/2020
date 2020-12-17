@@ -456,15 +456,14 @@ Our survey of the winning strategies in this competition starts with sequential 
 \label{sec:codebases}
 
 With a few exceptions, progress in SAT solvers emerged as extensions or forks from existing code bases. 
-One well-known tree of development is rooted in the Codebase of the Minisat solver by Niklas Éen and Niklas Sörenson~\cite{}. 
-The most well-known fork of Minisat is the Glucose solver by Gilles Audemard and Laurent Simon~\cite{}.  
-The authors of Glucose introduced numerous implementations of successful new methods, e.g., Literal Block Distance (LBD)~\cite{}, which they recently summarized in~\cite{}. 
+One well-known tree of development is rooted in the Codebase of the Minisat solver by Niklas Éen and Niklas Sörenson~\cite{Niklas:2003:Minisat}. 
+The most well-known fork of Minisat is the Glucose solver by Gilles Audemard and Laurent Simon~\cite{Audemard:2018:Glucose}. 
+It introduced numerous implementations of successful new methods, e.g., Literal Block Distance (LBD)~\cite{Audemard:2009:Glucose}. 
+The SAT solver RISS by Norbert Manthey is a successful and award winning fork of Glucose (version 2.2) in combination with the state-of-the-art preprocessor Coprocessor~\cite{Manthey:2012:Coprocessor2}. 
 
-The SAT solver RISS by Norbert Manthey is a successful and award winning fork of Glucose (version 2.2) in combination with the state-of-the-art preprocessor Coprocessor~\cite{}. 
-
-Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh~\cite{}. 
-Maple first emerged as a series of forks submitted to SAT Competition 2016, introducing the two new branching heuristics Learning Rate based Branching (LRB) and Conflict History based Branching (CHB)~\cite{}. 
-The then award winning variant MapleCOMSPS is an implementation of the LRB heuristic on top of CoMinisatPS~\cite{}. 
+Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh introducing three-tier clause-managment~\cite{Oh:2015:satunsat}. 
+Maple first emerged as a series of forks submitted to SAT Competition 2016 implementing new innovative branching heuristics on top of available code-bases~\cite{Liang:2016:LRB}. 
+The then award winning variant MapleCOMSPS is an implementation of the new branching heuristics Learning Rate based Branching (LRB) on top of CoMinisatPS~\cite{Liang:2016:MapleCOMSPS}. 
 The next award winning derivative Maple\_LCM\_Dist in SAT Competition 2017 came with a new Learnt Clause Minimization (LCM) procedure and the new branching heuristic Distance (Dist). 
 This was extended with case-based Chronological Backtracking (ChronoBT) by Ryvchin and Nadel~\cite{}, which resulted in the award winning solver Maple\_LCM\_Dist\_ChronoBT of SAT Competition 2018~\cite{}. 
 Its extension MapleLCMDistChronoBT-DL with a new clause learning/forgetting heuristic Duplicate Learnts (DL)~\cite{} won SAT Race 2019. 
