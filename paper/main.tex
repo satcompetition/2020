@@ -47,14 +47,19 @@
 \author[ctu]{Martin Suda} 
 \ead{martin.suda@cvut.cz}
 
+\address[cmu] {
+Computer Science Department, Carnegie Mellon University\\
+{\tt marijn@cmu.edu}\\[1em]
+}
+
 \address[kit] {
 KIT Department of Informatics\\
-\url{markus.iser@kit.edu}\\[1em]
+{\tt markus.iser@kit.edu}\\[1em]
 }
 
 \address[ctu] {
 Czech Technical University in Prague, Czech Republic\\
-\url{martin.suda@cvut.cz}\\[1em]
+{\tt martin.suda@cvut.cz}\\[1em]
 }
 
 
@@ -472,7 +477,7 @@ Today, CryptoMinisat is more of an independent code base than a Minisat fork com
 
 The SAT solvers of Armin Biere arguably belong to the best and most well-known independent code-bases. 
 Lingeling has been around for years now and still we had competitive submissions of its parallel versions Plingeling in this competition. 
-CaDiCal came up in SAT Competition 2017 and has been award winning since then. 
+CaDiCaL came up in SAT Competition 2017 and has been award winning since then. 
 Despite the fact that it seems very hard to lift the state-of-the-art with a completly new codebase, the new SAT solver Kissat by Armin Biere which was submitted for the first time this year set a new standard in sequential SAT solving in this competition (see Section~\ref{}). 
 
 ParaFrost by Osama and Wijs is another new codebase introducing several interesting new concepts~\cite{}. 
@@ -484,7 +489,7 @@ Its sequential variant was submitted for the first time in this competition.
 
 A total of $18$ teams submitted their solvers to the main track of the competition.  
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-$14$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or Cadical~\cite{}. 
+$14$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or CaDiCaL~\cite{}. 
 
 In the incremental track, four teams submitted their solvers. 
 All solvers in the incremental library track are created from independent code bases. 
@@ -523,7 +528,7 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
  &  &  trail & \secondu\\
  &  &  alluip & \secondu\firstp\\
- & \multirow{-3}{*}{Cadical} &  alluip-trail & \secondu\firstp\\
+ & \multirow{-3}{*}{CaDiCaL} &  alluip-trail & \secondu\firstp\\
  \cline{2-4}
  & MapleLCMDist & alluip-trail & \\
 \hline
@@ -612,7 +617,7 @@ Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
 \hline
 \stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
 \hline
-\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & Cadical-sc2020 & 1 \\
+\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & CaDiCaL-sc2020 & 1 \\
 \hline
 Chen & abcdsat-i20 & 1 \\
 \hline
@@ -629,15 +634,15 @@ If it came to determine an overall winner of all the subtracks in the Main Track
 Kissat was submitted in three configurations, including one default configuration and specialized configurations specifically tailored towards satisfiable or unsatisfiable instances, respectively.
 Kissat won four awards, by achieving first place in the overall Main Track, first place in its Unsat Sub-Track, second place in the Sat Sub-Track and third place in the Planning Sub-Track. 
 
-Kissat is a reimplementation of Cadical~\cite{Biere:SC2019} in C, thus, taking advantage of finegrained control on the memory layout of new sophisticated data-structures used to manage watchers and clauses, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2020}. 
+Kissat is a reimplementation of CaDiCaL~\cite{Biere:SC2019} in C, thus, taking advantage of finegrained control on the memory layout of new sophisticated data-structures used to manage watchers and clauses, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2020}. 
 
 In Kissat, forward subsumption for learned clauses was entirely replaced by more powerful vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-For irredundant clauses, forward subsumption is still executed together with variable eliminiation during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurences~\cite{Biere:SC2020}.
+For irredundant clauses, forward subsumption is still executed together with variable elimination during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurrences~\cite{Biere:SC2020}.
 
 Kissat also comes with a refined scheduling of inprocessing procedures based on growing conflict intervals. 
-Regarding the duration of alternating restart modes, the Kissat authors considered conflict-rate being too unstable, and come up with ``ticks'', which is a new method to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses. 
+Regarding the duration of alternating restart modes, Kissat's author considered conflict-rate being too unstable, and come up with ``ticks'', which is a new method to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses. 
 
-Considering target phases~\cite{Biere:SC2019}, Kissat authors come up with an innovative use-case for autarkies to account for saved phases. 
+Considering target phases~\cite{Biere:SC2019}, Kissat's author come up with an innovative use-case for autarkies to account for saved phases. 
 Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{Kiesl:2019:Autarkies}. 
 The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
 
@@ -650,23 +655,23 @@ which is a phase selection heuristic similar to VSIDS and, if active, it is used
 
 By tight integration of CCAnr~\cite{Cai:2015:CCAnr}, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies, SLS and CDCL, in a unique way. 
 The solver runs local search for a short period of time in regular intervals and (just in case SLS finds no solution)
-changes the polarities according to the best assignment found by the SLS solver, which is known as ``rephasing'' from CaDiCal~\cite{Biere:SC2019}.
+changes the polarities according to the best assignment found by the SLS solver, which is known as ``rephasing'' from CaDiCaL~\cite{Biere:SC2019}.
 Moreover, it bumps VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy~\cite{Soos:SC2020}.
 
 SLS is tightly integrated and thus is aware of changes occurring during inprocessing. 
 Inprocessing now also includes ternary resolution and vivification is used a lot more~\cite{ChuMinLi:2020:Vivification}. 
-All modifictions in CrytoMiniSat are fully integrated with resprect to incremental use-cases including the use of assumptions. 
+All modifications in CryptoMiniSat are fully integrated with respect to incremental use-cases including the use of assumptions. 
 
 CryptoMiniSat periodically changes decay factors of its branching heuristics, thus avoiding usage of a ``single best'' configuration.
 
 This version of CryptoMiniSat comes with an highly optimized implementation of Gauss-Jordan Elimination~\cite{Soos:2020:CNFXOR}. 
 CryptoMiniSat includes BreakId, a sub-system that calculates symmetry breaking clauses, which it calls on every 5th inprocessing iteration~\cite{Devriendt:2016:BreakId}.
 
-\subsubsection{Cadical Hacks: Trail and AllUip}
+\subsubsection{CaDiCaL Hacks: Trail and AllUip}
 
-This modified version of last years CaDiCal was submitted with the two new methods \emph{Trail Saving}~\cite{Hickey:2020:TrailSaving} and \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
+This modified version of last years CaDiCaL was submitted with the two new methods \emph{Trail Saving}~\cite{Hickey:2020:TrailSaving} and \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
 It was submitted in three configurations, one with both methods activated and two other with each having only one of them active. 
-The \emph{Stable AllUIP} variants seemed most successful, in most tracks they were the hightest ranked variants and won the first price in the Planning Sub-Track. 
+The \emph{Stable AllUIP} variants seemed most successful, in most tracks they were the highest ranked variants and won the first price in the Planning Sub-Track. 
 However, in the Unsat Sub-Track, the \emph{Trail Saving} variant performed best.
 
 With \emph{Trail Saving}, the solver caches backtracked slices of the assignment trail in order to reuse them when the same decisions are repeated. 
