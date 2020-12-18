@@ -164,7 +164,7 @@ where a SAT solver is used as a backend solver in a more complex tool
 the enclosing tool reaches its final state. Incrementality means that
 the individual calls to the SAT solver are not independent, but may share 
 a common subset of the input clauses or differ in the presence of additional 
-unit clause assumptions \cite{TODO}. 
+unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
 
 Instead of using or extending the DIMACS input format, we realize the Incremental track
 by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
@@ -306,13 +306,15 @@ The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{
 \section{Description of Benchmark Instances}
 \label{sec:instances}
 
-For selection of benchmark instances in this competition, we used GBD Tools\footnote{\url{https://pypi.org/project/gbd-tools/}}. 
-GBD Tools is a tool-chain for maintenance and distribution of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
-Its database\footnote{\url{https://gbd.iti.kit.edu}} contains information about all instances used in SAT competitive events dating back to 2006. 
-In GBD Server, each instance also has an URL, such that instances can also be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
+For selection of benchmark instances in this competition, we used GBD Tools.%
+\footnote{\url{https://pypi.org/project/gbd-tools/}} 
+Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities to query for instances with desired properties, e.g., instance author, family and result.
+The association of instance-id and instance attributes is maintained in publicly available databases.%
+\footnote{\url{https://gbd.iti.kit.edu}}
 
-Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities to query for instances with specific properties, while maintaining the association of instance-id and instance attributes in publicly available databases.
-Like this it is possible to query for instances with desired properties, e.g., instance author, family and result, which gives the instance selection process a new quality. 
+GBD Tools is a tool-chain for maintenance and distribution of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
+Its databases provide information about all instances used in SAT competitive events dating back to 2006. 
+In GBD Server, each instance also has an URL, such that instances can be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
 
 
 \subsection{Selection of Instances}
@@ -386,12 +388,13 @@ Vlsat & Bouvier & 36 & 14 \\
 \label{tab:families}
 \end{table}
 
-The ``Bring Your Own Benchmarks'' (BYOB) rule (applied as of SAT Competition 2017~\cite{SC2017}) requires solver authors to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', whereby interesting is defined as Minisat~\cite{Niklas:2003:Minisat} needs at least one minute to solve it and the authors own solver does not run into a timeout for the instance. 
+The ``Bring Your Own Benchmarks'' (BYOB) rule is established since SAT Competition 2017~\cite{SC2017}. 
+By this rule solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that Minisat must need more than a minute to solve it and the authors own solver does not run into a timeout for the instance. 
 
-In total, $28$ authors followed our calls for participation and benchmark instances, thus contributing to a set of $1260$ previously unseen benchmark instances with a variety of $27$ different instance families. 
+As can be seen in Table~\ref{tab:families}, a total of $28$ authors followed our calls for participation and benchmark instances, thus contributing a set of $1260$ previously unseen benchmark instances in a large variety of different instance families. 
+
 By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
-
-In order to compile a balanced set of $300$ benchmark instances, we used the procedure which is depicted in Algorithm~\ref{algo:select} to select a maximium of $14$ submissions per author. 
+In order to compile a balanced set of $300$ benchmark instances, we considered a maximium of $14$ submissions per author and used the procedure which is depicted in Algorithm~\ref{algo:select}. 
 Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
 If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5-7). 
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
