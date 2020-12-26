@@ -64,6 +64,7 @@ Czech Technical University in Prague, Czech Republic\\
 
 
 \newcommand{\todo}[1]{{\color{purple}Todo: #1}}
+\newcommand{\solver}[1]{\texttt{#1}}
 
 % Stack a variable number of arguments:
 \makeatletter
@@ -564,33 +565,35 @@ We start with a few remarks on the evolution of code-bases of well known SAT sol
 Our survey of the winning strategies in this competition starts with sequential (including incremental) SAT solving in Section~\ref{sec:part:seq}, then we continue with parallel SAT solving in Section~\ref{sec:part:par} and conclude with solvers in the cloud track in Section~\ref{sec:part:cloud}. 
 
 
-\subsection{On the Shoulders of Giants: The Evolution of SAT Solvers}
+\subsection{On the Shoulders of Giants: Popular Code-Bases}
 \label{sec:codebases}
 
-With a few exceptions, progress in SAT solvers emerged as extensions or forks from existing code bases. 
-One well-known tree of development is rooted in the Codebase of the Minisat solver by Niklas Éen and Niklas Sörenson~\cite{Niklas:2003:Minisat}. 
-The most well-known fork of Minisat is the Glucose solver by Gilles Audemard and Laurent Simon~\cite{Audemard:2018:Glucose}. 
-It introduced numerous implementations of successful new methods, e.g., Literal Block Distance (LBD)~\cite{Audemard:2009:Glucose}. 
-The SAT solver RISS by Norbert Manthey is a successful and award winning fork of Glucose (version 2.2) in combination with the state-of-the-art preprocessor Coprocessor~\cite{Manthey:2012:Coprocessor2}. 
+Progress in SAT solvers is usually recorded based on successful evaluations of  modifications of existing code-bases. 
+One well-known tree of development is rooted in the code-base of \solver{Minisat} by Eén and Sörenson~\cite{Niklas:2003:Minisat}. 
+A well-known fork of \solver{Minisat} is \solver{Glucose} by Audemard and Simon~\cite{Audemard:2018:Glucose}, among others introducing Literal Block Distance (LBD) for weighing clauses in forgetting heuristics~\cite{Audemard:2009:Glucose}. 
+The SAT solver \solver{RISS} by Manthey is a successful and award winning fork of \solver{Glucose} in combination with the state-of-the-art preprocessor \solver{Coprocessor}~\cite{Manthey:2012:Coprocessor2}. 
 
-Another successful string of development is rooted in the CoMinisatPS fork of Minisat by Chanseok Oh introducing three-tier clause-managment~\cite{Oh:2015:satunsat}. 
-Maple first emerged as a series of forks submitted to SAT Competition 2016 implementing new innovative branching heuristics on top of available code-bases~\cite{Liang:2016:LRB}. 
-The then award winning variant MapleCOMSPS is an implementation of the new branching heuristics Learning Rate based Branching (LRB) on top of CoMinisatPS~\cite{Liang:2016:MapleCOMSPS}. 
-The next award winning derivative Maple\_LCM\_Dist in SAT Competition 2017 came with a new Learnt Clause Minimization (LCM) procedure and the new branching heuristic Distance (Dist). 
-This was extended with case-based Chronological Backtracking (ChronoBT) by Ryvchin and Nadel~\cite{}, which resulted in the award winning solver Maple\_LCM\_Dist\_ChronoBT of SAT Competition 2018~\cite{}. 
-Its extension MapleLCMDistChronoBT-DL with a new clause learning/forgetting heuristic Duplicate Learnts (DL)~\cite{} won SAT Race 2019. 
-The success story of Maple resulted also in numerous submissions of modified Maple solvers in this competition, some of which have been successful (see Section~\ref{}). 
+Another more recent string of development is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Chanseok Oh introducing three-tier clause-managment~\cite{Oh:2015:satunsat}. 
+The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heurstics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
+The then award winning variant \solver{MapleCOMSPS} is an implementation of a hybrid branching heuristic of classic Variable-State Independend Decaying Sum (VSIDS) and the new Learning-Rate based Branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
 
-CryptoMinisat by Mate Soos emerged as a fork of Minisat with an extension that brings special handling of xor clauses via gaussian elimination, which is especially effective when solving cryptographic instances~\cite{}. 
-Today, CryptoMinisat is more of an independent code base than a Minisat fork coming with award winning individual implementations of recent SAT technology (see Section~\ref{}). 
+In SAT Competition 2017, Luo et al. integrated learnt clause minimization based on unit propagation (\solver{LCM}) in their award winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
+Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}. 
+They presented their award winning \solver{Maple\_LCM\_Dist\_ChronoBT} to SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
 
-The SAT solvers of Armin Biere arguably belong to the best and most well-known independent code-bases. 
-Lingeling has been around for years now and still we had competitive submissions of its parallel versions Plingeling in this competition. 
-CaDiCaL came up in SAT Competition 2017 and has been award winning since then. 
-Despite the fact that it seems very hard to lift the state-of-the-art with a completly new codebase, the new SAT solver Kissat by Armin Biere which was submitted for the first time this year set a new standard in sequential SAT solving in this competition (see Section~\ref{}). 
+Kochemazov et al. improved three-tier clause-management by persting additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} to SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
+As can be seen in Table~\ref{tab:solvers-incremental}, numerous submissions to SAT Competition~2020 are forks of some recently award winning \solver{Maple} solver. 
 
-ParaFrost by Osama and Wijs is another new codebase introducing several interesting new concepts~\cite{}. 
-Its sequential variant was submitted for the first time in this competition. 
+Starting as a \solver{Minisat}-fork and the integration of special xor treatment~\cite{Soos:2009:Crypto}, \solver{CryptoMinisat} by Soos continues to be a state-of-the-art and feature-rich SAT solver. 
+One highlight of \solver{CryptoMinisat} is its advanced data-logging capabilities for statistical analysis of SAT solver behavior~\cite{Soos:2019:ChrystalBall}. 
+In its new version~5, \solver{CryptoMinisat} has once again been award winning in SAT Competition~2020 (see Section~\ref{sec:cryptominisat}). 
+
+Many independent and award-winning code-bases can be found among the state-of-the-art SAT solvers written by Biere. 
+The sequential SAT solver \solver{Lingeling} has been award winning since SAT Competition~2011 and is still competitive in its parallel version \solver{Plingeling}~\cite{Biere:2012:Lingeling}. 
+As of SAT Competition~2017, \solver{CaDiCaL} by Biere is another independent award winning and structured implementation of the state-of-the-art in SAT solving. 
+Its improved reimplementation \solver{Kissat} won in several of this competitions sequential tracks by a large margin~\cite{Biere:SC2020}. 
+
+The sequential variant to the new code-base \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
@@ -755,7 +758,9 @@ Considering target phases~\cite{Biere:SC2019}, Kissat's author come up with an i
 Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{Kiesl:2019:Autarkies}. 
 The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
 
+
 \subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
+\label{sec:cryptominisat}
 
 This solver won four awards, two third places in the Main Track and its Sat Subtrack, one second place in the Planning Subtrack, and the first place in the Incremental Library Track. 
 
