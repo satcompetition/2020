@@ -505,37 +505,40 @@ ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 
 The incremental library track was first introduced in SAT~Race~2015 and 
 then took place again in SAT~Competitions 2016 and 2017. 
-Numerous applications, e.g., SMT solvers or SAT-based planners,
-use SAT solvers incrementally, i.e., formulas are repeatedly refined between the solver calls.
-In SAT~Competitions 2020, we selected a total \num{300} benchmark instances for the Incremental track
-from the six applications described below.
+Benchmarks for the incremental track are divided into two parts: 
+Applications which implement and use an incremental SAT solver in their backend and benchmark instances which serve as input to these applications. 
+For evaluating the incremental library track of this competition, we used six applications which implement the IPASIR interface -- ranging from determination of backbone variables to SAT-based planning. 
+For each of those applications, we individually selected $50$ problem instances serving as input for the respective application. 
 
 \paragraph{Backbone Variables}
 
-The application $\mathsf{genipabones}$ creates the dual rail encoding~\cite{Balyo:2015:SATRace} of a given formula and incrementally checks for each variable if it is a backbone variable or not~\cite{Janota:2015:Backbones}. 
-For this application, we selected $50$ of the smallest and easiest satisfiable problems from previous SAT competitions. 
+The application \textsf{genipabones} incrementally determines backbone variables in a given satisfiable SAT instances using the dual rail encoding of the given instance~\cite{Balyo:2015:SATRace}.
+Backbone variables have the same value in all models of a formula~\cite{Janota:2015:Backbones}. 
+We selected $50$ of the smallest and easiest satisfiable instances from previous SAT competitions to evaluate solver performance with this application. 
 
 \paragraph{Essential Variables}
 
-The application $\mathsf{genipaessentials}$ incrementally finds all the variables essential for the satisfiability of a given formula~\cite{Bryant:1987:Essentials} by incrementally testing each variable using the dual-rail encoded formula. 
-For this application, we used the same $50$ easy satisfiable problems as in the backbone variable detection application. 
+The application \textsf{genipaessentials} incrementally determines essential variables in a given satisfiable formula~\cite{Balyo:2015:SATRace}. 
+Essential variables have to be assigned in all partial models of a formula~\cite{Bryant:1987:Essentials}. 
+We used the same $50$ easy satisfiable instances as in backbone detection to evaluate solver performance with this application. 
 
-\paragraph{Longest Simple Paths}
+\paragraph{Longest Simple Paths (LSP)}
 
-The application $\mathsf{genipalsp}$ finds the longest simple path in a graph. 
-For this application, we selected $50$ instances of the smallest graphs provided by Balyo et al.~\cite{Balyo:2019:LSP}. 
+The application \textsf{genipalsp} determines longest simple paths in a graph~\cite{Balyo:2019:LSP}. 
+We selected $50$ easy LSP instances for our evaluation.\footnote{\url{http://algo2.iti.kit.edu/kalp/}} 
 
 \paragraph{Maximum Satisfiability (MaxSAT)}
 
-The application $\mathsf{genipamax}$ solves partial MaxSAT problems by augmenting soft clauses with activation literals which are then input to a cardinality constraint~\cite{Philipp:2015:PBLib}. The MaxSAT problem is then solved by incrementally minimizing the bound of that cardinality constraint. 
-For this application, we selected $50$ instances from MaxSAT Evaluation 2019\footnote{\url{https://maxsat-evaluations.github.io/2019/}}. 
+The application \textsf{genipamax} solves partial MaxSAT problems by augmenting soft clauses with activation literals which are then input to a cardinality constraint~\cite{Philipp:2015:PBLib}. 
+The MaxSAT problem is then solved by incrementally minimizing the bound of that cardinality constraint. 
+For this application, we selected $50$ instances from \texttt{MaxSAT Evaluation 2019}.\footnote{\url{https://maxsat-evaluations.github.io/2019/}}
 
 \paragraph{Quantified Boolean Formulas (QBF)}
-The application $\mathsf{Ijtihad}$ is a QBF solver based on counterexample-guided expansion~\cite{Bloem:2018:QBFSAT}. For this application, we selected $50$ instances from QBF Evaluation 2019\footnote{\url{http://www.qbflib.org/qbfeval19.php}}. 
+\textsf{Ijtihad} is a QBF solver which uses counter\-example-guided expansion to incrementally solve a given QBF instance with a SAT solver~\cite{Bloem:2018:QBFSAT}. 
+Here we used $50$ instances from \texttt{QBF Evaluation 2019}.\footnote{\url{http://www.qbflib.org/qbfeval19.php}}
 
-\paragraph{Planning}
-The application $\mathsf{Pasar}$ is a planner which is based on the principles of counter-example guided abstraction refinement (CEGAR)~\cite{Froleyks:2019:Pasar}. 
-For this application, we selected $50$ SAS planning instances. 
+\paragraph{Planning (SAS+)}
+We selected $50$ planning instances to evaluate incremental SAT solvers with \textsf{Pasar} -- a planner which uses counter\-example-guided abstraction refinement (CEGAR)~\cite{Froleyks:2019:Pasar}. 
 
 
 \section{Competition Results}
