@@ -19,18 +19,18 @@
 \definecolor{silver}{HTML}{F3F5F7}
 \definecolor{cupper}{HTML}{EAD9D7}
 \fboxsep0pt
-\newcommand{\firsto}{\colorbox{gold}{$m^1$}}
-\newcommand{\firsts}{\colorbox{gold}{$s^1$}}
-\newcommand{\firstu}{\colorbox{gold}{$u^1$}}
-\newcommand{\firstp}{\colorbox{gold}{$p^1$}}
-\newcommand{\secondo}{\colorbox{silver}{$m^2$}}
-\newcommand{\seconds}{\colorbox{silver}{$s^2$}}
-\newcommand{\secondu}{\colorbox{silver}{$u^2$}}
-\newcommand{\secondp}{\colorbox{silver}{$p^2$}}
-\newcommand{\thirdo}{\colorbox{cupper}{$m^3$}}
-\newcommand{\thirds}{\colorbox{cupper}{$s^3$}}
-\newcommand{\thirdu}{\colorbox{cupper}{$u^3$}}
-\newcommand{\thirdp}{\colorbox{cupper}{$p^3$}}
+\newcommand{\firsto}{\colorbox{gold}{\texttt{M1}}}
+\newcommand{\firsts}{\colorbox{gold}{\texttt{s1}}}
+\newcommand{\firstu}{\colorbox{gold}{\texttt{u1}}}
+\newcommand{\firstp}{\colorbox{gold}{\texttt{P1}}}
+\newcommand{\secondo}{\colorbox{silver}{\texttt{M2}}}
+\newcommand{\seconds}{\colorbox{silver}{\texttt{s2}}}
+\newcommand{\secondu}{\colorbox{silver}{\texttt{u2}}}
+\newcommand{\secondp}{\colorbox{silver}{\texttt{P2}}}
+\newcommand{\thirdo}{\colorbox{cupper}{\texttt{M3}}}
+\newcommand{\thirds}{\colorbox{cupper}{\texttt{s3}}}
+\newcommand{\thirdu}{\colorbox{cupper}{\texttt{u3}}}
+\newcommand{\thirdp}{\colorbox{cupper}{\texttt{P3}}}
 
 
 \title{SAT Competition 2020\tnoteref{title}}
@@ -619,9 +619,9 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
 \bf Team & \bf Base Solver & \bf Variant / Name & \bf Award \\
 \hline
 
-\multirow{3}{*}{Biere} & \multirow{3}{*}{\solver{Kissat}} &  -- & \firsto\firstu\\
- &  &  \solbert{sat} & \firsto\firstu\seconds\\
- &  &  \solbert{unsat} & \firstu\thirdp\\
+\multirow{3}{*}{Biere} & \multirow{3}{*}{\solver{Kissat}} &  -- & \firsto, \firstu\\
+ &  &  \solbert{sat} & \firsto, \firstu, \seconds\\
+ &  &  \solbert{unsat} & \firstu, \thirdp\\
 \hline
  Biere, Fleury &  \solbert{Cadical} & \solver{SC2020} & \\
 \hline
@@ -629,12 +629,12 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
 \multirow{3}{*}{Zhang, Cai}
     & \multirow{3}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Relaxed} & \\
  &  & \solbert{Rel. noTimeParam} & \\
- &  & \solbert{Rel. newTech} & \secondo\firsts\\
+ &  & \solbert{Rel. newTech} & \secondo, \firsts\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  \multirow{2}{*}{\solbert{CryptoMiniSat-CCAnr}} &  -- & \thirdo\thirds\secondp\\
- &  &  \solbert{lsids} & \thirdo\thirds\secondp\\
+ &  \multirow{2}{*}{\solbert{CryptoMiniSat-CCAnr}} &  -- & \thirdo, \thirds, \secondp\\
+ &  &  \solbert{lsids} & \thirdo, \thirds, \secondp\\
 \hline
 
 \stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solbert{CryptoMiniSat-WalkSAT} & -- & \\
@@ -642,8 +642,8 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
  &  &  \solbert{trail} & \secondu\\
- &  &  \solbert{alluip} & \secondu\firstp\\
- & \multirow{-3}{*}{\solbert{CaDiCaL}} &  \solver{alluip-trail} & \secondu\firstp\\
+ &  &  \solbert{alluip} & \secondu, \firstp\\
+ & \multirow{-3}{*}{\solbert{CaDiCaL}} &  \solver{alluip-trail} & \secondu, \firstp\\
  \cline{2-4}
  & \solbert{MapleLCMDist} & \solver{alluip-trail} & \\
 \hline
@@ -716,14 +716,11 @@ Kaiser, Hartung & \solbert{MapleLCMDist} & \solver{PauSat} & \\
  &  & \solbert{CBT} & \\
 \hline
 \end{tabular}
-\caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). 
-Note that many teams are only responsible for the variant of a previously existing base solver.
-Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
+\caption[Teams and Solvers in the Main Tracks]{Teams and Solvers in the Main Tracks: In favour of highlighting the relevant branch in the Maple tree of solvers, we identify configuration names of solvers, as well as variants of other base solvers in Column~3 ``Variant / Name''. To avoid confusion, we \solver{underlined} the names of the submitted solvers.}
 \label{tab:solvers-main}
 \end{table}
 
-% sorry ;)
-\renewcommand{\solver}[1]{\texttt{#1}}
+\renewcommand{\solver}[1]{\texttt{#1}} % sorry ;)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[ht]
