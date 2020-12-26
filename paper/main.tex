@@ -565,7 +565,7 @@ We start with a few remarks on the evolution of code-bases of well known SAT sol
 Our survey of the winning strategies in this competition starts with sequential (including incremental) SAT solving in Section~\ref{sec:part:seq}, then we continue with parallel SAT solving in Section~\ref{sec:part:par} and conclude with solvers in the cloud track in Section~\ref{sec:part:cloud}. 
 
 
-\subsection{On the Shoulders of Giants: Popular Code-Bases}
+\subsection{Code-Bases of SAT Solvers: ``On the Shoulders of Giants''}
 \label{sec:codebases}
 
 Progress in SAT solvers is usually recorded based on successful evaluations of  modifications of existing code-bases. 
@@ -593,7 +593,7 @@ The sequential SAT solver \solver{Lingeling} has been award winning since SAT Co
 As of SAT Competition~2017, \solver{CaDiCaL} by Biere is another independent award winning and structured implementation of the state-of-the-art in SAT solving. 
 Its improved reimplementation \solver{Kissat} won in several of this competitions sequential tracks by a large margin~\cite{Biere:SC2020}. 
 
-The sequential variant to the new code-base \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
+The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
 
 \subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
@@ -607,110 +607,113 @@ In the incremental track, four teams submitted their solvers.
 All solvers in the incremental library track are created from independent code bases. 
 Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
 
+\renewcommand{\solver}[1]{\underline{\texttt{#1}}}
+\newcommand{\solbert}[1]{\texttt{#1}}
+
 \begin{table}[ht!]
 \smaller
 \arrayrulecolor{gray}
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-\bf Team & \bf Base Solver & \bf Variant & \bf Award \\
+\bf Team & \bf Base Solver & \bf Variant / Name & \bf Award \\
 \hline
 
-\multirow{4}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}} & \multirow{3}{*}{Kissat} &  -- & \firsto\firstu\\
- &  &  sat & \firsto\firstu\seconds\\
- &  &  unsat & \firstu\thirdp\\
-\cline{2-4}
- &  Cadical & SC2020 & \\
+\multirow{3}{*}{Biere} & \multirow{3}{*}{\solver{Kissat}} &  -- & \firsto\firstu\\
+ &  &  \solbert{sat} & \firsto\firstu\seconds\\
+ &  &  \solbert{unsat} & \firstu\thirdp\\
+\hline
+ Biere, Fleury &  \solbert{Cadical} & \solver{SC2020} & \\
 \hline
  
 \multirow{3}{*}{Zhang, Cai}
-    & \multirow{3}{*}{MapleLCMDistCBT-DL} & Relaxed & \\
- &  & Rel. noTimeParam & \\
- &  & Rel. newTech & \secondo\firsts\\
+    & \multirow{3}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Relaxed} & \\
+ &  & \solbert{Rel. noTimeParam} & \\
+ &  & \solbert{Rel. newTech} & \secondo\firsts\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  \multirow{2}{*}{CryptoMiniSat-CCAnr} &  -- & \thirdo\thirds\secondp\\
- &  &  lsids & \thirdo\thirds\secondp\\
+ &  \multirow{2}{*}{\solbert{CryptoMiniSat-CCAnr}} &  -- & \thirdo\thirds\secondp\\
+ &  &  \solbert{lsids} & \thirdo\thirds\secondp\\
 \hline
 
-\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & CryptoMiniSat-WalkSAT & -- & \\
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solbert{CryptoMiniSat-WalkSAT} & -- & \\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- &  &  trail & \secondu\\
- &  &  alluip & \secondu\firstp\\
- & \multirow{-3}{*}{CaDiCaL} &  alluip-trail & \secondu\firstp\\
+ &  &  \solbert{trail} & \secondu\\
+ &  &  \solbert{alluip} & \secondu\firstp\\
+ & \multirow{-3}{*}{\solbert{CaDiCaL}} &  \solver{alluip-trail} & \secondu\firstp\\
  \cline{2-4}
- & MapleLCMDist & alluip-trail & \\
+ & \solbert{MapleLCMDist} & \solver{alluip-trail} & \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{MapleLCMDistCBT} & f2trc & \thirdu\\
- & & f2trc-s & \thirdu\\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solbert{MapleLCMDistCBT}} & \solver{f2trc} & \thirdu\\
+ & & \solbert{f2trc-s} & \thirdu\\
  \cline{2-4}
- & MapleLCMDistCBT-DL & f2trc & \thirdu\\
+ & \solbert{MapleLCMDistCBT-DL} & \solver{f2trc} & \thirdu\\
 \hline
 
-\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& MapleLCMDistCBT-DL-v3 & -- & \\
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solver{MapleLCMDistCBT-DL-v3} & -- & \\
 \hline
 
 \multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
- & \multirow{4}{*}{MapleLCMDistCBT-DL-v3} & Undominated & \\
- &  & Undom. Top16 & \\
- &  & Undom. Top24 & \\
- &  & Undom. Top36 & \\
+ & \multirow{4}{*}{\solbert{MapleLCMDistCBT-DL-v3}} & \solver{Undominated} & \\
+ &  & \solbert{Undom. Top16} & \\
+ &  & \solbert{Undom. Top24} & \\
+ &  & \solbert{Undom. Top36} & \\
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{MapleLCMDistCBT} & padc\_dl & \\
- &  & padc\_dl\_ovau\_lin & \\
- &  & padc\_dl\_ovau\_exp & \\
- &  & psids\_dl & \\
+ & \multirow{4}{*}{\solver{Ex}\solbert{MapleLCMDistCBT}} & \solbert{padc\_dl} & \\
+ &  & \solbert{padc\_dl\_ovau\_lin} & \\
+ &  & \solbert{padc\_dl\_ovau\_exp} & \\
+ &  & \solbert{psids\_dl} & \\
 % \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
 \hline
 
-Shaw, Meel & MapleLCMDistCBT-DL-v3 & DurianSat & \\
+Shaw, Meel & \solbert{MapleLCMDistCBT-DL-v3} & \solver{DurianSat} & \\
 \hline
 
 \multirow{2}{*}{Chen}
- & \multirow{2}{*}{MapleLCMDistCBT-DL} & Maple\_Mix & \\
- &  & Maple\_Simp & \\
+ & \multirow{2}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Maple\_Mix} & \\
+ &  & \solver{Maple\_Simp} & \\
 \hline
 
-Riveros & MapleLCMDistCBT & SLIME & \\
+Riveros & \solbert{MapleLCMDistCBT} & \solver{SLIME} & \\
 \hline
 
 \multirow{3}{*}{Li, Wu, Xu, Chen}
- & \multirow{3}{*}{MapleLCMDistCBT-DL} & Scavel & \\
- &  & Scavel01 & \\
- &  & Scavel02 & \\
+ & \multirow{3}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Scavel} & \\
+ &  & \solbert{Scavel01} & \\
+ &  & \solbert{Scavel02} & \\
 \hline
 
 \multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & \multirow{2}{*}{MapleCoMsPS\_LRB\_VSIDS\_2} & -- & \\
- &  & init & \\
+ & \multirow{2}{*}{\solver{MapleCOMSPS\_LRB\_VSIDS\_2}} & -- & \\
+ &  & \solbert{init} & \\
 \hline
 
 \multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
- & \multirow{4}{*}{MapleLCMDistCBT-DL-v2.2} & exp-V-LGB & \\
- &  & exp-V-L & \\
- &  & exp-L & \\
- &  & exp-V & \\
+ & \multirow{4}{*}{\solbert{MapleLCMDistCBT-DL-v2.2}} & \solver{exp}\solbert{-V-LGB} & \\
+ &  & \solbert{exp-V-L} & \\
+ &  & \solbert{exp-L} & \\
+ &  & \solbert{exp-V} & \\
 \hline
 
 \multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{4}{*}{MapleCM} & \texttt{+}dist & \\
- &  & \texttt{+}dist\texttt{+}sattime2s\texttt{+}\texttt{-} & \\
- &  & \texttt{+}dist\texttt{+}simp2\texttt{-}\texttt{-} & \\
- &  & used\texttt{+}dist & \\
+ & \multirow{4}{*}{\solver{MapleCM}} & \solver{+dist} & \\
+ &  & \solbert{+dist+sattime2s+-} & \\
+ &  & \solbert{+dist+simp2--} & \\
+ &  & \solbert{used+dist} & \\
 \hline
 
-Kaiser, Hartung & MapleLCMDist & PauSat & \\
+Kaiser, Hartung & \solbert{MapleLCMDist} & \solver{PauSat} & \\
 \hline
 
 \multirow{2}{*}{Osama, Wijs} 
- & \multirow{2}{*}{ParaFROST} & -- & \\
- &  & CBT & \\
+ & \multirow{2}{*}{\solver{ParaFROST}} & -- & \\
+ &  & \solbert{CBT} & \\
 \hline
 \end{tabular}
 \caption{Teams and Solvers participating in the Main Tracks (Variant refers to a named configuration or a name of a hack). 
@@ -718,6 +721,10 @@ Note that many teams are only responsible for the variant of a previously existi
 Awards were given in Main (m), SAT (s), UNSAT (u), and Planning (p) sub-tracks.}
 \label{tab:solvers-main}
 \end{table}
+
+% sorry ;)
+\renewcommand{\solver}[1]{\texttt{#1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[ht]
 \smaller
@@ -739,6 +746,7 @@ Manthey & Riss-7.1.2 & 1 \\
 \caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
 \label{tab:solvers-incremental}
 \end{table}
+
 
 \subsubsection{Kissat} 
 
