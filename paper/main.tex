@@ -787,49 +787,42 @@ The submitted version of \solver{CryptoMinisat} entails a new optimized implemen
 \solver{CryptoMinisat} periodically executes the \solver{BreakId} algorithm to  calculate symmetry breaking clauses~\cite{Devriendt:2016:BreakId}.
 
 
-\subsubsection{CaDiCaL Hacks: Trail and AllUip}
+\subsubsection{Trail Saving and Stable AllUip in CaDiCaL}
 
-This modified version of last years CaDiCaL was submitted with the two new methods \emph{Trail Saving}~\cite{Hickey:2020:TrailSaving} and \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
-It was submitted in three configurations, one with both methods activated and two other with each having only one of them active. 
-The \emph{Stable AllUIP} variants seemed most successful, in most tracks they were the highest ranked variants and won the first price in the Planning Sub-Track. 
-However, in the Unsat Sub-Track, the \emph{Trail Saving} variant performed best.
+Based on \solver{CaDiCaL}, its variants \solver{Trail} and \solver{AllUip} present implementations of a new \emph{Trail Saving} approach~\cite{Hickey:2020:TrailSaving} and improved clause-learing based on the notion of \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
+Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
+The variants including \emph{Stable AllUIP} were the most successful and won the first price in the Planning Sub-Track. 
 
-With \emph{Trail Saving}, the solver caches backtracked slices of the assignment trail in order to reuse them when the same decisions are repeated. 
-The authors came up with sophisticated control mechanisms on when and how to reuse the cached trail slices and when to flush that cache. 
-
-With \emph{Stable AllUip}, the solver continues resolution beyond the 1st Unit Implication Point (1-UIP) during clause-learning~\cite{Zhang:2001:ClauseLearning} as long that does not increase the LBD value of the learnt clause and then keeps that clause only if it has a smaller size than then 1-UIP clause. 
-The authors came up with an additional heuristic to limit the amount of attempted AllUip learning attempts, if the fraction of unsuccessful alluip learning attempts gets to high, which they check and adapt on every restart~\cite{Bacchus:SC2020}. 
+The \emph{Stable AllUip} variants resolve additional clauses beyond the 1st Unit Implication Point (1-UIP) and keep them if they are of smaller size or LBD than the 1-UIP clause. 
+By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
+The \emph{Trail Saving} variant caches backtracked portions of the trail and uses them to restore decision levels during search if possible~\cite{Hickey:2020:TrailSaving}. 
 
 
-\subsubsection{Relaxed MapleLCMDistCBT-DL newTech}
+\subsubsection{Relaxed Maple newTech}
 
-The variant \emph{newTech} of the \emph{Relaxed} fork of the MapleLCMDistCBT-DL was especially successful on satisfiable instances. 
-The solver won two awards, second price in Main Track and first price in its Sat Sub-Track.
+The \solver{Relaxed} fork of \solver{MapleLCMDistCBT-DL} was first presented to the community in SAT Race 2019~\cite{Xindi:SC2019}. 
+In SAT Competition~2020, its new variant \solver{newTech} showed a good performance especially on satisfiable instances. 
+The solver won two awards, the second price in the Main track and the first price in the Sat track.
 
-The \emph{Relaxed} fork of MapleLCMDistCBT-DL already participated in SAT Race 2019~\cite{Xindi:SC2019}.
-They integrated the local search solver CCAnr by extending the current partial assignment of the CDCL solver to a full assignment and for a fixed interval start the local search solver to try to find a nearby solution. 
-
-In the new versions of the Relaxed family of Maple solvers~\cite{Xindi:SC2020}, they probabilistically switch between several modes of phase selection, and some of these modes reuse the maximal partially satisfying assignments as determined by the local search solver.
-
-For their successful \emph{newTech} variant~\cite{Xindi:SC2020} of their fork, they count the number of variable-occurrences in unsat clauses for each flip in the local search solver. 
-Then they reuse this information to priorize variables in a modified branching heuristic. 
+The \solver{Relaxed} fork integrates short runs of the local search solver \solver{CCAnr} through periodic ex- and import of assignments~\cite{Xindi:SC2019}. 
+The submitted versions of \solver{Relaxed Maple} use a probabilistic schedule for switching between $10$ phase selection modes. 
+The award winning variant \solver{newTech} uses occurrence counts of variables in unsatisfied clauses during SLS runs to recalculate variable priorities for their modified branching heuristic~\cite{Xindi:SC2020}. 
 
 
-\subsubsection{MapleLCMDistCBT F2TRC}
+\subsubsection{Maple F2TRC}
 
-The MapleLCMDistCBT F2TRC forks were ranked third in the Unsat Sub-Track of the Main-Track.
+The \solver{F2TRC} fork of \solver{MapleLCMDistCBT} won the third price in the Unsat track. 
+\solver{F2TRC} comes with a deterministic reimplementations of former winning strategies, e.g., by replacing time intervals by conflict intervals~\cite{Kochemazov:SC2020}. 
 
-The F2TRC forks aim at introducing determinism in winning solvers of previous competition, e.g., by replacing time-based intervals for LRB-VSIDS switches by a heuristic based on the conflict-count~\cite{Kochemazov:SC2020}. 
-
-Another modification aims at improving three-tier clause management based on the three tiers core, tier2 and local as it was introduced by Chanseok Oh~\cite{Oh:2015:satunsat}.
-In order to limit growth of the core-tier, they introduce a limit on the number of core clauses, and whenever that is reached some of the low-ranked inactive core clauses are moved from core to tier2 and the limit is increased. 
-In order to prevent tier2 from starving, they replaced the conflict limit for tier2 reduction by a size limit, then only half of the most recently inactive clauses is moved to local tier~\cite{Kochemazov:SC2020}. 
+\solver{F2TRC} introduces an improved management of learned clauses in the tree tiers \emph{core}, \emph{tier2} and \emph{local} which are inherited from \solver{CoMinisatPS}~\cite{Oh:2015:satunsat}.
+A dynamic size limit for the \emph{core} tier, triggers the reassignment of inactive clauses from \emph{core} to \emph{tier2}. 
+To conter-act an observered starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size based heuristic~\cite{Kochemazov:SC2020}. 
 
 
 \subsection{Parallel SAT Solving: Winners of the Parallel Track}
 \label{sec:part:par}
 
-\begin{table}[ht]
+\begin{table}[b]
 \smaller
 \centering
 \begin{tabular}{|l|l|l|}
