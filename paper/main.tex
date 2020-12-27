@@ -557,7 +557,7 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \paragraph{Marginal Contributions to VBS} Interestingly, the second (Relaxed-Maple-newTech) and the third (CryptoMinisat-lsids) ranked solver both outperform the winning solver (Kissat-sat) when we project only on the instance families ``antibandwidth''~\cite{} or ``timetable''~\cite{}. 
 
 
-\section{History of Code and Winning Strategies}
+\section{Code-Bases and Winning Strategies}
 \label{sec:analysis}
 
 In the following we provide an overview on the participating teams and solvers,  and summarize new strategies which are implemented in the award winning solvers of this competition. 
@@ -597,16 +597,14 @@ Its improved reimplementation \solver{Kissat} won in several of this competition
 The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
 
-\subsection{Sequential SAT Solving: Winners of the Main and Incremental Tracks}
+\subsection{Sequential SAT Solving}
 \label{sec:part:seq}
 
-A total of $18$ teams submitted their solvers to the main track of the competition.  
+Sequential SAT solvers have been evaluated in the Main tracks as well as in the Incremental track of SAT Competition~2020. 
+A total of $18$ teams submitted correct solvers to the Main track of the competition. 
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-$14$ teams submitted variants of a previously existing base solver such as Maple~\cite{} or CaDiCaL~\cite{}. 
-
-In the incremental track, four teams submitted their solvers. 
-All solvers in the incremental library track are created from independent code bases. 
-Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
+The recent genealogy of all submissions, is highlighted by \emph{base solver} and \emph{variant} columns. 
+Underlined text is used to point out the important parts of the respective submissions name.
 
 \renewcommand{\solver}[1]{\underline{\texttt{#1}}}
 \newcommand{\solbert}[1]{\texttt{#1}}
@@ -646,13 +644,13 @@ Table~\ref{tab:solvers-incremental} displays an overview of the participating te
  &  &  \solbert{alluip} & \secondu, \firstp\\
  & \multirow{-3}{*}{\solbert{CaDiCaL}} &  \solver{alluip-trail} & \secondu, \firstp\\
  \cline{2-4}
- & \solbert{MapleLCMDist} & \solver{alluip-trail} & \\
+ & \solbert{MapleLCMDist} & \solbert{alluip-trail} & \\
 \hline
 
 \multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solbert{MapleLCMDistCBT}} & \solver{f2trc} & \thirdu\\
  & & \solbert{f2trc-s} & \thirdu\\
  \cline{2-4}
- & \solbert{MapleLCMDistCBT-DL} & \solver{f2trc} & \thirdu\\
+ & \solbert{MapleLCMDistCBT-DL} & \solbert{f2trc} & \thirdu\\
 \hline
 
 \stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solver{MapleLCMDistCBT-DL-v3} & -- & \\
@@ -717,13 +715,19 @@ Kaiser, Hartung & \solbert{MapleLCMDist} & \solver{PauSat} & \\
  &  & \solbert{CBT} & \\
 \hline
 \end{tabular}
-\caption[Teams and Solvers in the Main Tracks]{Teams and Solvers in the Main Tracks: In favour of highlighting the relevant branch in the Maple tree of solvers, we identify configuration names of solvers, as well as variants of other base solvers in Column~3 ``Variant / Name''. To avoid confusion, we \solver{underlined} the names of the submitted solvers.}
+\caption[Teams and Solvers in the Main Tracks]{Teams and Solvers in the Main Tracks: Column~2 highlights the recent genealogy of submissions and Column~3 displays configuration names as well as names of forks. We partially \solver{underlined} submission names. Awards in the Main- (M), Planning- (P), Sat- (s), and Unsat- (u) Tracks are indicated by a string TX with $T \in \{M, P, s, u\}$ and $X \in \{1,2,3\}$. }
 \label{tab:solvers-main}
 \end{table}
 
 \renewcommand{\solver}[1]{\texttt{#1}} % sorry ;)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Four submissions made it to participate in the Incremental Library track, some of which, e.g, \solver{CryptoMinisat-5}, have also been evaluated and awarded in the Main sequential track. 
+Submissions to the Incremental Library track have been evaluated with respect to $6$ different applications -- each with $50$ benchmark instances. 
+Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
+In this table, \emph{Score} denotes the number of application categories in which the solvers won based on their PAR-2 score. 
+
 \begin{table}[ht]
 \smaller
 \arrayrulecolor{gray}
@@ -734,35 +738,33 @@ Kaiser, Hartung & \solbert{MapleLCMDist} & \solver{PauSat} & \\
 \hline
 \stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}~ & Cryptominisat-5 & 3 \\
 \hline
-\stack{Biere, Fazekas, }{Fleury, Heisinger}~ & CaDiCaL-sc2020 & 1 \\
+\stack{Biere, Fleury}~ & CaDiCaL-sc2020 & 1 \\
 \hline
 Chen & abcdsat-i20 & 1 \\
 \hline
 Manthey & Riss-7.1.2 & 1 \\
 \hline
 \end{tabular}
-\caption{Teams and Solvers participating in the Incremental Library Track. Highest Score (=number of won categories) won the track.}
+\caption[Teams and Solvers in the Incremental Track]{Teams and Solvers in the Incremental Library Track: Score indicates the amount of application categories won with the submission.}
 \label{tab:solvers-incremental}
 \end{table}
 
 
 \subsubsection{Kissat} 
 
-If it came to determine an overall winner of all the subtracks in the Main Track of this competition, then it would clearly be Kissat. 
-Kissat was submitted in three configurations, including one default configuration and specialized configurations specifically tailored towards satisfiable or unsatisfiable instances, respectively.
-Kissat won four awards, by achieving first place in the overall Main Track, first place in its Unsat Sub-Track, second place in the Sat Sub-Track and third place in the Planning Sub-Track. 
+Three major configurations of \solver{Kissat} were evaluated in this competition. 
+That includes one default configuration and two specialized configurations which are specifically tailored towards satisfiable and unsatisfiable instances, respectively. 
+\solver{Kissat} won \emph{four awards}, by achieving first place in the Main track, first place in the Unsat track, second place in the Sat track and third place in the Planning track. 
 
-Kissat is a reimplementation of CaDiCaL~\cite{Biere:SC2019} in C, thus, taking advantage of finegrained control on the memory layout of new sophisticated data-structures used to manage watchers and clauses, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2020}. 
+\solver{Kissat} is a reimplementation of \solver{CaDiCaL} in C,
+but comes with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
+Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
 
-In Kissat, forward subsumption for learned clauses was entirely replaced by more powerful vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-For irredundant clauses, forward subsumption is still executed together with variable elimination during pre- and inprocessing, but only in a very focused way, by carefully monitoring variable occurrences~\cite{Biere:SC2020}.
+\solver{Kissat} uses a new unit (``ticks'') to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses, after conflict-rate has been obeserved to be too unstable for the use-case~\cite{Biere:SC2020}. 
 
-Kissat also comes with a refined scheduling of inprocessing procedures based on growing conflict intervals. 
-Regarding the duration of alternating restart modes, Kissat's author considered conflict-rate being too unstable, and come up with ``ticks'', which is a new method to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses. 
-
-Considering target phases~\cite{Biere:SC2019}, Kissat's author come up with an innovative use-case for autarkies to account for saved phases. 
-Before each rephasing step they compute the largest autarky of the full assignment with an algorithm described in~\cite{Kiesl:2019:Autarkies}. 
-The authors claim this autarky contains satisfying assignments of disconnected components which otherwise would get lost, and thus next, they are considered in variable elimination. 
+\solver{Kissat} also exploits an innovative use-case for autarkies to account for saved phases. 
+In order to keep valuable information of saved phases, before each rephasing step, \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
+As such an autarky might contain satisfying assignments which imply disconnected components, those variables are subject to subsequent variable elimination. 
 
 
 \subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
