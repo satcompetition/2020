@@ -770,24 +770,22 @@ As such an autarky might contain satisfying assignments which imply disconnected
 \subsubsection{CryptoMiniSat-CCAnr and CryptoMiniSat5}
 \label{sec:cryptominisat}
 
-This solver won four awards, two third places in the Main Track and its Sat Subtrack, one second place in the Planning Subtrack, and the first place in the Incremental Library Track. 
+\solver{CryptoMinisat} won \emph{four awards}, two third places in the Main and Sat tracks, one second place in the Planning track, and first place in the Incremental Library track. 
+Two submitted variants \solver{default} and \solver{LSIDS} scored mostly adjacent ranks in the evaluation of tracks. 
+The \solver{LSIDS} variant of \solver{CryptoMinisat} comes with a new hybrid phase selection approach~\cite{Shaw:2020:LSIDS,Soos:SC2020}.
 
-To the Main track, the solver was submitted in two variants, with and without LSIDS~\cite{Shaw:2020:LSIDS},
-which is a phase selection heuristic similar to VSIDS and, if active, it is used whenever backtracking is chronological~\cite{Nadel:2018:CBT}. On top of that, CryptoMiniSat is periodically switching between polarity saving and stable phases~\cite{Biere:SC2019}.
+\solver{CryptoMinisat} comes with an independent implementation of the recent hybrid branching heuristic which alternates between classic phase saving and target phase selection~\cite{Biere:SC2019}.
 
-By tight integration of CCAnr~\cite{Cai:2015:CCAnr}, a stochastic local search (SLS) solver, into CryptoMinisat, CryptoMiniSat-CCAnr combines the two SAT solving strategies, SLS and CDCL, in a unique way. 
-The solver runs local search for a short period of time in regular intervals and (just in case SLS finds no solution)
-changes the polarities according to the best assignment found by the SLS solver, which is known as ``rephasing'' from CaDiCaL~\cite{Biere:SC2019}.
-Moreover, it bumps VSIDS scores of the first 100 variables contained in the clauses which the SLS solver considers most hard to satisfy~\cite{Soos:SC2020}.
+\solver{CryptoMiniSat-CCAnr} integrates stochastic local search (SLS) in a unique way~\cite{Cai:2015:CCAnr}. 
+\solver{CryptoMiniSat-CCAnr} regularly schedules short periods of local search and imports the best assignment found by the SLS solver for phase selection -- a procedure which is known as ``rephasing'' from CaDiCaL~\cite{Biere:SC2019}.
+In addition, \solver{CryptoMiniSat-CCAnr} bumps the VSIDS scores of the first 100 variables in those clauses which the SLS solver weighs most hard to satisfy~\cite{Soos:SC2020}.
 
-SLS is tightly integrated and thus is aware of changes occurring during inprocessing. 
-Inprocessing now also includes ternary resolution and vivification is used a lot more~\cite{ChuMinLi:2020:Vivification}. 
-All modifications in CryptoMiniSat are fully integrated with respect to incremental use-cases including the use of assumptions. 
+Inprocessing has been extended to include ternary resolution and more vivification~\cite{ChuMinLi:2020:Vivification}. 
+All the new features are fully supported in \emph{incremental} mode. 
+\solver{CryptoMinisat} alternates decay factors of its branching heuristics, thus avoiding the restriction to a ``single best'' configuration~\cite{Soos:SC2020}. 
+The submitted version of \solver{CryptoMinisat} entails a new optimized implementation of Gauss-Jordan Elimination~\cite{Soos:2020:CNFXOR}. 
+\solver{CryptoMinisat} periodically executes the \solver{BreakId} algorithm to  calculate symmetry breaking clauses~\cite{Devriendt:2016:BreakId}.
 
-CryptoMiniSat periodically changes decay factors of its branching heuristics, thus avoiding usage of a ``single best'' configuration.
-
-This version of CryptoMiniSat comes with an highly optimized implementation of Gauss-Jordan Elimination~\cite{Soos:2020:CNFXOR}. 
-CryptoMiniSat includes BreakId, a sub-system that calculates symmetry breaking clauses, which it calls on every 5th inprocessing iteration~\cite{Devriendt:2016:BreakId}.
 
 \subsubsection{CaDiCaL Hacks: Trail and AllUip}
 
