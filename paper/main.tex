@@ -550,7 +550,108 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 
 \todo{Winners and Runtime Plots for all the tracks}
 
-\todo{Similarity of Solvers: Rank Correlation}
+\subsection{Planning Sub-Track}
+% - 86 out of 100 biggest (number of clauses) are planning
+% - 109 / 200 in the planning track are not solved by any solver
+    % - 186 / 600 in total
+% - all 200 above 90\% binary clauses and half have above 99%
+The instances of the planning sub-track are big compared to the rest of the
+main track. Using the number of clauses as a metric; out of the $100$ biggest
+instances
+% of the main-track
+$86$ belong to the planning track. The large size can mainly be attributed to
+binary clauses. On average, more than $98$\% of the clauses are binary for
+planning instances, where the average for the rest of the instances from the
+main track is below $60$\%.
+
+Despite the large size, only a few instances directly caused memory problems for
+more than just a few solvers. In most cases the \SI{128}{\giga\byte} of RAM
+available were sufficient.
+% The saving grace might have been
+% This can be attributed to
+% the \SI{128}{\giga\byte} of RAM available to each solver.
+However, the three biggest instances from the \emph{childsnack} family of
+planning problems encoded with the \emph{hierarchical} planner \emph{Tree-REX}
+caused over half of the solvers to abort with some error message related to
+memory. Other solvers were still able to solve the same instances within $300$
+seconds.
+
+\subsection{Similarity of Solvers}
+To investigate how similar the solvers of the main track are to each other, we
+define a similarity metric based on the measured runtimes. For that we first
+remove $186$ benchmarks from the collected data that have not been solved by any
+solver. For the rest of the benchmarks we use the PAR-2 score,
+% based on the \num{5000}-second timeout
+i.\,e., for each solver we set a score of \num{10000} for unsolved instances.
+This leaves us with $414$ floats
+$S_{1},\dots,S_{n}$ for each solver $S$. The similarity for two solvers $A$
+and $B$, normalized to the interval $[0,1]$ is defined
+% as:
+by Equation~\ref{eq-similarity}.
+
+\begin{equation}
+\label{eq-similarity}
+	similarity(A, B) =\quad 1 - \frac{\sum{|A_{i} - B_{i}|}}{414 \cdot 10000}
+\end{equation}
+We calculated the \emph{similarity} between the $30$ solvers which achieved the
+best PAR-2 score in the main track. The results are displayed in
+Figure~\ref{fig-similarity-main} as a \emph{heat map}. Additionally the result
+of hierarchically clustering the solvers based on their similarity is
+illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
+are joined reflects how similar they are. For example
+enabling the \emph{trail saving} in \emph{CaDiCaL-alluip} has no impact on the
+runtime, resulting in a similarity above \num{0.999}. Thus the two solvers are joined very low in the dendrogram.
+% A similar visualization was used in the SAT Challenge 2012 \todo{cite}. They used
+
+One big cluster we can identify are the \emph{Mapel} decedents in the lower left
+corner, all of which are modifications of the winners of the SAT Competition
+2018 and the SAT Race 2019. \todo{I think... also race vs competition? Sorry I am new
+  here NF} The solver \emph{mergesat} does not quite fit into the cluster and
+has a comparatively high similarity to the \emph{CryptoMiniSat} (\emph{CMS})
+family at the top right. With the exception of \emph{mergesat} and maybe
+\emph{DurianSat} we observe a high similarity within the cluster.
+
+The three \emph{Relaxed} solvers by \emph{Zhang} and \emph{Cai} are using the
+same code base as a lot of the solvers in the Maple-Cluster but their overall
+performance is better and closer to the CMS-Cluster.
+
+The CMS versions differ in their implementation of stochastic local search (SLS)
+but overall have a similar performance.
+
+The last big cluster in the center of the heat map is comprised of the solvers
+originally written by Biere. The three configurations of \emph{Kissat} form a
+subcluster, even though the configurations are fairly distinct from each other.
+% , specialized for satisfiable and unsatisfiable instances.
+% One targets satisfiable instances, while the other is focused on unsatisfiable
+% instances and a third alternating between them.
+
+The other subcluster consists of
+modifications to the 2019 version of \emph{\mbox{CaDiCaL}}. The new version
+CaDiCaL-2020 has a worse overall performance than
+% has an overall worse per
+% is lacking behind
+the other solvers in this cluster.
+
+\begin{figure}[tp]
+    \centering
+    \includegraphics[width=\linewidth]{similarity/cross.pdf}
+    \caption{Heat-map and dendrogram (top) based on the runtime similarity of the solvers participating in the main track.
+      % Similarity is defined as
+      % one minus the average taxicab distance normalized to the interval [0,1].
+      % Spearman's rank correlation coefficient.
+      Darker regions mean that the solvers are more similar.
+      A more precise relation between color and similarity-value together with a histogram of the values that appear is given at the bottom.
+    }
+    \label{fig-similarity-main}
+\end{figure}
+
+% To estimate the similarity between the performance of the solvers of the Main
+% Track we define a similarity metric $s$.
+% identify each solver with a point in the 600-dimensional real vector
+% space. Each component describes the PAR-2 runtime on one instance. We map the
+% taxicab distance to the $[0, 1]$ interval and then to determine how similar two
+% solvers are.
+
 
 \subsection{Observations}
 

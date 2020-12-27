@@ -1,0 +1,180 @@
+* compute cross.csv
+#+begin_src python :var data="../../downloads/results.csv" renaming=renaming :results output raw
+<<imports>>
+d = pd.read_csv(data)[['benchmark', 'solver', 'configuration', 'time', 'status']]
+d.loc[d['status'] != 'complete', 'time'] = 10000 # PAR-2
+# d = d[d['benchmark'].map(lambda x: "new/SAT" in x or  "new/UNSAT" in x)] # planning only
+g = d[['benchmark', 'status']]
+g['s'] = g['status'] == 'complete'
+g = g.groupby('benchmark').sum()['s']
+p("Not solved " + str(len(g[g == 0])))
+# d = d[d['benchmark'].map(lambda x: "new/abw" in x)]
+d['n'] = d.apply(lambda x: x['solver'] + ("" if x['configuration'] == 'default' else '_' + str(x['configuration'])), axis=1)
+d = d.merge(g, on='benchmark')
+d = d[d['s'] > 0] # filter unsolevd by all
+d = d[['n', 'benchmark', 'time']]
+
+def sim(a, b):
+  r = 0
+  n = len(a)
+  for x,y in zip(a,b):
+    r += abs(x-y)
+  return 1 - (r / (10000 * n))
+  # for x,y in zip(a,b): # spearman
+    # r += (x-y)**2
+  # r *= 6
+  # r /= n * ((n**2) - 1)
+  # return 1 - r
+
+s = {}
+for n, b, t in d.values.tolist():
+  if n not in s:
+    s[n] = [(b,t)]
+  else:
+    s[n].append((b,t))
+# for o in s: # spearman
+  # s[o] = sorted(s[o], key=lambda x: x[1])
+  # for i in range(len(s[o])):
+    # s[o][i] = (s[o][i][0], i)
+
+l = []
+names = []
+# for n in s: # print PAR-2
+#   p("|" + n + "|" + str(sum([t for _,t in sorted(s[n])])))
+for o, n, _ in renaming:
+  l.append([t for _,t in sorted(s[o])])
+  names.append(n)
+m = [[0 for _ in range(len(l))] for _ in range(len(l))]
+for i in range(len(l)):
+  for j in range(len(l)):
+    m[i][j] = sim(l[i], l[j])
+d = pd.DataFrame(m)
+d.columns = names
+d.insert(0, 'with', '')
+d['with'] = names
+d = d.set_index('with')
+d.to_csv('cross.csv')
+#+end_src
+
+#+RESULTS:
+Not solved 186
+
+* Renaming solvers
+#+name: renaming
+  | Kissat-sc2020-sat                        | Kissat-sat           | 2925252.9886349086 |
+  | Kissat-sc2020-default                    | Kissat               |  2982931.118130204 |
+  | cryptominisat-ccnr-lsids                 | CMS-ccnr-lsids       | 2993099.2167068007 |
+  | cryptominisat-ccnr                       | CMS-ccnr             |    2998429.8082381 |
+  | cryptominisat-ccnr-nolimits              | CMS-ccnr-nl          |  3002461.472048899 |
+  | cryptominisat-ccnr-lsids-nolimits        | CMS-ccnr-lsids-nl    | 3030713.8499611015 |
+  | cryptominisat-walksat-nolimits           | CMS-walksat-nl       | 3043033.3924091295 |
+  | cadical-alluip-trail                     | CaDiCaL-alluip-trail | 3052645.9353988674 |
+  | cadical-alluip                           | CaDiCaL-alluip       | 3053697.6101470017 |
+  | cryptominisat-walksat                    | CMS-walksat          | 3088083.3455338036 |
+  | Kissat-sc2020-unsat                      | Kissat-unsat         | 3143304.1338568996 |
+  | cadical-trail                            | CaDiCaL-trail        |  3151624.969782102 |
+  | Relaxed_LCMDCBDL_newTech                 | Relaxed_newTech      |     3158526.019976 |
+  | Relaxed_LCMDCBDL_noTimePara              | Relaxed_noTimePara   |     3213227.698397 |
+  | Relaxed_LCMDCBDL                         | Relaxed              |  3241318.943554901 |
+  | CaDiCaL-sc2020                           | CaDiCaL-2020         | 3310932.0899898997 |
+  | mergesat                                 | mergesat             |  3340049.514563068 |
+  | abcdsat_n20                              | abcdsat_n20          | 3418523.3630569987 |
+  | optsat_m20                               | optsat_m20           | 3458682.9936942016 |
+  | Maple_simp                               | Maple_simp           | 3459794.9416189524 |
+  | Maple_mix                                | Maple_mix            | 3479178.1709270016 |
+  | MapleLCMDistChronoBT-DL-f2trc            | f2trc-DL             |  3488961.398169902 |
+  | DurianSat                                | DurianSat            |    3495480.2503358 |
+  | ExMapleLCMDistChronoBT_PADC_DL           | PADC_DL              | 3506990.0208710614 |
+  | Undominated-LC-MapleLCMDiscChronoBT-DL   | Undominated          |  3508758.752245109 |
+  | MapleLCMDistChronoBT-f2trc               | f2trc                |  3515151.081594828 |
+  | MapleLCMDistChronoBT-DL-v3               | MapleCBT-DL-v3       | 3534590.1987188975 |
+  | MapleCOMSPS_LRB_VSIDS_2_LRB_VSIDS_2_init | MapleCOMSPS_init     |  3543768.508789001 |
+  | MapleCOMSPS_LRB_VSIDS_2_default_drup     | MapleCOMSPS_drup     |    3545053.4185601 |
+  | ExMapleLCMDistChronoBT_PADC_DL_OVAU_Lin  | PADC_DL_OVAU_Lin     | 3549732.6894108993 |
+
+Ignoring solvers after this
+  | ExMapleLCMDistChronoBT_PSIDS_DL              | ExMapleLCMDistChronoBT_PSIDS_DL              | 3556630.2899739332 |
+  | MLCMDCHRONOBT-DL-V2.2SCAVELRFV               | MLCMDCHRONOBT-DL-V2.2SCAVELRFV               |  3577890.616020003 |
+  | ExMapleLCMDistChronoBT_PADC_DL_OVAU_Exp      | ExMapleLCMDistChronoBT_PADC_DL_OVAU_Exp      |     3578592.509454 |
+  | MapleLCMDistChronoBT-f2trc-s                 | MapleLCMDistChronoBT-f2trc-s                 |   3589193.16170517 |
+  | MLCMDChronoBT-DL-Scavel                      | MLCMDChronoBT-DL-Scavel                      |  3622020.775884801 |
+  | SLIME                                        | SLIME                                        |  3637376.977710903 |
+  | exp_V_MLD_CBT_DL                             | exp_V_MLD_CBT_DL                             | 3649220.7091070986 |
+  | MapleLCMDistChronoBT-DL-Scavel01             | MapleLCMDistChronoBT-DL-Scavel01             |  3658290.333446002 |
+  | SLIME_default-no-drup                        | SLIME_default-no-drup                        | 3681255.5572728813 |
+  | Maple_CM+dist+sattime2s+-                    | Maple_CM+dist+sattime2s+-                    |  3700317.060110602 |
+  | MapleLCMDistChronoBT-DL-Scavel02             | MapleLCMDistChronoBT-DL-Scavel02             | 3701898.2126390003 |
+  | exp_V_LGB_MLD_CBT_DL                         | exp_V_LGB_MLD_CBT_DL                         | 3723427.2878768803 |
+  | exp_V_L_MLD_CBT_DL                           | exp_V_L_MLD_CBT_DL                           |    3749012.6567521 |
+  | exp_L_MLD_CBT_DL                             | exp_L_MLD_CBT_DL                             |  3757481.127751101 |
+  | Maple-LCM-Dist-alluip-trail                  | Maple-LCM-Dist-alluip-trail                  | 3763097.7607120993 |
+  | Maple_CMused+dist                            | Maple_CMused+dist                            |    3807927.4836371 |
+  | Maple_CM+dist                                | Maple_CM+dist                                |  3814265.710455998 |
+  | Maple_CM+dist+simp2--                        | Maple_CM+dist+simp2--                        |  3829274.858485198 |
+  | CTSat                                        | CTSat                                        |  3902998.225237003 |
+  | CTSat_noproof                                | CTSat_noproof                                |  3917919.128656898 |
+  | Riss-nolimit_NOLIMIT                         | Riss-nolimit_NOLIMIT                         |  3931734.038301899 |
+  | Riss_default_proof                           | Riss_default_proof                           |  3941393.901599998 |
+  | upGlucose-3.0_PADC                           | upGlucose-3.0_PADC                           |    4057489.2212952 |
+  | glucose3.0_proofs                            | glucose3.0_proofs                            |  4074139.913606003 |
+  | Riss_NOUNSAT_proof-fixed                     | Riss_NOUNSAT_proof-fixed                     |     4197684.493368 |
+  | Top16-Undominated-LC-MapleLCMDiscChronoBT-DL | Top16-Undominated-LC-MapleLCMDiscChronoBT-DL |  4324319.607978998 |
+  | Top24-Undominated-LC-MapleLCMDiscChronoBT-DL | Top24-Undominated-LC-MapleLCMDiscChronoBT-DL |  4324928.567835799 |
+  | Top36-Undominated-LC-MapleLCMDiscChronoBT-DL | Top36-Undominated-LC-MapleLCMDiscChronoBT-DL |  4329538.191198199 |
+  | ParaFROST_CBT                                | ParaFROST_CBT                                |  4368309.181218898 |
+  | GlucoseEsbpSel                               | GlucoseEsbpSel                               |  4369535.317698997 |
+  | ParaFROST_ALL                                | ParaFROST_ALL                                |  4421881.114879898 |
+  | ParaFROST                                    | ParaFROST                                    |  4429808.463957118 |
+  | ParaFROST_HRE                                | ParaFROST_HRE                                |  4439465.617935999 |
+  | glucose-3.0-inprocess                        | glucose-3.0-inprocess                        |  4716447.033123023 |
+  | PauSat_noproof                               | PauSat_noproof                               |    5615722.5893419 |
+  | PauSat_noproof_noproof                       | PauSat_noproof_noproof                       |     5622802.370032 |
+  | PauSat                                       | PauSat                                       |    5623520.1240631 |
+* R scrip from 2015 to generate heat map
+#+begin_src shell
+R
+source("symilarity.R")
+plotheatmap("cross.csv")
+#+end_src
+* Python imports Imports
+#+name: imports
+#+begin_src python
+from subprocess import getstatusoutput
+from pathlib import Path
+import shutil
+from glob import glob
+import pandas as pd
+from tabulate import tabulate
+import re
+def cmd(c, t = 0):
+  if t != 0:
+    c = "timeout " + str(t) + " " + c
+  return getstatusoutput(c)
+def sub(reg, s):
+    return re.search(reg.replace("*", "(.*)"), s).group(1)
+def org(df,head=False):
+    if head:
+        print(tabulate(df, headers=df.columns, tablefmt='orgtbl', showindex=False))
+    else:
+        print(tabulate(df, tablefmt='orgtbl', showindex=False))
+def p(args):
+    print(args)
+def tex(attribute):
+    print("#+ATTR_LaTeX: " + attribute)
+def mkdir(path):
+    Path(path).mkdir(parents=True, exist_ok=True)
+def mv(old, new):
+    mkdir("/".join(new.split("/")[:-1]))
+    cmd("mv " + old + " " + new)
+def cp(old, new):
+    mkdir("/".join(new.split("/")[:-1]))
+    shutil.copy(old, new)
+def wf(path, s):
+    if "/".join(path.split("/")[:-1]):
+      mkdir("/".join(path.split("/")[:-1]))
+    with open(path, "w") as f:
+      f.write(s)
+#+end_src
+
+#+RESULTS: imports
+: None
