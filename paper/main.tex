@@ -1011,16 +1011,16 @@ The \solver{32 core} variant received two awards in this competition: one third 
 \hline
 \bf Team & \bf Solver & \bf Rank\\
 \hline
-Schreiber & mallob-mono & 1\\
+Schreiber & \solver{mallob-mono} & 1\\
 \hline
-\stack{Ehlers, Kulczynski, }{Nowotka, Sieweck}~ & TopoSAT2 & 2\\
+\stack{Ehlers, Kulczynski, }{Nowotka, Sieweck}~ & \solver{TopoSAT2} & 2\\
 \hline
-Riveros & Slime & 3\\
+Riveros & \solver{Slime} & 3\\
 \hline
-\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}~ & Paracooba & -\\
-& Paracooba-March & -\\
+\multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}~ & \solver{Paracooba} & -\\
+& \solver{Paracooba-March} & -\\
 \hline
-Hartung & CTSat & -\\
+Hartung & \solver{CTSat} & -\\
 \hline
 \end{tabular}
 \caption{Teams and Solvers participating in the cloud track.}
@@ -1029,39 +1029,36 @@ Hartung & CTSat & -\\
 
 \subsubsection{Mallob Mono}
 
-The massively parallel SAT solver Mallob is based on HordeSAT~\cite{}. 
-Mallob is a framework for massivley parallel and distributed \emph{malleable job scheduling}, and thus can perform dynamic load balancing on many jobs of varying priorty.
-However, in the submitted version Mallob Mono, this functionality is disabled, as traditionally in SAT Competition all resources are busy solving one single instance only. 
+\solver{Mallob} is a fork of the generic massively parallel SAT solver \solver{HordeSAT}~\cite{Balyo:2015:HordeSAT}. 
+\solver{Mallob} performs dynamic load balancing through \emph{malleable job scheduling} in case the input contains several SAT instances of varying priorty. 
+This functionality is disabled in the submitted variant \solver{Mallob Mono}. 
 
-Mallob uses the the 2018 version \emph{bcj} of Lingeling~\cite{} and employs diversification via randomized sparse initialization of branching scores just like it is done in Plingeling~\cite{}. 
-Every 14th process, however, runs the local search solver YalSAT~\cite{}. 
+\solver{Mallob} mainly uses \solver{Lingeling-bcj} and diversifies via randomized sparse initialization of branching scores. 
+However, as every 14th solver \solver{Mallob} spawns the SLS solver \solver{YalSAT}~\cite{Biere:2018:LingelingYalsat}. 
 
-Clause exchange is handled considerably different from previous approach. 
-Workers are organized in a binary tree and clauses are asynchronously aggregated in a buffer which is passed along this tree from leafs to the root. 
-Each node performs a three way merge of the local and the two incoming buffers. 
-Only the final aggragate at the root of that binary tree is broadcast to all the solvers. 
+\solver{Mallob} shares clauses by organizing solvers in a binary tree in which clauses are asynchronously aggregated in a buffer which is passed along this tree from leafs to the root. 
+Each node performs a three-way merge of its local export and the two incoming buffers. 
+The aggragate that approaches the root of the binary tree is then broadcast to all solvers~\cite{}. 
 
-To limit sharing, there is a global size limit of $5$ for all the shared clauses. 
-The buffer has a limited size as well, but that size depends on the position in the binary tree, with root having the largest buffer and leaves the smallest. 
-Clauses are sorted by there size during aggregation, such that smaller clauses are preferred over longer clauses. 
-Duplicates are filtered out using a bloom filter, which is cleared periodically. 
-There is a special filter for duplicate unit-clause which especially useful during startup. 
+\solver{Mallob} uses a global clause size limit and a dynamic limit for the sharing buffer, which depends on the position in the binary tree and grows while getting closer to the root. 
+Clauses are sorted by their size during aggregation, such that smaller clauses are preferred over longer clauses. 
+Duplicates are avoided by using a bloom filter which is periodically cleared~\cite{}. 
 
 
 \subsubsection{TopoSAT 2}
 
-TopoSAT~2 is a massively parallel SAT solver using Glucose~3 with lockfree clause-exchange as in ManySAT~\cite{} on each node, and using MPI to share clauses between nodes. 
+\solver{TopoSAT~2} is a massively parallel SAT solver build from \solver{Glucose~3}~\cite{Glucose3,Toposat2}. 
+\solver{TopoSAT~2} uses lockfree clause-exchange for solvers running on the same maching, and MPI to share clauses between machines~\cite{ManySat,Proceedings}. 
 
-In Toposat~2, diversification is done via different strategies used for branching, restarting and clause forgetting. 
-Clauses are strengthened before they are exported. 
-Locally, clause import is delayed until the local trail-size is low in a monitored period. 
+\solver{TopoSAT~2} strengthens clauses before export and delays clause import until the trail-size reaches a local minimum. 
+\solver{Toposat~2} diversifies via the strategies used for branching, restarting and clause forgetting. 
 
 
 \subsubsection{Slime}
 
-Slime is build on top of MapleLCMDistChronoBT and was first submitted to SAT Race 2019 suggesting the new phase selection heuristic~\cite{}. 
-The 2020 version apparently adds some kind of periodic randomization in geometrically increasing intervals~\cite{}. 
-Even thought the sequential solver was unsuccessful in the Main Track, its MPI-based cloud version, won the third price in this competitions cloud track. 
+\solver{Slime} is build from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{SlimeSATRace2019}. 
+The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{}. 
+Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} won the third price in the Cloud track. 
 
 
 \section{Conclusion and Prospects}
