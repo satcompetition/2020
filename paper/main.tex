@@ -830,77 +830,73 @@ To conter-act an observered starving of tier2, the conflict-based heuristic that
 \bf Team & \bf Solver & \bf Awards\\
 \hline
 \multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
- & P-MCOMSPS-STR-32 & \firsto \firsts \secondu \\
- & P-MCOMSPS-STR-64 & \firsto \\
+ & \solver{Painless-MCOMSPS-STR-32} & \firsto \firsts \secondu \\
+ & \solver{Painless-MCOMSPS-STR-64} & \firsto \\
 \hline
 \multirow{2}{*}{\stack{Biere, Fazekas, }{Fleury, Heisinger}}
- & Plingeling & \secondo \thirds \firstu \\
- & Treengeling & \\
+ & \solver{Plingeling} & \secondo \thirds \firstu \\
+ & \solver{Treengeling} & \\
 \hline
 \multirow{2}{*}{Nabeshima, Inoue}
- & ManyGlucose-32 & \thirdo \thirdu \\
- & ManyGlucose-64 & \thirdu \\
+ & \solver{ManyGlucose-32} & \thirdo \thirdu \\
+ & \solver{ManyGlucose-64} & \thirdu \\
 \hline
 \multirow{2}{*}{Tchinda, Djamegni}
- & painlessmaplevone & \seconds \\
- & painlessmaplevtwo & \seconds \\
+ & \solver{painlessmaplevone} & \seconds \\
+ & \solver{painlessmaplevtwo} & \seconds \\
 \hline
-Li, Wu, Xu, Chen & syrupscavel & \\
+Li, Wu, Xu, Chen & \solver{syrupscavel} & \\
 \hline
-Chen & abcdsatptwenty & \\
+Chen & \solver{abcdsatptwenty} & \\
 \hline
 \end{tabular}
 \caption{Teams and Solvers participating in the parallel track.}
 \end{table}
 
-\subsubsection{P-MCOMSPS-STR} 
+\subsubsection{Painless Maple-CoMinisatPS STR} 
 
-P-MCOMSPS-STR is built from the Painless framework~\cite{Frioux:2017:Painless} for solver parallization and uses the MapleCOMSPS solver~\cite{Liang:2017:Maplecomsps} as a building block. 
-The authors submitted a 32 and 64 core version and won 3 awards, first place in the overall ranking, first place in the SAT ranking and second in the UNSAT ranking. 
-The 64 core version performed slightly worse than the 32 core version in the overall ranking, and that gap is bigger for the SAT-only ranking and worst for the UNSAT-only ranking, such that in the separate rankings only the 32 core version is responsible for winning the prices. 
+\solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless}~\cite{Liang:2017:Maplecomsps}. 
+The authors submitted a \solver{32 core} and a \solver{64 core} variant and were awared three prices: first place in the Main track, first place in the Sat track and second in the Unsat track. 
+The \solver{32 core} variant achieved slightly better scores than the \solver{64 core} variant. 
+The differentiated evaluation of the Sat and Unsat tracks shows the \solver{32 core} variant performed much better, such that the follow-up solvers outperformed the \solver{64 core} variant. 
 
-The painless framework uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrenct data-structures, such that implementations within the framework boil down to implementing parallelization and clause sharing strategies. 
+\solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrenct data-structures, such that implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies. 
 
-In the submitted version of P-MCOMSPS-STR, diversification is done via diverse fixed configurations of branching strategies (LRB and VSIDS) and sparse random intialization of variable polarities like in~\cite{Balyo:2015:Hordesat}. 
-One instance of their ``sequential engines'' performs concurrent clause strengtheing as described in~\cite{Wieringa:2013:CCS} and another single instance is configured to perform Gaussian eliminiation during preprocessing. 
-
-For sharing they use an all-to-all strategy with a regular exchange of a fixed size buffer and a dynamic clause lbd limit. 
+\solver{Painless-MCOMSPS-STR} diversifies mainly via diverse fixed configurations of the branching strategies LRB and VSIDS, and sparse random intialization of variable polarities~\cite{Balyo:2015:Hordesat}. 
+However, a special solver instance performs concurrent clause strengthening~\cite{Wieringa:2013:CCS}. 
+Another special solver instance is configured to perform Gaussian eliminiation during preprocessing. 
+\solver{Painless-MCOMSPS-STR} uses an all-to-all strategy for clause sharing with a fixed size clause buffer and an LBD filter with a dynamic limit. 
 
 
 \subsubsection{Plingeling} 
 
-Plingeling got three awards, first place in the Unsat Category, third place in Sat and second place in the overall evaluation. 
-Plingeling is an extension of the well-known SAT solver Lingeling~\cite{} and did not change since 2016. 
-Via a global master queue, Plingeling shares unit clauses, equivalences and short clauses with clauses with at most 40 literals and glucose LBD level of at most 8 and random seeds, e.g., for diversification via default polarities.~\cite{} 
+\solver{Plingeling} got three awards: first place in the Unsat track, second place in the Main track, third place in the Sat track. 
+\solver{Plingeling} is built around the well-known \solver{Lingeling} and did not change since 2016. 
+In a global master queue, \solver{Plingeling} shares unit clauses, equivalences and short clauses with a size limit of~$40$ and an LBD limit of~$8$. 
+\solver{Plingeling} uses random seeds for diversification via default polarities~\cite{Biere:SC2020,Biere:2012:Lingeling}. 
 
 
 \subsubsection{ManyGlucose}
 
-The authors of ManyGlucose received two awards in this competition. 
-ManyGlucose was submitted in 32-core and 64-core variants~\cite{}.
-The 32-core variant won two third prices, one in the overall evaluation and one in the unsat sub-track. 
-ManyGlucose is a fork of GlucoseSyrup~\cite{} and uses strategies similar to those known from ManySAT~\cite{} in order to achive deterministic solver runs. 
+\solver{ManyGlucose} was submitted in \solver{32 core} and \solver{64 core} variants. 
+The \solver{32 core} variant received two awards in this competition: one third place in the Main track and another third place in the Unsat track. 
+\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achive deterministic solver behaviour~\cite{GlucoseSyrup}~\cite{ManySat}. 
 
 
 \subsubsection{Painless Maple} 
 
-The authors Painless Maple received one award for second best performance in the Sat sub-track of the parallel track. 
-However, the solver was last in the Unsat sub-track. 
+\solver{Painless Maple} received the award for second best performance in the Sat track but scored last in the Unsat track. 
+\solver{Painless Maple} integrates the solver \solver{ExMapleLCMDistChronoBT}, which is a modified \solver{MapleLCMDistChronoBT} (see Main track), in the \solver{Painless} parallelization framework. 
 
-The authors implemented a couple of modifications (\todo{name them}) on top of the MapleLCMDistChronoBT~\cite{} solver, which they also submitted in various configurations to the main track. 
-The two submissions in the parallel track use painless as a parallelization framework. 
-
-Their sharing strategy includes splitting their workers into two categories, where the solvers in the first category only export clauses and only solvers in the second category import and export clauses. 
-
-They submitted two variants with different diversification strategies. 
-In their first variant they use different configurations of configurations of the newly implemented strategies. 
-The second variant uses a more classic diverisification strategy by randomizing polarities and variable scores. 
+\solver{Painless Maple} uses a sharing strategy in which the solvers are divided into those which only export clauses and others which import \emph{and} export clauses. 
+\solver{Painless Maple} was submitted in two variants \solver{v1} and \solver{v2}. 
+\solver{Painless Maple v1} diversifies via hand-crafted heuristic configurations and \solver{Painless Maple v2} diversifies via randomized intialization of branching heuristics. 
 
 
 \subsection{Massively Parallel SAT Solving: Winners of the Cloud Track}
 \label{sec:part:cloud}
 
-\begin{table}[ht]
+\begin{table}[t]
 \smaller
 \centering
 \begin{tabular}{|l|l|l|}
