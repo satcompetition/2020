@@ -101,7 +101,7 @@ SAT, Competition
 \section{Introduction}
 
 Propositional satisfiability (SAT) is the archetypal NP-complete problem. 
-Despite its complexity, there is ongoing progress in solving methods and their implementations in SAT solvers. 
+Despite its complexity, there is an ongoing progress in solving methods and their implementations in SAT solvers. 
 The generic nature of the SAT problem as well as the performance of state-of-the-art SAT solvers facilitate their use as the algorithmic backend in a plethora of applications. 
 Today, SAT solvers are used for verification of hard- and software, product configuration, cryptography, planning and scheduling, to name a few. 
 In mathematics, SAT solvers were recently even used to generate a record sized proof (200 TB) for an until then unsolved problem in Ramsey theory. 
@@ -109,9 +109,9 @@ In mathematics, SAT solvers were recently even used to generate a record sized p
 SAT Competitions are organized regularly since 1992 in order to drive progress and to serve as a public assessment of the state-of-the-art in SAT solving. 
 For each SAT Competition, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
 
-In this competition, we initiated a new application-specific subtrack. 
-The idea is to provide a large amount of benchmark instances of a specific application, and to evaluate all solvers with respect to these instance in a special track. 
-In this competition, we used 200 instances of the planning domain to run a planning subtrack. 
+In this competition, we initiated a new application-specific sub-track. 
+The idea is to provide a large amount of benchmark instances of a specific application and to evaluate all solvers with respect to these instance in a special track. 
+In this competition, we used 200 instances of the planning domain to run a planning sub-track. 
 
 Faster networks, distributed systems, and the increasing number of processors in modern computers show that the trend of increasing parallelism is about to continue.  
 In the new cloud track, for the first time, solver authors could compete in SAT technologies that allow hundreds of SAT solvers to cooperate in solving a SAT instance. 
@@ -249,7 +249,7 @@ was planned and had to consider it carefully, also taking into account the limit
 as specified by the previous rule.}
 
 This rule is mainly meant to encourage the SAT community to invest more effort into developing new solver code bases.
-Moreover, while acknowledge that research on solver selection tools that typically orchestrate portfolio solvers 
+Moreover, while we acknowledge that research on solver selection tools that typically orchestrate portfolio solvers 
 is interesting, it is not the focus of the SAT competition.
 
 \todo{Should we have a discussion (maybe in later sections)
@@ -300,7 +300,7 @@ whose nodes are equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
 (In the Main track, validation then continued for up to \SI{45000}{\second}.)
-The solvers were allowed to use up to the full \SI{128}{\giga\byte} of RAM.\footnote{
+The solvers were allowed to use the full \SI{128}{\giga\byte} of RAM.\footnote{
 Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
 was by mistake advertised on the competition web page prior to solver submission.
 This could have resulted in some solvers not ``daring'' to use the full \SI{128}{\giga\byte}
@@ -404,7 +404,7 @@ As can be seen in Table~\ref{tab:families}, a total of $28$ authors followed our
 By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
 In order to compile a balanced set of $300$ benchmark instances, we considered a maximium of $14$ submissions per author and used the procedure which is depicted in Algorithm~\ref{algo:select}. 
 Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
-If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5-7). 
+If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5--7). 
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
 
 To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
@@ -604,7 +604,7 @@ memory. Other solvers were still able to solve the same instances within $300$
 seconds.
 
 \subsection{Similarity of Solvers}
-To investigate how similar the solvers of the main track are to each other, we
+To investigate how similar the solvers of the Main track are to each other, we
 define a similarity metric based on the measured runtimes. For that we first
 remove $186$ benchmarks from the collected data that have not been solved by any
 solver. For the rest of the benchmarks we use the PAR-2 score,
@@ -688,7 +688,8 @@ the other solvers in this cluster.
 \section{Code-Bases and Winning Strategies}
 \label{sec:analysis}
 
-In the following we provide an overview on the participating teams and solvers,  and summarize new strategies which are implemented in the award winning solvers of this competition. 
+In the following, we provide an overview of the participating teams and solvers, 
+and summarize new strategies which are implemented in the award winning solvers of this competition. 
 
 We start with a few remarks on the evolution of code-bases of well known SAT solvers in Section~\ref{sec:codebases}. 
 Our survey of the winning strategies in this competition starts with sequential (including incremental) SAT solving in Section~\ref{sec:part:seq}, then we continue with parallel SAT solving in Section~\ref{sec:part:par} and conclude with solvers in the cloud track in Section~\ref{sec:part:cloud}. 
