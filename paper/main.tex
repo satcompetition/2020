@@ -435,13 +435,13 @@ By this rule solver authors are required to submit $20$ new benchmark instances 
 As can be seen in Table~\ref{tab:families}, a total of $28$ authors followed our calls for participation and benchmark instances, thus contributing a set of $1260$ previously unseen benchmark instances in a large variety of different instance families. 
 
 By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
-In order to compile a balanced set of $300$ benchmark instances, we considered a maximium of $14$ submissions per author and used the procedure which is depicted in Algorithm~\ref{algo:select}. 
+In order to compile a balanced set of $300$ benchmark instances, we considered a maximum of $14$ submissions per author and used the procedure which is depicted in Algorithm~\ref{algo:select}. 
 Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
 If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5--7). 
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
 
 To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
-We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unkown result. 
+We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unknown result. 
 Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
 
 Table~\ref{tab:families} displays the numbers of submitted and selected instances grouped by problem family and author. 
@@ -680,12 +680,12 @@ but overall have a similar performance.
 
 The last big cluster in the center of the heat map is comprised of the solvers
 originally written by Biere. The three configurations of \emph{Kissat} form a
-subcluster, even though the configurations are fairly distinct from each other.
+sub-cluster, even though the configurations are fairly distinct from each other.
 % , specialized for satisfiable and unsatisfiable instances.
 % One targets satisfiable instances, while the other is focused on unsatisfiable
 % instances and a third alternating between them.
 
-The other subcluster consists of
+The other sub-cluster consists of
 modifications to the 2019 version of \emph{\mbox{CaDiCaL}}. The new version
 CaDiCaL-2020 has a worse overall performance than
 % has an overall worse per
@@ -736,15 +736,16 @@ One well-known tree of development is rooted in the code-base of \solver{Minisat
 A well-known fork of \solver{Minisat} is \solver{Glucose} by Audemard and Simon~\cite{Audemard:2018:Glucose}, among others introducing Literal Block Distance (LBD) for weighing clauses in forgetting heuristics~\cite{Audemard:2009:Glucose}. 
 The SAT solver \solver{RISS} by Manthey is a successful and award winning fork of \solver{Glucose} in combination with the state-of-the-art preprocessor \solver{Coprocessor}~\cite{Manthey:2012:Coprocessor2}. 
 
-Another more recent string of development is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Chanseok Oh introducing three-tier clause-managment~\cite{Oh:2015:satunsat}. 
-The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heurstics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
-The then award winning variant \solver{MapleCOMSPS} is an implementation of a hybrid branching heuristic of classic Variable-State Independend Decaying Sum (VSIDS) and the new Learning-Rate based Branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
+Another more recent string of development is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Chanseok Oh introducing three-tier clause-management~\cite{Oh:2015:satunsat}. 
+The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heuristics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
+The then award winning variant \solver{MapleCOMSPS} is an implementation of a hybrid branching heuristic of classic Variable-State Independent Decaying Sum (VSIDS) and the new Learning-Rate based Branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
 
 In SAT Competition 2017, Luo et al. integrated learnt clause minimization based on unit propagation (\solver{LCM}) in their award winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
 Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}. 
 They presented their award winning \solver{Maple\_LCM\_Dist\_ChronoBT} to SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
 
-Kochemazov et al. improved three-tier clause-management by persting additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} to SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
+Kochemazov et al. improved three-tier clause-management by persting \todo{Please check "persting"!}
+additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} to SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
 As can be seen in Table~\ref{tab:solvers-incremental}, numerous submissions to SAT Competition~2020 are forks of some recently award winning \solver{Maple} solver. 
 
 Starting as a \solver{Minisat}-fork and the integration of special xor treatment~\cite{Soos:2009:Crypto}, \solver{CryptoMinisat} by Soos continues to be a state-of-the-art and feature-rich SAT solver. 
@@ -753,8 +754,9 @@ In its new version~5, \solver{CryptoMinisat} has once again been award winning i
 
 Many independent and award-winning code-bases can be found among the state-of-the-art SAT solvers written by Biere. 
 The sequential SAT solver \solver{Lingeling} has been award winning since SAT Competition~2011 and is still competitive in its parallel version \solver{Plingeling}~\cite{Biere:2012:Lingeling}. 
-As of SAT Competition~2017, \solver{CaDiCaL} by Biere is another independent award winning and structured implementation of the state-of-the-art in SAT solving. 
-Its improved reimplementation \solver{Kissat} won in several of this competitions sequential tracks by a large margin~\cite{Biere:SC2020}. 
+As of SAT Competition~2017, \solver{CaDiCaL} % \cite{Biere:SC2020} - or cite some older proceedings to match the "As of SAT Competition~2017" part?
+by Biere is another independent award winning and structured implementation of the state-of-the-art in SAT solving. 
+Its improved reimplementation \solver{Kissat}~\cite{Biere:SC2020} won in several of this competitions sequential tracks by a large margin. 
 
 The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
@@ -765,7 +767,7 @@ The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama a
 Sequential SAT solvers have been evaluated in the Main tracks as well as in the Incremental track of SAT Competition~2020. 
 A total of $18$ teams submitted correct solvers to the Main track of the competition. 
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-The recent genealogy of all submissions, is highlighted by \emph{base solver} and \emph{variant} columns. 
+The recent genealogy of all submissions is highlighted by \emph{base solver} and \emph{variant} columns. 
 Underlined text is used to point out the important parts of the respective submissions name.
 
 \renewcommand{\solver}[1]{\underline{\texttt{#1}}}
@@ -922,7 +924,7 @@ That includes one default configuration and two specialized configurations which
 but comes with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
 Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
 
-\solver{Kissat} uses a new unit (``ticks'') to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses, after conflict-rate has been obeserved to be too unstable for the use-case~\cite{Biere:SC2020}. 
+\solver{Kissat} uses a new unit (``ticks'') to measure the length of two alternating restart-modes based on the approximate number of cache-line accesses, after conflict-rate has been observed to be too unstable for the use-case~\cite{Biere:SC2020}. 
 
 \solver{Kissat} also exploits an innovative use-case for autarkies to account for saved phases. 
 In order to keep valuable information of saved phases, before each rephasing step, \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
@@ -966,7 +968,7 @@ The \solver{Relaxed} fork of \solver{MapleLCMDistCBT-DL} was first presented to 
 In SAT Competition~2020, its new variant \solver{newTech} showed a good performance especially on satisfiable instances. 
 The solver won two awards, the second price in the Main track and the first price in the Sat track.
 
-The \solver{Relaxed} fork integrates short runs of the local search solver \solver{CCAnr} through periodic ex- and import of assignments~\cite{Xindi:SC2019}. 
+The \solver{Relaxed} fork integrates short runs of the local search solver \solver{CCAnr} through periodic export and import of assignments~\cite{Xindi:SC2019}. 
 The submitted versions of \solver{Relaxed Maple} use a probabilistic schedule for switching between $10$ phase selection modes. 
 The award winning variant \solver{newTech} uses occurrence counts of variables in unsatisfied clauses during SLS runs to recalculate variable priorities for their modified branching heuristic~\cite{Xindi:SC2020}. 
 
@@ -977,8 +979,8 @@ The \solver{F2TRC} fork of \solver{MapleLCMDistCBT} won the third price in the U
 \solver{F2TRC} comes with a deterministic reimplementations of former winning strategies, e.g., by replacing time intervals by conflict intervals~\cite{Kochemazov:SC2020}. 
 
 \solver{F2TRC} introduces an improved management of learned clauses in the tree tiers \emph{core}, \emph{tier2} and \emph{local} which are inherited from \solver{CoMinisatPS}~\cite{Oh:2015:satunsat}.
-A dynamic size limit for the \emph{core} tier, triggers the reassignment of inactive clauses from \emph{core} to \emph{tier2}. 
-To conter-act an observered starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size based heuristic~\cite{Kochemazov:SC2020}. 
+A dynamic size limit for the \emph{core} tier triggers the reassignment of inactive clauses from \emph{core} to \emph{tier2}. 
+To counter-act an observed starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size based heuristic~\cite{Kochemazov:SC2020}. 
 
 
 \subsection{Parallel SAT Solving: Winners of the Parallel Track}
@@ -1017,16 +1019,16 @@ Chen & \solver{abcdsatptwenty} & \\
 
 \subsubsection{Painless Maple-CoMinisatPS STR} 
 
-\solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless}~\cite{Liang:2017:Maplecomsps}. 
-The authors submitted a \solver{32 core} and a \solver{64 core} variant and were awared three prices: first place in the Main track, first place in the Sat track and second in the Unsat track. 
+\solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless,Liang:2017:Maplecomsps}. 
+The authors submitted a \solver{32 core} and a \solver{64 core} variant and were awarded three prices: first place in the Main track, first place in the Sat track and second in the Unsat track. 
 The \solver{32 core} variant achieved slightly better scores than the \solver{64 core} variant. 
 The differentiated evaluation of the Sat and Unsat tracks shows the \solver{32 core} variant performed much better, such that the follow-up solvers outperformed the \solver{64 core} variant. 
 
-\solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrenct data-structures, such that implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies. 
+\solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrent data-structures, such that implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies. 
 
-\solver{Painless-MCOMSPS-STR} diversifies mainly via diverse fixed configurations of the branching strategies LRB and VSIDS, and sparse random intialization of variable polarities~\cite{Balyo:2015:Hordesat}. 
+\solver{Painless-MCOMSPS-STR} diversifies mainly via diverse fixed configurations of the branching strategies LRB and VSIDS, and sparse random initialization of variable polarities~\cite{Balyo:2015:Hordesat}. 
 However, a special solver instance performs concurrent clause strengthening~\cite{Wieringa:2013:CCS}. 
-Another special solver instance is configured to perform Gaussian eliminiation during preprocessing. 
+Another special solver instance is configured to perform Gaussian elimination during preprocessing. 
 \solver{Painless-MCOMSPS-STR} uses an all-to-all strategy for clause sharing with a fixed size clause buffer and an LBD filter with a dynamic limit. 
 
 
@@ -1042,12 +1044,12 @@ In a global master queue, \solver{Plingeling} shares unit clauses, equivalences 
 
 \solver{ManyGlucose} was submitted in \solver{32 core} and \solver{64 core} variants. 
 The \solver{32 core} variant received two awards in this competition: one third place in the Main track and another third place in the Unsat track. 
-\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achive deterministic solver behaviour~\cite{GlucoseSyrup}~\cite{ManySat}. 
+\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behaviour~\cite{GlucoseSyrup}~\cite{ManySat}. 
 
 
 \subsubsection{Painless Maple} 
 
-\solver{Painless Maple} received the award for second best performance in the Sat track but scored last in the Unsat track. 
+\solver{Painless Maple} received the award for the second best performance in the Sat track but scored last in the Unsat track. 
 \solver{Painless Maple} integrates the solver \solver{ExMapleLCMDistChronoBT}, which is a modified \solver{MapleLCMDistChronoBT} (see Main track), in the \solver{Painless} parallelization framework. 
 
 \solver{Painless Maple} uses a sharing strategy in which the solvers are divided into those which only export clauses and others which import \emph{and} export clauses. 
@@ -1092,7 +1094,7 @@ However, as every 14th solver \solver{Mallob} spawns the SLS solver \solver{YalS
 
 \solver{Mallob} shares clauses by organizing solvers in a binary tree in which clauses are asynchronously aggregated in a buffer which is passed along this tree from leafs to the root. 
 Each node performs a three-way merge of its local export and the two incoming buffers. 
-The aggragate that approaches the root of the binary tree is then broadcast to all solvers~\cite{}. 
+The aggregate that approaches the root of the binary tree is then broadcast to all solvers~\cite{}. 
 
 \solver{Mallob} uses a global clause size limit and a dynamic limit for the sharing buffer, which depends on the position in the binary tree and grows while getting closer to the root. 
 Clauses are sorted by their size during aggregation, such that smaller clauses are preferred over longer clauses. 
@@ -1102,7 +1104,8 @@ Duplicates are avoided by using a bloom filter which is periodically cleared~\ci
 \subsubsection{TopoSAT 2}
 
 \solver{TopoSAT~2} is a massively parallel SAT solver build from \solver{Glucose~3}~\cite{Glucose3,Toposat2}. 
-\solver{TopoSAT~2} uses lockfree clause-exchange for solvers running on the same maching, and MPI to share clauses between machines~\cite{ManySat,Proceedings}. 
+\solver{TopoSAT~2} uses lock-free clause-exchange for solvers running on the same matching, and MPI \todo{Please spell out MPI once.}
+to share clauses between machines~\cite{ManySat,Proceedings}. 
 
 \solver{TopoSAT~2} strengthens clauses before export and delays clause import until the trail-size reaches a local minimum. 
 \solver{Toposat~2} diversifies via the strategies used for branching, restarting and clause forgetting. 
@@ -1110,7 +1113,7 @@ Duplicates are avoided by using a bloom filter which is periodically cleared~\ci
 
 \subsubsection{Slime}
 
-\solver{Slime} is build from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{SlimeSATRace2019}. 
+\solver{Slime} is built from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{SlimeSATRace2019}. 
 The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{}. 
 Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} won the third price in the Cloud track. 
 
