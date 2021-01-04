@@ -42,25 +42,30 @@
 \ead{marijn@cmu.edu}
 \author[kit]{Markus Iser}
 \ead{markus.iser@kit.edu}
-\author[hiit]{Matti Järvisalo}
+\author[uh]{Matti J\"arvisalo}
 \ead{matti.jarvisalo@helsinki.fi}
 \author[ctu]{Martin Suda} 
 \ead{martin.suda@cvut.cz}
 
 \address[jku] {
-Institute for Formal Models and Verification, Johannes Kepler University\\
+Institute for Formal Models and Verification, Johannes Kepler University, Austria\\
 {\tt nils.froleyks@jku.at}\\[1em]
 }
 
 
 \address[cmu] {
-Computer Science Department, Carnegie Mellon University\\
+Computer Science Department, Carnegie Mellon University, USA\\
 {\tt marijn@cmu.edu}\\[1em]
 }
 
 \address[kit] {
-KIT Department of Informatics\\
+Department of Informatics, Karlsruhe Institute of Technology, Germany \\
 {\tt markus.iser@kit.edu}\\[1em]
+}
+
+\address[uh] {
+HIIT, Department of Computer Science, University of Helsinki, Finland
+{\tt matti.jarvisalo@helsinki.fi}\\[1em]
 }
 
 \address[ctu] {
@@ -83,22 +88,48 @@ Czech Technical University in Prague, Czech Republic\\
 \begin{document}
 
 \begin{abstract}
-SAT Competition 2020 stands in the tradition of the series of annual competitive events which motivate and assess the progress in SAT solving. 
-This competition was special as it introduced the new cloud track where SAT Solvers that run on hundreds of processors could compete. 
-Another novelty was the application-specific sub-track of the main track, 
-where solvers competed in solving benchmark instances from one specific domain only, and in this year that was the planning domain. 
-We used new tools to select and distribute benchmark instances and their attributes. 
-In this paper we provide a description of the well-known and the new competition tracks and how we organized them. 
-It follows then a detailed analysis of the results and the strategies of the award winning solvers. 
+The SAT Competitions constitute a well-established series of yearly open international competitive algorithm implementation competitions
+focusing on the Boolean satisfiability (or propositional satisfiability, SAT) problem. 
+In this article, we provide
+a detailed account on the 2020 instantiation of the SAT Competition, including the 
+ new competition tracks and benchmark selection procedures, overview of solving strategies implemented in top-performing solvers, 
+and a more detailed analysis of the empirical data obtained from running the competition.
+%SAT Competition 2020 stands in the tradition of the series of annual competitive events which motivate and assess the progress in SAT solving. 
+%This competition was special as it introduced the new cloud track where SAT Solvers that run on hundreds of processors could compete. 
+%Another novelty was the application-specific sub-track of the main track, 
+%where solvers competed in solving benchmark instances from one specific domain only, and in this year that was the planning domain. 
+%We used new tools to select and distribute benchmark instances and their attributes. 
+%In this paper we provide a description of the well-known and the new competition tracks and how we organized them. 
+%It follows then a detailed analysis of the results and the strategies of the award winning solvers. 
 \end{abstract}
 
 \begin{keyword}
-SAT, Competition
+SAT, Boolean satisfiability, SAT Competition, SAT solvers, empirical evaluation,
+benchmarking
 \end{keyword}
 
 \maketitle
 
 \section{Introduction}
+
+From what was once mainly the archetypal intractable (in particular NP-complete) problem, propositional satisfiability 
+(or Boolean satisfiability, SAT) has flourished in practice into a success story of modern computer science.
+This is due to advances in SAT solvers, i.e., implementations of decision procedures for SAT, which form today a 
+central computational tool for solving real-world problem instances of various kinds of NP-hard search and optimization problems.
+With standardized inputformats, readily-available APIs for incrementalapplications,
+and certified proof logging andchecking capabilities, applications of SAT solver technology
+have branched from first breakthrough applications in automated planning, test pattern generation and hardware verification
+to thousands of different application settings. 
+
+The success of SAT would not be without the persistent efforts of the SAT community to further develop the performance and robustness
+of SAT solvers. The SAT Competition series, which a history dating back to early 90s, aims to support and provide further incentives 
+for maintaining and furthering this progress. In particular, 
+
+WILL CONTINUE FROM HERE -MATTI
+
+===
+
+OLD:
 
 Propositional satisfiability (SAT) is the archetypal NP-complete problem. 
 Despite its complexity, there is an ongoing progress in solving methods and their implementations in SAT solvers. 
@@ -128,6 +159,8 @@ A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we c
 \todo{maybe mention \url{https://satcompetition.github.io/2020/}}
 
 \todo{Maybe mention proceedings \cite{SC2020}}
+
+OLD END ===
 
 \section{Overview of the Competition}
 \label{sec:overview}
@@ -1090,8 +1123,9 @@ Even thought its sequential version was unsuccessful in the Main track, the MPI-
 \todo{Ideas for Future Competitions}
 
 \section*{Acknowledgements}
+Matti J\"arvisalo was financially supported by Academy of Finland grants 322869 and 328718.
 Martin Suda was supported by the ERC Consolidator grant AI4REASON no. 649043 under the EU-H2020 programme,
-the Czech Science Foundataion project 20-06390Y, and the project RICAIP, no. 857306 under the EU-H2020 programme.
+the Czech Science Foundation project 20-06390Y, and the project RICAIP, no. 857306 under the EU-H2020 programme.
 
 \bibliographystyle{elsarticle-num}
 \bibliography{main}
