@@ -314,11 +314,10 @@ The organizers of the competition were not allowed to participate.
 \subsection{Solver Ranking and Disqualification}
 
 Solvers were ranked using a PAR-2 score based on a \num{5000}-second timeout.
-A PAR-2 system assigns as many points as the number of seconds it took the solver
+A PAR-2 system assigns as many points as the amount of time (in seconds) it took the solver
 to solve a particular instance and twice the time limit, i.e.~\num{10000} points,
 if the instance was not solved. This means that lowers scores are better.
-We generally report the average score of each solver
-across a benchmark set.
+We generally report the \emph{average score} of each solver across a benchmark set.
 
 A SAT solver was disqualified if it produced a wrong answer. 
 Specifically, if a solver reported ``unsatisfiable'' on an instance that 
