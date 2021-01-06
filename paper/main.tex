@@ -159,9 +159,9 @@ In mathematics, SAT solvers were recently even used to generate a record sized p
 SAT Competitions are organized regularly since 1992 in order to drive progress and to serve as a public assessment of the state-of-the-art in SAT solving. 
 For each SAT Competition, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
 
-In this competition, we initiated a new application-specific sub-track. 
+In this competition, we initiated a new application-specific track. 
 The idea is to provide a large amount of benchmark instances of a specific application and to evaluate all solvers with respect to these instance in a special track. 
-In this competition, we used 200 instances of the planning domain to run a planning sub-track. 
+In this competition, we used 200 instances of the planning domain to run a planning track. 
 
 Faster networks, distributed systems, and the increasing number of processors in modern computers show that the trend of increasing parallelism is about to continue.  
 In the new cloud track, for the first time, solver authors could compete in SAT technologies that allow hundreds of SAT solvers to cooperate in solving a SAT instance. 
@@ -191,21 +191,27 @@ the computing infrastructure used for executing the competition.
 
 \subsection{Competition Tracks}
 
-SAT Competition 2020 consisted of four tracks:
-the Main track, Incremental Library track, Parallel track,
-and the Cloud Track for massively parallel SAT solvers using up to 1024 cores. 
-Furthermore, the Main track comprised of several sub-tracks.
+SAT Competition 2020 consisted of seven tracks:
+Main track, No-Limits track, Planning track, ``Glucose hack'' track,
+Incremental Library track, Parallel track,
+and the Cloud Track for massively parallel SAT solvers. % using up to 1024 cores. 
 
-\subsubsection{Main Track}
+\subsubsection{The Main, No-Limits, Planning, and ``Glucose hack'' tracks}
 
 The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
 
-Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits sub-track and were not eligible for the Main track awards. The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.~Sect.~\ref{sec:rules}). However, solvers in No-Limits still competed against all other solvers in the Main Track (hence, we consider it a sub-track). The No-Limits sub-track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
+Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits track and were not eligible for the Main track awards.
+The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) 
+as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.~Sect.~\ref{sec:rules}).
+However, solvers in No-Limits still competed against all other solvers submitted to the Main Track.
+Thus, to deserve a mention, a No-Limits solver would need to beat all the Main Track participants.
+The No-Limits track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
 
-Part of the Main track was the Planning sub-track, in which we evaluated the solvers on 200 benchmarks 
+The same rules for participation as in Main track applied to the Planning track, in which we evaluated the solvers on 200 benchmarks 
 which all came from the same application domain -- automated planning. 
-Solver submitted to the Main track automatically participated in the Planning sub-track.
-It is envisioned, that also in the future there will be an application sub-track of the Main track, each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
+Solver submitted to the Main track automatically participated in the Planning track.
+It is envisioned that also in the future there will be an ``application promotion'' track,
+each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
 Finally, the Main Track also had the so-called ``Glucose hack'' sub-track. 
 Since in the past several advances in SAT solving required only a small modification of an established solver
@@ -250,7 +256,7 @@ the participation in the competition.
 
 \paragraph{Source Code}
 The source code of submitted SAT solvers had to be made available 
-(licensed for research purposes) except for the solvers participating only in the No-Limits sub-track.
+(licensed for research purposes) except for the solvers participating only in the No-Limits track.
 
 \paragraph{Description}
 A short system description was required for each solver submission,
@@ -293,7 +299,7 @@ or the compilation options were different, or different command line options wer
 
 \paragraph{Portfolio Solvers}
 
-Apart from the No-limits sub-track, participants were not allowed to submit a portfolio of solvers,
+Apart from the No-limits track, participants were not allowed to submit a portfolio of solvers,
 i.e., a combination of two or more core SAT solvers developed by different groups of authors.\footnote{
 In other words, a submission of a combination of solvers was only possible if all the authors of all the parts
 were explicitly listed. This means that all the authors had to be notified if such participation
@@ -331,7 +337,7 @@ not eligible to win any award.
 
 In all tracks it was required to output a model to certify recognising a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only 
-in the Main track (besides the No Limits sub-track).
+in the Main track (besides the No Limits track).
 
 The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
@@ -346,7 +352,7 @@ a proof and {\tt cake\_lpr} would later disagree with the verdict.
 \subsection{Computing environments}
 
 \label{sec:computing}
-The Main Track with its sub-tracks was run on the StarExec cluster \cite{starexec},
+The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{starexec},
 whose nodes are equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
@@ -628,12 +634,12 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 
 \todo{Winners and Runtime Plots for all the tracks}
 
-\subsection{Planning Sub-Track}
+\subsection{Planning Track}
 % - 86 out of 100 biggest (number of clauses) are planning
 % - 109 / 200 in the planning track are not solved by any solver
     % - 186 / 600 in total
 % - all 200 above 90\% binary clauses and half have above 99%
-The instances of the planning sub-track are big compared to the rest of the
+The instances of the planning track are big compared to the rest of the
 main track. Using the number of clauses as a metric; out of the $100$ biggest
 instances
 % of the main-track
@@ -973,7 +979,7 @@ The submitted version of \solver{CryptoMinisat} entails a new optimized implemen
 
 Based on \solver{CaDiCaL}, its variants \solver{Trail} and \solver{AllUip} present implementations of a new \emph{Trail Saving} approach~\cite{Hickey:2020:TrailSaving} and improved clause-learing based on the notion of \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
-The variants including \emph{Stable AllUIP} were the most successful and won the first price in the Planning Sub-Track. 
+The variants including \emph{Stable AllUIP} were the most successful and won the first price in the Planning Track. 
 
 The \emph{Stable AllUip} variants resolve additional clauses beyond the 1st Unit Implication Point (1-UIP) and keep them if they are of smaller size or LBD than the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
