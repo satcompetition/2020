@@ -629,6 +629,105 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \caption{Performance of the top 10 solvers + VBS on Main track unsatisfiable benchmarks}
 \end{figure}
 
+\begin{table}
+\caption{Main ALL}
+\label{tab:mainALL}
+\begin{tabular}{cccl}
+place & PAR-2 score & num. solved & solver \\
+\hline
+1  & 3926.2 & 264 & {\bf Kissat-sc2020-sat} \\
+(1)& 4083.1 & 260 & Kissat-sc2020-default \\
+2  & 4179.3 & 253 & {\bf Relaxed\_LCMDCBDL\_newTech} \\
+3  & 4266.7 & 248 & {\bf cryptominisat-ccnr-lsids} \\
+(3)& 4278.0 & 250 & cryptominisat-ccnr \\
+   & 4428.1 & 250 & cadical-alluip-trail \\
+   & 4429.6 & 250 & cadical-alluip \\
+   & 4436.5 & 245 & Relaxed\_LCMDCBDL \\
+   & 4501.2 & 243 & cryptominisat-walksat \\
+   & 4554.0 & 243 & cadical-trail \\
+   & 4560.0 & 238 & Kissat-sc2020-unsat \\
+   & 4607.6 & 246 & CaDiCaL-sc2020 \\
+   & 5157.7 & 216 & Undominated-LC-MapleLCMDiscChronoBT-DL \\
+   & 5159.6 & 220 & MapleLCMDistChronoBT-DL-f2trc \\
+   & 5177.0 & 214 & ExMapleLCMDistChronoBT\_\_PADC\_DL \\   
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Main SAT}
+\label{tab:mainSAT}
+\begin{tabular}{cccl}
+place & PAR-2 score & num. solved & solver \\
+\hline
+ 1 & 2997.4 & 150 & {\bf Relaxed\_LCMDCBDL\_newTech} \\
+ 2 & 3127.6 & 146 & {\bf Kissat-sc2020-sat} \\
+ 3 & 3263.0 & 144 & {\bf cryptominisat-ccnr-lsids} \\
+(3)& 3317.4 & 145 & cryptominisat-ccnr \\
+   & 3355.5 & 143 & Relaxed\_LCMDCBDL \\
+   & 3524.7 & 140 & cryptominisat-ccnr-nolimits \\
+   & 3622.4 & 138 & cryptominisat-ccnr-lsids-nolimits \\
+   & 3703.7 & 140 & cryptominisat-walksat-nolimits \\
+   & 3721.2 & 139 & cryptominisat-walksat \\
+   & 3830.5 & 134 & Kissat-sc2020-default \\
+   & 3908.5 & 135 & cadical-alluip-trail \\
+   & 3909.6 & 135 & cadical-alluip \\
+   & 4265.6 & 126 & cadical-trail \\
+   & 4368.6 & 130 & CaDiCaL-sc2020 \\
+   & 4804.9 & 114 & Kissat-sc2020-unsat \\
+\end{tabular}
+\end{table}
+
+
+\begin{table}
+\caption{Main UNSAT}
+\label{tab:mainUNSAT}
+\begin{tabular}{cccl}
+place & PAR-2 score & num. solved & solver \\
+\hline
+1  & 4315.1 & 124 & {\bf Kissat-sc2020-unsat} \\
+(1)& 4335.6 & 126 & Kissat-sc2020-default \\
+(1)& 4724.8 & 118 & Kissat-sc2020-sat \\
+ 2 & 4842.5 & 117 & {\bf cadical-trail} \\
+-- & 4846.7 & 116 & CaDiCaL-sc2020 \\
+(2)& 4947.8 & 115 & cadical-alluip-trail \\
+(2)& 4949.6 & 115 & cadical-alluip \\
+ 3 & 4991.4 & 110 & {\bf MapleLCMDistChronoBT-f2trc-s} \\
+(3)& 5051.4 & 109 & MapleLCMDistChronoBT-f2trc \\
+(3)& 5054.3 & 110 & MapleLCMDistChronoBT-DL-f2trc \\
+   & 5069.6 & 109 & Maple\_mix \\
+   & 5110.0 & 107 & ExMapleLCMDistChronoBT\_\_PADC\_DL \\
+   & 5126.9 & 107 & Maple\_simp \\
+   & 5128.9 & 107 & MapleLCMDistChronoBT-DL-v3 \\
+   & 5142.2 & 106 & Undominated-LC-MapleLCMDiscChronoBT-DL \\
+\end{tabular}
+\end{table}
+
+
+\begin{table}
+\caption{Planning (ALL)}
+\label{tab:planning}
+\begin{tabular}{cccl}
+place & PAR-2 score & num. solved & solver \\
+\hline
+ 1 & 6406.9 & 80 & {\bf cadical-alluip-trail} \\
+(1)& 6409.3 & 80 & cadical-alluip \\
+ 2 & 6466.9 & 79 & {\bf cryptominisat-ccnr-lsids} \\
+(2)& 6471.9 & 79 & cryptominisat-ccnr \\
+(2)& 6472.9 & 79 & cryptominisat-walksat \\
+ 3 & 6596.4 & 75 & {\bf Kissat-sc2020-unsat} \\
+   & 6650.1 & 79 & cadical-trail \\
+   & 6713.0 & 75 & Maple\_mix \\
+   & 6746.5 & 75 & MapleCOMSPS\_LRB\_VSIDS\_2\_\_LRB\_VSIDS\_2\_init \\
+   & 6754.3 & 73 & Maple\_simp \\
+   & 6773.0 & 73 & MapleCOMSPS\_LRB\_VSIDS\_2\_\_default\_drup \\
+   & 6773.9 & 73 & Kissat-sc2020-sat \\
+   & 6774.2 & 73 & Kissat-sc2020-default \\
+   & 7003.0 & 69 & optsat\_m20 \\
+   & 7025.5 & 68 & upGlucose-3.0\_PADC \\
+\end{tabular}
+\end{table}
+
+
 
 \todo{New Codebases}
 
@@ -1140,6 +1239,41 @@ to share clauses between machines~\cite{ManySat,Proceedings}.
 \solver{Slime} is built from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{SlimeSATRace2019}. 
 The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{}. 
 Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} won the third price in the Cloud track. 
+
+\section{More detailed analysis of the Main track results (to be renamed)}
+
+In this section, we provide additional views on the Main track results,
+in particular focusing on metrics which help to highlight strengths 
+
+\subsection{Contributions to VBS}
+
+
+Everything could be done separately for (ALL, SAT, UNSAT)
+
+
+
+3X VBS
+
+
+
+Greedy cover
+
+
+
+Fair split strategy
+
+
+
+Z3 strategy
+
+
+
+Maxent Nash
+
+
+
+Van Gelder ?
+
 
 
 \section{Conclusion and Prospects}
