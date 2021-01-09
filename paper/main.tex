@@ -1319,34 +1319,88 @@ In this section, we provide additional views on the Main track results,
 focusing on metrics complementing the PAR-2 score, 
 which we used for ranking the solvers in the actual competition.
 
-\subsection{Contributions to VBS}
+\subsection{Contributions to the Virtual Best Solver}
 
+The Virtual Best Solver (VBS) is a fictitious solver consisting 
+of all the solvers that actually participated in the competition (or a specific track)
+and an oracle which, when given an input instance,
+invokes to run the actual solver which performed the best on that instance.
+In this way, the performance of the VBS highlights a certain upper bound 
+on performance achievable in principle by the technology 
+of the participating solvers (cf. the figures in Section~\ref{sec:results}). 
+
+One can see that the VBS solves all the instances that
+were solved by at least one solver and solves each instance in the best observed time.
+By quantifying how much each participating solver contributed 
+to the performance of the VBS, we may attempt to establish which
+technology (as represented by the solvers) is the most important
+(and to what degree) in the observed state of the art of SAT solving.
+We came up with the following three related metrics conceptually derived
+from the notion of VBS:
+\begin{description}
+\item[VBS1]
+``The winner takes it all'':
+For each solver we count the number of times, it was the fastest to solve an instance.
+\item[VBS2]
+``Time aware, but proportional'':
+A solver $S$ solving an instance $I$ in time $T^S_I$ accrues 
+the following fraction of a point for solving $I$:
+$T^\mathit{VBS}_I/T^S_I$, where $T^\mathit{VBS}_I$ is the solution time of the best solver on $I$.
+\item[VBS3]
+``Split the point for solving'':
+We award each solver $S$ solving an instance $I$ the fraction $1/|\mathcal{S}_I|$ of points, where
+$\mathcal{S}_I$ is the set of solvers solving $I$.
+\end{description}
+We remark that the sum of points awarded to all the solvers for VBS1, as well as for VBS3,
+is each time equal to the number of instances solved by at least one solver.
+This is obvious for VBS1, as exactly one solver scores a point for solving an instance.
+In the case of VBS3, where we discard the information about the solution times, 
+we evenly split the one point reward for solving an instance to those solvers which were successful on it.
+
+In contrast, VBS2 does not have this property as it in general distributes more than one point per instance.
+Similarly to VBS1, it takes the solution time into account,
+and similarly to VBS3 it does not award just the best solver on an instance.
+For example, being twice as slow on an instance than the fastest solver results in a half point awarded.
+And, if all the solvers solve an instance with the same solution time,
+each solver scores a whole point for that instance. 
+
+
+\newpage
+
+
+
+Ze to jsou main results
+
+
+
+\begin{table}
+\caption{The first 5 solvers by their contribution to the performance of the virtual best solver.}
+\label{tab:parallelUNS}
+\centering
+\begin{tabular}{cl}
+VBS score (fastest scores a point) & solver \\
+\hline
+x
+\end{tabular}
+\end{table}
+
+
+\newpage
 
 Everything could be done separately for (ALL, SAT, UNSAT)
 
 
-
-3X VBS
 
 
 
 Greedy cover
 
 
-
 Fair split strategy
-
 
 
 Z3 strategy
 
-
-
-Maxent Nash
-
-
-
-Van Gelder ?
 
 
 
