@@ -1331,7 +1331,7 @@ of the participating solvers (cf. the figures in Section~\ref{sec:results}).
 
 One can see that the VBS solves all the instances that
 were solved by at least one solver and solves each instance in the best observed time.
-By quantifying how much each participating solver contributed 
+By quantifying how much each participating solver contributes
 to the performance of the VBS, we may attempt to establish which
 technology (as represented by the solvers) is the most important
 (and to what degree) in the observed state of the art of SAT solving.
@@ -1339,7 +1339,7 @@ We came up with the following three related metrics conceptually derived
 from the notion of VBS:
 \begin{description}
 \item[VBS1]
-``The winner takes it all'':
+``The fastest takes it all'':
 For each solver we count the number of times, it was the fastest to solve an instance.
 \item[VBS2]
 ``Time aware, but proportional'':
@@ -1351,8 +1351,8 @@ $T^\mathit{VBS}_I/T^S_I$, where $T^\mathit{VBS}_I$ is the solution time of the b
 We award each solver $S$ solving an instance $I$ the fraction $1/|\mathcal{S}_I|$ of points, where
 $\mathcal{S}_I$ is the set of solvers solving $I$.
 \end{description}
-We remark that the sum of points awarded to all the solvers for VBS1, as well as for VBS3,
-is each time equal to the number of instances solved by at least one solver.
+We remark that the sum of VBS1 points, as well as VBS3 points, computed across all the solvers
+is equal to the number of instances solved by at least one solver (later denoted \emph{total}).
 This is obvious for VBS1, as exactly one solver scores a point for solving an instance.
 In the case of VBS3, where we discard the information about the solution times, 
 we evenly split the one point reward for solving an instance to those solvers which were successful on it.
@@ -1364,44 +1364,205 @@ For example, being twice as slow on an instance than the fastest solver results 
 And, if all the solvers solve an instance with the same solution time,
 each solver scores a whole point for that instance. 
 
-
-\newpage
-
-
-
-Ze to jsou main results
-
-
-
 \begin{table}
-\caption{The first 5 solvers by their contribution to the performance of the virtual best solver.}
-\label{tab:parallelUNS}
-\centering
-\begin{tabular}{cl}
-VBS score (fastest scores a point) & solver \\
+\caption{VBS metrics for the results of the Main track, all instances. 
+The total number of solved problems was 317. 
+There were 60 (non-disqualified) solvers (and their configurations).
+Each table shows the first ten solvers sorted according to the respective metric.}
+\label{tab:vbsMainALL}
+\begin{center}
+\begin{tabular}{ccl}
+VBS1 & percent total & solver \\
 \hline
-x
+46 & 11.5 & Kissat-sc2020-unsat \\
+37 & \phantom{0}9.2 & Kissat-sc2020-sat \\
+22 & \phantom{0}5.5 & Kissat-sc2020-default \\
+14 & \phantom{0}3.5 & Maple\_CM+dist+sattime2s+- \\
+13 & \phantom{0}3.2 & cryptominisat-ccnr-lsids \\
+13 & \phantom{0}3.2 & Maple-LCM-Dist-alluip-trail \\
+12 & \phantom{0}3.0 & Relaxed\_LCMDCBDL \\
+11 & \phantom{0}2.8 & upGlucose-3.0\_PADC \\
+10 & \phantom{0}2.5 & CaDiCaL-sc2020 \\
+\phantom{0}9 & \phantom{0}2.2 & Maple\_CMused+dist \\
 \end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS2 & percent total & solver \\
+\hline
+129.8 & 32.4 & Kissat-sc2020-sat \\
+120.1 & 30.0 & Kissat-sc2020-default \\
+113.6 & 28.4 & Kissat-sc2020-unsat \\
+\phantom{0}91.0 & 22.7 & cryptominisat-ccnr-lsids \\
+\phantom{0}87.0 & 21.7 & cryptominisat-ccnr \\
+\phantom{0}82.0 & 20.5 & cadical-alluip-trail \\
+\phantom{0}81.9 & 20.5 & cadical-alluip \\
+\phantom{0}81.8 & 20.5 & CaDiCaL-sc2020 \\
+\phantom{0}81.0 & 20.2 & Relaxed\_LCMDCBDL\_newTech \\
+\phantom{0}80.5 & 20.1 & Relaxed\_LCMDCBDL \\
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS3 & percent total & solver \\
+\hline
+11.7 & 2.9 & Kissat-sc2020-default \\
+10.8 & 2.7 & Kissat-sc2020-unsat \\
+10.4 & 2.6 & Relaxed\_LCMDCBDL\_newTech \\
+\phantom{0}9.9 & 2.5 & Kissat-sc2020-sat \\
+\phantom{0}9.8 & 2.4 & cadical-alluip \\
+\phantom{0}9.8 & 2.4 & cadical-alluip-trail \\
+\phantom{0}9.4 & 2.3 & Relaxed\_LCMDCBDL \\
+\phantom{0}9.4 & 2.3 & CaDiCaL-sc2020 \\
+\phantom{0}8.7 & 2.2 & cadical-trail \\
+\phantom{0}8.3 & 2.1 & cryptominisat-walksat \\
+\end{tabular}
+\end{center}
 \end{table}
 
+\begin{table}
+\caption{VBS metrics for the results of the Main track, SAT instances. 
+The total number of solved problems was 183. 
+There were 60 (non-disqualified) participating solvers.
+Each table always shows the first ten solvers sorted according to the respective metric.}
+\label{tab:vbsMainSAT}
+\begin{center}
+\begin{tabular}{ccl}
+VBS1 & percent total & solver \\
+\hline
+27 & 14.8 & Kissat-sc2020-sat \\
+14 & \phantom{0}7.7 & Maple\_CM+dist+sattime2s+- \\
+12 & \phantom{0}6.6 & Kissat-sc2020-default \\
+10 & \phantom{0}5.5 & Relaxed\_LCMDCBDL \\
+\phantom{0}8 & \phantom{0}4.4 & CaDiCaL-sc2020 \\
+\phantom{0}8 & \phantom{0}4.4 & Kissat-sc2020-unsat \\
+\phantom{0}7 & \phantom{0}3.8 & cryptominisat-ccnr-lsids-nolimits \\
+\phantom{0}7 & \phantom{0}3.8 & cryptominisat-ccnr-lsids \\
+\phantom{0}6 & \phantom{0}3.3 & cadical-trail \\
+\phantom{0}6 & \phantom{0}3.3 & cryptominisat-ccnr-nolimits \\
+
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS2 & percent total & solver \\
+\hline
+68.5 & 37.4 & Kissat-sc2020-sat \\
+46.3 & 25.3 & Kissat-sc2020-default \\
+44.1 & 24.1 & cryptominisat-ccnr-lsids \\
+42.2 & 23.0 & Relaxed\_LCMDCBDL\_newTech \\
+41.8 & 22.9 & cryptominisat-ccnr-lsids-nolimits \\
+40.9 & 22.3 & cryptominisat-ccnr \\
+40.6 & 22.2 & Relaxed\_LCMDCBDL \\
+39.4 & 21.5 & cryptominisat-ccnr-nolimits \\
+35.2 & 19.2 & cryptominisat-walksat-nolimits \\
+32.8 & 17.9 & cryptominisat-walksat \\
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS3 & percent total & solver \\
+\hline
+8.0 & 4.4 & Relaxed\_LCMDCBDL\_newTech \\
+7.0 & 3.8 & Relaxed\_LCMDCBDL \\
+6.5 & 3.6 & cryptominisat-walksat-nolimits \\
+5.8 & 3.2 & cryptominisat-walksat \\
+5.6 & 3.0 & Kissat-sc2020-sat \\
+5.4 & 3.0 & cryptominisat-ccnr-lsids \\
+5.4 & 3.0 & Kissat-sc2020-default \\
+5.4 & 2.9 & cryptominisat-ccnr \\
+5.2 & 2.8 & cadical-alluip \\
+5.2 & 2.8 & cadical-alluip-trail \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}
+\caption{VBS metrics for the results of the Main track, UNSAT instances. 
+The total number of solved problems was 134. 
+There were 60 (non-disqualified) participating solvers.
+Each table always shows the first ten solvers sorted according to the respective metric.}
+\label{tab:vbsMainUNSAT}
+\begin{center}
+\begin{tabular}{ccl}
+VBS1 & percent total & solver \\
+\hline
+38 & 28.4 & Kissat-sc2020-unsat \\
+11 & \phantom{0}8.2 & Maple-LCM-Dist-alluip-trail \\
+10 & \phantom{0}7.5 & Kissat-sc2020-default \\
+10 & \phantom{0}7.5 & Kissat-sc2020-sat \\
+\phantom{0}8 & \phantom{0}6.0 & Maple\_CMused+dist \\
+\phantom{0}6 & \phantom{0}4.5 & cryptominisat-ccnr-lsids \\
+\phantom{0}6 & \phantom{0}4.5 & upGlucose-3.0\_PADC \\
+\phantom{0}3 & \phantom{0}2.2 & MapleLCMDistChronoBT-f2trc \\
+\phantom{0}3 & \phantom{0}2.2 & glucose3.0\_\_proofs \\
+\phantom{0}3 & \phantom{0}2.2 & DurianSat \\
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS2 & percent total & solver \\
+\hline
+86.3 & 64.4 & Kissat-sc2020-unsat \\
+73.8 & 55.1 & Kissat-sc2020-default \\
+61.3 & 45.7 & Kissat-sc2020-sat \\
+55.4 & 41.3 & MapleLCMDistChronoBT-f2trc-s \\
+55.0 & 41.0 & DurianSat \\
+53.6 & 40.0 & Maple-LCM-Dist-alluip-trail \\
+53.3 & 39.8 & MapleLCMDistChronoBT-f2trc \\
+52.4 & 39.1 & MapleLCMDistChronoBT-DL-f2trc \\
+51.7 & 38.6 & Maple\_CMused+dist \\
+51.6 & 38.5 & ExMapleLCMDistChronoBT\_\_PADC\_DL \\
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ccl}
+VBS3 & percent total & solver \\
+\hline
+6.7 & 5.0 & Kissat-sc2020-unsat \\
+6.2 & 4.7 & Kissat-sc2020-default \\
+4.6 & 3.4 & cadical-trail \\
+4.6 & 3.4 & cadical-alluip \\
+4.6 & 3.4 & cadical-alluip-trail \\
+4.3 & 3.2 & Kissat-sc2020-sat \\
+4.2 & 3.1 & CaDiCaL-sc2020 \\
+3.4 & 2.5 & MapleLCMDistChronoBT-f2trc-s \\
+3.3 & 2.5 & exp\_V\_LGB\_MLD\_CBT\_DL \\
+3.0 & 2.3 & MapleLCMDistChronoBT-DL-f2trc \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\todo{Probably hide tab:vbsMainSAT and tab:vbsMainUNSAT.} 
+
+Table~\ref{tab:vbsMainALL} renders the just described three metrics applied 
+to the full results of the Main track. We can see that the respective leaderboards 
+are generally dominated by Kissat-sc2020 and its configurations.
+VBS1 tells us that Kissat-sc2020-unsat was most often the fastest solver,
+in particular on \SI{11.5}{\percent} of all the solved instances.
+
+VBS2 highlights as first Kissat-sc2020-sat. Its leading \SI{32.4}{\percent} of total is a bit harder to 
+interpret: A solver can score \SI{32.4}{\percent} of VBS2 total
+by solving \SI{32.4}{\percent} of the solved instances in the best observed time
+and no others. But we know, thanks to its VBS1, that Kissat-sc2020-sat solved \SI{9.2}{\percent}
+of the solved instances in the best observed time (and some others).
+A solver can also score \SI{32.4}{\percent} of VBS2 total by solving all the solved instances,
+but always being roughly 3 times slower than the VBS. 
+Kissat-sc2020-sat lies obviously somewhere between these two extremes.
+
+Finally, according to VBS3, the best solver is Kissat-sc2020-default with 11.7 points,
+which amounts to \SI{2.9}{\percent} of the distributed total score.
+The VBS3 metric is generally the most evenly distributed one,
+at least among the first 10 solvers.
+(The last solver got 0.5 points which is \SI{0.123}{\percent} of total.)
+One can conclude from this that most of the benchmarks are solved
+by most of the well performing solvers. 
 
 \newpage
 
-Everything could be done separately for (ALL, SAT, UNSAT)
-
-
-
-
-
 Greedy cover
-
-
 Fair split strategy
-
-
 Z3 strategy
-
-
 
 
 \section{Conclusion and Prospects}
