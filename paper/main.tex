@@ -762,7 +762,7 @@ place & PAR-2 score & num. solved & solver \\
    & 4076.2 & 130 & manyglucosethirty \\
    & 4675.4 & 119 & syrupscavel \\
    & 4907.1 & 114 & treengeling \\
-   & 6337.5 & 85 & abcdsatptwenty \\
+   & 6337.5 & \phantom{0}85 & abcdsatptwenty \\
 \end{tabular}
 \end{table}
 
@@ -797,7 +797,7 @@ place & PAR-2 score & num. solved & solver \\
  3 & 4797.6 & 213 & {\bf slime} \\
    & 6800.8 & 132 & paracooba \\
    & 7299.0 & 110 & ctsat \\
-   & 8468.3 & 62 & paracoobamarch \\
+   & 8468.3 & \phantom{0}62 & paracoobamarch \\
 \end{tabular}
 \end{table}
 
@@ -1556,12 +1556,63 @@ at least among the first 10 solvers.
 One can conclude from this that most of the benchmarks are solved
 by most of the well performing solvers. 
 
+\subsection{Greedy set cover}
+Another perspective on how much each solver contributes to the state of the art
+can be obtained by attempting to construct a sequential schedule of solvers 
+(rather then relying on an oracle to pick one for each instance, as with VBS)
+and looking at how big role each solvers plays in such a schedule. Since constructing 
+an optimal schedule tends to be computationally hard, we start here by 
+presenting a useful efficient alternative -- a greedy set cover approach.
+
+With greedy set cover, we start with an empty schedule and iteratively consider 
+each solver for the addition to the schedule obtained so far, picking the one
+with the highest ``marginal contribution'' in terms of the number of problems
+the new schedule will be able to solve. This is perhaps best demonstrated on
+the actual data from the competition, again taking the Main track results. 
+
+\begin{table}
+\caption{A greedy set cover of the solved instances by solvers of the Main track.}
+\label{tab:vbsMainGSC}
+\begin{center}
+\begin{tabular}{clccc}
+Iteration & selected solver & (num. solved) & contributes & covered so far \\
+\hline
+\phantom{0}1 & Kissat-sc2020-sat & 264 & 264 & 264 \\
+\phantom{0}2 & cadical-alluip & 250 & \phantom{0}22 & 286 \\
+\phantom{0}3 & MapleLCMDistChronoBT-f2trc-s & 214 & \phantom{0}10 & 296 \\
+\phantom{0}4 & Relaxed\_LCMDCBDL\_newTech & 253 & \phantom{00}6 & 302 \\
+\phantom{0}5 & Kissat-sc2020-unsat & 238 & \phantom{00}4 & 306 \\
+\phantom{0}6 & cryptominisat-walksat & 243 & \phantom{00}3 & 309 \\
+\phantom{0}7 & Relaxed\_LCMDCBDL & 245 & \phantom{00}3 & 312 \\
+\phantom{0}8 & cryptominisat-ccnr-lsids & 248 & \phantom{00}1 & 313 \\
+\phantom{0}9 & exp\_V\_LGB\_MLD\_CBT\_DL & 194 & \phantom{00}1 & 314 \\
+10 & MapleLCMDistChronoBT-DL-f2trc & 220 & \phantom{00}1 & 315 \\
+11 & MapleLCMDistChronoBT-DL-v3 & 211 & \phantom{00}1 & 316 \\
+12 & cryptominisat-walksat-nolimits & 140 & \phantom{00}1 & 317 \\
+
+\end{tabular}
+\end{center}
+\end{table}
+
+A greedy set cover of the solved instances by solvers of the Main track is presented 
+in Table~\ref{tab:vbsMainGSC}. In the first iteration, the solver which solved the highest number 
+of instances is selected; in our case it was Kissat-sc2020-sat with 264 instances
+as we know already from Table~\ref{tab:mainALL}.
+Given those 264 instances as already covered, cadical-alluip was the best in further contributing
+to the set by additional 22 instances in iteration 2.
+We can see that the further iterations tend to add very little,
+with the final 5 iterations adding one instance each. Note that each solver
+that managed to solve an instance uniquely (i.e.~being the only solver to do so)
+is showing up in the table. This is, for example the case of last listed  
+cryptominisat-walksat-nolimits with otherwise relatively low number of solved instances (140).
+Highlighting unique solutions is a property of the greedy set cover metric
+which we believe is congruent with documenting contributions to the state of the art.
+
+\subsection{Time-limited schedules}
+
+
+
 \newpage
-
-Greedy cover
-Fair split strategy
-Z3 strategy
-
 
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
