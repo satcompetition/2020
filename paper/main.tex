@@ -1572,7 +1572,7 @@ the actual data from the competition, again taking the Main track results.
 
 \begin{table}
 \caption{A greedy set cover of the solved instances by solvers of the Main track.}
-\label{tab:vbsMainGSC}
+\label{tab:gscMain}
 \begin{center}
 \begin{tabular}{clccc}
 Iteration & selected solver & (num. solved) & contributes & covered so far \\
@@ -1595,7 +1595,7 @@ Iteration & selected solver & (num. solved) & contributes & covered so far \\
 \end{table}
 
 A greedy set cover of the solved instances by solvers of the Main track is presented 
-in Table~\ref{tab:vbsMainGSC}. In the first iteration, the solver which solved the highest number 
+in Table~\ref{tab:gscMain}. In the first iteration, the solver which solved the highest number 
 of instances is selected; in our case it was Kissat-sc2020-sat with 264 instances
 as we know already from Table~\ref{tab:mainALL}.
 Given those 264 instances as already covered, cadical-alluip was the best in further contributing
@@ -1610,6 +1610,48 @@ which we believe is congruent with documenting contributions to the state of the
 
 \subsection{Time-limited schedules}
 
+The greedy set cover technique focuses only on solving the ``solvable'' instances,
+disregarding the time it would take to execute the obtained schedule. We can
+also look at schedules that would fit in a prescribed time budget. A natural choice
+of the budget seems to be the original time limit of \SI{5000}{\second}.
+
+\begin{table}
+\caption{``Uniform time split'' schedules %using $i$ solvers 
+to solve as many Main track instances as possible.}
+\label{tab:MainUniformTimeSplit}
+\begin{center}
+\begin{tabular}{cccl}
+\# solvers & time (s) & total solved & best schedule \\
+\hline
+1 & 5000 & 264 & Kissat-sc2020-sat \\
+2 & 2500 & 278 & Kissat-sc2020-unsat, \\
+             &&& Relaxed\_LCMDCBDL\_newTech \\
+3 & 1666 & 272 & Kissat-sc2020-unsat, Kissat-sc2020-sat, \\
+			 &&& cryptominisat-ccnr-lsids \\
+4 & 1250 & 262 & Kissat-sc2020-unsat, Kissat-sc2020-sat, \\
+			 &&& cryptominisat-ccnr-lsids, Maple-LCM-Dist-alluip-trail \\ 
+5 & 1000 & 253 & Kissat-sc2020-unsat, Kissat-sc2020-sat, \\
+			&&& cryptominisat-ccnr-lsids, \\
+			&&& Maple-LCM-Dist-alluip-trail, cadical-alluip \\
+\end{tabular}
+\end{center}
+\end{table}
+
+By employing a brute-force approach we first constructed a sequences of schedules 
+where the $i$-th schedule splits the available time of \SI{5000}{\second} uniformly among
+$i$ solvers and solves the highest number of instances under these constraints.
+The results are presented in Table~\ref{tab:MainUniformTimeSplit}.
+We can see that the initial increase from 264 to 278 of ``covered'' instances 
+when using two solvers instead of one (although allowing each to only use half of the time)
+does not continue further with additional solvers allowed,
+although its still better to use three solvers in a fair time split 
+(and cover 272 instances) than just one.
+One could use this observation to conjecture that the really hard 
+problems that were solved actually require quite a large time to 
+get ``cracked'' by any solver and thus the advantage of adding more solvers to the schedule
+quickly diminishes.
+
+We complemented ...
 
 
 \newpage
