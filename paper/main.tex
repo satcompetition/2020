@@ -940,7 +940,7 @@ In SAT Competition 2017, Luo et al. integrated learnt clause minimization based 
 Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}. 
 They presented their award winning \solver{Maple\_LCM\_Dist\_ChronoBT} to SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
 
-Kochemazov et al. improved three-tier clause-management by persting \todo{Please check "persting"!}
+Kochemazov et al. improved three-tier clause-management by persisting
 additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} to SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
 As can be seen in Table~\ref{tab:solvers-incremental}, numerous submissions to SAT Competition~2020 are forks of some recently award winning \solver{Maple} solver. 
 
@@ -985,9 +985,9 @@ Underlined text is used to point out the important parts of the respective submi
  Biere, Fleury &  \solbert{Cadical} & \solver{SC2020} & \\
 \hline
  
-\multirow{3}{*}{Zhang, Cai}
-    & \multirow{3}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Relaxed} & \\
- &  & \solbert{Rel. noTimeParam} & \\
+\multirow{2}{*}{Zhang, Cai}
+    & \multirow{2}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Relaxed} & \\
+% &  & \solbert{Rel. noTimeParam} & \\
  &  & \solbert{Rel. newTech} & \secondo, \firsts\\
 \hline
 
@@ -1240,7 +1240,7 @@ In a global master queue, \solver{Plingeling} shares unit clauses, equivalences 
 
 \solver{ManyGlucose} was submitted in \solver{32 core} and \solver{64 core} variants. 
 The \solver{32 core} variant received two awards in this competition: one third place in the Main track and another third place in the Unsat track. 
-\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behaviour~\cite{GlucoseSyrup}~\cite{ManySat}. 
+\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behaviour~\cite{Audemard:2018:GlucoseSyrup}~\cite{Audemard:2014:LazyClauseExchange}~\cite{Hamadi:2009:ManySat}. 
 
 
 \subsubsection{Painless Maple} 
@@ -1281,7 +1281,7 @@ Hartung & \solver{CTSat} & -\\
 
 \subsubsection{Mallob Mono}
 
-\solver{Mallob} is a fork of the generic massively parallel SAT solver \solver{HordeSAT}~\cite{Balyo:2015:HordeSAT}. 
+\solver{Mallob} is a fork of the generic massively parallel SAT solver \solver{HordeSAT}~\cite{Balyo:2015:HordeSATs}. 
 \solver{Mallob} performs dynamic load balancing through \emph{malleable job scheduling} in case the input contains several SAT instances of varying priorty. 
 This functionality is disabled in the submitted variant \solver{Mallob Mono}. 
 
@@ -1290,27 +1290,25 @@ However, as every 14th solver \solver{Mallob} spawns the SLS solver \solver{YalS
 
 \solver{Mallob} shares clauses by organizing solvers in a binary tree in which clauses are asynchronously aggregated in a buffer which is passed along this tree from leafs to the root. 
 Each node performs a three-way merge of its local export and the two incoming buffers. 
-The aggregate that approaches the root of the binary tree is then broadcast to all solvers~\cite{}. 
+The aggregate that approaches the root of the binary tree is then broadcast to all solvers~\cite{Schreiber:SC2020}. 
 
 \solver{Mallob} uses a global clause size limit and a dynamic limit for the sharing buffer, which depends on the position in the binary tree and grows while getting closer to the root. 
 Clauses are sorted by their size during aggregation, such that smaller clauses are preferred over longer clauses. 
-Duplicates are avoided by using a bloom filter which is periodically cleared~\cite{}. 
+Duplicates are avoided by using a bloom filter which is periodically cleared~\cite{Schreiber:SC2020}. 
 
 
 \subsubsection{TopoSAT 2}
 
-\solver{TopoSAT~2} is a massively parallel SAT solver build from \solver{Glucose~3}~\cite{Glucose3,Toposat2}. 
-\solver{TopoSAT~2} uses lock-free clause-exchange for solvers running on the same matching, and MPI \todo{Please spell out MPI once.}
-to share clauses between machines~\cite{ManySat,Proceedings}. 
-
+\solver{TopoSAT~2} is a massively parallel SAT solver build from \solver{Glucose~3}~\cite{Audemard:2018:Glucose}~\cite{Ehlers:2018:Toposat2}. 
+\solver{TopoSAT~2} uses lock-free clause-exchange for solvers running on the same matching, and Message Passing Interface (MPI) to share clauses between machines~\cite{Hamadi:2009:ManySat}. 
 \solver{TopoSAT~2} strengthens clauses before export and delays clause import until the trail-size reaches a local minimum. 
-\solver{Toposat~2} diversifies via the strategies used for branching, restarting and clause forgetting. 
+\solver{Toposat~2} diversifies via the strategies used for branching, restarting and clause forgetting~\cite{Ehlers:SC2020}. 
 
 
 \subsubsection{Slime}
 
-\solver{Slime} is built from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{SlimeSATRace2019}. 
-The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{}. 
+\solver{Slime} is built from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{Riveros:SC2019}. 
+The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{Riveros:SC2020}. 
 Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} won the third price in the Cloud track. 
 
 \section{More detailed analysis of the Main track results (to be renamed)}
