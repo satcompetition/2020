@@ -1642,7 +1642,7 @@ which we believe is congruent with documenting contributions to the state of the
 
 \subsection{Time-limited schedules}
 
-The greedy set cover technique focuses only on solving the ``solvable'' instances,
+The greedy set cover technique focuses only on solving instances,
 disregarding the time it would take to execute the obtained schedule. We can
 also look at schedules that would fit in a prescribed time budget. A natural choice
 of the budget seems to be the original time limit of \SI{5000}{\second}.
@@ -1683,10 +1683,42 @@ problems that were solved actually require quite a large time to
 get ``cracked'' by any solver and thus the advantage of adding more solvers to the schedule
 quickly diminishes.
 
-We complemented ...
+We complemented this ``uniform time split'' schedule by formulating the schedule construction
+problem as a MaxSMT formula and using the Z3 SMT solver \cite{DBLP:conf/tacas/MouraB08} in its optimization mode \cite{DBLP:conf/sycss/BjornerP14} to solve it.
+For each solver (and its configuration) $S$ we introduced an integer variable $R^S$ denoting 
+the number of seconds $S$ will run in the new schedule. We then constructed a formula with the hard
+constraints $0 \leq R^S$ for every $S$ and $\sum_{S\in\mathcal{S}} R^S \leq 5000$ and with one 
+soft constraint for every instance $I$ of the form
+\[\bigvee_{S \in \mathcal{S}_I} T^S_I \leq R^S,\]
+where $\mathcal{S}_I$ is the set of solvers which solved the instance $I$ and $T^S_I$ is the time it took solver $S$ to solve $I$ here rounded up to the nearest integer.
+(Note that while $R^S$ are variables, i.e.~unknowns, the $T^S_I$ are known constants in the formula.)
+
+\begin{table}
+\caption{TODO}
+\label{tab:MainZ3Schedule}
+\begin{center}
+\begin{tabular}{lccc}
+solver & taking up (s) & solving & contributes \\
+\hline
+Kissat-sc2020-unsat & 2523 & 219 & 219 \\
+Relaxed\_LCMDCBDL\_newTech & 2180 & 234 & \phantom{0}59 \\
+Kissat-sc2020-sat & 103 & \phantom{0}72 & \phantom{00}2 \\
+MapleLCMDistChronoBT-DL-f2trc & \phantom{0}76 & \phantom{0}15 & \phantom{00}0 \\
+cadical-alluip & \phantom{0}58 & \phantom{0}26 & \phantom{00}2 \\
+Maple-LCM-Dist-alluip-trail & \phantom{0}34 & \phantom{0}12 & \phantom{00}1 \\
+Maple\_CM+dist+sattime2s+- & \phantom{0}18 & \phantom{0}18 & \phantom{00}1 \\
+CaDiCaL-sc2020 & \phantom{00}8 & \phantom{0}10 & \phantom{00}2 \\
+\hline 
+Total & 5000 & \phantom{0}-- & 286 \\ 
+\end{tabular}
+\end{center}
+\end{table}
+
+Finding a solution which satisfies all the hard constraints and as many soft constraints as possible,
+Z3 came up with the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
 
 
-\newpage
+Its not clear how unique this is. Just take the total 286 and compare to uniform split -- that's the interesting bit, perhaps.
 
 \subsection{Best Tuples and Triples}
 
