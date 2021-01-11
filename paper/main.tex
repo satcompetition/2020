@@ -1718,10 +1718,16 @@ Finding a solution which satisfies all the hard constraints and as many soft con
 Z3 came up with the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
 The table is sorted by $R^S$, the time the schedule allocates to individual solvers, and skips the zero entries.
 It is not clear to what degree is the obtained schedule unique and how much it relies on each solver being present and for how long.
-(Amusingly, as can be seen from the ``contributes'' column, the presence of MapleLCMDistChronoBT-DL-f2trc
-is not necessary. However, allowing any other solver to run for the 76 ``wasted'' seconds would not increase the overall total.)
 Nevertheless, it is interesting to observe the total number of problems covered, here 286,
 and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with the uniform split and two solvers.
+
+Amusingly, as can be seen from the ``contributes'' column, the presence of MapleLCMDistChronoBT-DL-f2trc in the schedule
+is not necessary.
+% The following three lines could be skipped without much harm:
+All the 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
+This result, however, does not signify a bug, as Z3 was not asked to produce a schedule with a minimal number of
+participating solvers.
+Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not increase the overall total.
 
 \subsection{Best Tuples and Triples}
 
