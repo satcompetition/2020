@@ -233,7 +233,7 @@ the individual calls to the SAT solver are not independent, but may share
 a common subset of the input clauses or differ in the presence of additional 
 unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
 
-Instead of using or extending the DIMACS input format, we realize the Incremental track
+Instead of using or extending the DIMACS input format, we realize the Incremental Library track
 by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
 for SAT applications~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
 enclosing tool on its own benchmark and communicate with the competing SAT solver 
@@ -351,6 +351,8 @@ There were several cases where {\tt cake\_lpr} ran out of resources before being
 confirm after {\tt DRAT-trim}. However, there was no case where {\tt DRAT-trim} would accept
 a proof and {\tt cake\_lpr} would later disagree with the verdict.
 
+\todo{on wrong certificate (but still correct result) followed the demotion of the solver to the no-limits track}
+
 \subsection{Computing environments}
 
 \label{sec:computing}
@@ -373,15 +375,10 @@ The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{
 \section{Description of Benchmark Instances}
 \label{sec:instances}
 
-For selection of benchmark instances in this competition, we used GBD Tools.%
-\footnote{\url{https://pypi.org/project/gbd-tools/}} 
+Benchmark instances selection in this competition was realized using GBD Tools\footnote{\url{https://pypi.org/project/gbd-tools/}} which is a tool-chain for maintenance and distribution of benchmark instances and instance attributes~\cite{Iser:2018:GBD}.
 Using the concept of instance identification via GBD Hash, which is the hash-sum of the unpacked and normalized DIMACS file, GBD Tools provide utilities to query for instances with desired properties, e.g., instance author, family and result.
-The association of instance-id and instance attributes is maintained in publicly available databases.%
-\footnote{\url{https://gbd.iti.kit.edu}}
-
-GBD Tools is a tool-chain for maintenance and distribution of benchmark instances and instances features~\cite{Iser:2018:GBD}. 
-Its databases provide information about all instances used in SAT competitive events dating back to 2006. 
-In GBD Server, each instance also has an URL, such that instances can be distributed by using their identifier: \url{https://gbd.iti.kit.edu/file/<gbd-hash>}.
+Instance attributes are maintained in publicly available databases, which provide information about all instances used in SAT Competitions since 2006.\footnote{\url{https://gbd.iti.kit.edu}} 
+Benchmark instance identification also simplifies the distribution of instances via the GBD Server.\footnote{\url{https://gbd.iti.kit.edu/file/<gbd-hash>}}
 
 
 \subsection{Selection of Instances}
@@ -393,16 +390,16 @@ In GBD Server, each instance also has an URL, such that instances can be distrib
 \KwData{$I$ : Set of Instances, $A$ : Set of Authors}
 \KwData{Functions $\alpha : I \rightarrow A$ and $\sigma : I \rightarrow \{\mathsf{sat}, \mathsf{unsat}, \mathsf{unknown}\}$}
 \KwResult{$S$ : Set of Selected Instances}
-\SetKwFunction{rand}{$\mathsf{random.choice}$}
+\SetKwFunction{rand}{$\mathsf{random}$}
 \BlankLine
 $S \leftarrow \emptyset$\;
 
 \For {$a \in A$} {
-	$I_a^+ \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{sat} \}$, $k=7$}\;	
-	$I_a^- \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unsat} \}$, $k=7$}\;	
+	$I_a^+ \leftarrow$ \rand{$7$, $\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{sat} \}$}\;	
+	$I_a^- \leftarrow$ \rand{$7$, $\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unsat} \}$}\;	
 	\If {$|I_a^+|+|I_a^-| < 14$}{
-		$l \leftarrow 14 - (|I_a^+|+|I_a^-|)$\;
-		$I_a^? \leftarrow$ \rand{$\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unknown} \}$, $k=l$}\;
+		$l \leftarrow 14 - |I_a^+| - |I_a^-|$\;
+		$I_a^? \leftarrow$ \rand{$l$, $\{ e \in I \mid \alpha(e) = a \land \sigma(e) = \mathsf{unknown} \}$}\;
 	}
 	$S \leftarrow S \cup I_a^+ \cup I_a^- \cup I_a^?$\;	
 }
@@ -415,11 +412,15 @@ $S \leftarrow \emptyset$\;
 \begin{table}[t]
 \small
 \centering
-\begin{tabular}{|l|l||rr|}
+\begin{tabular}{llrr}
+\bf Family & \bf Author & \bf Submitted & \bf Selected\\
 \hline
-Family & Author & Submitted & Selected\\
-\hline\hline
-0-1 Integer Programming & Riveros & 6 & 2 \\
+\arrayrulecolor{lightgray}
+0/1 Integer Programming & \multirow{4}{*}{Riveros} & 6 & 2 \\
+Fermat &  & 8 & 5 \\
+Schur Coloring &  & 4 & 2 \\
+Sum Subset &  & 5 & 2 \\
+\hline
 Anti-Bandwidth & Biere & 187 & 14 \\
 Baseball Lineup & Hickey & 40 & 13 \\
 Bit-Vector & Preiner & 393 & 14 \\
@@ -428,28 +429,29 @@ CNF Miter & Manthey & 38 & 7 \\
 Coloring & Oostema & 14 & 14 \\
 Core-based Generator & Hartung & 20 & 14 \\
 Cover & Gacek & 18 & 13 \\
-Cryptography & Paxian, Shaw, Soos & 106 & 34 \\
+\hline
+\multirow{3}{*}{Cryptography} & Paxian & \multirow{3}{*}{106} & \multirow{3}{*}{34} \\
+ & Shaw &  &  \\
+ & Soos &  &  \\
+\hline
 Discrete Logarithm & Jingchao & 20 & 7 \\
 Edge Matching & Holten & 58 & 7 \\
-Fermat & Riveros & 8 & 5 \\
 Flood-It Puzzle & Stiphout & 40 & 0 \\
 HGen & Guanfeng & 20 & 13 \\
 Hypertree Decomposition & Schidler & 56 & 14 \\
 Influence Maximization & Kochemazov & 20 & 14 \\
 Lam Discrete Geometry & Nejati & 20 & 9 \\
 Polynomial Multiplication & Maoluo & 20 & 8 \\
-Schur Coloring & Riveros & 4 & 2 \\
 Station Repacking & Newman & 20 & 12 \\
 Stedman Triples & Johnson & 23 & 7 \\
-Sum Subset & Riveros & 5 & 2 \\
 Tensors & Savicky & 20 & 14 \\
-Termination & Yolcu & 12 & 7 \\
+Termination Analysis & Yolcu & 12 & 7 \\
 Timetable & Djamegni & 20 & 14 \\
 Tournament & Heule & 16 & 14 \\
 Vlsat & Bouvier & 36 & 14 \\
+\arrayrulecolor{black}
 \hline
-\multicolumn{2}{|r||}{$\Sigma$} & 1260 & 300 \\
-\hline
+\multicolumn{2}{r}{$\Sigma$} & 1260 & 300
 \end{tabular}
 \caption{Families and amounts of newly submitted instances}
 \label{tab:families}
@@ -458,31 +460,26 @@ Vlsat & Bouvier & 36 & 14 \\
 The ``Bring Your Own Benchmarks'' (BYOB) rule is established since SAT Competition 2017~\cite{SC2017}. 
 By this rule solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that Minisat must need more than a minute to solve it and the authors own solver does not run into a timeout for the instance. 
 
-As can be seen in Table~\ref{tab:families}, a total of $28$ authors followed our calls for participation and benchmark instances, thus contributing a set of $1260$ previously unseen benchmark instances in a large variety of different instance families. 
-
-By filtering out instances with could be solved by Minisat in less than $10$ minutes, we obtained an initial set of $1012$ instances. 
-In order to compile a balanced set of $300$ benchmark instances, we considered a maximum of $14$ submissions per author and used the procedure which is depicted in Algorithm~\ref{algo:select}. 
-Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (lines~3 and~4). 
-If this did not yield a total of $14$ instances, we added instances of yet unknown outcome (lines~5--7). 
+As can be seen in Table~\ref{tab:families}, $27$ authors contributed a set of $1260$ previously unseen benchmark instances of a large variety of different instance families. 
+In order to compile a balanced set of $300$ benchmark instances, we first removed those instances solved by \solver{Minisat} in less than $10$ minutes, thus obtaining a reduced set of $1012$ instances. 
+We considered a maximum of $14$ submissions per author using the procedure which is depicted in Algorithm~\ref{algo:select}. 
+Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (Lines~3 and~4). 
+If this did not yield a total of $14$ instances, we added instances of yet unknown result (Lines~5--7). 
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
 
 To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
 We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unknown result. 
 Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
 
-Table~\ref{tab:families} displays the numbers of submitted and selected instances grouped by problem family and author. 
-
 \begin{table}[t]
 \centering
-\begin{tabular}{|r|ccc|c|}
-\hline
+\begin{tabular}{rcccc}
  & SAT & UNSAT & UNKNOWN & $\Sigma$\\
-\hline\hline
+\hline
 New Instances & 114 & 78 & 108 & 300 \\
 Old Instances & 21 & 57 & 22 & 100\\
 \hline
-$\Sigma$ & 135 & 135 & 130 & 400\\
-\hline
+$\Sigma$ & 135 & 135 & 130 & 400
 \end{tabular}
 \caption{Amount of old and new instances by result}
 \label{tab:final}
