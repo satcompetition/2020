@@ -99,6 +99,7 @@ Czech Technical University in Prague, Czech Republic\\
 
 \newcommand{\todo}[1]{{\color{purple}Todo: #1}}
 \newcommand{\solver}[1]{\texttt{#1}}
+\newcommand{\solbert}[1]{\underline{\solver{#1}}}
 
 % Stack a variable number of arguments:
 \makeatletter
@@ -998,120 +999,115 @@ Table~\ref{tab:solvers-main} displays an overview of the participating teams, ba
 The recent genealogy of all submissions is highlighted by \emph{base solver} and \emph{variant} columns. 
 Underlined text is used to point out the important parts of the respective submissions name.
 
-\renewcommand{\solver}[1]{\underline{\texttt{#1}}}
-\newcommand{\solbert}[1]{\texttt{#1}}
-
 \begin{table}[ht!]
+\setlength\tabcolsep{4.5pt}
 \smaller
-\arrayrulecolor{gray}
 \centering
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{lllcccc}
+\bf Team & \bf Base Solver & \bf Variant / Name & \bf M & \bf U & \bf S & \bf P \\
 \hline
-\bf Team & \bf Base Solver & \bf Variant / Name & \bf Award \\
-\hline
+\arrayrulecolor{lightgray}
 
-\multirow{3}{*}{Biere} & \multirow{3}{*}{\solver{Kissat}} &  -- & \firsto, \firstu\\
- &  &  \solbert{sat} & \firsto, \firstu, \seconds\\
- &  &  \solbert{unsat} & \firstu, \thirdp\\
+\multirow{3}{*}{Biere} & \multirow{3}{*}{\solbert{Kissat}} &  -- & 1 & 1 & -- & --\\
+ &  &  \solver{sat} & 1 & 1 & 2 & --\\
+ &  &  \solver{unsat} & -- & 1 & -- & 3\\
 \hline
- Biere, Fleury &  \solbert{Cadical} & \solver{SC2020} & \\
+ Biere, Fleury &  \solver{Cadical} & \solbert{SC2020} & -- & -- & -- & --\\
 \hline
  
 \multirow{2}{*}{Zhang, Cai}
-    & \multirow{2}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Relaxed} & \\
-% &  & \solbert{Rel. noTimeParam} & \\
- &  & \solbert{Rel. newTech} & \secondo, \firsts\\
+    & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Relaxed} & -- & -- & -- & --\\
+% &  & \solver{Rel. noTimeParam} & \\
+ &  & \solver{Rel. newTech} & 2 & -- & 1 & --\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  \multirow{2}{*}{\solbert{CryptoMiniSat-CCAnr}} &  -- & \thirdo, \thirds, \secondp\\
- &  &  \solbert{lsids} & \thirdo, \thirds, \secondp\\
+ &  \multirow{2}{*}{\solver{CryptoMiniSat-CCAnr}} &  -- & 3 & -- & 3 & 2\\
+ &  &  \solver{lsids} & 3 & -- & 3 & 2\\
 \hline
 
-\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solbert{CryptoMiniSat-WalkSAT} & -- & \\
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solver{CryptoMiniSat-WalkSAT} & -- & -- & -- & -- & --\\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- &  &  \solbert{trail} & \secondu\\
- &  &  \solbert{alluip} & \secondu, \firstp\\
- & \multirow{-3}{*}{\solbert{CaDiCaL}} &  \solver{alluip-trail} & \secondu, \firstp\\
- \cline{2-4}
- & \solbert{MapleLCMDist} & \solbert{alluip-trail} & \\
+ &  &  \solver{trail} & -- & 2 & -- & --\\
+ &  &  \solver{alluip} & -- & 2 & -- & 1\\
+ & \multirow{-3}{*}{\solver{CaDiCaL}} &  \solbert{alluip-trail} & -- & 2 & -- & 1\\
+ \cline{2-7}
+ & \solver{MapleLCMDist} & \solver{alluip-trail} & -- & -- & -- & -- \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solbert{MapleLCMDistCBT}} & \solver{f2trc} & \thirdu\\
- & & \solbert{f2trc-s} & \thirdu\\
- \cline{2-4}
- & \solbert{MapleLCMDistCBT-DL} & \solbert{f2trc} & \thirdu\\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solver{MapleLCMDistCBT}} & \solbert{f2trc} & -- & 3 & -- & --\\
+ & & \solver{f2trc-s} & -- & 3 & -- & --\\
+ \cline{2-7}
+ & \solver{MapleLCMDistCBT-DL} & \solver{f2trc} & -- & 3 & -- & --\\
 \hline
 
-\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solver{MapleLCMDistCBT-DL-v3} & -- & \\
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solbert{MapleLCMDistCBT-DL-v3} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
- & \multirow{4}{*}{\solbert{MapleLCMDistCBT-DL-v3}} & \solver{Undominated} & \\
- &  & \solbert{Undom. Top16} & \\
- &  & \solbert{Undom. Top24} & \\
- &  & \solbert{Undom. Top36} & \\
+ & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v3}} & \solbert{Undominated} & -- & -- & -- & -- \\
+ &  & \solver{Undom. Top16} & -- & -- & -- & -- \\
+ &  & \solver{Undom. Top24} & -- & -- & -- & -- \\
+ &  & \solver{Undom. Top36} & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{\solver{Ex}\solbert{MapleLCMDistCBT}} & \solbert{padc\_dl} & \\
- &  & \solbert{padc\_dl\_ovau\_lin} & \\
- &  & \solbert{padc\_dl\_ovau\_exp} & \\
- &  & \solbert{psids\_dl} & \\
+ & \multirow{4}{*}{\solbert{Ex}\solver{MapleLCMDistCBT}} & \solver{padc\_dl} & -- & -- & -- & -- \\
+ &  & \solver{padc\_dl\_ovau\_lin} & -- & -- & -- & -- \\
+ &  & \solver{padc\_dl\_ovau\_exp} & -- & -- & -- & -- \\
+ &  & \solver{psids\_dl} & -- & -- & -- & -- \\
 % \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
 \hline
 
-Shaw, Meel & \solbert{MapleLCMDistCBT-DL-v3} & \solver{DurianSat} & \\
+Shaw, Meel & \solver{MapleLCMDistCBT-DL-v3} & \solbert{DurianSat} & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{Chen}
- & \multirow{2}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Maple\_Mix} & \\
- &  & \solver{Maple\_Simp} & \\
+ & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Maple\_Mix} & -- & -- & -- & -- \\
+ &  & \solbert{Maple\_Simp} & -- & -- & -- & -- \\
 \hline
 
-Riveros & \solbert{MapleLCMDistCBT} & \solver{SLIME} & \\
+Riveros & \solver{MapleLCMDistCBT} & \solbert{SLIME} & -- & -- & -- & -- \\
 \hline
 
 \multirow{3}{*}{Li, Wu, Xu, Chen}
- & \multirow{3}{*}{\solbert{MapleLCMDistCBT-DL}} & \solver{Scavel} & \\
- &  & \solbert{Scavel01} & \\
- &  & \solbert{Scavel02} & \\
+ & \multirow{3}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Scavel} & -- & -- & -- & -- \\
+ &  & \solver{Scavel01} & -- & -- & -- & -- \\
+ &  & \solver{Scavel02} & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & \multirow{2}{*}{\solver{MapleCOMSPS\_LRB\_VSIDS\_2}} & -- & \\
- &  & \solbert{init} & \\
+ & \multirow{2}{*}{\solbert{MapleCOMSPS\_LRB\_VSIDS\_2}} & -- & -- & -- & -- & -- \\
+ &  & \solver{init} & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
- & \multirow{4}{*}{\solbert{MapleLCMDistCBT-DL-v2.2}} & \solver{exp}\solbert{-V-LGB} & \\
- &  & \solbert{exp-V-L} & \\
- &  & \solbert{exp-L} & \\
- &  & \solbert{exp-V} & \\
+ & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v2.2}} & \solbert{exp}\solver{-V-LGB} & -- & -- & -- & -- \\
+ &  & \solver{exp-V-L} & -- & -- & -- & -- \\
+ &  & \solver{exp-L} & -- & -- & -- & -- \\
+ &  & \solver{exp-V} & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{4}{*}{\solver{MapleCM}} & \solver{+dist} & \\
- &  & \solbert{+dist+sattime2s+-} & \\
- &  & \solbert{+dist+simp2--} & \\
- &  & \solbert{used+dist} & \\
+ & \multirow{4}{*}{\solbert{MapleCM}} & \solbert{+dist} & -- & -- & -- & -- \\
+ &  & \solver{+dist+sattime2s+-} & -- & -- & -- & -- \\
+ &  & \solver{+dist+simp2--} & -- & -- & -- & -- \\
+ &  & \solver{used+dist} & -- & -- & -- & -- \\
 \hline
 
-Kaiser, Hartung & \solbert{MapleLCMDist} & \solver{PauSat} & \\
+Kaiser, Hartung & \solver{MapleLCMDist} & \solbert{PauSat} & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{Osama, Wijs} 
- & \multirow{2}{*}{\solver{ParaFROST}} & -- & \\
- &  & \solbert{CBT} & \\
-\hline
+ & \multirow{2}{*}{\solbert{ParaFROST}} & -- & -- & -- & -- & -- \\
+ &  & \solver{CBT} & -- & -- & -- & -- 
 \end{tabular}
-\caption[Teams and Solvers in the Main Tracks]{Teams and Solvers in the Main Tracks: Column~2 highlights the recent genealogy of submissions and Column~3 displays configuration names as well as names of forks. We partially \solver{underlined} submission names. Awards in the Main- (M), Planning- (P), Sat- (s), and Unsat- (u) Tracks are indicated by a string TX with $T \in \{M, P, s, u\}$ and $X \in \{1,2,3\}$. }
+\caption[Teams and Solvers in the Main Tracks]{Teams and Solvers in the Main Tracks: Column~2 highlights the recent genealogy of submissions and Column~3 displays configuration names as well as names of forks. We partially \solbert{underlined} submission names. Awards in the Main- (M), Planning- (P), Sat- (s), and Unsat- (u) Tracks are indicated by a string TX with $T \in \{M, P, s, u\}$ and $X \in \{1,2,3\}$. }
 \label{tab:solvers-main}
 \end{table}
 
-\renewcommand{\solver}[1]{\texttt{#1}} % sorry ;)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
