@@ -174,34 +174,12 @@ The rest of this article is organized as follows. TODO -MJ
 
 OLD:
 
-Propositional satisfiability (SAT) is the archetypal NP-complete problem. 
-Despite its complexity, there is an ongoing progress in solving methods and their implementations in SAT solvers. 
-The generic nature of the SAT problem as well as the performance of state-of-the-art SAT solvers facilitate their use as the algorithmic backend in a plethora of applications. 
-Today, SAT solvers are used for verification of hard- and software, product configuration, cryptography, planning and scheduling, to name a few. 
-In mathematics, SAT solvers were recently even used to generate a record sized proof (200 TB) for an until then unsolved problem in Ramsey theory. 
-
-SAT Competitions are organized regularly since 1992 in order to drive progress and to serve as a public assessment of the state-of-the-art in SAT solving. 
-For each SAT Competition, a set of new benchmark instances is compiled which reflects the various applications of interest to the community. 
-
-In this competition, we initiated a new application-specific track. 
-The idea is to provide a large amount of benchmark instances of a specific application and to evaluate all solvers with respect to these instance in a special track. 
-In this competition, we used 200 instances of the planning domain to run a planning track. 
-
-Faster networks, distributed systems, and the increasing number of processors in modern computers show that the trend of increasing parallelism is about to continue.  
-In the new cloud track, for the first time, solver authors could compete in SAT technologies that allow hundreds of SAT solvers to cooperate in solving a SAT instance. 
-
-\todo{Present some important pointers for SAT and CDCL}
-
 In Section~\ref{sec:overview}, we start with an overview of the competition,
 including detailed description of the competition tracks and their purpose,
 the general rules and the used computing environment.
 Section~\ref{sec:instances} contains an overview on the selected benchmark instances and details about the selection process. 
 In Section~\ref{sec:results}, we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
 A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
-
-\todo{maybe mention \url{https://satcompetition.github.io/2020/}}
-
-\todo{Maybe mention proceedings \cite{SC2020}}
 
 OLD END ===
 
