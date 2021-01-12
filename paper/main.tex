@@ -658,21 +658,21 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \begin{tabular}{cccl}
 place & PAR-2 score & num. solved & solver \\
 \hline
-1  & 3926.2 & 264 & {\bf Kissat-sc2020-sat} \\
-(1)& 4083.1 & 260 & Kissat-sc2020-default \\
-2  & 4179.3 & 253 & {\bf Relaxed\_LCMDCBDL\_newTech} \\
-3  & 4266.7 & 248 & {\bf cryptominisat-ccnr-lsids} \\
-(3)& 4278.0 & 250 & cryptominisat-ccnr \\
-   & 4428.1 & 250 & cadical-alluip-trail \\
-   & 4429.6 & 250 & cadical-alluip \\
-   & 4436.5 & 245 & Relaxed\_LCMDCBDL \\
-   & 4501.2 & 243 & cryptominisat-walksat \\
-   & 4554.0 & 243 & cadical-trail \\
-   & 4560.0 & 238 & Kissat-sc2020-unsat \\
-   & 4607.6 & 246 & CaDiCaL-sc2020 \\
-   & 5157.7 & 216 & Undominated-LC-MapleLCMDiscChronoBT-DL \\
-   & 5159.6 & 220 & MapleLCMDistChronoBT-DL-f2trc \\
-   & 5177.0 & 214 & ExMapleLCMDistChronoBT\_\_PADC\_DL \\   
+1     & 3926.2 & 264 & {\bf Kissat-sat} \\
+(1)   & 4083.1 & 260 & Kissat \\
+2     & 4179.3 & 253 & {\bf Relaxed\_newTech} \\
+3     & 4266.7 & 248 & {\bf CMS-ccnr-lsids} \\
+(3)   & 4278.0 & 250 & CMS-ccnr \\
+      & 4428.1 & 250 & CaDiCaL-alluip-trail \\
+      & 4429.6 & 250 & CaDiCaL-alluip \\
+      & 4436.5 & 245 & Relaxed \\
+      & 4501.2 & 243 & CMS-walksat \\
+      & 4554.0 & 243 & CaDiCaL-trail \\
+      & 4560.0 & 238 & Kissat-unsat \\
+      & 4607.6 & 246 & CaDiCaL-sc2020 \\
+      & 5157.7 & 216 & Undominated \\
+      & 5159.6 & 220 & f2trc-DL \\
+      & 5177.0 & 214 & PADC\_DL \\   
 \end{tabular}
 \end{table}
 
@@ -682,21 +682,21 @@ place & PAR-2 score & num. solved & solver \\
 \begin{tabular}{cccl}
 place & PAR-2 score & num. solved & solver \\
 \hline
- 1 & 2997.4 & 150 & {\bf Relaxed\_LCMDCBDL\_newTech} \\
- 2 & 3127.6 & 146 & {\bf Kissat-sc2020-sat} \\
- 3 & 3263.0 & 144 & {\bf cryptominisat-ccnr-lsids} \\
-(3)& 3317.4 & 145 & cryptominisat-ccnr \\
-   & 3355.5 & 143 & Relaxed\_LCMDCBDL \\
-   & 3524.7 & 140 & cryptominisat-ccnr-nolimits \\
-   & 3622.4 & 138 & cryptominisat-ccnr-lsids-nolimits \\
-   & 3703.7 & 140 & cryptominisat-walksat-nolimits \\
-   & 3721.2 & 139 & cryptominisat-walksat \\
-   & 3830.5 & 134 & Kissat-sc2020-default \\
-   & 3908.5 & 135 & cadical-alluip-trail \\
-   & 3909.6 & 135 & cadical-alluip \\
-   & 4265.6 & 126 & cadical-trail \\
-   & 4368.6 & 130 & CaDiCaL-sc2020 \\
-   & 4804.9 & 114 & Kissat-sc2020-unsat \\
+ 1    & 2997.4 & 150 & {\bf Relaxed\_newTech} \\
+ 2    & 3127.6 & 146 & {\bf Kissat-sat} \\
+ 3    & 3263.0 & 144 & {\bf CMS-ccnr-lsids} \\
+(3)   & 3317.4 & 145 & CMS-ccnr \\
+      & 3355.5 & 143 & Relaxed \\
+      & 3721.2 & 139 & CMS-walksat \\
+      & 3830.5 & 134 & Kissat \\
+      & 3908.5 & 135 & CaDiCaL-alluip-trail \\
+      & 3909.6 & 135 & CaDiCaL-alluip \\
+      & 4265.6 & 126 & CaDiCaL-trail \\
+      & 4368.6 & 130 & CaDiCaL-sc2020 \\
+      & 4804.9 & 114 & Kissat-unsat \\
+      & 5173.2 & 110 & Undominated \\
+      & 5206.0 & 110 & abcdsat\_n20 \\
+      & 5244.1 & 107 & PADC\_DL \\   
 \end{tabular}
 \end{table}
 
@@ -706,22 +706,22 @@ place & PAR-2 score & num. solved & solver \\
 \label{tab:mainUNSAT}
 \begin{tabular}{cccl}
 place & PAR-2 score & num. solved & solver \\
-\hline
-1  & 4315.1 & 124 & {\bf Kissat-sc2020-unsat} \\
-(1)& 4335.6 & 126 & Kissat-sc2020-default \\
-(1)& 4724.8 & 118 & Kissat-sc2020-sat \\
- 2 & 4842.5 & 117 & {\bf cadical-trail} \\
--- & 4846.7 & 116 & CaDiCaL-sc2020 \\
-(2)& 4947.8 & 115 & cadical-alluip-trail \\
-(2)& 4949.6 & 115 & cadical-alluip \\
- 3 & 4991.4 & 110 & {\bf MapleLCMDistChronoBT-f2trc-s} \\
-(3)& 5051.4 & 109 & MapleLCMDistChronoBT-f2trc \\
-(3)& 5054.3 & 110 & MapleLCMDistChronoBT-DL-f2trc \\
-   & 5069.6 & 109 & Maple\_mix \\
-   & 5110.0 & 107 & ExMapleLCMDistChronoBT\_\_PADC\_DL \\
-   & 5126.9 & 107 & Maple\_simp \\
-   & 5128.9 & 107 & MapleLCMDistChronoBT-DL-v3 \\
-   & 5142.2 & 106 & Undominated-LC-MapleLCMDiscChronoBT-DL \\
+\hline   
+1     & 4315.1 & 124 & {\bf Kissat-unsat} \\
+(1)   & 4335.6 & 126 & Kissat \\
+(1)   & 4724.8 & 118 & Kissat-sat \\
+ 2    & 4842.5 & 117 & {\bf CaDiCaL-trail} \\
+--    & 4846.7 & 116 & CaDiCaL-sc2020 \\
+(2)   & 4947.8 & 115 & CaDiCaL-alluip-trail \\
+(2)   & 4949.6 & 115 & CaDiCaL-alluip \\
+ 3    & 4991.4 & 110 & {\bf f2trc-s} \\
+(3)   & 5051.4 & 109 & f2trc \\
+(3)   & 5054.3 & 110 & f2trc-DL \\
+      & 5069.6 & 109 & Maple\_Mix \\
+      & 5110.0 & 107 & PADC\_DL \\
+      & 5126.9 & 107 & Maple\_Simp \\
+      & 5128.9 & 107 & MapleCBT-DL-v3 \\
+      & 5142.2 & 106 & Undominated \\
 \end{tabular}
 \end{table}
 
@@ -731,22 +731,22 @@ place & PAR-2 score & num. solved & solver \\
 \label{tab:planning}
 \begin{tabular}{cccl}
 place & PAR-2 score & num. solved & solver \\
-\hline
- 1 & 6406.9 & 80 & {\bf cadical-alluip-trail} \\
-(1)& 6409.3 & 80 & cadical-alluip \\
- 2 & 6466.9 & 79 & {\bf cryptominisat-ccnr-lsids} \\
-(2)& 6471.9 & 79 & cryptominisat-ccnr \\
-(2)& 6472.9 & 79 & cryptominisat-walksat \\
- 3 & 6596.4 & 75 & {\bf Kissat-sc2020-unsat} \\
-   & 6650.1 & 79 & cadical-trail \\
-   & 6713.0 & 75 & Maple\_mix \\
-   & 6746.5 & 75 & MapleCOMSPS\_LRB\_VSIDS\_2\_\_LRB\_VSIDS\_2\_init \\
-   & 6754.3 & 73 & Maple\_simp \\
-   & 6773.0 & 73 & MapleCOMSPS\_LRB\_VSIDS\_2\_\_default\_drup \\
-   & 6773.9 & 73 & Kissat-sc2020-sat \\
-   & 6774.2 & 73 & Kissat-sc2020-default \\
-   & 7003.0 & 69 & optsat\_m20 \\
-   & 7025.5 & 68 & upGlucose-3.0\_PADC \\
+\hline   
+ 1    & 6406.9 & 80 & {\bf CaDiCaL-alluip-trail} \\
+(1)   & 6409.3 & 80 & CaDiCaL-alluip \\
+ 2    & 6466.9 & 79 & {\bf CMS-ccnr-lsids} \\
+(2)   & 6471.9 & 79 & CMS-ccnr \\
+(2)   & 6472.9 & 79 & CMS-walksat \\
+ 3    & 6596.4 & 75 & {\bf Kissat-unsat} \\
+      & 6650.1 & 79 & CaDiCaL-trail \\
+      & 6713.0 & 75 & Maple\_Mix \\
+      & 6746.5 & 75 & MapleCOMSPS\_init \\
+      & 6754.3 & 73 & Maple\_Simp \\
+      & 6773.0 & 73 & MapleCOMSPS\_drup \\
+      & 6773.9 & 73 & Kissat-sat \\
+      & 6774.2 & 73 & Kissat \\
+      & 7003.0 & 69 & optsat\_m20 \\
+      & 7025.5 & 68 & upGlucose3.0\_PADC \\
 \end{tabular}
 \end{table}
 
@@ -1357,7 +1357,7 @@ and an oracle which, when given an input instance,
 invokes to run the actual solver which performed the best on that instance.
 In this way, the performance of the VBS highlights a certain upper bound 
 on performance achievable in principle by the technology 
-of the participating solvers (cf. the figures in Section~\ref{sec:results}). 
+of the participating solvers (cf.~the figures in Section~\ref{sec:results}). 
 
 One can see that the VBS solves all the instances that
 were solved by at least one solver and solves each instance in the best observed time.
