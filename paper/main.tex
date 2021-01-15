@@ -1701,64 +1701,83 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 
 \subsection{Small Portfolios}
 
-The PAR-2 score of the VBS of all $48$ submitted solvers is $2701$. 
-This is much better than the PAR-2 score of the single best solver (SBS) $3926$. 
-In order to further analyze the contribution of solvers to the VBS, we calculated the PAR-2 score of the VBS of fixed-size subsets of the submitted solvers. 
-In the following, we report on the best scores achieved by tuples and triples of solvers in terms of their VBS's PAR-2 score. 
-
-\subsubsection{Best Tuples}
-
-The best scoring solver tuple is \solver{Kissat} and \solver{CryptoMiniSat-CCAnr}. 
-The VBS of those two solvers achieved a PAR-2 score of $3028$. Other combinations of \solver{Kissat} in its default configuration and \solver{CryptoMinisat} variants achieved runner-up scores as can be seen in Table~\ref{tab:best-tuples}. 
-Further best performing tuples can be created from combinations of \solver{CaDiCaL-alluip} and \solver{CryptoMiniSat-CCAnr} or \solver{Kissat} and \solver{Relaxed-newTech}. 
-
 \begin{table}[tb]
 \centering
 \begin{tabular}{lll}
 \bf Solver 1 & \bf Solver 2 & \bf VBS\\
 \hline\arrayrulecolor{lightgray}
-\multirow{3}{*}{\solver{Kissat}} & \solver{CryptoMiniSat-CCAnr} & $3028.0$\\
- & \solver{CryptoMiniSat-CCAnr lsids} & $3052.8$\\
- & \solver{CryptoMiniSat-Walksat} & $3127.7$\\
+\multirow{3}{*}{\solver{Kissat}} & \solver{CMS-CCAnr} & $3028.0$\\
+ & \solver{CMS-CCAnr lsids} & $3052.8$\\
+ & \solver{CMS-Walksat} & $3127.7$\\
 \hline
-\solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CryptoMiniSat-CCAnr}} & $3128.0$\\
+\solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CMS-CCAnr}} & $3128.0$\\
 \solver{CaDiCaL-alluip-trail} &  & $3128.0$\\
-\solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CryptoMiniSat-Walksat}} & $3152.8$\\
+\solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CMS-Walksat}} & $3152.8$\\
 \solver{CaDiCaL-alluip-trail} &  & $3152.9$\\
 \hline
 \solver{Kissat} & \multirow{2}{*}{\solver{Relaxed-newTech}} & $3177.7$\\
 \solver{Kissat-unsat} &  & $3177.8$
 \end{tabular}
-\caption{The $9$ best performing tuples of solvers in terms of the PAR-2 score of their VBS.}
+\caption{The $9$ best performing tuples of solvers in terms of their VBS' PAR-2 score.}
 \label{tab:best-tuples}
 \end{table}
-
-\subsubsection{Best Triples}
-
-The best triple of solvers consists of \solver{Kissat}, \solver{CryptoMiniSat-CCAnr lsids} and \solver{f2trc-DL}. 
-In combination their VBS achieves a PAR-2 score of $2827.7$, thus getting very close to the score or the overall VBS. 
-Ohter combinations of \solver{Kissat} and \solver{CryptoMiniSat-CCAnr} with \solver{Scavel01} or \solver{DurianSat} achieved runner-up scores as can be seen in Table~\ref{tab:best-triples}. 
 
 \begin{table}[tb]
 \centering
 \begin{tabular}{llll}
 \bf Solver 1 & \bf Solver 2 & \bf Solver 3 & \bf VBS\\
 \hline\arrayrulecolor{lightgray}
-\solver{Kissat} & \solver{CryptoMiniSat-CCAnr lsids} & \solver{f2trc-DL} & $2827.7$\\
+\solver{Kissat} & \solver{CMS-CCAnr lsids} & \solver{f2trc-DL} & $2827.7$\\
 \hline
-\multirow{3}{*}{\solver{Kissat}} & \multirow{3}{*}{\solver{CryptoMiniSat-CCAnr}} & \solver{Scavel01} & $2852.7$\\
+\multirow{3}{*}{\solver{Kissat}} & \multirow{3}{*}{\solver{CMS-CCAnr}} & \solver{Scavel01} & $2852.7$\\
  &  & \solver{f2trc-DL} & $2852.8$\\
  &  & \solver{DurianSat} & $2852.8$\\
 \hline
-\solver{Kissat} & \solver{CryptoMiniSat-CCAnr lsids} & \solver{Scavel01}& $2877.6$\\
+\solver{Kissat} & \solver{CMS-CCAnr lsids} & \solver{Scavel01}& $2877.6$\\
 %\solver{Kissat-unsat} & \solver{CryptoMiniSat-Walksat} & \solver{f2trc-DL} & $2877.8$\\
 %\solver{CaDiCaL-alluip} & \solver{CryptoMiniSat-Walksat} & \solver{DurianSat} & $2877.8$\\
 %\solver{CaDiCaL-alluip} & \solver{CryptoMiniSat-Walksat} & \solver{f2trc-DL} & $2877.8$\\
 %\solver{CaDiCaL-alluip} & \solver{CryptoMiniSat-CCAnr} & \solver{Kissat} & $2877.8$\\
 \end{tabular}
-\caption{The $5$ best performing triples of solvers in terms of the PAR-2 score of their VBS.}
+\caption{The $5$ best performing triples of solvers in terms of their VBS' PAR-2 score.}
 \label{tab:best-triples}
 \end{table}
+
+\begin{table}[tb]
+\centering
+\setlength\tabcolsep{4.5pt}
+\begin{tabular}{lllll}
+\bf Solver 1 & \bf Solver 2 & \bf Solver 3 & \bf Solver 4 & \bf VBS\\
+\hline\arrayrulecolor{lightgray}
+\multirow{2}{*}{\solver{Kissat}} & \multirow{2}{*}{\solver{CMS-CCAnr}} & \multirow{2}{*}{\solver{Scavel01}} & \solver{CaDiCaL-alluip} & 2727.7\\
+ &  &  & \solver{CaDiCaL-alluip-trail} & 2727.7\\
+\hline
+\solver{Kissat} & \solver{CMS-CCAnr lsids} & \solver{f2trc-DL} & \solver{exp-V-LGB} & 2752.5\\
+\hline
+\solver{Kissat} & \solver{CaDiCaL-2020} & \solver{Scavel01} & \solver{Relaxed-newTech} & 2752.6\\
+% & \solver{CMS-CCAnr lsids} & \solver{Scavel01} & \solver{f2trc-DL} & 2752.6
+\end{tabular}
+\caption{The $4$ best performing quatruples of solvers in terms of their VBS' PAR-2 score.}
+\label{tab:best-quatruples}
+\end{table}
+
+The PAR-2 score of the VBS of all $48$ submitted solvers is $2701$. 
+This is much better than the PAR-2 score of the single best solver (SBS) $3926$. 
+In order to further analyze the contribution of solvers to the VBS, we calculated the PAR-2 score of the VBS of fixed-size subsets of the submitted solvers. 
+In the following, we report on the best scores achieved by tuples, triples and quatruples of solvers in terms of their VBS's PAR-2 score. 
+
+The best scoring solver tuple is \solver{Kissat} and \solver{CryptoMiniSat-CCAnr}. 
+The VBS of those two solvers achieved a PAR-2 score of $3028$. 
+Further well performing solver tuples can be created from combinations of \solver{CaDiCaL-alluip} and \solver{CryptoMiniSat-CCAnr} or \solver{Kissat} and \solver{Relaxed-newTech}. 
+A detailed report on the exact variants and scores of those solver tuples can be seen in Table~\ref{tab:best-tuples}. 
+
+The best triple of solvers is \solver{Kissat}, \solver{CryptoMiniSat-CCAnr lsids} and \solver{f2trc-DL}. 
+In combination their VBS achieves a PAR-2 score of $2827.7$. 
+Other combinations of \solver{Kissat} and \solver{CryptoMiniSat-CCAnr} with \solver{Scavel01} or \solver{DurianSat} achieved runner-up scores as can be seen in Table~\ref{tab:best-triples}. 
+
+With a PAR-2 score of $2727.7$ the solver quatruple \solver{Kissat}, \solver{CryptoMiniSat-CCAnr}, \solver{Scavel01} and \solver{CaDiCaL-alluip} is very close to the overall VBS. 
+Runner-up and further best performing quatruples can be seen in Table~\ref{tab:best-quatruples}. 
+
 
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
