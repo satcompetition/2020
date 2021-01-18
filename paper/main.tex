@@ -461,7 +461,7 @@ Vlsat & Bouvier & 36 & 14 \\
 \end{table}
 
 The ``Bring Your Own Benchmarks'' (BYOB) rule is established since SAT Competition 2017~\cite{SC2017}. 
-By this rule solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that Minisat must need more than a minute to solve it and the authors own solver does not run into a timeout for the instance. 
+By this rule, solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that Minisat must need more than a minute to solve it and the authors own solver does not run into a timeout for the instance. 
 
 As can be seen in Table~\ref{tab:families}, $27$ authors contributed a set of $1260$ previously unseen benchmark instances of a large variety of different instance families. 
 In order to compile a balanced set of $300$ benchmark instances, we first removed those instances solved by \solver{Minisat} in less than $10$ minutes, thus obtaining a reduced set of $1012$ instances. 
@@ -471,8 +471,8 @@ If this did not yield a total of $14$ instances, we added instances of yet unkno
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
 
 To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
-We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable and $130$ instances of unknown result. 
-Furthermore, we made sure not to select instances of a family which is already represented in the set of newly submitted instances and excluded random, agile and planning instances (due to the planning track). 
+We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable, and $130$ instances of unknown result. 
+Furthermore, we made sure not to select instances of families which are already represented in the set of newly submitted instances and moreover excluded random, agile and planning instances (due to the Planning track). 
 
 \begin{table}[t]
 \centering
@@ -630,175 +630,183 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \end{figure}
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline
+1     & 3926.2 & 264 & \solbert{Kissat-sat} \\
+(1)   & 4083.1 & 260 & \solver{Kissat} \\
+2     & 4179.3 & 253 & \solbert{Relaxed-newTech} \\
+3     & 4266.7 & 248 & \solbert{CMS-ccnr-lsids} \\
+(3)   & 4278.0 & 250 & \solver{CMS-ccnr} \\
+      & 4428.1 & 250 & \solver{CaDiCaL-alluip-trail} \\
+      & 4429.6 & 250 & \solver{CaDiCaL-alluip} \\
+      & 4436.5 & 245 & \solver{Relaxed} \\
+      & 4501.2 & 243 & \solver{CMS-walksat} \\
+      & 4554.0 & 243 & \solver{CaDiCaL-trail} \\
+      & 4560.0 & 238 & \solver{Kissat-unsat} \\
+      & 4607.6 & 246 & \solver{CaDiCaL-sc2020} \\
+      & 5157.7 & 216 & \solver{Undominated} \\
+      & 5159.6 & 220 & \solver{f2trc-DL} \\
+      & 5177.0 & 214 & \solver{PADC-DL} \\              
+\end{tabular}
 \caption{Main ALL}
 \label{tab:mainALL}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline
-1     & 3926.2 & 264 & {\bf Kissat-sat} \\
-(1)   & 4083.1 & 260 & Kissat \\
-2     & 4179.3 & 253 & {\bf Relaxed\_newTech} \\
-3     & 4266.7 & 248 & {\bf CMS-ccnr-lsids} \\
-(3)   & 4278.0 & 250 & CMS-ccnr \\
-      & 4428.1 & 250 & CaDiCaL-alluip-trail \\
-      & 4429.6 & 250 & CaDiCaL-alluip \\
-      & 4436.5 & 245 & Relaxed \\
-      & 4501.2 & 243 & CMS-walksat \\
-      & 4554.0 & 243 & CaDiCaL-trail \\
-      & 4560.0 & 238 & Kissat-unsat \\
-      & 4607.6 & 246 & CaDiCaL-sc2020 \\
-      & 5157.7 & 216 & Undominated \\
-      & 5159.6 & 220 & f2trc-DL \\
-      & 5177.0 & 214 & PADC\_DL \\              
-\end{tabular}
 \end{table}
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline
+ 1    & 2997.4 & 150 & \solbert{Relaxed\_newTech} \\
+ 2    & 3127.6 & 146 & \solbert{Kissat-sat} \\
+ 3    & 3263.0 & 144 & \solbert{CMS-ccnr-lsids} \\
+(3)   & 3317.4 & 145 & \solver{CMS-ccnr} \\
+      & 3355.5 & 143 & \solver{Relaxed} \\
+      & 3721.2 & 139 & \solver{CMS-walksat} \\
+      & 3830.5 & 134 & \solver{Kissat} \\
+      & 3908.5 & 135 & \solver{CaDiCaL-alluip-trail} \\
+      & 3909.6 & 135 & \solver{CaDiCaL-alluip} \\
+      & 4265.6 & 126 & \solver{CaDiCaL-trail} \\
+      & 4368.6 & 130 & \solver{CaDiCaL-sc2020} \\
+   & 4804.9 & 114 & \solver{Kissat-unsat} \\
+   & 5173.2 & 110 & \solver{Undominated} \\
+   & 5244.1 & 107 & \solver{PADC-DL} \\
+   & 5264.9 & 110 & \solver{f2trc-DL} \\           
+\end{tabular}
 \caption{Main SAT}
 \label{tab:mainSAT}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline
- 1    & 2997.4 & 150 & {\bf Relaxed\_newTech} \\
- 2    & 3127.6 & 146 & {\bf Kissat-sat} \\
- 3    & 3263.0 & 144 & {\bf CMS-ccnr-lsids} \\
-(3)   & 3317.4 & 145 & CMS-ccnr \\
-      & 3355.5 & 143 & Relaxed \\
-      & 3721.2 & 139 & CMS-walksat \\
-      & 3830.5 & 134 & Kissat \\
-      & 3908.5 & 135 & CaDiCaL-alluip-trail \\
-      & 3909.6 & 135 & CaDiCaL-alluip \\
-      & 4265.6 & 126 & CaDiCaL-trail \\
-      & 4368.6 & 130 & CaDiCaL-sc2020 \\
-   & 4804.9 & 114 & Kissat-unsat \\
-   & 5173.2 & 110 & Undominated \\
-   & 5244.1 & 107 & PADC\_DL \\
-   & 5264.9 & 110 & f2trc-DL \\           
-\end{tabular}
 \end{table}
 
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline   
+1     & 4315.1 & 124 & \solbert{Kissat-unsat} \\
+(1)   & 4335.6 & 126 & \solver{Kissat} \\
+(1)   & 4724.8 & 118 & \solver{Kissat-sat} \\
+ 2    & 4842.5 & 117 & \solbert{CaDiCaL-trail} \\
+--    & 4846.7 & 116 & \solver{CaDiCaL-sc2020} \\
+(2)   & 4947.8 & 115 & \solver{CaDiCaL-alluip-trail} \\
+(2)   & 4949.6 & 115 & \solver{CaDiCaL-alluip} \\
+ 3    & 4991.4 & 110 & \solbert{f2trc-s} \\
+(3)   & 5051.4 & 109 & \solver{f2trc} \\
+(3)   & 5054.3 & 110 & \solver{f2trc-DL} \\
+      & 5069.6 & 109 & \solver{Maple-Mix} \\
+      & 5110.0 & 107 & \solver{PADC-DL} \\
+      & 5126.9 & 107 & \solver{Maple-Simp} \\
+      & 5128.9 & 107 & \solver{MapleCBT-DL-v3} \\
+      & 5142.2 & 106 & \solver{Undominated} \\      
+\end{tabular}
 \caption{Main UNSAT}
 \label{tab:mainUNSAT}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline   
-1     & 4315.1 & 124 & {\bf Kissat-unsat} \\
-(1)   & 4335.6 & 126 & Kissat \\
-(1)   & 4724.8 & 118 & Kissat-sat \\
- 2    & 4842.5 & 117 & {\bf CaDiCaL-trail} \\
---    & 4846.7 & 116 & CaDiCaL-sc2020 \\
-(2)   & 4947.8 & 115 & CaDiCaL-alluip-trail \\
-(2)   & 4949.6 & 115 & CaDiCaL-alluip \\
- 3    & 4991.4 & 110 & {\bf f2trc-s} \\
-(3)   & 5051.4 & 109 & f2trc \\
-(3)   & 5054.3 & 110 & f2trc-DL \\
-      & 5069.6 & 109 & Maple\_Mix \\
-      & 5110.0 & 107 & PADC\_DL \\
-      & 5126.9 & 107 & Maple\_Simp \\
-      & 5128.9 & 107 & MapleCBT-DL-v3 \\
-      & 5142.2 & 106 & Undominated \\      
-\end{tabular}
 \end{table}
 
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline   
+ 1    & 6406.9 & 80 & \solbert{CaDiCaL-alluip-trail} \\
+(1)   & 6409.3 & 80 & \solver{CaDiCaL-alluip} \\
+ 2    & 6466.9 & 79 & \solbert{CMS-ccnr-lsids} \\
+(2)   & 6471.9 & 79 & \solver{CMS-ccnr} \\
+(2)   & 6472.9 & 79 & \solver{CMS-walksat} \\
+ 3    & 6596.4 & 75 & \solbert{Kissat-unsat} \\
+      & 6650.1 & 79 & \solver{CaDiCaL-trail} \\
+      & 6713.0 & 75 & \solver{Maple-Mix} \\
+      & 6746.5 & 75 & \solver{MapleCOMSPS-init} \\
+      & 6754.3 & 73 & \solver{Maple-Simp} \\
+      & 6773.0 & 73 & \solver{MapleCOMSPS-drup} \\
+      & 6773.9 & 73 & \solver{Kissat-sat} \\
+      & 6774.2 & 73 & \solver{Kissat} \\
+      & 7025.5 & 68 & \solver{upGlucose3.0-PADC} \\
+      & 7044.7 & 66 & \solver{Glucose3.0-proofs} \\
+\end{tabular}
 \caption{Planning (ALL)}
 \label{tab:planning}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline   
- 1    & 6406.9 & 80 & {\bf CaDiCaL-alluip-trail} \\
-(1)   & 6409.3 & 80 & CaDiCaL-alluip \\
- 2    & 6466.9 & 79 & {\bf CMS-ccnr-lsids} \\
-(2)   & 6471.9 & 79 & CMS-ccnr \\
-(2)   & 6472.9 & 79 & CMS-walksat \\
- 3    & 6596.4 & 75 & {\bf Kissat-unsat} \\
-      & 6650.1 & 79 & CaDiCaL-trail \\
-      & 6713.0 & 75 & Maple\_Mix \\
-      & 6746.5 & 75 & MapleCOMSPS\_init \\
-      & 6754.3 & 73 & Maple\_Simp \\
-      & 6773.0 & 73 & MapleCOMSPS\_drup \\
-      & 6773.9 & 73 & Kissat-sat \\
-      & 6774.2 & 73 & Kissat \\
-      & 7025.5 & 68 & upGlucose3.0\_PADC \\
-      & 7044.7 & 66 & Glucose3.0\_proofs \\
-\end{tabular}
 \end{table}
 
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline
+ 1 & 3316.6 & 283 & \solbert{Painless-MCOMSPS-STR-32} \\
+(1)& 3714.7 & 271 & \solver{Painless-MCOMSPS-STR-64} \\
+ 2 & 3743.4 & 269 & \solbert{Plingeling} \\
+ 3 & 3985.3 & 260 & \solbert{ManyGlucose-32} \\
+   & 4022.7 & 262 & \solver{Painless-Maple-v1} \\
+   & 4036.3 & 258 & \solver{ManyGlucose-64} \\
+   & 4103.3 & 260 & \solver{Painless-Maple-v2} \\
+   & 4433.3 & 243 & \solver{Syrup-Scavel} \\
+   & 4903.4 & 225 & \solver{Treengeling} \\
+   & 5240.1 & 213 & \solver{abcdsat-p20} \\
+\end{tabular}
 \caption{Parallel (ALL)}
 \label{tab:parallelALL}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline
- 1 & 3316.6 & 283 & {\bf pmcompspsthirty} \\
-(1)& 3714.7 & 271 & pmcompspsixty \\
- 2 & 3743.4 & 269 & {\bf plingeling} \\
- 3 & 3985.3 & 260 & {\bf manyglucosethirty} \\
-   & 4022.7 & 262 & painlessmaplevone \\
-   & 4036.3 & 258 & manyglucosesixty \\
-   & 4103.3 & 260 & painlessmaplevtwo \\
-   & 4433.3 & 243 & syrupscavel \\
-   & 4903.4 & 225 & treengeling \\
-   & 5240.1 & 213 & abcdsatptwenty \\
-\end{tabular}
 \end{table}
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline
+ 1 & 2853.7 & 153 & \solbert{Painless-MCOMSPS-STR-32} \\
+ 2 & 2913.6 & 154 & \solbert{Painless-Maple-v1} \\
+(2)& 3082.7 & 151 & \solver{Painless-Maple-v2} \\
+-- & 3196.9 & 148 & \solver{Painless-MCOMSPS-STR-64} \\
+ 3 & 3805.9 & 133 & \solbert{Plingeling} \\
+   & 4048.3 & 130 & \solver{ManyGlucose-64} \\
+   & 4076.2 & 130 & \solver{ManyGlucose-32} \\
+   & 4675.4 & 119 & \solver{Syrup-Scavel} \\
+   & 4907.1 & 114 & \solver{Treengeling} \\
+   & 6337.5 & \phantom{0}85 & \solver{abcdsat-p20} \\
+\end{tabular}
 \caption{Parallel (SAT)}
 \label{tab:parallelSAT}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline
- 1 & 2853.7 & 153 & {\bf pmcompspsthirty} \\
- 2 & 2913.6 & 154 & {\bf painlessmaplevone} \\
-(2)& 3082.7 & 151 & painlessmaplevtwo \\
-(1)& 3196.9 & 148 & pmcompspsixty \\
- 3 & 3805.9 & 133 & {\bf plingeling} \\
-   & 4048.3 & 130 & manyglucosesixty \\
-   & 4076.2 & 130 & manyglucosethirty \\
-   & 4675.4 & 119 & syrupscavel \\
-   & 4907.1 & 114 & treengeling \\
-   & 6337.5 & \phantom{0}85 & abcdsatptwenty \\
-\end{tabular}
 \end{table}
 
 \begin{table}
-\caption{Parallel (UNS)}
+\centering
+\begin{tabular}{cccl}
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+\hline
+ 1 & 3680.8 & 136 & \solbert{Plingeling} \\
+ 2 & 3779.5 & 130 & \solbert{Painless-MCOMSPS-STR-32} \\
+ 3 & 3894.3 & 130 & \solbert{ManyGlucose-32} \\
+(3)& 4024.2 & 128 & \solver{ManyGlucose-64} \\
+   & 4142.8 & 128 & \solver{abcdsat-p20} \\
+   & 4191.1 & 124 & \solver{Syrup-Scavel} \\
+   & 4232.5 & 123 & \solver{Painless-MCOMSPS-STR-64} \\
+   & 4899.8 & 111 & \solver{Treengeling} \\
+   & 5123.9 & 109 & \solver{Painless-Maple-v2} \\
+   & 5131.9 & 108 & \solver{Painless-Maple-v1} \\
+\end{tabular}
+\caption{Parallel (UNSAT)}
 \label{tab:parallelUNS}
-\begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
-\hline
- 1 & 3680.8 & 136 & {\bf plingeling} \\
- 2 & 3779.5 & 130 & {\bf pmcompspsthirty} \\
- 3 & 3894.3 & 130 & {\bf manyglucosethirty} \\
-(3)& 4024.2 & 128 & manyglucosesixty \\
-   & 4142.8 & 128 & abcdsatptwenty \\
-   & 4191.1 & 124 & syrupscavel \\
-   & 4232.5 & 123 & pmcompspsixty \\
-   & 4899.8 & 111 & treengeling \\
-   & 5123.9 & 109 & painlessmaplevtwo \\
-   & 5131.9 & 108 & painlessmaplevone \\
-\end{tabular}
 \end{table}
 
 
 \begin{table}
-\caption{Claud (ALL)}
-\label{tab:claud}
+\centering
 \begin{tabular}{cccl}
-place & PAR-2 score & num. solved & solver \\
+\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
 \hline
- 1 & 2603.8 & 299 & {\bf mallobecs} \\
- 2 & 3146.8 & 278 & {\bf toposat} \\
- 3 & 4797.6 & 213 & {\bf slime} \\
-   & 6800.8 & 132 & paracooba \\
-   & 7299.0 & 110 & ctsat \\
-   & 8468.3 & \phantom{0}62 & paracoobamarch \\
+ 1 & 2603.8 & 299 & \solbert{Mallob-Mono} \\
+ 2 & 3146.8 & 278 & \solbert{TopoSAT 2} \\
+ 3 & 4797.6 & 213 & \solbert{Slime} \\
+   & 6800.8 & 132 & \solver{Paracooba} \\
+   & 7299.0 & 110 & \solver{CTsat} \\
+   & 8468.3 & \phantom{0}62 & \solver{Paracooba-March} \\
 \end{tabular}
+\caption{Cloud (ALL)}
+\label{tab:cloud}
 \end{table}
 
 
@@ -906,12 +914,6 @@ the other solvers in this cluster.
 
 \includegraphics[width=\textwidth]{stability/ALL_random_smpling_correlations.png}
 \includegraphics[width=\textwidth]{stability/fam_leave_one_out_corr.png}
-
-
-
-\subsection{Observations}
-
-\paragraph{Marginal Contributions to VBS} Interestingly, the second (Relaxed-Maple-newTech) and the third (CryptoMinisat-lsids) ranked solver both outperform the winning solver (Kissat-sat) when we project only on the instance families ``antibandwidth''~\cite{} or ``timetable''~\cite{}. 
 
 
 \section{Code-Bases and Winning Strategies}
@@ -1343,191 +1345,187 @@ And, if all the solvers solve an instance with the same solution time,
 each solver scores a whole point for that instance. 
 
 \begin{table}
+\centering
+\begin{tabular}{ccl}
+\bf VBS1 & \bf Percent Total & \bf Solver \\
+\hline
+46 & 11.5 & \solver{Kissat-unsat} \\
+39 & \phantom{0}9.8 & \solver{Kissat-sat} \\
+26 & \phantom{0}6.5 & \solver{Kissat} \\
+18 & \phantom{0}4.5 & \solver{CMS-ccnr-lsids} \\
+14 & \phantom{0}3.5 & \solver{MapleCM+dist+sat2s} \\
+13 & \phantom{0}3.2 & \solver{Relaxed} \\
+13 & \phantom{0}3.2 & \solver{Maple-alluip-trail} \\
+12 & \phantom{0}3.0 & \solver{upGlucose3.0-PADC} \\
+10 & \phantom{0}2.5 & \solver{CMS-ccnr} \\
+10 & \phantom{0}2.5 & \solver{CaDiCaL-sc2020} \\
+\end{tabular}
+~\\[1em]
+\begin{tabular}{ccl}
+\bf VBS2 & \bf Percent Total & \bf Solver \\
+\hline
+131.5 & 32.9 & \solver{Kissat-sat} \\
+122.6 & 30.6 & \solver{Kissat} \\
+115.4 & 28.9 & \solver{Kissat-unsat} \\
+\phantom{0}92.3 & 23.1 & \solver{CMS-ccnr-lsids} \\
+\phantom{0}88.8 & 22.2 & \solver{CMS-ccnr} \\
+\phantom{0}84.1 & 21.0 & \solver{CaDiCaL-alluip-trail} \\
+\phantom{0}84.0 & 21.0 & \solver{CaDiCaL-alluip} \\
+\phantom{0}83.0 & 20.7 & \solver{CaDiCaL-sc2020} \\
+\phantom{0}82.3 & 20.6 & \solver{Relaxed-newTech} \\
+\phantom{0}81.5 & 20.4 & \solver{Relaxed} \\
+\end{tabular}
+~\\[1em]
+\begin{tabular}{ccl}
+\bf VBS3 & \bf Percent Total & \bf Solver \\
+\hline
+13.0 & 3.3 & \solver{Kissat} \\
+11.9 & 3.0 & \solver{Kissat-unsat} \\
+11.7 & 2.9 & \solver{Relaxed-newTech} \\
+11.4 & 2.8 & \solver{Kissat-sat} \\
+10.8 & 2.7 & \solver{CaDiCaL-alluip-trail} \\
+10.8 & 2.7 & \solver{CaDiCaL-alluip} \\
+10.5 & 2.6 & \solver{Relaxed} \\
+10.4 & 2.6 & \solver{CaDiCaL-sc2020} \\
+10.3 & 2.6 & \solver{CMS-walksat} \\
+\phantom{0}9.6 & 2.4 & \solver{CaDiCaL-trail} \\
+\end{tabular}
 \caption{VBS metrics for the results of the Main track, all instances. 
 The total number of solved problems was 316. 
 There were 48 (non-disqualified) solvers (and their configurations).
 Each table shows the first ten solvers sorted according to the respective metric.}
 \label{tab:vbsMainALL}
-\begin{center}
-\begin{tabular}{ccl}
-VBS1 & percent total & solver \\
-\hline
-46 & 11.5 & Kissat-unsat \\
-39 & \phantom{0}9.8 & Kissat-sat \\
-26 & \phantom{0}6.5 & Kissat \\
-18 & \phantom{0}4.5 & CMS-ccnr-lsids \\
-14 & \phantom{0}3.5 & MapleCM+dist+sat2s \\
-13 & \phantom{0}3.2 & Relaxed \\
-13 & \phantom{0}3.2 & Maple-alluip-trail \\
-12 & \phantom{0}3.0 & upGlucose3.0\_PADC \\
-10 & \phantom{0}2.5 & CMS-ccnr \\
-10 & \phantom{0}2.5 & CaDiCaL-sc2020 \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS2 & percent total & solver \\
-\hline
-131.5 & 32.9 & Kissat-sat \\
-122.6 & 30.6 & Kissat \\
-115.4 & 28.9 & Kissat-unsat \\
-\phantom{0}92.3 & 23.1 & CMS-ccnr-lsids \\
-\phantom{0}88.8 & 22.2 & CMS-ccnr \\
-\phantom{0}84.1 & 21.0 & CaDiCaL-alluip-trail \\
-\phantom{0}84.0 & 21.0 & CaDiCaL-alluip \\
-\phantom{0}83.0 & 20.7 & CaDiCaL-sc2020 \\
-\phantom{0}82.3 & 20.6 & Relaxed\_newTech \\
-\phantom{0}81.5 & 20.4 & Relaxed \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS3 & percent total & solver \\
-\hline
-13.0 & 3.3 & Kissat \\
-11.9 & 3.0 & Kissat-unsat \\
-11.7 & 2.9 & Relaxed\_newTech \\
-11.4 & 2.8 & Kissat-sat \\
-10.8 & 2.7 & CaDiCaL-alluip-trail \\
-10.8 & 2.7 & CaDiCaL-alluip \\
-10.5 & 2.6 & Relaxed \\
-10.4 & 2.6 & CaDiCaL-sc2020 \\
-10.3 & 2.6 & CMS-walksat \\
-\phantom{0}9.6 & 2.4 & CaDiCaL-trail \\
-\end{tabular}
-\end{center}
 \end{table}
 
-\begin{table}
-\caption{VBS metrics for the results of the Main track, SAT instances. 
-The total number of solved problems was 182. 
-There were 48 (non-disqualified) participating solvers.
-Each table always shows the first ten solvers sorted according to the respective metric.}
-\label{tab:vbsMainSAT}
-\begin{center}
-\begin{tabular}{ccl}
-VBS1 & percent total & solver \\
-\hline
-29 & 15.9 & Kissat-sat \\
-16 & \phantom{0}8.8 & Kissat \\
-14 & \phantom{0}7.7 & MapleCM+dist+sat2s \\
-12 & \phantom{0}6.6 & CMS-ccnr-lsids \\
-10 & \phantom{0}5.5 & Relaxed \\
-\phantom{0}8 & \phantom{0}4.4 & CMS-ccnr \\
-\phantom{0}8 & \phantom{0}4.4 & CaDiCaL-sc2020 \\
-\phantom{0}8 & \phantom{0}4.4 & Kissat-unsat \\
-\phantom{0}6 & \phantom{0}3.3 & CaDiCaL-trail \\
-\phantom{0}5 & \phantom{0}2.7 & MapleCOMSPS\_drup \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS2 & percent total & solver \\
-\hline
-70.1 & 38.5 & Kissat-sat \\
-48.6 & 26.7 & Kissat \\
-45.2 & 24.8 & CMS-ccnr-lsids \\
-43.4 & 23.8 & Relaxed\_newTech \\
-42.4 & 23.3 & CMS-ccnr \\
-41.6 & 22.8 & Relaxed \\
-34.7 & 19.0 & CaDiCaL-alluip-trail \\
-34.6 & 19.0 & CaDiCaL-alluip \\
-33.7 & 18.5 & CMS-walksat \\
-32.8 & 18.0 & CaDiCaL-sc2020 \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS3 & percent total & solver \\
-\hline
-9.3 & 5.1 & Relaxed\_newTech \\
-8.1 & 4.4 & Relaxed \\
-7.8 & 4.3 & CMS-walksat \\
-7.0 & 3.8 & Kissat-sat \\
-6.7 & 3.7 & Kissat \\
-6.7 & 3.7 & CMS-ccnr \\
-6.6 & 3.6 & CMS-ccnr-lsids \\
-6.2 & 3.4 & CaDiCaL-sc2020 \\
-6.2 & 3.4 & CaDiCaL-alluip-trail \\
-6.2 & 3.4 & CaDiCaL-alluip \\
-\end{tabular}
-\end{center}
-\end{table}
+%\begin{table}
+%\caption{VBS metrics for the results of the Main track, SAT instances. 
+%The total number of solved problems was 182. 
+%There were 48 (non-disqualified) participating solvers.
+%Each table always shows the first ten solvers sorted according to the respective metric.}
+%\label{tab:vbsMainSAT}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS1 & percent total & solver \\
+%\hline
+%29 & 15.9 & Kissat-sat \\
+%16 & \phantom{0}8.8 & Kissat \\
+%14 & \phantom{0}7.7 & MapleCM+dist+sat2s \\
+%12 & \phantom{0}6.6 & CMS-ccnr-lsids \\
+%10 & \phantom{0}5.5 & Relaxed \\
+%\phantom{0}8 & \phantom{0}4.4 & CMS-ccnr \\
+%\phantom{0}8 & \phantom{0}4.4 & CaDiCaL-sc2020 \\
+%\phantom{0}8 & \phantom{0}4.4 & Kissat-unsat \\
+%\phantom{0}6 & \phantom{0}3.3 & CaDiCaL-trail \\
+%\phantom{0}5 & \phantom{0}2.7 & MapleCOMSPS\_drup \\
+%\end{tabular}
+%\end{center}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS2 & percent total & solver \\
+%\hline
+%70.1 & 38.5 & Kissat-sat \\
+%48.6 & 26.7 & Kissat \\
+%45.2 & 24.8 & CMS-ccnr-lsids \\
+%43.4 & 23.8 & Relaxed\_newTech \\
+%42.4 & 23.3 & CMS-ccnr \\
+%41.6 & 22.8 & Relaxed \\
+%34.7 & 19.0 & CaDiCaL-alluip-trail \\
+%34.6 & 19.0 & CaDiCaL-alluip \\
+%33.7 & 18.5 & CMS-walksat \\
+%32.8 & 18.0 & CaDiCaL-sc2020 \\
+%\end{tabular}
+%\end{center}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS3 & percent total & solver \\
+%\hline
+%9.3 & 5.1 & Relaxed\_newTech \\
+%8.1 & 4.4 & Relaxed \\
+%7.8 & 4.3 & CMS-walksat \\
+%7.0 & 3.8 & Kissat-sat \\
+%6.7 & 3.7 & Kissat \\
+%6.7 & 3.7 & CMS-ccnr \\
+%6.6 & 3.6 & CMS-ccnr-lsids \\
+%6.2 & 3.4 & CaDiCaL-sc2020 \\
+%6.2 & 3.4 & CaDiCaL-alluip-trail \\
+%6.2 & 3.4 & CaDiCaL-alluip \\
+%\end{tabular}
+%\end{center}
+%\end{table}
 
-\begin{table}
-\caption{VBS metrics for the results of the Main track, UNSAT instances. 
-The total number of solved problems was 134. 
-There were 48 (non-disqualified) participating solvers.
-Each table always shows the first ten solvers sorted according to the respective metric.}
-\label{tab:vbsMainUNSAT}
-\begin{center}
-\begin{tabular}{ccl}
-VBS1 & percent total & solver \\
-\hline
-38 & 28.4 & Kissat-unsat \\
-11 & \phantom{0}8.2 & Maple-alluip-trail \\
-10 & \phantom{0}7.5 & Kissat \\
-10 & \phantom{0}7.5 & Kissat-sat \\
-\phantom{0}8 & \phantom{0}6.0 & MapleCMused+dist \\
-\phantom{0}7 & \phantom{0}5.2 & upGlucose3.0\_PADC \\
-\phantom{0}6 & \phantom{0}4.5 & CMS-ccnr-lsids \\
-\phantom{0}3 & \phantom{0}2.2 & f2trc \\
-\phantom{0}3 & \phantom{0}2.2 & Relaxed \\
-\phantom{0}3 & \phantom{0}2.2 & Glucose3.0\_proofs \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS2 & percent total & solver \\
-\hline
-86.5 & 64.6 & Kissat-unsat \\
-74.0 & 55.2 & Kissat \\
-61.4 & 45.8 & Kissat-sat \\
-55.4 & 41.4 & f2trc-s \\
-55.2 & 41.2 & DurianSat \\
-53.6 & 40.0 & Maple-alluip-trail \\
-53.4 & 39.8 & f2trc \\
-52.4 & 39.1 & f2trc-DL \\
-51.8 & 38.6 & MapleCMused+dist \\
-51.7 & 38.6 & PADC\_DL \\
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{ccl}
-VBS3 & percent total & solver \\
-\hline
-6.7 & 5.0 & Kissat-unsat \\
-6.3 & 4.7 & Kissat \\
-4.7 & 3.5 & CaDiCaL-trail \\
-4.6 & 3.5 & CaDiCaL-alluip-trail \\
-4.6 & 3.5 & CaDiCaL-alluip \\
-4.4 & 3.3 & Kissat-sat \\
-4.3 & 3.2 & CaDiCaL-sc2020 \\
-3.5 & 2.6 & f2trc-s \\
-3.4 & 2.5 & exp\_V\_LGB\_MLD\_CBT\_DL \\
-3.1 & 2.3 & f2trc-DL \\
-\end{tabular}
-\end{center}
-\end{table}
-
-\todo{Probably hide tab:vbsMainSAT and tab:vbsMainUNSAT.} 
+%\begin{table}
+%\caption{VBS metrics for the results of the Main track, UNSAT instances. 
+%The total number of solved problems was 134. 
+%There were 48 (non-disqualified) participating solvers.
+%Each table always shows the first ten solvers sorted according to the respective metric.}
+%\label{tab:vbsMainUNSAT}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS1 & percent total & solver \\
+%\hline
+%38 & 28.4 & Kissat-unsat \\
+%11 & \phantom{0}8.2 & Maple-alluip-trail \\
+%10 & \phantom{0}7.5 & Kissat \\
+%10 & \phantom{0}7.5 & Kissat-sat \\
+%\phantom{0}8 & \phantom{0}6.0 & MapleCMused+dist \\
+%\phantom{0}7 & \phantom{0}5.2 & upGlucose3.0\_PADC \\
+%\phantom{0}6 & \phantom{0}4.5 & CMS-ccnr-lsids \\
+%\phantom{0}3 & \phantom{0}2.2 & f2trc \\
+%\phantom{0}3 & \phantom{0}2.2 & Relaxed \\
+%\phantom{0}3 & \phantom{0}2.2 & Glucose3.0\_proofs \\
+%\end{tabular}
+%\end{center}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS2 & percent total & solver \\
+%\hline
+%86.5 & 64.6 & Kissat-unsat \\
+%74.0 & 55.2 & Kissat \\
+%61.4 & 45.8 & Kissat-sat \\
+%55.4 & 41.4 & f2trc-s \\
+%55.2 & 41.2 & DurianSat \\
+%53.6 & 40.0 & Maple-alluip-trail \\
+%53.4 & 39.8 & f2trc \\
+%52.4 & 39.1 & f2trc-DL \\
+%51.8 & 38.6 & MapleCMused+dist \\
+%51.7 & 38.6 & PADC\_DL \\
+%\end{tabular}
+%\end{center}
+%\begin{center}
+%\begin{tabular}{ccl}
+%VBS3 & percent total & solver \\
+%\hline
+%6.7 & 5.0 & Kissat-unsat \\
+%6.3 & 4.7 & Kissat \\
+%4.7 & 3.5 & CaDiCaL-trail \\
+%4.6 & 3.5 & CaDiCaL-alluip-trail \\
+%4.6 & 3.5 & CaDiCaL-alluip \\
+%4.4 & 3.3 & Kissat-sat \\
+%4.3 & 3.2 & CaDiCaL-sc2020 \\
+%3.5 & 2.6 & f2trc-s \\
+%3.4 & 2.5 & exp\_V\_LGB\_MLD\_CBT\_DL \\
+%3.1 & 2.3 & f2trc-DL \\
+%\end{tabular}
+%\end{center}
+%\end{table}
+%\todo{Probably hide tab:vbsMainSAT and tab:vbsMainUNSAT.} 
 
 Table~\ref{tab:vbsMainALL} renders the just described three metrics applied 
 to the full results of the Main track. We can see that the respective leaderboards 
-are generally dominated by Kissat and its configurations.
-VBS1 tells us that Kissat-unsat was most often the fastest solver,
+are generally dominated by \solver{Kissat} and its configurations.
+VBS1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
 in particular on \SI{11.5}{\percent} of all the solved instances.
 
-VBS2 highlights as first Kissat-sat. Its leading \SI{32.9}{\percent} of total is a bit harder to 
+VBS2 highlights as first \solver{Kissat-sat}. Its leading \SI{32.9}{\percent} of total is a bit harder to 
 interpret: A solver can score \SI{32.9}{\percent} of VBS2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
-and no others. But we know, thanks to its VBS1, that Kissat-sat solved \SI{9.8}{\percent}
+and no others. But we know, thanks to its VBS1, that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
 A solver can also score \SI{32.9}{\percent} of VBS2 total by solving all the solved instances,
 but always being roughly 3 times slower than the VBS. 
-Kissat-sat lies obviously somewhere between these two extremes.
+\solver{Kissat-sat} lies obviously somewhere between these two extremes.
 
-Finally, according to VBS3, the best solver is Kissat with 13.0 points,
+Finally, according to VBS3, the best solver is \solver{Kissat} with 13.0 points,
 which amounts to \SI{3.3}{\percent} of the distributed total score.
 The VBS3 metric is generally the most evenly distributed one,
 at least among the first 10 solvers. 
@@ -1550,40 +1548,36 @@ the new schedule will be able to solve. This is perhaps best demonstrated on
 the actual data from the competition, again taking the Main track results. 
 
 \begin{table}
-\caption{A greedy set cover of the solved instances by solvers of the Main track.}
-\label{tab:gscMain}
-\begin{center}
+\centering
 \begin{tabular}{clccc}
-Iteration & selected solver & (num. solved) & contributes \\ % & covered so far \\
+\bf Iteration & \bf Selected Solver & \bf Num. Solved & \bf Contributes \\ % & covered so far \\
 \hline
-\phantom{0}1 & Kissat-sat & 264 & 264 \\ % & 264 \\
-\phantom{0}2 & CaDiCaL-alluip & 250 & \phantom{0}22 \\ % & 286 \\
-\phantom{0}3 & f2trc-s & 214 & \phantom{0}10 \\ % & 296 \\
-\phantom{0}4 & Relaxed\_newTech & 253 & \phantom{00}6 \\ % & 302 \\
-\phantom{0}5 & Kissat-unsat & 238 & \phantom{00}4 \\ % & 306 \\
-\phantom{0}6 & Relaxed & 245 & \phantom{00}3 \\ % & 309 \\
-\phantom{0}7 & CMS-walksat & 243 & \phantom{00}3 \\ % & 312 \\
-\phantom{0}8 & CMS-ccnr-lsids & 248 & \phantom{00}1 \\ % & 313 \\
-\phantom{0}9 & MapleCBT-DL-v3 & 211 & \phantom{00}1 \\ % & 314 \\
-10 & DurianSat & 210 & \phantom{00}1 \\ % & 315 \\
-11 & exp\_V\_LGB\_MLD\_CBT\_DL & 194 & \phantom{00}1 \\ % & 316 \\
+\phantom{0}1 & \solver{Kissat-sat} & 264 & 264 \\ % & 264 \\
+\phantom{0}2 & \solver{CaDiCaL-alluip} & 250 & \phantom{0}22 \\ % & 286 \\
+\phantom{0}3 & \solver{f2trc-s} & 214 & \phantom{0}10 \\ % & 296 \\
+\phantom{0}4 & \solver{Relaxed-newTech} & 253 & \phantom{00}6 \\ % & 302 \\
+\phantom{0}5 & \solver{Kissat-unsat} & 238 & \phantom{00}4 \\ % & 306 \\
+\phantom{0}6 & \solver{Relaxed} & 245 & \phantom{00}3 \\ % & 309 \\
+\phantom{0}7 & \solver{CMS-walksat} & 243 & \phantom{00}3 \\ % & 312 \\
+\phantom{0}8 & \solver{CMS-ccnr-lsids} & 248 & \phantom{00}1 \\ % & 313 \\
+\phantom{0}9 & \solver{MapleCBT-DL-v3} & 211 & \phantom{00}1 \\ % & 314 \\
+10 & \solver{DurianSat} & 210 & \phantom{00}1 \\ % & 315 \\
+11 & \solver{exp-V-LGB-MLD-CBT-DL} & 194 & \phantom{00}1 \\ % & 316 \\
 \hline
  & Total & -- & 316 \\
 \end{tabular}
-\end{center}
+\caption{A greedy set cover of the solved instances by solvers of the Main track.}
+\label{tab:gscMain}
 \end{table}
 
-A greedy set cover of the solved instances by solvers of the Main track is presented 
-in Table~\ref{tab:gscMain}. In the first iteration, the solver which solved the highest number 
-of instances is selected; in our case it was Kissat-sat with 264 instances
-as we know already from Table~\ref{tab:mainALL}.
-Given those 264 instances as already covered, CaDiCaL-alluip was the best in further contributing
-to the set by additional 22 instances in iteration 2.
+A greedy set cover of the solved instances by solvers of the Main track is presented in Table~\ref{tab:gscMain}. 
+In the first iteration, the solver which solved the highest number of instances is selected; in our case it was \solver{Kissat-sat} with 264 instances as we know already from Table~\ref{tab:mainALL}.
+Given those 264 instances as already covered, \solver{CaDiCaL-alluip} was the best in further contributing to the set by additional $22$ instances in iteration $2$.
 We can see that the further iterations tend to add very little,
 with the final four iterations adding one instance each. Note that each solver
 that managed to solve an instance uniquely (i.e.~being the only solver to do so)
 is showing up in the table. This is, for example the case of the last listed  
-exp\_V\_LGB\_MLD\_CBT\_DL.
+\solver{exp-V-LGB-MLD-CBT-DL}.
 Highlighting unique solutions is a property of the greedy set cover metric
 which we believe is congruent with documenting contributions to the state of the art.
 
@@ -1595,24 +1589,23 @@ also look at schedules that would fit in a prescribed time budget. A natural cho
 of the budget seems to be the original time limit of \SI{5000}{\second}.
 
 \begin{table}
+\centering
+\begin{tabular}{cccl}
+\bf \#Solvers & \bf Time (s) & \bf Num. Solved & \bf Best Schedule \\
+\hline
+1 & 5000 & 264 & \solver{\{Kissat-sat\}} \\
+2 & 2500 & 278 & \solver{\{Kissat-unsat, Relaxed\_newTech\}} \\
+3 & 1666 & 272 & \solver{\{Kissat-unsat, Kissat-sat, }\\
+			 &&& \solver{CMS-ccnr-lsids\}} \\
+4 & 1250 & 262 & \solver{\{Kissat-unsat, Kissat-sat, }\\
+			 &&& \solver{CMS-ccnr-lsids, Maple-alluip-trail\}} \\ 
+5 & 1000 & 253 & \solver{\{Kissat-unsat, Kissat-sat, }\\
+			&&& \solver{CMS-ccnr-lsids, Maple-alluip-trail, }\\ 
+			&&& \solver{CaDiCaL-alluip \}}\\
+\end{tabular}
 \caption{``Uniform time split'' schedules %using $i$ solvers 
 to solve as many Main track instances as possible.}
 \label{tab:MainUniformTimeSplit}
-\begin{center}
-\begin{tabular}{cccl}
-\# solvers & time (s) & total solved & the best schedule \\
-\hline
-1 & 5000 & 264 & \{Kissat-sat\} \\
-2 & 2500 & 278 & \{Kissat-unsat, Relaxed\_newTech\} \\
-3 & 1666 & 272 & \{Kissat-unsat, Kissat-sat, \\
-			 &&& CMS-ccnr-lsids\} \\
-4 & 1250 & 262 & \{Kissat-unsat, Kissat-sat, \\
-			 &&& CMS-ccnr-lsids, Maple-alluip-trail\} \\ 
-5 & 1000 & 253 & \{Kissat-unsat, Kissat-sat, \\
-			&&& CMS-ccnr-lsids, Maple-alluip-trail, \\ 
-			&&& CaDiCaL-alluip \}\\
-\end{tabular}
-\end{center}
 \end{table}
 
 By employing a brute-force approach we first constructed a sequences of schedules 
@@ -1640,25 +1633,24 @@ where $\mathcal{S}_I$ is the set of solvers which solved the instance $I$ and $T
 (Note that while $R^S$ are variables, i.e.~unknowns, the $T^S_I$ are known constants in the formula.)
 
 \begin{table}
-\caption{An optimal \SI{5000}{\second} schedule for the Main track
-constructed using Z3.}
-\label{tab:MainZ3Schedule}
-\begin{center}
+\centering
 \begin{tabular}{lccc}
-solver & taking up (s) & solving under limit & contributes \\
+\bf Solver & \bf Taking Up (s) & \bf Solving Under Limit & \bf Contributes \\
 \hline
-Kissat-unsat & 2523 & 219 & 219 \\
-Relaxed\_newTech & 2180 & 234 & \phantom{0}59 \\
-Kissat-sat & \phantom{0}103 & \phantom{0}72 & \phantom{00}2 \\
-f2trc-DL & \phantom{00}76 & \phantom{0}15 & \phantom{00}0 \\
-CaDiCaL-alluip & \phantom{00}58 & \phantom{0}26 & \phantom{00}2 \\
-Maple-alluip-trail & \phantom{00}34 & \phantom{0}12 & \phantom{00}1 \\
-MapleCM+dist+sat2s & \phantom{00}18 & \phantom{0}18 & \phantom{00}1 \\
-CaDiCaL-sc2020 & \phantom{000}8 & \phantom{0}10 & \phantom{00}2 \\
+\solver{Kissat-unsat} & 2523 & 219 & 219 \\
+\solver{Relaxed-newTech} & 2180 & 234 & \phantom{0}59 \\
+\solver{Kissat-sat} & \phantom{0}103 & \phantom{0}72 & \phantom{00}2 \\
+\solver{f2trc-DL} & \phantom{00}76 & \phantom{0}15 & \phantom{00}0 \\
+\solver{CaDiCaL-alluip} & \phantom{00}58 & \phantom{0}26 & \phantom{00}2 \\
+\solver{Maple-alluip-trail} & \phantom{00}34 & \phantom{0}12 & \phantom{00}1 \\
+\solver{MapleCM+dist+sat2s} & \phantom{00}18 & \phantom{0}18 & \phantom{00}1 \\
+\solver{CaDiCaL-sc2020} & \phantom{000}8 & \phantom{0}10 & \phantom{00}2 \\
 \hline 
 Total & 5000 & \phantom{0}-- & 286 \\ 
 \end{tabular}
-\end{center}
+\caption{An optimal \SI{5000}{\second} schedule for the Main track
+constructed using Z3.}
+\label{tab:MainZ3Schedule}
 \end{table}
 
 Finding a solution which satisfies all the hard constraints and as many soft constraints as possible,
@@ -1668,8 +1660,7 @@ It is not clear to what degree is the obtained schedule unique and how much it r
 Nevertheless, it is interesting to observe the total number of problems covered, here 286,
 and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with the uniform split and two solvers.
 
-Amusingly, as can be seen from the ``contributes'' column, the presence of f2trc-DL in the schedule
-is not necessary.
+Amusingly, as can be seen from the ``contributes'' column, the presence of \solver{f2trc-DL} in the schedule is not necessary.
 % The following three lines could be skipped without much harm:
 All the 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
 This result, however, does not signify a bug, as Z3 was not asked to produce a schedule with a minimal number of
@@ -1678,6 +1669,8 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 
 
 \subsection{Small Portfolios}
+
+\paragraph{Marginal Contributions to VBS} Interestingly, the second (Relaxed-Maple-newTech) and the third (CryptoMinisat-lsids) ranked solver both outperform the winning solver (Kissat-sat) when we project only on the instance families ``antibandwidth''~\cite{} or ``timetable''~\cite{}. 
 
 \begin{table}[tb]
 \centering
@@ -1690,6 +1683,7 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 \hline
 \solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CMS-CCAnr}} & $3128.0$\\
 \solver{CaDiCaL-alluip-trail} &  & $3128.0$\\
+\hline
 \solver{CaDiCaL-alluip} & \multirow{2}{*}{\solver{CMS-Walksat}} & $3152.8$\\
 \solver{CaDiCaL-alluip-trail} &  & $3152.9$\\
 \hline
