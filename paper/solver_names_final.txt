@@ -52,3 +52,4 @@ MapleLCMDistChronoBT-DL-Scavel02__default Scavel02
 Maple_mix__default Maple\_Mix
 SLIME__default SLIME
 PauSat__default PauSat
+PauSat_noproof__default PauSat\_noproof
