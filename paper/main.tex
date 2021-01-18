@@ -112,7 +112,7 @@ Czech Technical University in Prague, Czech Republic\\
 \begin{document}
 
 \begin{abstract}
-The SAT Competitions constitute a well-established series of yearly open international competitive algorithm implementation competitions
+The SAT Competitions constitute a well-established series of yearly open international algorithm implementation competitions
 focusing on the Boolean satisfiability (or propositional satisfiability, SAT) problem. 
 In this article, we provide
 a detailed account on the 2020 instantiation of the SAT Competition, including the 
@@ -166,24 +166,27 @@ from the competition, complementing the individual solver descriptions available
  As for benchmarks, we describe how the 2020 benchmark sets were constructed for each of the competition tracks, with 
 an overview of the benchmarks contributed to the 2020 competition.
 In terms of empirical results we provide further analysis on the results going beyond the standard rankings provided
-on the SAT competition webpages (\url{https://satcompetition.github.io/2020/}). Finally, we also provide a discussion on lessons learned and ideas for future editions of SAT competitions.
+on the SAT competition webpages (\url{https://satcompetition.github.io/2020/}). 
+Finally, we also provide a discussion on lessons learned and ideas for future editions of SAT competitions.
 
-The rest of this article is organized as follows. TODO -MJ
+The rest of this article is organized as follows. 
+We start by providing an overview on the competition, including details on and motivations for the several
+competition tracks, the rules and other technical requirements of the competition, the ranking schemes used
+in evaluating the competing solvers, 
+and the computing environments used for executing the competition
+(Section~\ref{sec:overview}).
+We then provide an overview of the benchmark sets used in evaluating the solvers, including their origins and the selection
+process used for constructing the sets (Section~\ref{sec:instances}).
+In Section~\ref{sec:results} we provide an overview of the competition results together with  a survey on the
+the solving strategies implemented distinctly in  top-ranking  solvers. 
+Going considerably beyond the plain competition rankings, we provide more in-depth analysis of the competition 
+data from different perspectives, including correlation analysis of runtime performance of solvers and marginal contributions
+of individual solvers to the ``virtual best solver'' and 
+portfolios constructed from the competing solvers,  (Section~\ref{sec:analysis}.
+The article is concluded with future prospects in Section~\ref{sec:conclusion}.
+\todo{Need to decide on final structure regardign the results overview and analysis}
 
-===
-
-OLD:
-
-In Section~\ref{sec:overview}, we start with an overview of the competition,
-including detailed description of the competition tracks and their purpose,
-the general rules and the used computing environment.
-Section~\ref{sec:instances} contains an overview on the selected benchmark instances and details about the selection process. 
-In Section~\ref{sec:results}, we present the competition results alongside a survey on the winning strategies of the award winning solvers. 
-A meta-analysis of these results follows in Section~\ref{sec:analysis}, and we conclude with Section~\ref{sec:conclusion}.
-
-OLD END ===
-
-\section{Overview of the Competition}
+\section{Overview of SAT Competition 2020}
 \label{sec:overview}
 
 In this section, we describe the individual 2020 SAT Competition tracks,
@@ -372,7 +375,7 @@ The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{
 
 \todo{Parallel / Cloud}
 
-\section{Description of Benchmark Instances}
+\section{Benchmarks}
 \label{sec:instances}
 
 Benchmark instances selection in this competition was realized using GBD Tools\footnote{\url{https://pypi.org/project/gbd-tools/}} which is a tool-chain for maintenance and distribution of benchmark instances and instance attributes~\cite{Iser:2018:GBD}.
