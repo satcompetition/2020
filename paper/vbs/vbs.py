@@ -72,7 +72,9 @@ def getVbs(outputAllSolvers=True, removePlanning=False):
     d = d.append(v)
 
     if removePlanning:
+        print("removed " + str(len(d[d["benchmark"].apply(lambda x: "ddl_" in x)].benchmark.unique())) + " planning bechmarks")
         d = d[~d["benchmark"].apply(lambda x: "ddl_" in x)]
+        print(str(len(d[d.result.isin(["SAT", "UNSAT"])].benchmark.unique())) + " solved benchmarks are left")
     d = d.drop("n", axis=1)
     return d
 
