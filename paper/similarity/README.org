@@ -1,0 +1,183 @@
+#+STARTUP: latexpreview
+
+Generate a heatmap to visualize the similarity in solver performance.
+* Generate cross.csv
+This script selects the data for the main track, i.e., it deletes:
+- solvers in NoLimits
+- benchmarks in planning
+- 84 benchmarks not solved by a single solver.
+Then it computes the /similarity/ between each pair of solvers based on the PAR2 score.
+\[similarity(A, B) =\quad 1 - \frac{\sum{|A_{i} - B_{i}|}}{316 \cdot 10000}\]
+
+The resulting table uses shortened names.
+
+Script exported to =makeCross.py=
+#+begin_src python
+pResults = "../../downloads/results.csv"
+pNames = "../solver_names_final.txt"
+numSolvers = 30
+
+d = pd.read_csv(pResults)
+d["n"] = d["solver"] + "__" + d["configuration"]
+print(str(len(d.n.unique())) + " original solvers")
+
+# withdrawn
+withdrawn = d[d["solver"] == "Relaxed_LCMDCBDL_noTimePara"].n.unique()
+d = d[~d["n"].isin(withdrawn)]
+print("Removed withdrawn solver:")
+pl(withdrawn)
+
+# disqualified
+dis = d[d["verifier-result"].isin(["SAT-INCORRECT", "UNSAT-INCORRECT"])][
+    "n"
+].unique()
+d = d[~d["n"].isin(dis)]
+print("Removed disqualified solver:")
+pl(dis)
+
+# competed in no limits
+np = d[d["drat"] == "NOPROOF"]["n"].unique()
+d = d[~d["n"].isin(np)]
+print("Removed NoLimits solver:")
+pl(np)
+
+# demoted to no limits
+dem = d[d["drat"] == "NOT_VERIFIED"]["n"].unique()
+d = d[~d["n"].isin(dem)]
+print("Removed demoted solver:")
+pl(dem)
+
+solverInMain = len(d["n"].unique())
+print(str(solverInMain) + " solvers participated in main track")
+
+# only main track (-> no planning)
+print("removed " + str(len(d[d["benchmark"].apply(lambda x: "ddl_" in x)].benchmark.unique())) + " planning bechmarks")
+d = d[~d["benchmark"].apply(lambda x: "ddl_" in x)]
+print(str(len(d[d.result.isin(["SAT", "UNSAT"])].benchmark.unique())) + " solved benchmarks are left")
+
+# remove fully unsolved benchmarks
+d["s"] = d["result"].isin(["SAT", "UNSAT"])
+count = d.groupby("benchmark").sum()["s"].reset_index()
+unsolved = count[count["s"] == 0]["benchmark"].unique()
+d = d[~d["benchmark"].isin(unsolved)]
+
+# PAR2
+d.loc[d["s"] == 0, "time"] = 10000
+d = d[["n", "benchmark", "time"]]
+
+# shorter names
+nameDict = pd.read_csv(pNames, sep=" ", names=["n", "name"])
+nameDict["name"] = nameDict["name"].str.replace("\\", "")
+d = d.merge(nameDict, on="n")[["name", "benchmark", "time"]]
+assert len(d.name.unique()) == solverInMain
+
+top = d.groupby("name").sum().reset_index().sort_values(by="time")
+
+
+def sim(a, b):
+    r = 0
+    n = len(a)
+    for x, y in zip(a, b):
+        r += abs(x - y)
+    return 1 - (r / (10000 * n))
+
+
+s = {}
+for n, b, t in d.values.tolist():
+    if n not in s:
+        s[n] = []
+    s[n].append((b, t))
+
+top = top[:numSolvers]
+orgh(top)
+l = []
+names = []
+for n in top["name"]:
+    l.append([t for _, t in sorted(s[n])])
+    names.append(n)
+m = [[0 for _ in range(len(l))] for _ in range(len(l))]
+for i in range(len(l)):
+    for j in range(len(l)):
+        m[i][j] = sim(l[i], l[j])
+d = pd.DataFrame(m)
+d.columns = names
+d.insert(0, "with", "")
+d["with"] = names
+d = d.set_index("with")
+d.to_csv("cross.csv")
+#+end_src
+
+#+RESULTS:
+:results:
+67 original solvers
+Removed withdrawn solver:
+- Relaxed_LCMDCBDL_noTimePara__default
+Removed disqualified solver:
+- ParaFROST_ALL__default
+- ParaFROST_HRE__default
+- CTSat__default
+- CTSat_noproof__default
+- mergesat__default
+- MLCMDCHRONOBT-DL-V2.2SCAVELRFV__default
+Removed NoLimits solver:
+- GlucoseEsbpSel__default
+- Riss-nolimit__NOLIMIT
+- SLIME__default-no-drup
+- abcdsat_n20__default
+- cryptominisat-ccnr-lsids-nolimits__default
+- cryptominisat-ccnr-nolimits__default
+- cryptominisat-walksat-nolimits__default
+- PauSat_noproof__noproof
+Removed demoted solver:
+- Riss__NOUNSAT_proof-fixed
+- Riss__default_proof
+- glucose-3.0-inprocess__default
+- optsat_m20__default
+48 solvers participated in main track
+removed 200 planning bechmarks
+316 solved benchmarks are left
+| name                 |             time |
+|----------------------+------------------|
+| Kissat-sat           | 730476           |
+| Kissat               | 788095           |
+| Relaxed_newTech      | 816126           |
+| CMS-ccnr-lsids       | 859728           |
+| CMS-ccnr             | 864043           |
+| Relaxed              | 928022           |
+| CaDiCaL-alluip-trail | 931260           |
+| CaDiCaL-alluip       | 931839           |
+| CMS-walksat          | 953510           |
+| CaDiCaL-trail        | 981613           |
+| Kissat-unsat         | 984015           |
+| CaDiCaL-sc2020       |      1.00306e+06 |
+| f2trc-DL             |      1.20628e+06 |
+| Undominated          |      1.20635e+06 |
+| PADC_DL              |      1.2131e+06  |
+| DurianSat            |      1.22028e+06 |
+| f2trc                |      1.2213e+06  |
+| f2trc-s              |      1.22707e+06 |
+| MapleCBT-DL-v3       |      1.24647e+06 |
+| PADC_DL_OVAU_Lin     |      1.25368e+06 |
+| Maple_Simp           |      1.26893e+06 |
+| PSIDS_DL             |      1.27403e+06 |
+| SLIME                |      1.28523e+06 |
+| Scavel               |      1.28853e+06 |
+| Maple_Mix            |      1.29658e+06 |
+| PADC_DL_OVAU_Exp     |      1.2988e+06  |
+| Scavel01             |      1.33025e+06 |
+| exp_V_MLD_CBT_DL     |      1.34528e+06 |
+| MapleCOMSPS_drup     |      1.35046e+06 |
+| MapleCOMSPS_init     |      1.35448e+06 |
+:end:
+
+* R scrip from SAT Race 2015
+:PROPERTIES:
+:AUTHOR:   Balyo, Tom{\'a}{\v{s}} and Biere, Armin and Iser, Markus and Sinz, Carsten
+:JOURNAL:  Artificial Intelligence
+:YEAR:     2016
+:END:
+#+begin_src shell
+R
+source("symilarity.R")
+plotheatmap("cross.csv")
+#+end_src
