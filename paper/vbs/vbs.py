@@ -64,7 +64,6 @@ def getVbs(outputAllSolvers=True, removePlanning=False):
     d = d.merge(nameDict, on="n", how="left")
     d["name"] = d["name"].fillna("UNDEF")
 
-    # d.loc[d["VBS_Origin"], "VBS_Origin"] = False
     v = d[d["VBS_Origin"]].copy()
     v["VBS_Origin"] = False
     v["n"] = v["name"] = v["solver"] = "VBS"

@@ -1,0 +1,244 @@
+We generate the plots using [[http://fmv.jku.at/benchfeature/][benchfeatures]] by Katalin Fazekas, Daniela Kaufmann, and Armin Biere.
+Before that we need to select the data we want to use and translate it to the /exact/ format the scripts expect.
+* path
+#+toResults: ../../../downloads/results.csv
+* translate data
+#+begin_src python :var res=(key "toResults") onlyNew=(key "onlyNew")
+d = pd.read_csv(res)
+d["n"] = d["solver"] + "__" + d["configuration"]
+print(str(len(d.n.unique())) + " original solvers")
+
+# withdrawn
+withdrawn = d[d["solver"] == "Relaxed_LCMDCBDL_noTimePara"].n.unique()
+d = d[~d["n"].isin(withdrawn)]
+print("Removed withdrawn solver:")
+pl(withdrawn)
+
+# disqualified
+dis = d[d["verifier-result"].isin(["SAT-INCORRECT", "UNSAT-INCORRECT"])][
+    "n"
+].unique()
+d = d[~d["n"].isin(dis)]
+print("Removed disqualified solver:")
+pl(dis)
+
+# competed in no limits
+np = d[d["drat"] == "NOPROOF"]["n"].unique()
+d = d[~d["n"].isin(np)]
+print("Removed NoLimits solver:")
+pl(np)
+
+# demoted to no limits
+dem = d[d["drat"] == "NOT_VERIFIED"]["n"].unique()
+d = d[~d["n"].isin(dem)]
+print("Removed demoted solver:")
+pl(dem)
+
+solverInMain = len(d["n"].unique())
+print(str(solverInMain) + " solvers participated in main track")
+
+# only main track (-> no planning)
+print("removed " + str(len(d[d["benchmark"].apply(lambda x: "ddl_" in x)].benchmark.unique())) + " planning bechmarks")
+d = d[~d["benchmark"].apply(lambda x: "ddl_" in x)]
+print(str(len(d[d.result.isin(["SAT", "UNSAT"])].benchmark.unique())) + " solved benchmarks are left")
+
+if onlyNew:
+    p("removed " + str(len(d[d.benchmark.apply(lambda x: x[:4] != "new/")].benchmark.unique())) + " old benchmarks")
+    d = d[d["benchmark"].apply(lambda x: x[:4] == "new/")]  # only new benchmarks
+    assert len(d["benchmark"].unique()) == 300
+
+d["s"] = d["result"].isin(["SAT", "UNSAT"])
+count = d.groupby("benchmark").sum()["s"].reset_index()
+unsolved = count[count["s"] == 0]["benchmark"].unique()
+p("Benchmarks solved by none: " + str(len(unsolved)))
+
+solved = d[d["result"].isin(["SAT", "UNSAT"])][["benchmark", "result"]].drop_duplicates()
+solved = solved.groupby("result").count().reset_index()
+orgh(solved)
+
+# translate 'verifier-result' so it is processed correctly by benchfeature
+validMarker = "--"
+failedMarker = "TIMEOUT"
+d.loc[d["s"] == 0, "verifier-result"] = failedMarker
+d.loc[d["s"] == 1, "verifier-result"] = validMarker
+
+<<dictionary>>
+d = d[selectColumns]
+d.columns = renamedColumns
+for o, n in dictionary:
+    d = d.replace(o, n)
+
+d["benchmark"] = d["benchmark"].apply(lambda x: "sat/" + x[4:])
+d.to_csv("main.csv", index=False)
+#+end_src
+
+#+RESULTS:
+:results:
+67 original solvers
+Removed withdrawn solver:
+- Relaxed_LCMDCBDL_noTimePara__default
+Removed disqualified solver:
+- ParaFROST_ALL__default
+- ParaFROST_HRE__default
+- CTSat__default
+- CTSat_noproof__default
+- mergesat__default
+- MLCMDCHRONOBT-DL-V2.2SCAVELRFV__default
+Removed NoLimits solver:
+- GlucoseEsbpSel__default
+- Riss-nolimit__NOLIMIT
+- SLIME__default-no-drup
+- abcdsat_n20__default
+- cryptominisat-ccnr-lsids-nolimits__default
+- cryptominisat-ccnr-nolimits__default
+- cryptominisat-walksat-nolimits__default
+- PauSat_noproof__noproof
+Removed demoted solver:
+- Riss__NOUNSAT_proof-fixed
+- Riss__default_proof
+- glucose-3.0-inprocess__default
+- optsat_m20__default
+48 solvers participated in main track
+removed 200 planning bechmarks
+316 solved benchmarks are left
+removed 100 old benchmarks
+Benchmarks solved by none: 65
+| result   |   benchmark |
+|----------+-------------|
+| SAT      |         156 |
+| UNSAT    |          79 |
+:end:
+
+** dictionary
+#+name: dictionary
+#+begin_src python
+renamedColumns = [
+'benchmark',
+'solver',
+'configuration',
+'solver time',
+'status',
+'result',
+'verifier time',
+'verifier result',
+]
+
+selectColumns = [
+'benchmark',
+'solver',
+'configuration',
+'time',
+'status',
+'result',
+'verifier-time',
+'verifier-result',
+]
+
+dictionary = [
+('SAT', 'SAT-VERIFIED'),
+('ERROR', 'UNKNOWN'),
+]
+#+end_src
+* generate benchmark_families.csv
+"Download features" from https://gbd.iti.kit.edu to get ~query_result.csv~
+#+begin_src python :var res=(key "toResults")
+n = pd.read_csv(res)[['benchmark']]
+n = n[n['benchmark'].apply(lambda x: x[:4] == "new/" and "ddl_" not in x)]
+n = n['benchmark'].unique()
+n = [x[4:] for x in n]
+
+d = pd.read_csv("query_result.csv", sep=' ')[['filename', 'family']]
+d.columns = ['benchmark_name','family_name']
+# this fixes not a bug but a feature
+d.loc[d['benchmark_name'] == 'ACG-15-10p1.cnf.xz,g2-ACG-15-10p1.cnf.xz', "benchmark_name"] = "ACG-15-10p1.cnf.xz"
+d['benchmark_name'] = d['benchmark_name'].apply(lambda x: x[:-3] + ".bz2")
+d = d[d['benchmark_name'].isin(n)]
+d.to_csv('benchmark_families.csv', sep=',', index=False)
+#+end_src
+
+#+RESULTS:
+:results:
+:end:
+
+* switch to new only
+#+onlyNew: t
+#+begin_src python
+mv("plots/", "allPlots")
+cmd("mkdir plots")
+#+end_src
+
+#+RESULTS:
+:results:
+:end:
+
+* execute the benchfeature scripts
+** Executing par2_generator.py
+#+begin_src sh
+python3 par2_generator.py
+#+end_src
+
+#+RESULTS:
+
+** Executing random_sampling_plots.py
+[[file:random_sampling_plots.py::fig.set_size_inches(9.6, 6.8)][adjust figure size]]
+fig = plt.figure()
+fig.set_size_inches(9.6, 6.8)
+#+begin_src sh :results verbatim drawer
+python3 random_sampling_plots.py
+#+end_src
+
+#+RESULTS:
+:results:
+Eliminating 65 unsolved instances from the data.
+Found 156 SAT and 79 UNSAT problems from 235 problems.
+Mean and standard deviation of
+ ranking correlations at random problem instance removals
+(repeated 50x each simple random sampling)
+0.00-0.20: 0 (0.00 %)
+0.20-0.40: 0 (0.00 %)
+0.40-0.60: 3 (1.28 %)
+0.60-0.80: 9 (3.83 %)
+0.80-0.99: 159 (67.66 %)
+0.99-1.00: 64 (27.23 %)
+Mean and standard deviation of ranking correlations
+ at random problem instance removals considering only SAT instances
+(repeated 50x each simple random sampling)
+0.00-0.20: 0 (0.00 %)
+0.20-0.40: 0 (0.00 %)
+0.40-0.60: 2 (1.28 %)
+0.60-0.80: 6 (3.85 %)
+0.80-0.99: 120 (76.92 %)
+0.99-1.00: 28 (17.95 %)
+Mean and standard deviation of ranking correlations
+ at random problem instance removals considering only UNSAT instances
+(repeated 50x each simple random sampling)
+0.00-0.20: 0 (0.00 %)
+0.20-0.40: 1 (1.27 %)
+0.40-0.60: 2 (2.53 %)
+0.60-0.80: 8 (10.13 %)
+0.80-0.99: 60 (75.95 %)
+0.99-1.00: 8 (10.13 %)
+:end:
+** Executing family_and_SAT_random_sampling_plots.py
+[[file:family_and_SAT_random_sampling_plots.py::plt.xticks(range(runs),corr_s, rotation = 90)][bugfix]] plt.xticks(range(runs - 1),corr_s, rotation = 90)
+[[file:family_and_SAT_random_sampling_plots.py::X_new = random_sample(data, 230)][hard coded]] number of 2*min{SAT, UNSAT} needs to be changed
+only works if SAT > UNSAT
+All: 268
+New only: 158
+#+begin_src sh
+python3 family_and_SAT_random_sampling_plots.py
+#+end_src
+
+#+RESULTS:
+
+* select plots
+#+begin_src python
+cp("allPlots/ALL_random_smpling_correlations.png", "..")
+cp("plots/fam_leave_one_out_corr.png", "..")
+cmd("rm -r allPlots plots")
+cmd("mkdir plots")
+#+end_src
+
+#+RESULTS:
+:results:
+:end:
