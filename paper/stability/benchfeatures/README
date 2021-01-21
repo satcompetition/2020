@@ -1,0 +1,33 @@
+Contained files:
+  main.csv : results of the main track of the SAT competition 2018
+
+  benchmark_families.csv: the list of problem instances and their family
+  extracted from the folder name of the submitted problems.
+ 
+  python scripts:
+  					par2_generator.py,
+            random_sampling_plots.py,
+            family_and_SAT_random_sampling_plots.py
+            
+  run_all.sh: Executes all python scripts.
+
+The contained python scripts extract the used information from the competition
+results and generate the plots used in our submission to POS'19.
+The output plots of the scripts are saved into sub-folder 'plots/'.
+
+1. Extract from competition results (main.csv) PAR2 scores (par2scores.csv) and
+   satisfiability answers (instance_answers.csv):
+
+  ./par2_generator.py
+
+2. Generate random sampling plots of results (Figure 2, 7 and 8):
+
+  ./random_sampling_plots.py
+
+3. Generate family and satisfiability based random sampling plots
+   (Figure 3, 4, 5 and 6):
+
+  ./family_and_SAT_random_sampling_plots.py
+
+Or to do all the above in one step:
+  ./run_all.sh
