@@ -786,8 +786,8 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}\\
 \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}
 \end{tabularx}
-\caption{Results of Main, Planning, Parallel and Cloud Tracks: Place~(Pl.), Score (PAR-2) and Number of Solved Instances~(\#) per Solver}
-\label{tab:cloud}
+\caption{Top 10 Solvers in Main, Planning, Parallel and Cloud Tracks: Place~(Pl.), Score (PAR-2) and Number of Solved Instances~(\#) per Solver}
+\label{tab:results}
 \end{table}
 
 
@@ -1538,13 +1538,10 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 
 \subsection{Small Portfolios}
 
-\begin{table}[tb]
-%\setlength\tabcolsep{2.5pt}%default: 6pt
-%\renewcommand{\arraystretch}{1.03}%default: 1
-%\smaller
+\begin{table}[t]
 \centering
 \begin{tabularx}{\linewidth}{rXl}
-\bf k & \bf k-Tuple & \bf Score\\ 
+\bf k & \bf Best k-Tuple & \bf Score\\ 
 \hline\arrayrulecolor{lightgray}
 1 & \{ \solver{Kissat-sat} \} & $3926.2$\\
 \hline
@@ -1555,20 +1552,25 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 6 & \{ \solver{Kissat-sat}, \solver{Kissat-unsat}, \solver{Relaxed}, \solver{Relaxed-newTech}, \phantom{\{ }\solver{CaDiCaL-alluip-trail}, \solver{f2trc-s} \} & $2687.0$\\
 7 & \{ \solver{Kissat-sat}, \solver{Kissat-unsat}, \solver{Relaxed}, \solver{Relaxed-newTech}, \phantom{\{ }\solver{CaDiCaL-alluip-trail}, \solver{f2trc-s}, \solver{CMS-Walksat}\} & $2616.9$\\
 \hline
-48 & \emph{set of all solvers} & $2431.4$
+48 & \emph{Set of all Solvers} & $2431.4$
 \end{tabularx}
 \caption{Best performing k-tuples in terms of their VBS's PAR-2 score.}
 \label{tab:tuples}
 \end{table}
 
-The PAR-2 score of the VBS of all $48$ submitted solvers in the Main track is $2431.4$, 
-which is much better than that of the single best solver  \solver{Kissat-sat} with a PAR-2 score of $3926.2$. 
-We also calculated the PAR-2 score of the VBS of small subsets of the $48$ submitted solvers. 
-In Table~\ref{tab:tuples}, we report on the best performing sets of solvers of fixed size $k \in \{1, \dots, 7\}$. 
+The PAR-2 score of the VBS of all $48$ submitted solvers in the Main track is $2431.4$, which is much better than the PAR-2 score of $3926.2$ of the single best solver \solver{Kissat-sat}. 
+Given the set of solvers $S$, the set of tuples of size $k$ is defined as follows $P_k := \{ T \mid T \in 2^S \land |T| = k\}$.
+We calculated the PAR-2 score for each VBS created from solver tuples in $P_k$. 
+In Table~\ref{tab:tuples}, we report on the single best performing $k$-tuple $T_k \in P_k$ ($1 \leq k \leq 7$). 
+
+Interestingly, each of the first five tuples $T_{k \leq 5}$ contains exactly one of the three \solver{Kissat} variants. 
+For $i < 5$ the relation $T_{i} \subset T_{i+1}$ holds only under projection to base solvers due to the fluctuating variants of \solver{Kissat}. 
+The composition changes more strongly in $T_6$. 
+Interestingly, we now have both variants $\{ \solver{Kissat-sat}, \solver{Kissat-unsat} \} \subset T_6$, and moreover it holds that $T_6 \subset T_7$.
+With the only exception being $\solver{Scavel01} \in T_6 \cap T_7$, all solvers in $T_1, \dots, T_7$ belong the top performing solvers in the Main track (cf. Table~\ref{tab:results}). 
 
 
 \subsection{Score per Instance Family} 
-
 \todo{Interestingly, the second (Relaxed-Maple-newTech) and the third (CryptoMinisat-lsids) ranked solver both outperform the winning solver (Kissat-sat) when we project only on the instance families ``antibandwidth'' or ``timetable''. }
 
 
