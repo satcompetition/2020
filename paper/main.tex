@@ -638,10 +638,13 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \end{figure}
 
 \begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline
+\centering\smaller
+\setlength\tabcolsep{3pt}
+%\begin{tabularx}{\linewidth}{X} \hline \end{tabularx}
+\begin{tabularx}{.47\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Main Track}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline
 1     & 3926.2 & 264 & \solbert{Kissat-sat} \\
 (1)   & 4083.1 & 260 & \solver{Kissat} \\
 2     & 4179.3 & 253 & \solbert{Relaxed-newTech} \\
@@ -651,22 +654,33 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
       & 4429.6 & 250 & \solver{CaDiCaL-alluip} \\
       & 4436.5 & 245 & \solver{Relaxed} \\
       & 4501.2 & 243 & \solver{CMS-walksat} \\
-      & 4554.0 & 243 & \solver{CaDiCaL-trail} \\
-      & 4560.0 & 238 & \solver{Kissat-unsat} \\
-      & 4607.6 & 246 & \solver{CaDiCaL-sc2020} \\
-      & 5157.7 & 216 & \solver{Undominated} \\
-      & 5159.6 & 220 & \solver{f2trc-DL} \\
-      & 5177.0 & 214 & \solver{PADC-DL} \\              
-\end{tabular}
-\caption{Main ALL}
-\label{tab:mainALL}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline
+      & 4554.0 & 243 & \solver{CaDiCaL-trail}%
+%      & 4560.0 & 238 & \solver{Kissat-unsat} \\
+%      & 4607.6 & 246 & \solver{CaDiCaL-sc2020} \\
+%      & 5157.7 & 216 & \solver{Undominated} \\
+%      & 5159.6 & 220 & \solver{f2trc-DL} \\
+%      & 5177.0 & 214 & \solver{PADC-DL} \\  
+\end{tabularx}\quad%
+\begin{tabularx}{.5\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Parallel Track}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline
+ 1 & 3316.6 & 283 & \solbert{Painless-MCOMSPS-str32} \\
+(1)& 3714.7 & 271 & \solver{Painless-MCOMSPS-str64} \\
+ 2 & 3743.4 & 269 & \solbert{Plingeling} \\
+ 3 & 3985.3 & 260 & \solbert{ManyGlucose-32} \\
+   & 4022.7 & 262 & \solver{Painless-Maple-v1} \\
+   & 4036.3 & 258 & \solver{ManyGlucose-64} \\
+   & 4103.3 & 260 & \solver{Painless-Maple-v2} \\
+   & 4433.3 & 243 & \solver{Syrup-Scavel} \\
+   & 4903.4 & 225 & \solver{Treengeling} \\
+   & 5240.1 & 213 & \solver{abcdsat-p20} \\
+\end{tabularx}
+~\\[1em]
+\begin{tabularx}{.47\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Main Track, Satisfiable Instances}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline  
  1    & 2997.4 & 150 & \solbert{Relaxed-newTech} \\
  2    & 3127.6 & 146 & \solbert{Kissat-sat} \\
  3    & 3263.0 & 144 & \solbert{CMS-ccnr-lsids} \\
@@ -676,23 +690,33 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
       & 3830.5 & 134 & \solver{Kissat} \\
       & 3908.5 & 135 & \solver{CaDiCaL-alluip-trail} \\
       & 3909.6 & 135 & \solver{CaDiCaL-alluip} \\
-      & 4265.6 & 126 & \solver{CaDiCaL-trail} \\
-      & 4368.6 & 130 & \solver{CaDiCaL-sc2020} \\
-   & 4804.9 & 114 & \solver{Kissat-unsat} \\
-   & 5173.2 & 110 & \solver{Undominated} \\
-   & 5244.1 & 107 & \solver{PADC-DL} \\
-   & 5264.9 & 110 & \solver{f2trc-DL} \\           
-\end{tabular}
-\caption{Main SAT}
-\label{tab:mainSAT}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline   
+      & 4265.6 & 126 & \solver{CaDiCaL-trail}%
+%      & 4368.6 & 130 & \solver{CaDiCaL-sc2020} \\
+%   & 4804.9 & 114 & \solver{Kissat-unsat} \\
+%   & 5173.2 & 110 & \solver{Undominated} \\
+%   & 5244.1 & 107 & \solver{PADC-DL} \\
+%   & 5264.9 & 110 & \solver{f2trc-DL} \\           
+\end{tabularx}\quad%
+\begin{tabularx}{.5\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Parallel Track, Satisfiable Instances}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline
+ 1 & 2853.7 & 153 & \solbert{Painless-MCOMSPS-str32} \\
+ 2 & 2913.6 & 154 & \solbert{Painless-Maple-v1} \\
+(2)& 3082.7 & 151 & \solver{Painless-Maple-v2} \\
+-- & 3196.9 & 148 & \solver{Painless-MCOMSPS-str64} \\
+ 3 & 3805.9 & 133 & \solbert{Plingeling} \\
+   & 4048.3 & 130 & \solver{ManyGlucose-64} \\
+   & 4076.2 & 130 & \solver{ManyGlucose-32} \\
+   & 4675.4 & 119 & \solver{Syrup-Scavel} \\
+   & 4907.1 & 114 & \solver{Treengeling} \\
+   & 6337.5 & \phantom{0}85 & \solver{abcdsat-p20} \\
+\end{tabularx}
+~\\[1em]
+\begin{tabularx}{.47\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Main Track, Unsatisfiable Instances}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline   
 1     & 4315.1 & 124 & \solbert{Kissat-unsat} \\
 (1)   & 4335.6 & 126 & \solver{Kissat} \\
 (1)   & 4724.8 & 118 & \solver{Kissat-sat} \\
@@ -702,23 +726,33 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 (2)   & 4949.6 & 115 & \solver{CaDiCaL-alluip} \\
  3    & 4991.4 & 110 & \solbert{f2trc-s} \\
 (3)   & 5051.4 & 109 & \solver{f2trc} \\
-(3)   & 5054.3 & 110 & \solver{f2trc-DL} \\
-      & 5069.6 & 109 & \solver{Maple-Mix} \\
-      & 5110.0 & 107 & \solver{PADC-DL} \\
-      & 5126.9 & 107 & \solver{Maple-Simp} \\
-      & 5128.9 & 107 & \solver{MapleCBT-DL-v3} \\
-      & 5142.2 & 106 & \solver{Undominated} \\      
-\end{tabular}
-\caption{Main UNSAT}
-\label{tab:mainUNSAT}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline   
+(3)   & 5054.3 & 110 & \solver{f2trc-DL}%
+%      & 5069.6 & 109 & \solver{Maple-Mix} \\
+%      & 5110.0 & 107 & \solver{PADC-DL} \\
+%      & 5126.9 & 107 & \solver{Maple-Simp} \\
+%      & 5128.9 & 107 & \solver{MapleCBT-DL-v3} \\
+%      & 5142.2 & 106 & \solver{Undominated} \\  
+\end{tabularx}\quad%
+\begin{tabularx}{.5\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Parallel Track, Unsatisfiable Instances}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline
+ 1 & 3680.8 & 136 & \solbert{Plingeling} \\
+ 2 & 3779.5 & 130 & \solbert{Painless-MCOMSPS-str32} \\
+ 3 & 3894.3 & 130 & \solbert{ManyGlucose-32} \\
+(3)& 4024.2 & 128 & \solver{ManyGlucose-64} \\
+   & 4142.8 & 128 & \solver{abcdsat-p20} \\
+   & 4191.1 & 124 & \solver{Syrup-Scavel} \\
+   & 4232.5 & 123 & \solver{Painless-MCOMSPS-str64} \\
+   & 4899.8 & 111 & \solver{Treengeling} \\
+   & 5123.9 & 109 & \solver{Painless-Maple-v2} \\
+   & 5131.9 & 108 & \solver{Painless-Maple-v1}%
+\end{tabularx}
+~\\[1em]
+\begin{tabularx}{.47\linewidth}{cccX}
+\multicolumn{4}{l}{\bf Planning Track}\\
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
+\arrayrulecolor{lightgray}\hline   
  1    & 6406.9 & 80 & \solbert{CaDiCaL-alluip-trail} \\
 (1)   & 6409.3 & 80 & \solver{CaDiCaL-alluip} \\
  2    & 6466.9 & 79 & \solbert{CMS-ccnr-lsids} \\
@@ -728,83 +762,18 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
       & 6650.1 & 79 & \solver{CaDiCaL-trail} \\
       & 6713.0 & 75 & \solver{Maple-Mix} \\
       & 6746.5 & 75 & \solver{MapleCOMSPS-init} \\
-      & 6754.3 & 73 & \solver{Maple-Simp} \\
-      & 6773.0 & 73 & \solver{MapleCOMSPS-drup} \\
-      & 6773.9 & 73 & \solver{Kissat-sat} \\
-      & 6774.2 & 73 & \solver{Kissat} \\
-      & 7025.5 & 68 & \solver{upGlucose3.0-PADC} \\
-      & 7044.7 & 66 & \solver{Glucose3.0-proofs} \\
-\end{tabular}
-\caption{Planning (ALL)}
-\label{tab:planning}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline
- 1 & 3316.6 & 283 & \solbert{Painless-MCOMSPS-STR-32} \\
-(1)& 3714.7 & 271 & \solver{Painless-MCOMSPS-STR-64} \\
- 2 & 3743.4 & 269 & \solbert{Plingeling} \\
- 3 & 3985.3 & 260 & \solbert{ManyGlucose-32} \\
-   & 4022.7 & 262 & \solver{Painless-Maple-v1} \\
-   & 4036.3 & 258 & \solver{ManyGlucose-64} \\
-   & 4103.3 & 260 & \solver{Painless-Maple-v2} \\
-   & 4433.3 & 243 & \solver{Syrup-Scavel} \\
-   & 4903.4 & 225 & \solver{Treengeling} \\
-   & 5240.1 & 213 & \solver{abcdsat-p20} \\
-\end{tabular}
-\caption{Parallel (ALL)}
-\label{tab:parallelALL}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline
- 1 & 2853.7 & 153 & \solbert{Painless-MCOMSPS-STR-32} \\
- 2 & 2913.6 & 154 & \solbert{Painless-Maple-v1} \\
-(2)& 3082.7 & 151 & \solver{Painless-Maple-v2} \\
--- & 3196.9 & 148 & \solver{Painless-MCOMSPS-STR-64} \\
- 3 & 3805.9 & 133 & \solbert{Plingeling} \\
-   & 4048.3 & 130 & \solver{ManyGlucose-64} \\
-   & 4076.2 & 130 & \solver{ManyGlucose-32} \\
-   & 4675.4 & 119 & \solver{Syrup-Scavel} \\
-   & 4907.1 & 114 & \solver{Treengeling} \\
-   & 6337.5 & \phantom{0}85 & \solver{abcdsat-p20} \\
-\end{tabular}
-\caption{Parallel (SAT)}
-\label{tab:parallelSAT}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
-\hline
- 1 & 3680.8 & 136 & \solbert{Plingeling} \\
- 2 & 3779.5 & 130 & \solbert{Painless-MCOMSPS-STR-32} \\
- 3 & 3894.3 & 130 & \solbert{ManyGlucose-32} \\
-(3)& 4024.2 & 128 & \solver{ManyGlucose-64} \\
-   & 4142.8 & 128 & \solver{abcdsat-p20} \\
-   & 4191.1 & 124 & \solver{Syrup-Scavel} \\
-   & 4232.5 & 123 & \solver{Painless-MCOMSPS-STR-64} \\
-   & 4899.8 & 111 & \solver{Treengeling} \\
-   & 5123.9 & 109 & \solver{Painless-Maple-v2} \\
-   & 5131.9 & 108 & \solver{Painless-Maple-v1} \\
-\end{tabular}
-\caption{Parallel (UNSAT)}
-\label{tab:parallelUNS}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{cccl}
-\bf Place & \bf PAR-2 Score & \bf Num. Solved & \bf Solver \\
+      & 6754.3 & 73 & \solver{Maple-Simp}%
+%      & 6773.0 & 73 & \solver{MapleCOMSPS-drup} \\
+%      & 6773.9 & 73 & \solver{Kissat-sat} \\
+%      & 6774.2 & 73 & \solver{Kissat} \\
+%      & 7025.5 & 68 & \solver{upGlucose3.0-PADC} \\
+%      & 7044.7 & 66 & \solver{Glucose3.0-proofs} \\
+\end{tabularx}\quad%
+\begin{tabularx}{.5\linewidth}{cccX}
+\arrayrulecolor{lightgray}
+\multicolumn{4}{l}{\bf Cloud Track}\\
+%\hline
+\bf Pl. & \bf PAR-2 & \bf \# & \bf Solver \\
 \hline
  1 & 2603.8 & 299 & \solbert{Mallob-Mono} \\
  2 & 3146.8 & 278 & \solbert{TopoSAT 2} \\
@@ -812,8 +781,12 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
    & 6800.8 & 132 & \solver{Paracooba} \\
    & 7299.0 & 110 & \solver{CTsat} \\
    & 8468.3 & \phantom{0}62 & \solver{Paracooba-March} \\
-\end{tabular}
-\caption{Cloud (ALL)}
+\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}\\
+\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}\\
+\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}\\
+\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}
+\end{tabularx}
+\caption{Results of Main, Planning, Parallel and Cloud Tracks: Place~(Pl.), Score (PAR-2) and Number of Solved Instances~(\#) per Solver}
 \label{tab:cloud}
 \end{table}
 
@@ -1293,7 +1266,7 @@ each solver scores a whole point for that instance.
 \caption{VBS metrics for the results of the Main track, all instances. 
 The total number of solved problems was 316. 
 There were 48 (non-disqualified) solvers (and their configurations).
-Each table shows the first ten solvers sorted according to the respective metric.\todo{Maybe move classic VBS also to here for comparison}}
+Each table shows the first ten solvers sorted according to the respective metric.\todo{Maybe move classic PAR-2 ranking also to here for comparison}}
 \label{tab:vbsMainALL}
 \end{table}
 
