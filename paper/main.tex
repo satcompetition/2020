@@ -535,7 +535,7 @@ the author of \emph{Tree-REX}.
 Table \ref{tab:planningBenchmarkDist} shows the number of benchmarks generated
 by each encoding. 
 For a complete list of the encoded planning tasks we refer to the
-generation script.\footnote{\url{https://satcompetition.github.io/2020/downloads/SAT2020_planning_generator.tar.xz}} 
+generation script.\footnote{\url{https://satcompetition.github.io/2020/downloads/planning_generator.tar.xz}} 
 The benchmarks of the planning track adhere to the following naming convention:
 ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
   \texttt{name} \rangle\_\langle \texttt{makespan}
@@ -1554,17 +1554,12 @@ Interestingly, each of the first five tuples $T_{k \leq 5}$ contains exactly one
 For $i < 5$ the relation $T_{i} \subset T_{i+1}$ holds only under projection to base solvers due to the fluctuating variants of \solver{Kissat}. 
 The composition changes more strongly in $T_6$. 
 Interestingly, we now have both variants $\{ \solver{Kissat-sat}, \solver{Kissat-unsat} \} \subset T_6$, and moreover it holds that $T_6 \subset T_7$.
-All solvers in $T_1, \dots, T_7$ belong the top performing solvers in the Main track, with the only exception being $\solver{Scavel01} \in T_6 \cap T_7$ (cf. Table~\ref{tab:results}). 
+All solvers in $T_{k \leq 7}$ belong the top performing solvers which received an award in the Main track, with the only exception being $\solver{Scavel01} \in T_4 \cap T_5$ (cf.~Table~\ref{tab:results}). 
 
 
 \subsection{Score per Instance Family} 
 
-Contributions to the VBS can be well capatured by clustering the instance space into instance families. 
-We evaluated the runtimes of the three winning solvers of the Main track on the all families represented by at least $14$ instances (cf. Table~\ref{tab:families}) and report on their place and score in Table~\ref{tab:eval-by-family}. 
-
-Interestingly, the overall winning solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on a few instance families by a large margin, namely \emph{Anti-Bandwidth}, \emph{Vlsat}, \emph{Hypertree Decomposition}, \emph{Influence Maximization} and \emph{Tournament}. 
-
-\begin{table}
+\begin{table}[b]
 \small
 \begin{tabularx}{\linewidth}{X|rrrrrr}
  & \multicolumn{2}{l}{\solver{Kissat-sat}} & \multicolumn{2}{l}{\solver{Relaxed-newTech}} & \multicolumn{2}{l}{\solver{CMS-ccnr-lsids}} \\
@@ -1579,12 +1574,16 @@ Hypertree Decomposition & 21 & 1173.3 &  \bf 8 & 1016.0 & 38 & 3188.0\\
 Influence Maximization 	& 22 & 2350.4 &  \bf 3 & 1838.9 & 11 & 2035.8\\
 Tensors 				&  \bf 2 & 1412.4 &  7 & 4411.2 & 11 & 7414.2\\
 Timetable 				& 41 & 7889.0 & 21 & 5103.8 & \bf 19 & 5092.4\\
-Tournament 				& 20 & 10000.0&  \bf 2 & 8715.0 &  9 & 10000.0\\
+Tournament 				& 4 & 10000.0&  \bf 2 & 8715.0 &  4 & 10000.0\\
 Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \end{tabularx}
 \caption{Place and PAR-2 of Winning Solvers in the Main Track per Instance Family}
 \label{tab:eval-by-family}
 \end{table}
+
+Contributions to the VBS can be well capatured by clustering the instance space into instance families. 
+We evaluated the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf. Table~\ref{tab:families}) and report on their place and score in Table~\ref{tab:eval-by-family}. 
+Interestingly, the overall winning solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
 
 
 \subsection{Similarity of Solvers}
