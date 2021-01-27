@@ -1577,15 +1577,15 @@ the benchmarks we use the PAR-2 score,
 % based on the \num{5000}-second timeout
 i.\,e., for each solver we set a score of \num{10000} for unsolved instances.
 This leaves us with $316$ floats
-$S_{1},\dots,S_{n}$ for each solver $S$. The \emph{similarity} of two solvers $A$
-and $B$, normalized to the interval $[0,1]$ is defined
+$S_{1},\dots,S_{n}$ for each solver $S$. The \emph{similarity} of two solvers $S$
+and $S'$, normalized to the interval $[0,1]$ is defined
 as:
 % by Equation~\ref{eq-similarity}.
 
 % \begin{equation}
 % \label{eq-similarity}
 \[
-	similarity(A, B) =\quad 1 - \frac{\sum{|A_{i} - B_{i}|}}{316 \cdot \num{10000}}
+	similarity(S, S') =\quad 1 - \frac{\sum{|S_{i} - S'_{i}|}}{316 \cdot \num{10000}}
 \]
 % \end{equation}
 We calculated the \emph{similarity} between the $30$ solvers which achieved the
@@ -1596,36 +1596,51 @@ illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
 are joined reflects how similar they are. For example enabling the \emph{trail
   saving} in \solver{CaDiCaL-alluip} has no impact on the runtime, resulting in
 a similarity above \num{0.999}. Thus the two solvers are joined low in the
-dendrogram.
-A similar visualization was used to visualize the results of the SAT Race \cite{Balyo:2015:SATRace}.
+dendrogram. A similar visualization was used for the results of the SAT Race 2015 \cite{Balyo:2015:SATRace}.
 
 One big cluster we can identify are the \solver{Maple}-decedents to the right,
 all of which are modifications of the winners of the SAT Competition 2018 and
 the SAT Race 2019.
-With the exception of \solver{mergesat} and
-maybe \solver{DurianSat} we observe a high similarity within the cluster.
-% * 0.9645726159423101, 'exp_V_MLD_CBT_DL', 'Scavel' second highest similarity of all (not 2 configurations of the same solver)
-% ** both based on MapleLCMDistChronoBT-dl-v2.2
-% ** suggesting that the changes they made are either very similar or both do not have a high impact on the performance of the base solver in this test set.
+The similarity within the cluster is high, with the exception of
+\solver{Scavel} and \solver{exp\_V\_MLD\_CBT\_DL}.
+They form a subcluster
+with a lower similarity to the rest, but a high similarity within. In fact the highest measured similarity,
+ % of $0.96$
+besides the aforementioned \solver{CaDiCaL-alluip}, is observed between them.
+The two solvers are both based on
+\solver{MapleLCMDistChronoBT-dl-v2.2} but have different authors.
+The high similarity suggest that the
+changes they made either result in very similar behavior or do not have a
+significant impact on the runtime performance.
 
-% The two configurations of the \solver{Relaxed} by \emph{Zhang} and \emph{Cai}
+The two configurations of the \solver{Relaxed} by \emph{Zhang} and \emph{Cai}
 use the same code base as a lot of the solvers in the Maple-Cluster but their
 overall performance is better and closer to the CMS-Cluster.
 
-The three CMS versions differ in their implementation of stochastic local search
-(SLS) but overall have a similar performance.
+Close to them are the three \solver{CMS} versions. They differ in their implementation of stochastic local search
+(SLS) and have similar performance.
+The 2020 version of \solver{CaDiCaL}
+performed worse than the modifications based on the 2019 version and
+does not quite fit into any cluster.
 
-The last cluster to the left of the heat map is comprised of the solvers
-originally written by Biere. The three configurations of \solver{Kissat} form a
-sub-cluster, even though the configurations are fairly distinct from each other.
-% , specialized for satisfiable and unsatisfiable instances.
-% One targets satisfiable instances, while the other is focused on unsatisfiable
-% instances and a third alternating between them.
+The last cluster to the left of the heat map is comprised of the other solvers
+originally written by \emph{Biere}. Interesting to note is that the
+\solver{Kissat} configuration specialized for unsatisfiable instances joins the
+others in the cluster high in the dendrogram. In fact \solver{Kissat-unsat} has
+the lowest average similarity to all other solvers in the top 30. This hints at
+its importance for the use in an optimal portfolio.
+% Average similarity
+% | Kissat-unsat         |  21.75012381941168 |
+% | Kissat               | 22.591060319234913 |
+% | CaDiCaL-alluip       |  22.93588211785061 |
+% | CaDiCaL-alluip-trail |  22.93631201417939 |
+% | Kissat-sat           |  22.99738644487821 |
 
-The other sub-cluster consists of modifications to the 2019 version of
-\solver{CaDiCaL}. The new version CaDiCaL-2020 has a worse overall performance
-than the solvers in this cluster and a comparatively high similarty to the
-Maple-Cluster.
+% The other sub-cluster consists of modifications to the 2019 version of
+% \solver{CaDiCaL}.
+% The new version CaDiCaL-2020 has a worse overall performance
+% than the solvers in this cluster and a comparatively high similarty to the
+% Maple-Cluster.
 
 \begin{figure}[tp]
     \centering
@@ -1687,39 +1702,33 @@ modifications to the original ranking together with the resulting rank
 correlation coefficient: The smallest change we can make is to switch the rank
 of two adjacent solvers, resulting in a high rank correlation $\rho = 0.9999$.
 Several small changes also result in a high rank correlation; repeating the same
-modification as before $n/2$ times to switch every two adjacent solvers in rank
-still gives a value of $\rho = 0.9974$. On the other hand, switching the highest
-ranked solver (\solver{Kissat-sat}) with the lowest ranked solver, results in a
-rank correlation of $\rho = 0.7602$. Moving \solver{Kissat-sat} to the bottom of
-the ranking and moving every other solver up one rank gives a higher
-$\rho = 0.8776$. Doing the same to all three \solver{Kissat} configurations
-(with ranks 1, 2 and 11, now 46, 47 and 48) results in $\rho = 0.6839$.
+modification as before $n/2$ times to switch all pairs of adjacent solvers in
+rank still gives a value of $\rho = 0.9974$. On the other hand, switching the
+highest ranked solver (\solver{Kissat-sat}) with the lowest ranked solver,
+results in a rank correlation of $\rho = 0.7602$. Moving \solver{Kissat-sat} to
+the bottom of the ranking and moving every other solver up one rank gives a
+higher $\rho = 0.8776$. Doing the same to all three \solver{Kissat}
+configurations (with ranks 1, 2 and 11, now 46, 47 and 48) results in
+$\rho = 0.6839$.
 
 The mean and standard deviation of the computed correlation coefficients are
 depicted in Figure~\ref{fig:sampleAll}.
-
 \begin{figure}[h]
   \label{fig:sampleAll}
   \includegraphics[width=\textwidth]{stability/ALL_random_smpling_correlations.png}
   \caption{Mean and standard deviation of rank correlation under removal of random instances, 50 samples for each size}
 \end{figure}
-
 The rank correlation is high even for relatively small samples.
 The average rank correlation drops below $0.99$ only after randomly removing at least $95$ benchmarks, which is $30\%$ of the considered benchmark set. Accordingly, removing fewer benchmarks randomly has almost no effect on the ranking of the solvers.
-Furthermore, removing fewer than $200$ ($63\%$) benchmarks, results in an average rank correlation above $0.96$
+Furthermore, removing fewer than $200$ ($63\%$) benchmarks, still results in an average rank correlation above $0.96$
 
 This suggest that the influence of the random selection in Algorithm~\ref{algo:select} on the solver ranking is limited.
 % \ref{sec:byob}
-
 The collected data cannot show, whether all of the benchmarks originally
-submitted by the solver authors, have a systematic bias. Since each newly
-submitted benchmark family originates from a different domain and is often the
-result of current research, we can assume that the submitted families together
-are representative. Figure~\ref{fig:sampleFamily} shows the rank correlation
-coefficient resulting from removing a complete benchmark family instead of a
-random subset. As expected removing a non random subset can have a higher impact
-on the ranking even if it is small. Removing the 13 benchmarks from the
-\emph{hgen}-family results in a (still high) rank correlation of $0.9895$. Additionally, the ranking of the top five solvers stays the same.
+submitted by the solver authors, have a systematic bias. However since each
+newly submitted benchmark family originates from a different domain and is often
+the result of current research, we can assume that the submitted families
+together are representative.
 
 \begin{figure}[h]
   \label{fig:sampleFamily}
@@ -1727,7 +1736,13 @@ on the ranking even if it is small. Removing the 13 benchmarks from the
   \caption{Change of rank correlation under removal of individual benchmark families}
 \end{figure}
 
-
+Figure~\ref{fig:sampleFamily} shows the rank
+correlation coefficient resulting from removing a complete benchmark family
+instead of a random subset. As expected removing a non random subset can have a
+higher impact on the ranking even if it is small. Removing the 13 benchmarks
+from the \emph{hgen}-family results in a (still high) rank correlation of
+$0.9895$. Additionally, the ranking of the top five solvers stays the same.
+The individual removal of all other benchmarks families results in a rank correlation over $0.99$.
 
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
