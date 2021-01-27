@@ -235,7 +235,7 @@ may in general influence which questions will follow next.
 
 The Parallel track evaluates solver performance in wallclock time on multiple cores.
 The benchmarks and the timeout (5000 seconds) are the same as in the Main track. 
-Each solver run in this track was on a m4.16xlarge machine from Amazon Web Services.
+Each solver run in this track was on a m4.16xlarge machine from Amazon Web Services (AWS).
 These machines have 64 virtual cores and 256GB of memory. In contrast to the 
 Main track, there is no proof logging for unsatisfiable benchmarks in the Parallel track. 
 
@@ -332,10 +332,10 @@ not eligible to win any award.
 
 \label{sec:certif}
 
-In all tracks it was required to output a model to certify recognising a satisfiable instance.
+In all tracks it was required to output a model to certify recognizing a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only 
 in the Main track (besides the No Limits track).
-In some cases solvers output the correct result but the repective certificate was wrong. 
+In some cases solvers output the correct result but the respective certificate was wrong. 
 Such solvers were demoted to the No-limits track of the competition. 
 
 The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
@@ -366,7 +366,9 @@ in the competition.}
 The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{2.66}{\giga\hertz}
 (4-Core) processors and \SI{24}{\giga\byte} of RAM.
 
-\todo{Parallel / Cloud}
+As noted above, the Parallel track was run on AWS m4.16xlarge machines with 64 virtual CPUs and 256 GB
+of memory, while the Cloud track was run on AWS m4.4xlarge machines with 16 virtual CPUs and 64 GB of
+memory. These tracks used wallclock timeouts of \SI{5000}{\second} and \SI{1000}{\second}, respectively.
 
 \section{Benchmarks}
 \label{sec:instances}
