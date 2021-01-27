@@ -233,11 +233,20 @@ may in general influence which questions will follow next.
 
 \subsubsection{Parallel Track}
 
-\todo{MH?}
+The Parallel track evaluates solver performance in wallclock time on multiple cores.
+The benchmarks and the timeout (5000 seconds) are the same as in the Main track. 
+Each solver run in this track was on a m4.16xlarge machine from Amazon Web Services.
+These machines have 64 virtual cores and 256GB of memory. In contrast to the 
+Main track, there is no proof logging for unsatisfiable benchmarks in the Parallel track. 
 
 \subsubsection{Cloud Track}
 
-\todo{MH?}
+New this year was the Cloud track to evaluated distributed solvers. Similar to the
+Parallel track, the solvers ran on the Amazon cloud, but using 100 machines of the
+type m4.4xlarge, which have 16 virtual cores and 64GB of memory. 
+Communication between the machines is possible using MPI and SSH.
+The wallclock timeout is 1000 seconds and the same benchmarks were used as in
+the Main and Parallel track. 
 
 \subsection{Mandatory Participation Requirements}
 \label{sec:rules}
