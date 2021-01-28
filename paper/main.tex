@@ -604,17 +604,31 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \section{Competition Results}
 \label{sec:results}
 
+Some interesting results were observed in the 2020 SAT Competition.
+Four Main track solvers (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alliup-trial}, and \solver{CMS-ccnr-lsids}) 
+performed significantly better compared to the others, see Figure~\ref{main:all} and Table~\ref{tab:results}.
+These four solvers all have a different code base. In recent competitions, top solvers were much closer together.
+The main reason for this difference is the enormous gap with the other solvers on satisfiable benchmarks, 
+see Figure~\ref{main:sat}. In recent years, several techniques have been added to SAT solvers to improve
+their performance on satisfiable instance. Examples of such techniques are the integration of a local search
+solver and alternating between a SAT mode (infrequent restarts) and an UNSAT mode (frequent restarts,
+and variable-move-to-front). The solvers performance was much closer on unsatisfiable formulas,
+see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat} performed significantly better compared to all
+other participants. It is therefore not surprising that the VBS is reasonably close to \solver{Kissat-unsat}.
+
 
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{img/paper-main-top10-ALL.pdf}
 \caption{Performance of the top 10 solvers + VBS on all  Main track benchmarks}
+\label{main:all}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{img/paper-main-top10-SAT.pdf}
 \caption{Performance of the top 10 solvers + VBS on Main track satisfiable benchmarks}
+\label{main:sat}
 \end{figure}
 
 \begin{figure}
@@ -622,6 +636,7 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \includegraphics[width=.9\textwidth]{img/paper-main-top10-UNSAT.pdf}
 \caption{Performance of the top 10 solvers + VBS on Main track unsatisfiable benchmarks}
 \end{figure}
+\label{main:unsat}
 
 \begin{table}
 \centering\smaller
