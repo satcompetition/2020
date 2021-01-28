@@ -55,23 +55,26 @@
 \colorlet{vthreecol}{clearorange} \newcommand{\vthreemark}{+}
 \colorlet{duriancol}{redpurple} \newcommand{\durianmark}{diamond}
 
-\newcommand{\solvera}{DurianSat} \colorlet{cola}{duriancol} \newcommand{\marka}{\durianmark}
-\newcommand{\solverb}{ExMapleLCMDistChronoBT-PADC\_DL} \colorlet{colb}{excol} \newcommand{\markb}{\exmark}
-\newcommand{\solverc}{Kissat-sc2020-unsat} \colorlet{colc}{kissatcol} \newcommand{\markc}{\kissatmark}
-\newcommand{\solverd}{MapleLCMDistChronoBT-DL-v3} \colorlet{cold}{vthreecol} \newcommand{\markd}{\vthreemark}
-\newcommand{\solvere}{MapleLCMDistChronoBT-f2trc-s} \colorlet{cole}{ftwocol} \newcommand{\marke}{\ftwomark}
-\newcommand{\solverf}{Maple\_mix} \colorlet{colf}{mixcol} \newcommand{\markf}{\mixmark}
-\newcommand{\solverg}{SLIME} \colorlet{colg}{slimecol} \newcommand{\markg}{\slimemark}
-\newcommand{\solverh}{Undominated-LC-MapleLCMDiscChronoBT-DL} \colorlet{colh}{undominatedcol} \newcommand{\markh}{\undominatedmark}
-\newcommand{\solveri}{virtual best solver} \colorlet{coli}{virtualcol} \newcommand{\marki}{\virtualmark}
-\newcommand{\solverj}{cadical-trail} \colorlet{colj}{cadicalcol} \newcommand{\markj}{\cadicalmark}
-\newcommand{\solverk}{cryptominisat-ccnr} \colorlet{colk}{cryptominisatcol} \newcommand{\markk}{\cryptominisatmark}
+\newcommand{\solver}[1]{\texttt{\Large #1}}
+
+
+\newcommand{\solvera}{\solver{DurianSat}} \colorlet{cola}{duriancol} \newcommand{\marka}{\durianmark}
+\newcommand{\solverb}{\solver{Ex-PADC\_DL}} \colorlet{colb}{excol} \newcommand{\markb}{\exmark}
+\newcommand{\solverc}{\solver{Kissat-unsat}} \colorlet{colc}{kissatcol} \newcommand{\markc}{\kissatmark}
+\newcommand{\solverd}{\solver{MapleLCMDistChronoBT-DL-v3}} \colorlet{cold}{vthreecol} \newcommand{\markd}{\vthreemark}
+\newcommand{\solvere}{\solver{f2trc-s}} \colorlet{cole}{ftwocol} \newcommand{\marke}{\ftwomark}
+\newcommand{\solverf}{\solver{Maple-Mix}} \colorlet{colf}{mixcol} \newcommand{\markf}{\mixmark}
+\newcommand{\solverg}{\solver{Slime}} \colorlet{colg}{slimecol} \newcommand{\markg}{\slimemark}
+\newcommand{\solverh}{\solver{Undominated}} \colorlet{colh}{undominatedcol} \newcommand{\markh}{\undominatedmark}
+\newcommand{\solveri}{\Large Virtual Best Solver} \colorlet{coli}{virtualcol} \newcommand{\marki}{\virtualmark}
+\newcommand{\solverj}{\solver{CaDiCaL-trail}} \colorlet{colj}{cadicalcol} \newcommand{\markj}{\cadicalmark}
+\newcommand{\solverk}{\solver{CMS-ccnr}} \colorlet{colk}{cryptominisatcol} \newcommand{\markk}{\cryptominisatmark}
 
 
 \begin{document}
 
 \begin{tikzpicture}[scale = 2]
-          \begin{axis}[mark size=1.5pt, grid=both, grid style={black!10}, legend columns=1, legend style={nodes={scale=0.4]}, at={(0.955,0.38)}}, legend cell align={left}, xlabel=CPU time, ylabel=solved instances (UNSAT),xmin=0,xmax=5200,ymin=0,ymax=140]
+          \begin{axis}[mark size=1.5pt, grid=both, grid style={black!10}, legend columns=1, legend style={nodes={scale=0.4]}, at={(0.93,0.5)}}, legend cell align={left}, xlabel=CPU time, ylabel=solved instances (UNSAT),xmin=0,xmax=5200,ymin=0,ymax=140]
           
 \addplot[color=coli, mark=\marki] coordinates {(0.01, 1) (0.01, 2) (0.06, 3) (0.11, 4) (0.58, 5) (6.68, 6) (7.73, 7) (13.39, 8) (16.40, 9) (18.57, 10) (22.47, 11) (23.84, 12) (24.67, 13) (28.21, 14) (33.11, 15) (34.20, 16) (34.91, 17) (35.22, 18) (35.51, 19) (36.69, 20) (43.88, 21) (49.88, 22) (56.54, 23) (58.15, 24) (58.88, 25) (60.86, 26) (64.31, 27) (70.09, 28) (70.27, 29) (70.89, 30) (78.13, 31) (82.50, 32) (89.04, 33) (92.98, 34) (96.13, 35) (98.57, 36) (100.51, 37) (101.33, 38) (102.08, 39) (111.33, 40) (113.44, 41) (115.60, 42) (117.95, 43) (120.96, 44) (136.11, 45) (140.87, 46) (146.56, 47) (147.79, 48) (168.44, 49) (170.00, 50) (182.04, 51) (199.88, 52) (200.75, 53) (203.69, 54) (211.11, 55) (218.06, 56) (229.89, 57) (230.77, 58) (234.10, 59) (234.74, 60) (237.91, 61) (240.34, 62) (249.39, 63) (253.60, 64) (284.94, 65) (296.73, 66) (310.55, 67) (310.61, 68) (311.29, 69) (315.08, 70) (327.14, 71) (337.57, 72) (367.80, 73) (370.57, 74) (384.73, 75) (385.35, 76) (397.51, 77) (404.52, 78) (414.27, 79) (420.23, 80) (422.58, 81) (430.99, 82) (443.22, 83) (451.31, 84) (481.35, 85) (481.49, 86) (489.75, 87) (496.22, 88) (513.78, 89) (514.45, 90) (522.78, 91) (523.21, 92) (546.32, 93) (557.33, 94) (560.99, 95) (601.31, 96) (614.57, 97) (669.69, 98) (693.07, 99) (730.66, 100) (749.43, 101) (817.00, 102) (835.12, 103) (990.43, 104) (1010.29, 105) (1033.51, 106) (1198.66, 107) (1214.23, 108) (1223.81, 109) (1253.19, 110) (1266.23, 111) (1318.90, 112) (1338.48, 113) (1346.45, 114) (1459.28, 115) (1539.00, 116) (1551.09, 117) (1609.23, 118) (1651.52, 119) (1705.89, 120) (1717.41, 121) (1778.24, 122) (1947.83, 123) (2013.86, 124) (2079.88, 125) (2217.62, 126) (2218.59, 127) (2503.85, 128) (2761.92, 129) (2975.14, 130) (3539.58, 131) (3818.74, 132) (4560.26, 133) (10000, 133) };
 \addplot[color=colc, mark=\markc] coordinates {(0.02, 1) (0.02, 2) (0.06, 3) (0.18, 4) (0.72, 5) (9.76, 6) (13.19, 7) (22.61, 8) (23.84, 9) (34.91, 10) (36.83, 11) (38.11, 12) (39.90, 13) (44.10, 14) (56.54, 15) (57.59, 16) (58.88, 17) (70.09, 18) (70.21, 19) (78.13, 20) (80.65, 21) (83.43, 22) (87.42, 23) (89.04, 24) (92.02, 25) (92.98, 26) (96.13, 27) (98.57, 28) (102.08, 29) (111.33, 30) (139.42, 31) (146.56, 32) (170.00, 33) (173.49, 34) (187.80, 35) (194.12, 36) (199.57, 37) (200.75, 38) (211.11, 39) (211.88, 40) (230.77, 41) (233.84, 42) (242.51, 43) (245.56, 44) (251.06, 45) (272.64, 46) (284.94, 47) (291.28, 48) (291.59, 49) (310.61, 50) (318.33, 51) (331.13, 52) (344.77, 53) (360.40, 54) (384.73, 55) (391.74, 56) (414.27, 57) (420.23, 58) (422.84, 59) (423.61, 60) (427.19, 61) (457.83, 62) (460.67, 63) (469.58, 64) (481.35, 65) (514.45, 66) (534.51, 67) (542.86, 68) (546.32, 69) (583.39, 70) (593.45, 71) (597.94, 72) (600.97, 73) (610.26, 74) (625.28, 75) (650.07, 76) (661.56, 77) (669.69, 78) (682.52, 79) (720.65, 80) (762.63, 81) (922.39, 82) (963.97, 83) (1010.29, 84) (1024.36, 85) (1033.51, 86) (1059.26, 87) (1084.11, 88) (1098.43, 89) (1135.12, 90) (1162.07, 91) (1198.66, 92) (1223.81, 93) (1253.19, 94) (1266.23, 95) (1290.57, 96) (1299.69, 97) (1318.90, 98) (1337.59, 99) (1346.45, 100) (1459.28, 101) (1472.81, 102) (1538.34, 103) (1551.09, 104) (1625.52, 105) (1721.48, 106) (1882.20, 107) (1907.20, 108) (2217.62, 109) (2231.71, 110) (2238.19, 111) (2281.20, 112) (2325.64, 113) (2460.69, 114) (2503.85, 115) (2522.51, 116) (2589.64, 117) (2761.92, 118) (3018.92, 119) (3197.68, 120) (3284.75, 121) (4025.18, 122) (4029.53, 123) (4067.41, 124) (10000, 124) };
