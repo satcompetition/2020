@@ -194,54 +194,83 @@ def multiple_samples_num(data, runs, target, sc, solv):
    return corr
 
 def fam_leave_one_out(data, target, sc, solv):
-   selected = []
-   init = ranking_mat(target, solv)
-   rankm = np.array([init])
-   plot_d = np.array([sc])
-   corr = []
-   name = []
+    selected = []
+    init = ranking_mat(target, solv)
+    rankm = np.array([init])
+    plot_d = np.array([sc])
+    corr = []
+    name = []
+    trans = {
+        "stedman-triples": "stedman-triples",
+        "cnf-miter": "cnf-miter",
+        "lam-discrete-geometry": "lam-discrete-geom.",
+        "discrete-logarithm": "discrete-logarithm",
+        "station-repacking": "station-repacking",
+        "antibandwidth": "antibandwidth",
+        "fermat": "fermat",
+        "hgen": "hgen",
+        "core-based-generator": "core-based-gen.",
+        "vlsat": "vlsat",
+        "baseball-lineup": "baseball-lineup",
+        "schur-coloring": "schur-coloring",
+        "cellular-automata": "cellular-automata",
+        "bitvector": "bitvector",
+        "cryptography": "cryptography",
+        "edge-matching": "edge-matching",
+        "cover": "cover",
+        "ssp-0": "ssp-0",
+        "hypertree-decomposition": "hypertree-decomp.",
+        "coloring": "coloring",
+        "polynomial-multiplication": "polynomial-multiply.",
+        "tensors": "tensors",
+        "termination": "termination",
+        "tournament": "tournament",
+        "influence-maximization": "influence-max.",
+        "01-integer-programming": "01-integer-prog.",
+        "timetable": "timetable",
+    }
+    for i in set(fam["family_name"]):
 
-   for i in set(fam['family_name']):
+        subset = fam.loc[fam["family_name"] == i]
 
-       subset = fam.loc[fam['family_name'] == i]
+        subset = subset.replace("\n", "", regex=True)
+        bench = subset["benchmark_name"].str.strip()
+        bench = list("sat/" + bench)
+        X_new = data.drop(bench, 1)
 
-       subset = subset.replace('\n','', regex=True)
-       bench = subset['benchmark_name'].str.strip()
-       bench = list("sat/"+bench)
-       X_new = data.drop(bench, 1)
+        X_score = calc_par2score(X_new)
+        rank = ranking(solv, X_score)
+        l = ranking_mat(rank, solv)
+        rankm = np.append(rankm, [l], axis=0)
+        plot_d = np.append(plot_d, [X_score], axis=0)
 
-       X_score = calc_par2score(X_new)
-       rank = ranking(solv, X_score)
-       l = ranking_mat(rank, solv)
-       rankm = np.append(rankm, [l], axis = 0)
-       plot_d = np.append(plot_d, [X_score], axis = 0)
+        unkn = unknwn(subset)
+        solved = subset.shape[0] - unkn
 
-       unkn = unknwn(subset)
-       solved = subset.shape[0]-unkn
+        name = name + [trans[i] + " (" + str(solved) + "/" + str(subset.shape[0]) + ")"]
 
+    corr = spearman_vector(rankm)
 
-       name = name + [i+" ("+str(solved)+"/"+str(subset.shape[0])+")"]
+    name_s = [x for _, x in sorted(zip(corr, name))]
+    corr_s = [x for x, _ in sorted(zip(corr, name))]
+    name_s = [x.replace("final_", "") for x in name_s]
+    fig = plt.gcf()
+    # fig.set_size_inches(11,8)
+    plt.gcf().subplots_adjust(bottom= 0.46, top= 0.95)
+    plt.xticks(range(len(name_s)), name_s, rotation=90)
+    plt.xlabel(
+        "Family name (number of solved instances / number of instances in the family)"
+    )
+    plt.ylabel("Spearman's correlation")
+    plt.plot(corr_s)
+    plt.grid(True)
 
-   corr = spearman_vector(rankm)
+    # plt.title("Change of rank correlation \n under removal of a certain benchmark family")
+    plt.savefig("plots/fam_leave_one_out_corr.png")
+    # plt.show()
+    plt.clf()
 
-   name_s = [x for _,x in sorted(zip(corr, name))]
-   corr_s = [x for x,_ in sorted(zip(corr, name))]
-   name_s = [x.replace("final_","") for x in name_s]
-   fig = plt.gcf()
-   fig.set_size_inches(11,8)
-   plt.gcf().subplots_adjust(bottom=0.35)
-   plt.xticks(range(len(name_s)),name_s, rotation = 90)
-   plt.xlabel("Family name (number of solved instances / number of instances in the family)")
-   plt.ylabel("Spearman\'s correlation")
-   plt.plot(corr_s)
-   plt.grid(True)
-
-   plt.title("Change of rank correlation \n under removal of a certain benchmark family")
-   plt.savefig("plots/fam_leave_one_out_corr.png")
-   #plt.show()
-   plt.clf()
-
-   return corr_s
+    return corr_s
 
 def fam_leave_one_out_unsat(data, target, sc, solv):
    selected = []
@@ -370,11 +399,11 @@ comp_resultsunsat = ranking(solver, scoreunsat)
 
 # Plot family leave one out
 fam_leave_one_out(X, comp_results, score, solver)
-fam_leave_one_out_sat(X, comp_resultssat, scoresat, solver)
-fam_leave_one_out_unsat(X, comp_resultsunsat, scoreunsat, solver)
+# fam_leave_one_out_sat(X, comp_resultssat, scoresat, solver)
+# fam_leave_one_out_unsat(X, comp_resultsunsat, scoreunsat, solver)
 
-# PLOT 50-50
-multiple_samples_fiftyfifty(X, runs, comp_results, score, solver)
+# # PLOT 50-50
+# multiple_samples_fiftyfifty(X, runs, comp_results, score, solver)
 
-# PLOT 230 selected benchmarks
-multiple_samples_num(X_filtered, runs, comp_results, score, solver)
+# # PLOT 230 selected benchmarks
+# multiple_samples_num(X_filtered, runs, comp_results, score, solver)

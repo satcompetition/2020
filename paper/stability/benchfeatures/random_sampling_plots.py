@@ -90,11 +90,13 @@ def random_sampling_plot(data_frame,original_ranks,original_instances,solver_nam
 
     plt.figure()
     fig = plt.figure()
-    fig.set_size_inches(9.6, 6.8)
-    plt.title(title,fontsize=18)
+    # fig.set_size_inches(9.6, 6.8)
+    # plt.title(title,fontsize=18)
     plt.yticks(np.arange(0.,1.09,0.1))
-    plt.ylabel('Spearman\'s correlation',fontsize=16)
-    plt.xlabel('Number of randomly removed instances',fontsize=16)
+    # plt.ylabel('Spearman\'s correlation',fontsize=16)
+    # plt.xlabel('Number of randomly removed instances',fontsize=16)
+    plt.ylabel('Spearman\'s correlation')
+    plt.xlabel('Number of randomly removed instances')
     plt.errorbar(number_of_removed, correlation_mean, correlation_std, linestyle='None', marker='^',elinewidth=1)
     plt.hlines([0.8,0.99,0.6,0.4,0.2],0,max(number_of_removed)+5,linestyle='dashed',color='m')
     plt.grid(True)
@@ -143,7 +145,7 @@ print('Found %d SAT and %d UNSAT problems from %d problems.' % (len(sat_original
 
 title = 'Mean and standard deviation of\n ranking correlations at random problem instance removals\n(repeated 50x each simple random sampling)'
 random_sampling_plot(data,original_rank,original_instances,solver_names,title,'plots/ALL_random_smpling_correlations.png')
-title = 'Mean and standard deviation of ranking correlations\n at random problem instance removals considering only SAT instances\n(repeated 50x each simple random sampling)'
-random_sampling_plot(sat_data,sat_original_rank,sat_original_instances,solver_names,title,'plots/SAT_randomSampling_correlations.png')
-title = 'Mean and standard deviation of ranking correlations\n at random problem instance removals considering only UNSAT instances\n(repeated 50x each simple random sampling)'
-random_sampling_plot(unsat_data,unsat_original_rank,unsat_original_instances,solver_names,title,'plots/UNSAT_randomSampling_correlations.png')
+# title = 'Mean and standard deviation of ranking correlations\n at random problem instance removals considering only SAT instances\n(repeated 50x each simple random sampling)'
+# random_sampling_plot(sat_data,sat_original_rank,sat_original_instances,solver_names,title,'plots/SAT_randomSampling_correlations.png')
+# title = 'Mean and standard deviation of ranking correlations\n at random problem instance removals considering only UNSAT instances\n(repeated 50x each simple random sampling)'
+# random_sampling_plot(unsat_data,unsat_original_rank,unsat_original_instances,solver_names,title,'plots/UNSAT_randomSampling_correlations.png')
