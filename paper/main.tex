@@ -607,14 +607,28 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 Some interesting results were observed in the 2020 SAT Competition.
 Four Main track solvers (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alliup-trial}, and \solver{CMS-ccnr-lsids}) 
 performed significantly better compared to the others, see Figure~\ref{main:all} and Table~\ref{tab:results}.
-These four solvers all have a different code base. In recent competitions, top solvers were much closer together.
-The main reason for this difference is the enormous gap with the other solvers on satisfiable benchmarks, 
+These four top solvers all have a different code base, which is rare. In recent competitions, top solvers were much closer together.
+The winning solver is \solver{Kissat-sat} and the runner-up is \solver{Relaxed-newTech}. Notice that 
+\solver{Relaxed-newTech} solved more instances within the 2000 seconds limit.
+The third place, based on the PAR-2 score, was for \solver{CMS-ccnr-lsids}. It solved two fewer instances
+compared to \solver{CaDiCaL-alliup-trial}, but solved various formulas much more efficiently. 
+Since the SAT Competition started to rank based on PAR-2 score, such cases have been observed several times. 
+
+The main reason for the separation between the top four solvers and the others is the enormous gap on satisfiable benchmarks, 
 see Figure~\ref{main:sat}. In recent years, several techniques have been added to SAT solvers to improve
 their performance on satisfiable instance. Examples of such techniques are the integration of a local search
 solver and alternating between a SAT mode (infrequent restarts) and an UNSAT mode (frequent restarts,
-and variable-move-to-front). The solvers performance was much closer on unsatisfiable formulas,
-see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat} performed significantly better compared to all
-other participants. It is therefore not surprising that the VBS is reasonably close to \solver{Kissat-unsat}.
+and variable-move-to-front). The 2020 winner of the Main SAT track is \solver{Relaxed-newTech}, followed by 
+\solver{Kissat-sat} and \solver{CMS-ccnr-lsids}.
+
+The solver performances on unsatisfiable formulas was much closer,
+see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat}, the winner of the Main UNSAT track, 
+performed significantly better compared to all other participants. It is therefore not surprising
+that the VBS is reasonably close to \solver{Kissat-unsat}. \solver{Kissat} is a new solver,
+which has been implemented in C, while most solvers are implemented in C++. Further 
+details about \solver{Kissat} are described in Section~\ref{sec:kissat}.
+The solvers \solver{CaDiCaL-trial}
+and \solver{f2trc-s} won the second, respectively, third place in the Main UNSAT track.
 
 
 \begin{figure}
@@ -977,6 +991,7 @@ Manthey & \solver{Riss 7.1.2} & --
 
 
 \subsubsection{Kissat} 
+\label{sec:kissat}
 
 Three configurations of \solver{Kissat} were evaluated in this competition, including one default configuration and two specialized configurations which are specifically tailored towards satisfiable and unsatisfiable instances, respectively. 
 \solver{Kissat} received \emph{four awards}, by achieving first place in the Main track, best score on unsatisfiable instances, second best score on satisfiable instances and third place in the Planning track. 
