@@ -170,7 +170,7 @@ data from different perspectives, including correlation analysis of runtime perf
 of individual solvers to the ``virtual best solver'' and 
 portfolios constructed from the competing solvers,  (Section~\ref{sec:analysis}.
 The article is concluded with future prospects in Section~\ref{sec:conclusion}.
-\todo{Need to decide on final structure regardign the results overview and analysis}
+\todo{Need to decide on final structure regarding the results overview and analysis}
 
 \section{Overview of SAT Competition 2020}
 \label{sec:overview}
@@ -604,15 +604,30 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \section{Competition Results}
 \label{sec:results}
 
-Some interesting results were observed in the 2020 SAT Competition.
-Four Main track solvers (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alliup-trial}, and \solver{CMS-ccnr-lsids}) 
-performed significantly better compared to the others, see Figure~\ref{main:all} and Table~\ref{tab:results}.
-These four top solvers all have a different code base, which is rare. In recent competitions, top solvers were much closer together.
+This section describes some high-level observations, including the winners, of the 2020 SAT Competition. 
+We focus on some interesting results. Details about the solvers, including the key and new solving techniques,
+are described in Section~\ref{sec:analysis}.
+
+Four solver participating in the Main track (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alliup-trial}, and \solver{CMS-ccnr-lsids}) 
+performed significantly better compared to the others, see Table~\ref{tab:results}.
+Figure~\ref{main:all} shows the cumulative solved instances plot of the best performing solver of the strongest
+10 teams (in short, the top 10 solvers)  together with the Virtual Best Solver (VBS).
+The four top solvers all have a different code base, which is rare and has not been observed in many years.
+Also, in recent competitions, the top solvers were much closer together.
 The winning solver is \solver{Kissat-sat} and the runner-up is \solver{Relaxed-newTech}. Notice that 
 \solver{Relaxed-newTech} solved more instances within the 2000 seconds limit.
 The third place, based on the PAR-2 score, was for \solver{CMS-ccnr-lsids}. It solved two fewer instances
 compared to \solver{CaDiCaL-alliup-trial}, but solved various formulas much more efficiently. 
-Since the SAT Competition started to rank based on PAR-2 score, such cases have been observed several times. 
+Since the SAT Competition started to rank based on the PAR-2 score, such cases have been observed several times. 
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.9\textwidth]{img/paper-main-top10-ALL.pdf}
+\caption{Performance of the top 10 solvers + VBS on all  Main track benchmarks}
+\label{main:all}
+\end{figure}
+
 
 The main reason for the separation between the top four solvers and the others is the enormous gap on satisfiable benchmarks, 
 see Figure~\ref{main:sat}. In recent years, several techniques have been added to SAT solvers to improve
@@ -621,36 +636,68 @@ solver and alternating between a SAT mode (infrequent restarts) and an UNSAT mod
 and variable-move-to-front). The 2020 winner of the Main SAT track is \solver{Relaxed-newTech}, followed by 
 \solver{Kissat-sat} and \solver{CMS-ccnr-lsids}.
 
-The solver performances on unsatisfiable formulas was much closer,
-see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat}, the winner of the Main UNSAT track, 
-performed significantly better compared to all other participants. It is therefore not surprising
-that the VBS is reasonably close to \solver{Kissat-unsat}. \solver{Kissat} is a new solver,
-which has been implemented in C, while most solvers are implemented in C++. Further 
-details about \solver{Kissat} are described in Section~\ref{sec:kissat}.
-The solvers \solver{CaDiCaL-trial}
-and \solver{f2trc-s} won the second, respectively, third place in the Main UNSAT track.
-
-
-\begin{figure}
-\centering
-\includegraphics[width=.9\textwidth]{img/paper-main-top10-ALL.pdf}
-\caption{Performance of the top 10 solvers + VBS on all  Main track benchmarks}
-\label{main:all}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \includegraphics[width=.9\textwidth]{img/paper-main-top10-SAT.pdf}
 \caption{Performance of the top 10 solvers + VBS on Main track satisfiable benchmarks}
 \label{main:sat}
 \end{figure}
 
-\begin{figure}
+
+The solver performances on unsatisfiable formulas was much closer,
+see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat}, the winner of the Main UNSAT track, 
+performed significantly better compared to all other participants. It is therefore not surprising
+that the VBS is reasonably close to \solver{Kissat-unsat}. \solver{Kissat} is a new solver that has been implemented in C, while most solvers are implemented in C++. Further 
+details about \solver{Kissat} are described in Section~\ref{sec:kissat}.
+The solvers \solver{CaDiCaL-trial}
+and \solver{f2trc-s} won the second, respectively, third place in the Main UNSAT track.
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=.9\textwidth]{img/paper-main-top10-UNSAT.pdf}
 \caption{Performance of the top 10 solvers + VBS on Main track unsatisfiable benchmarks}
 \end{figure}
 \label{main:unsat}
+
+The ranking in the Planning Track was closer. \solver{CaDiCaL-alliup-trial}, the winning solver, 
+solved only one instance more compared to the runner up \solver{CMS-ccnr-lsids}. Their PAR-2 score is 
+quite close as well. The third ranked solver, \solver{Kissat}, solved fewer instances, but fast runtime
+on several instances resulted in a strong PAR-2 score. Notice that these solvers were also strong in the Main tracks. 
+Apparently none of the participating solvers was optimized for planning instances. 
+
+The winning solver in the Parallel track is \solver{Painless-MCOMSPS-STR32}. The number in the postfix denotes
+that this solver used 32 threads on the 64 virtual cores that were available. It has been observed in earlier 
+competitions that uses fewer threads than the number of virtual cores can be helpful as threads compete 
+for memory, which can reduce of the overall performance. The runner up is \solver{Plingeling}, while the
+third place is for \solver{ManyGlucose-32}. Figure~\ref{fig:res-parallel} shows the performance of
+all participating parallel solvers. Notice in Table~\ref{tab:results} that only the \solver{Painless-MCOMSPS-STR} solvers
+and \solver{Plingeling} had a lower PAR-2 score than the winner of the Main Track (\solver{Kissat-sat}). 
+This shows that it is hard to beat sequential solvers with a parallel solver on the competition instances. 
+We will show later in the article (Table~\ref{tab:tuples}) that small sequential portfolios 
+perform better (in terms of PAR-2 score) than the parallel solvers. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.9\textwidth]{img/parallel-ALL.pdf}
+\caption{Performance of the solvers in the Parallel track.}
+\label{fig:res-parallel}
+\end{figure}
+
+The clear winner of the Cloud track is \solver{Mallob-Mono} and the runner-up is \solver{TopoSAT2},
+see Figure~\ref{fig:res-cloud}.
+\solver{Mallob-Mono} was able to solver more instances in 1000 seconds, compared to the 
+winner of the Parallel Track in 5000 seconds, thereby showing the potential of distributed SAT solving. 
+The other four participants performed significantly worse. This is likley due to the initial challenges
+to develop a distributed solver. This was the first year of this track. We expect that the gap will be 
+closer is future years. 
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{img/cloud-ALL.pdf}
+\caption{Performance of the solvers in the Cloud track.}
+\label{fig:res-cloud}
+\end{figure}
 
 \begin{table}
 \centering\smaller
@@ -1085,11 +1132,6 @@ Chen & \solver{abcdSAT-p20} & --& --& --
 \caption{Teams and Solvers participating in the Parallel track.}
 \end{table}
 
-\begin{figure}
-\centering
-\includegraphics[width=.9\textwidth]{img/parallel-ALL.pdf}
-\caption{Performance of the solvers in the Parallel track.}
-\end{figure}
 
 \subsubsection{Painless MapleCOMSPS STR} 
 
@@ -1148,12 +1190,6 @@ Hartung & \solver{CTSat} & --
 \end{tabular}
 \caption{Teams and solvers participating in the Cloud track.}
 \end{table}
-
-\begin{figure}
-\centering
-\includegraphics[width=.9\textwidth]{img/cloud-ALL.pdf}
-\caption{Performance of the solvers in the Cloud track.}
-\end{figure}
 
 
 \subsubsection{Mallob Mono}
@@ -1829,14 +1865,20 @@ Our plan for future competitions is, to always run a special track for varying a
 
 
 \section*{Acknowledgements}
-Matti J\"arvisalo was financially supported by Academy of Finland grants 322869 and 328718.
-
-Martin Suda was supported by the ERC Consolidator grant AI4REASON no. 649043 under the EU-H2020 programme,
-the Czech Science Foundation project 20-06390Y, and the project RICAIP, no. 857306 under the EU-H2020 programme.
+The authors thank StarExec for their support and resources to run the Main and the Planning tracks, and Amazon Web Services 
+for their support and resources to run the Parallel and Cloud tracks. 
 
 Nils Froleyks is supported by the Austrian Science Fund (FWF) under projects
 W1255-N23, S11408-N23 and by the LIT AI Lab funded by the State of Upper
 Austria.
+%
+Marijn Heule is supported by the National Science Foundation (NSF) under grant CCF-2010951. 
+%
+Matti J\"arvisalo was financially supported by Academy of Finland grants 322869 and 328718.
+%
+Martin Suda was supported by the ERC Consolidator grant AI4REASON no. 649043 under the EU-H2020 programme,
+the Czech Science Foundation project 20-06390Y, and the project RICAIP, no. 857306 under the EU-H2020 programme.
+
 
 
 \bibliographystyle{elsarticle-num}
