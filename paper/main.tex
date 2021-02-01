@@ -503,7 +503,7 @@ planning tasks where this makespan cannot be determined with available
 computational resources, we use a \emph{sequential} encoding, where the minimal
 makespan equals the length of the shortest valid plan. Together with known
 bounds\footnote{Bounds on plan length are available for some planning tasks from
-  the \emph{optimal track} that have \emph{unit cost} actions.} on the optimal
+  the \emph{Optimal track} that have \emph{unit cost} actions.} on the optimal
 plan length we can generate SAT formulas with predetermined satisfiability for
 hard planning problems.
 
@@ -516,7 +516,7 @@ uses the \emph{grounding routine} deployed by the well known planner \emph{Fast
 formalism and then encodes it to SAT using a parallel encoding.
 
 The classical planning benchmarks are selected from the \emph{satisficing} and
-\emph{optimal} tracks of the \emph{International Planning Competitions} 2014
+\emph{Optimal} tracks of the \emph{International Planning Competitions} 2014
 \footnote{\url{https://helios.hud.ac.uk/scommv/IPC-14/repository/benchmarksV1.1.zip}}
 and 2018 \footnote{\url{https://bitbucket.org/ipc2018-classical/domains}}.
 
@@ -530,7 +530,7 @@ the author of \emph{Tree-REX}.
 % - 109 / 200 in the planning track are not solved by any solver
 % - 186 / 600 in total
 % - all 200 above 90\% binary clauses and half have above 99%
-The instances of the Planning track are big compared to the main track
+The instances of the Planning track are big compared to the Main track
 instances. Using the number of clauses as a metric; out of the $100$ biggest
 instances of both tracks
 % of the main-track
@@ -558,14 +558,14 @@ Table \ref{tab:planningBenchmarkDist} shows the number of benchmarks generated
 by each encoding. 
 For a complete list of the encoded planning tasks we refer to the
 generation script.\footnote{\url{https://satcompetition.github.io/2020/downloads/planning_generator.tar.xz}} 
-The benchmarks of the planning track adhere to the following naming convention:
+The benchmarks of the Planning track adhere to the following naming convention:
 ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
   \texttt{name} \rangle\_\langle \texttt{makespan}
   \rangle\text{.cnf}}$
 
 \subsection{Incremental Library Applications and Instances}
 
-The incremental library track was introduced in SAT~Race~2015~\cite{Balyo:2015:SATRace} and also took place in SAT~Competitions 2016 and 2017. 
+The Incremental Library track was introduced in SAT~Race~2015~\cite{Balyo:2015:SATRace} and also took place in SAT~Competitions 2016 and 2017.
 Benchmarks for the Incremental Library track constist of \emph{benchmark applications} which implement and use the incremental SAT solver in their backend as well as \emph{benchmark instances} which serve as input to these applications. 
 For evaluating the Incremental Library track, we used six applications which implement the IPASIR interface -- ranging from determination of backbone variables to SAT-based planning. 
 For each of those applications, we individually selected $50$ problem instances serving as input for the respective application. 
@@ -1680,7 +1680,7 @@ as:
 \]
 % \end{equation}
 We calculated the \emph{similarity} of the $30$ solvers with the
-best average PAR-2 score in the main track. The results are displayed in
+best average PAR-2 score in the Main track. The results are displayed in
 Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. Additionally, the result
 of hierarchically clustering the solvers based on their similarity is
 illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
@@ -1738,7 +1738,7 @@ portfolio.
 \begin{figure}[tp]
     \centering
     \includegraphics[width=\textwidth]{similarity/cross.pdf}
-    \caption{Heat-map and dendrogram (top) based on the runtime similarity of the solvers participating in the main track.
+    \caption{Heat-map and dendrogram (top) based on the runtime similarity of the solvers participating in the Main track.
       Darker regions mean that the solvers are more similar.
       A more precise relation between color and similarity-value together with a histogram of the values that appear is given at the bottom.
     }
@@ -1748,7 +1748,7 @@ portfolio.
 % \subsection{Solver Ranking Robustness}
 \subsection{Influence of Benchmark Selection on Solver Ranking}
 The main result of the competition is the ranking of the solvers participating
-in the main track, according to their average PAR-2 score. To evaluate the impact
+in the Main track, according to their average PAR-2 score. To evaluate the impact
 of benchmark selection on the solver ranking, we follow the experiments
 described in the tool suite
 \texttt{benchfeature}\cite{benchfeature}.
