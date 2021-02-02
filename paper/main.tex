@@ -1873,15 +1873,16 @@ The individual removal of all other benchmarks families results in a rank correl
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
 
-All the winning solvers of the \emph{Main} track periodically schedule runs of an SLS solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. 
-
-As can be seen in the \emph{Parallel} track, it is hard to scale SAT solving beyond $32$ threads, as in some occasions the $32$ threaded version of the same solver outperformed its $64$ threaded counterpart. 
+The 2020 SAT Competition successfully continued the tradition of the SAT Competition series. In 2020, significant advances
+in SAT solver compared to previous years were observed. Some of the more interesting observations on the winning solving 
+strategies include the following.
+All the winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
+solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As can be seen in the \emph{Parallel} track, it appear difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$ threaded counterpart. 
 However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classic all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
-
 It is hard to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
 The winner of the \emph{Incremental Library} track showed that it is worth integrating a full solver functionality in the incremental use-case. 
 
-\subsection*{Future Competitions}
+\subsection*{Future Prospects}
 
 The \emph{Portfolio rule} has been established to prohibit participation of pure solver portfolios and to stimulate development of new code-bases. 
 The rule was challenged in this competition, as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
