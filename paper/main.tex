@@ -881,7 +881,7 @@ They presented their award winning \solver{Maple\_LCM\_Dist\_ChronoBT} in SAT Co
 
 Kochemazov et al. improved three-tier clause-management by persisting
 additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} in SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
-As can be seen in Table~\ref{tab:solvers-incremental}, numerous submissions to SAT Competition~2020 are forks of some recently award winning descendants of \solver{Maple}-based solver. 
+As can be seen in Table~\ref{tab:solvers-main}, numerous submissions to SAT Competition~2020 are forks of some recently award winning descendants of \solver{Maple}-based solver. 
 
 Starting as a fork of \solver{Minisat} and the integration of special xor treatment~\cite{Soos:2009:Crypto}, \solver{CryptoMinisat} by Soos continues to be a state-of-the-art and feature-rich SAT solver. 
 One highlight of \solver{CryptoMinisat} is its advanced data-logging capabilities for statistical analysis of SAT solver behavior~\cite{Soos:2019:ChrystalBall}.
@@ -895,146 +895,144 @@ Its improved re-implementation \solver{Kissat}~\cite{Biere:SC2020} won in severa
 The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
 
-\subsection{Sequential SAT Solving}
+\subsection{Sequential SAT Solvers}
 \label{sec:part:seq}
 
 Sequential SAT solvers have been evaluated in the Main, Planning and Incremental Library track of SAT Competition~2020. 
-A total of $18$ teams submitted correct solvers to the Main track of the competition. 
+$18$ teams submitted a total of $48$ solvers and configurations to the Main track and the Planning track of the competition, and $4$ solvers participated the Incremental Library track. 
+%and were ranked by the number of application categories in which they won based on their PAR-2 score. 
+%Submissions to the Incremental Library track have been evaluated with respect to $6$ different applications -- each with $50$ benchmark instances. 
+%
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-The recent genealogy of all submissions is highlighted by \emph{base solver} and \emph{variant} columns. 
-Underlined text is used to point out the important parts of the respective submissions name.
+In the following sections, we outline the technical reports of the award winning solvers. 
+
 
 \begin{table}[h!]
 \setlength\tabcolsep{4.5pt}%default: 6pt
 %\renewcommand{\arraystretch}{1.03}%default: 1
 \smaller
 \centering
-\begin{tabularx}{\linewidth}{Xllcccc}
-\bf Team & \bf Base Solver & \bf Variant / Name & \bf M & \bf U & \bf S & \bf P \\
+\begin{tabularx}{\linewidth}{Xllccccc}
+\bf Team & \bf Base Solver & \bf Variant Name & \bf M & \bf U & \bf S & \bf P & \bf I \\
 \hline
 \arrayrulecolor{lightgray}
 
-\multirow{3}{*}{Biere} & \multirow{3}{*}{\solbert{Kissat}} &  -- & 1 & 1 & -- & --\\
- &  &  \solver{sat} & 1 & 1 & 2 & --\\
- &  &  \solver{unsat} & -- & 1 & -- & 3\\
+\multirow{3}{*}{Biere} & \multirow{3}{*}{\solbert{Kissat}} &  -- & 1 & 1 & -- & -- & --\\
+ &  &  \solver{sat} & 1 & 1 & 2 & -- & --\\
+ &  &  \solver{unsat} & -- & 1 & -- & 3 & --\\
 \hline
- Biere, Fleury &  \solver{Cadical} & \solbert{SC2020} & -- & -- & -- & --\\
+ Biere, Fleury &  \solver{Cadical} & \solbert{SC2020} & -- & -- & -- & -- & --\\
 \hline
  
 \multirow{2}{*}{Zhang, Cai}
-    & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Relaxed} & -- & -- & -- & --\\
+    & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Relaxed} & -- & -- & -- & -- & --\\
 % &  & \solver{Rel. noTimeParam} & \\
- &  & \solver{Rel. newTech} & 2 & -- & 1 & --\\
+ &  & \solver{Rel. newTech} & 2 & -- & 1 & -- & --\\
 \hline
 
 \multirow{2}{*}{\stack{Soos, Cai, Devriendt, }{Gocht, Shaw, Meel}}~
- &  \multirow{2}{*}{\solver{CryptoMiniSat-CCAnr}} &  -- & 3 & -- & 3 & 2\\
- &  &  \solver{lsids} & 3 & -- & 3 & 2\\
+ &  \multirow{2}{*}{\solver{CryptoMiniSat-CCAnr}} &  -- & 3 & -- & 3 & 2 & 1 \\
+ &  &  \solver{lsids} & 3 & -- & 3 & 2 & --\\
 \hline
 
-\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solver{CryptoMiniSat-WalkSAT} & -- & -- & -- & -- & --\\
+\stack{Soos, Selman, Kautz, }{Devriendt, Gocht}~ & \solver{CryptoMiniSat-WalkSAT} & -- & -- & -- & -- & -- & --\\
 \hline
 
 \multirow{4}{*}{\stack{Hickey, Feng, }{Bacchus}}
- &  &  \solver{trail} & -- & 2 & -- & --\\
- &  &  \solver{alluip} & -- & 2 & -- & 1\\
- & \multirow{-3}{*}{\solver{CaDiCaL}} &  \solbert{alluip-trail} & -- & 2 & -- & 1\\
- \cline{2-7}
- & \solver{MapleLCMDist} & \solver{alluip-trail} & -- & -- & -- & -- \\
+ &  &  \solver{trail} & -- & 2 & -- & -- & --\\
+ &  &  \solver{alluip} & -- & 2 & -- & 1 & --\\
+ & \multirow{-3}{*}{\solver{CaDiCaL}} &  \solbert{alluip-trail} & -- & 2 & -- & 1 & --\\
+ \cline{2-8}
+ & \solver{MapleLCMDist} & \solver{alluip-trail} & -- & -- & -- & -- & -- \\
 \hline
 
-\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solver{MapleLCMDistCBT}} & \solbert{f2trc} & -- & 3 & -- & --\\
- & & \solver{f2trc-s} & -- & 3 & -- & --\\
- \cline{2-7}
- & \solver{MapleLCMDistCBT-DL} & \solver{f2trc} & -- & 3 & -- & --\\
+\multirow{3}{*}{Kochemazov} & \multirow{2}{*}{\solver{MapleLCMDistCBT}} & \solbert{f2trc} & -- & 3 & -- & -- & --\\
+ & & \solver{f2trc-s} & -- & 3 & -- & -- & --\\
+ \cline{2-8}
+ & \solver{MapleLCMDistCBT-DL} & \solver{f2trc} & -- & 3 & -- & -- & --\\
 \hline
 
-\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solbert{MapleLCMDistCBT-DL-v3} & -- & -- & -- & -- & -- \\
+\stack{Kochemazov, Zaikin, }{Kondratiev, Semenov} ~& \solbert{MapleLCMDistCBT-DL-v3} & -- & -- & -- & -- & --  & --\\
 \hline
 
 \multirow{4}{*}{\stack{Lonlac, }{Nguifo}}
- & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v3}} & \solbert{Undominated} & -- & -- & -- & -- \\
- &  & \solver{Undom. Top16} & -- & -- & -- & -- \\
- &  & \solver{Undom. Top24} & -- & -- & -- & -- \\
- &  & \solver{Undom. Top36} & -- & -- & -- & -- \\
+ & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v3}} & \solbert{Undominated} & -- & -- & -- & -- & --\\
+ &  & \solver{Undom. Top16} & -- & -- & -- & -- & -- \\
+ &  & \solver{Undom. Top24} & -- & -- & -- & -- & -- \\
+ &  & \solver{Undom. Top36} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Tchinda, }{Djamegni}}
- & \multirow{4}{*}{\solbert{Ex}\solver{MapleLCMDistCBT}} & \solver{padc\_dl} & -- & -- & -- & -- \\
- &  & \solver{padc\_dl\_ovau\_lin} & -- & -- & -- & -- \\
- &  & \solver{padc\_dl\_ovau\_exp} & -- & -- & -- & -- \\
- &  & \solver{psids\_dl} & -- & -- & -- & -- \\
+ & \multirow{4}{*}{\solbert{Ex}\solver{MapleLCMDistCBT}} & \solver{padc\_dl} & -- & -- & -- & -- & -- \\
+ &  & \solver{padc\_dl\_ovau\_lin} & -- & -- & -- & -- & -- \\
+ &  & \solver{padc\_dl\_ovau\_exp} & -- & -- & -- & -- & -- \\
+ &  & \solver{psids\_dl} & -- & -- & -- & -- & -- \\
 % \cline{2-3}& Glucose 3.0 & upGlucose-3.0\_PADC\\
 \hline
 
-Shaw, Meel & \solver{MapleLCMDistCBT-DL-v3} & \solbert{DurianSat} & -- & -- & -- & -- \\
+Shaw, Meel & \solver{MapleLCMDistCBT-DL-v3} & \solbert{DurianSat} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{Chen}
- & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Maple\_Mix} & -- & -- & -- & -- \\
- &  & \solbert{Maple\_Simp} & -- & -- & -- & -- \\
+ & \multirow{2}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Maple\_Mix} & -- & -- & -- & -- & -- \\
+ &  & \solbert{Maple\_Simp} & -- & -- & -- & -- & -- \\
 \hline
 
-Riveros & \solver{MapleLCMDistCBT} & \solbert{SLIME} & -- & -- & -- & -- \\
+Riveros & \solver{MapleLCMDistCBT} & \solbert{SLIME} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{3}{*}{Li, Wu, Xu, Chen}
- & \multirow{3}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Scavel} & -- & -- & -- & -- \\
- &  & \solver{Scavel01} & -- & -- & -- & -- \\
- &  & \solver{Scavel02} & -- & -- & -- & -- \\
+ & \multirow{3}{*}{\solver{MapleLCMDistCBT-DL}} & \solbert{Scavel} & -- & -- & -- & -- & -- \\
+ &  & \solver{Scavel01} & -- & -- & -- & -- & -- \\
+ &  & \solver{Scavel02} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{\stack{Liang, Oh, Nejati, }{Poupart, Ganesh}}
- & \multirow{2}{*}{\solbert{MapleCOMSPS\_LRB\_VSIDS\_2}} & -- & -- & -- & -- & -- \\
- &  & \solver{init} & -- & -- & -- & -- \\
+ & \multirow{2}{*}{\solbert{MapleCOMSPS\_LRB\_VSIDS\_2}} & -- & -- & -- & -- & -- & -- \\
+ &  & \solver{init} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Chowdhury, }{Müller, You}}
- & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v2.2}} & \solbert{exp}\solver{-V-LGB} & -- & -- & -- & -- \\
- &  & \solver{exp-V-L} & -- & -- & -- & -- \\
- &  & \solver{exp-L} & -- & -- & -- & -- \\
- &  & \solver{exp-V} & -- & -- & -- & -- \\
+ & \multirow{4}{*}{\solver{MapleLCMDistCBT-DL-v2.2}} & \solbert{exp}\solver{-V-LGB} & -- & -- & -- & -- & -- \\
+ &  & \solver{exp-V-L} & -- & -- & -- & -- & -- \\
+ &  & \solver{exp-L} & -- & -- & -- & -- & -- \\
+ &  & \solver{exp-V} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{4}{*}{\stack{Li, Luo, Xiao, }{Li, Manyà, Lü}}
- & \multirow{4}{*}{\solbert{MapleCM}} & \solbert{+dist} & -- & -- & -- & -- \\
- &  & \solver{+dist+sattime2s+-} & -- & -- & -- & -- \\
- &  & \solver{+dist+simp2--} & -- & -- & -- & -- \\
- &  & \solver{used+dist} & -- & -- & -- & -- \\
+ & \multirow{4}{*}{\solbert{MapleCM}} & \solbert{+dist} & -- & -- & -- & -- & -- \\
+ &  & \solver{+dist+sat2s} & -- & -- & -- & -- & -- \\
+ &  & \solver{+dist+simp2} & -- & -- & -- & -- & -- \\
+ &  & \solver{used+dist} & -- & -- & -- & -- & -- \\
 \hline
 
-Kaiser, Hartung & \solver{MapleLCMDist} & \solbert{PauSat} & -- & -- & -- & -- \\
+Kaiser, Hartung & \solver{MapleLCMDist} & \solbert{PauSat} & -- & -- & -- & -- & -- \\
 \hline
 
 \multirow{2}{*}{Osama, Wijs} 
- & \multirow{2}{*}{\solbert{ParaFROST}} & -- & -- & -- & -- & -- \\
- &  & \solver{CBT} & -- & -- & -- & -- 
+ & \multirow{2}{*}{\solbert{ParaFROST}} & -- & -- & -- & -- & -- & -- \\
+ &  & \solver{CBT} & -- & -- & -- & -- & --
 \end{tabularx}
-\caption[Teams and Solvers in the Main Tracks]{\emph{Teams} and \emph{Solvers} in the Main Tracks. \emph{Base Solver} highlights solver genealogy while \emph{Variant} displays names of configurations and forks. Distinctive names are \solbert{underlined}. The rightmost columns indicate the awards given in the Main (\emph{M}) and Planning track (\emph{P}), and for performance on unsatisfiable (\emph{U}) and satisfiable (\emph{S}) instances.}
+\caption{\emph{Teams} and \emph{Solvers} in the Main, Planning and Incremental Library Track. Column \emph{Base Solver} highlights solver genealogy, and \emph{Variant Name} displays names of configurations and forks. Distinctive names are \solbert{underlined}. The rightmost columns indicate the awards given in the Main (\emph{M}) track, for performance on unsatisfiable (\emph{U}) and satisfiable (\emph{S}) instances, and in the Planning (\emph{P}) and Incremental Library (\emph{I}) track.}
 \label{tab:solvers-main}
 \end{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Four submissions made it to participate in the Incremental Library track, some of which, e.g, \solver{CryptoMiniSat-5}, have also been evaluated and awarded in the Main track. 
-Submissions to the Incremental Library track have been evaluated with respect to $6$ different applications -- each with $50$ benchmark instances. 
-Table~\ref{tab:solvers-incremental} displays an overview of the participating teams and solvers. 
-In this table, \emph{Score} denotes the number of application categories in which the solvers won based on their PAR-2 score. 
-
-\begin{table}[ht]
-\centering\small
-\begin{tabular}{llc}
-\bf Team & \bf Solver & \bf Place\\
-\hline
-Soos, Cai, Devriendt, Gocht, Shaw, Meel & \solver{CryptoMiniSat 5} & 1 \\
-Biere, Fleury & \solver{CaDiCaL 2020} & -- \\
-Chen & \solver{abcdsat-i20} & -- \\
-Manthey & \solver{Riss 7.1.2} & -- 
-\end{tabular}
-\caption[Teams and Solvers in the Incremental Track]{Teams and Solvers in the Incremental Library Track.}
-\label{tab:solvers-incremental}
-\end{table}
+%\begin{table}[ht]
+%\centering\small
+%\begin{tabular}{llc}
+%\bf Team & \bf Solver & \bf Place\\
+%\hline
+%Soos, Cai, Devriendt, Gocht, Shaw, Meel & \solver{CryptoMiniSat 5} & 1 \\
+%Biere, Fleury & \solver{CaDiCaL 2020} & -- \\
+%Chen & \solver{abcdsat-i20} & -- \\
+%Manthey & \solver{Riss 7.1.2} & -- 
+%\end{tabular}
+%\caption[Teams and Solvers in the Incremental Track]{Teams and Solvers in the Incremental Library Track.}
+%\label{tab:solvers-incremental}
+%\end{table}
 
 
 \subsubsection{Kissat} 
@@ -1045,7 +1043,6 @@ Three configurations of \solver{Kissat} were evaluated in this competition, incl
 
 \solver{Kissat} is a low-level re-implementation of \solver{CaDiCaL} with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
 Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-
 Since conflict-rate has been observed to be too unstable for the use-case, \solver{Kissat} uses the new unit ``ticks'', which is based on the approximate number of cache-line accesses, to measure the length of two alternating restart-modes~\cite{Biere:SC2020}. 
 
 Furthermore, \solver{Kissat} exploits autarkies to account for saved phases. 
@@ -1101,36 +1098,39 @@ A dynamic size limit for the \emph{core} tier triggers the reassignment of inact
 To counter-act an observed starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size based heuristic~\cite{Kochemazov:SC2020}. 
 
 
-\subsection{Parallel SAT Solving: Winners of the Parallel Track}
+\subsection{Parallel SAT Solvers}
 \label{sec:part:par}
 
-\begin{table}[b]
-\centering\small
-\begin{tabular}{llccc}
-\bf Team & \bf Solver & \bf U+S & \bf U & \bf S \\
-\hline\arrayrulecolor{lightgray}
-\multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
- & \solver{Painless-MCOMSPS-STR-32} & 1 & 2 & 1 \\
- & \solver{Painless-MCOMSPS-STR-64} & 1 & --& --\\
-\hline
-\multirow{2}{*}{Biere, Fazekas, Heisinger}
- & \solver{Plingeling} & 2 & 1 & 3 \\
- & \solver{Treengeling} & --& --& --\\
-\hline
-\multirow{2}{*}{Nabeshima, Inoue}
- & \solver{ManyGlucose-32} & 3 & 3 & -- \\
- & \solver{ManyGlucose-64} & -- & 3 & --\\
-\hline
-\multirow{2}{*}{Tchinda, Djamegni}
- & \solver{Painless-Maple-v1} & --& --& 2 \\
- & \solver{Painless-Maple-v2} & --& --& 2 \\
-\hline
-Li, Wu, Xu, Chen & \solver{Syrup Scavel} & --& --& --\\
+Six Teams submitted a total of $10$ solvers and configurations in the Parallel track. 
+In the following, we outline the technical reports of the award winning parallel solvers. 
+
+%\begin{table}[b]
+%\centering\small
+%\begin{tabular}{llccc}
+%\bf Team & \bf Solver & \bf U+S & \bf U & \bf S \\
+%\hline\arrayrulecolor{lightgray}
+%\multirow{2}{*}{\stack{Vallade, Le Frioux, Baarir, }{Sopena, Kordon}}~
+% & \solver{Painless-MCOMSPS-STR-32} & 1 & 2 & 1 \\
+% & \solver{Painless-MCOMSPS-STR-64} & 1 & --& --\\
 %\hline
-Chen & \solver{abcdSAT-p20} & --& --& --
-\end{tabular}
-\caption{Teams and Solvers participating in the Parallel track.}
-\end{table}
+%\multirow{2}{*}{Biere, Fazekas, Heisinger}
+% & \solver{Plingeling} & 2 & 1 & 3 \\
+% & \solver{Treengeling} & --& --& --\\
+%\hline
+%\multirow{2}{*}{Nabeshima, Inoue}
+% & \solver{ManyGlucose-32} & 3 & 3 & -- \\
+% & \solver{ManyGlucose-64} & -- & 3 & --\\
+%\hline
+%\multirow{2}{*}{Tchinda, Djamegni}
+% & \solver{Painless-Maple-v1} & --& --& 2 \\
+% & \solver{Painless-Maple-v2} & --& --& 2 \\
+%\hline
+%Li, Wu, Xu, Chen & \solver{Syrup Scavel} & --& --& --\\
+%\hline
+%Chen & \solver{abcdSAT-p20} & --& --& --
+%\end{tabular}
+%\caption{Teams and Solvers participating in the Parallel track.}
+%\end{table}
 
 
 \subsubsection{Painless MapleCOMSPS STR} 
@@ -1171,25 +1171,28 @@ The \solver{32} threaded variant received two awards in this competition: the ov
 \solver{Painless Maple v1} diversifies via hand-crafted heuristic configurations and \solver{Painless Maple v2} diversifies via randomized initialization of branching heuristics~\cite{SC2020}. 
 
 
-\subsection{Massively Parallel SAT Solving: Winners of the Cloud Track}
+\subsection{Massively Parallel SAT Solvers}
 \label{sec:part:cloud}
 
-\begin{table}[t]
-\centering\small
-\begin{tabular}{llc}
-\bf Team & \bf Solver & \bf Place\\
-\hline\arrayrulecolor{lightgray}
-Schreiber & \solver{Mallob Mono} & 1\\
-Ehlers, Kulczynski, Nowotka, Sieweck & \solver{TopoSAT 2} & 2\\
-Riveros & \solver{Slime} & 3\\
-\hline
-\multirow{2}{*}{Biere, Fazekas, Fleury, Heisinger} & \solver{Paracooba}, & --\\
-& \solver{Paracooba-March} & --\\
-\hline
-Hartung & \solver{CTSat} & --
-\end{tabular}
-\caption{Teams and solvers participating in the Cloud track.}
-\end{table}
+Five teams submitted a total of $6$ solvers and configuration in the Cloud track. 
+In the following, we outline the technical reports of the award winning massively parallel solvers. 
+
+%\begin{table}[t]
+%\centering\small
+%\begin{tabular}{llc}
+%\bf Team & \bf Solver & \bf Place\\
+%\hline\arrayrulecolor{lightgray}
+%Schreiber & \solver{Mallob Mono} & 1\\
+%Ehlers, Kulczynski, Nowotka, Sieweck & \solver{TopoSAT 2} & 2\\
+%Riveros & \solver{Slime} & 3\\
+%\hline
+%\multirow{2}{*}{Biere, Fazekas, Fleury, Heisinger} & \solver{Paracooba}, & --\\
+%& \solver{Paracooba-March} & --\\
+%\hline
+%Hartung & \solver{CTSat} & --
+%\end{tabular}
+%\caption{Teams and solvers participating in the Cloud track.}
+%\end{table}
 
 
 \subsubsection{Mallob Mono}
