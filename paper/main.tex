@@ -614,7 +614,7 @@ are described in Section~\ref{sec:analysis}.
 Four solvers participating in the Main track (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trial}, and \solver{CMS-ccnr-lsids}) 
 performed significantly better compared to the others, see Table~\ref{tab:results}.
 Figure~\ref{main:all} shows the cumulative solved instances plot of the best performing solver of the strongest
-10 teams (in short, the top 10 solvers)  together with the Virtual Best Solver (VBS).
+10 teams (in short, the top 10 solvers)  together with the Virtual Best Solver (VBS -- see also~\ref{subsec:vbs_explained}).
 The four top solvers all have a different code base, which is rare and has not been observed for many years.
 Also, in recent competitions, the top solvers were much closer together.
 The winning solver is \solver{Kissat-sat} and the runner-up is \solver{Relaxed-newTech}. Notice that 
@@ -862,7 +862,8 @@ smaller in the future years.
 In the following, we provide an overview of the participating teams and solvers, 
 and summarize new strategies which are implemented in the award winning solvers of this competition. 
 We start with a few remarks on the evolution of code-bases of well known SAT solvers in Section~\ref{sec:codebases}. 
-Our review of the winning strategies in this competition starts with sequential solvers in the Main-, Planning-, and Incremental Library track in Section~\ref{sec:part:seq}, then we continue with winners of the Parallel track in Section~\ref{sec:part:par} and conclude with winning solvers in the Cloud track in Section~\ref{sec:part:cloud}. 
+Our review of the winning strategies in this competition starts with sequential solvers in the Main, Planning, and Incremental Library tracks in Section~\ref{sec:part:seq},
+then we continue with winners of the Parallel track in Section~\ref{sec:part:par} and conclude with winning solvers in the Cloud track in Section~\ref{sec:part:cloud}. 
 
 
 \subsection{Code-Bases of SAT Solvers: ``On the Shoulders of Giants''}
@@ -873,20 +874,21 @@ One well-known tree of development is rooted in the code-base of \solver{Minisat
 A well-known fork of \solver{Minisat} is \solver{Glucose} by Audemard and Simon~\cite{Audemard:2018:Glucose}, among others introducing Literal Block Distance (LBD) for weighing clauses in forgetting heuristics~\cite{Audemard:2009:Glucose}. 
 The SAT solver \solver{RISS} by Manthey is a successful and award winning fork of \solver{Glucose} in combination with the state-of-the-art preprocessor \solver{Coprocessor}~\cite{Manthey:2012:Coprocessor2}. 
 
-Another more recent string of development is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Chanseok Oh introducing three-tier clause-management~\cite{Oh:2015:satunsat}. 
+Another, more recent, string of development is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Chanseok Oh introducing three-tier clause-management~\cite{Oh:2015:satunsat}. 
 The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heuristics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
-The then award winning variant \solver{MapleCOMSPS} by Liang et al. is an implementation of a hybrid branching heuristic of classic Variable-State Independent Decaying Sum (VSIDS) and the new Learning-Rate based Branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
+The then award winning variant \solver{MapleCOMSPS} by Liang et al.~is an implementation of a hybrid branching heuristic of classic Variable-State Independent Decaying Sum (VSIDS) and the new Learning-Rate based Branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
 
-In SAT Competition 2017, Luo et al. integrated learned clause minimization based on unit propagation (\solver{LCM}) in their award winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
+In SAT Competition 2017, Luo et al.~integrated learned clause minimization based on unit propagation (\solver{LCM}) in their award winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM}, which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
 Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}. 
 They presented their award winning \solver{Maple\_LCM\_Dist\_ChronoBT} in SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
 
-Kochemazov et al. improved three-tier clause-management by persisting
+Kochemazov et al.~improved three-tier clause-management by persisting
 additional clauses through hash-based detection of repeatedly learned clauses and presented their award winning~\solver{MapleLCMDistChronoBT-DL} in SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
-As can be seen in Table~\ref{tab:solvers-main}, numerous submissions to SAT Competition~2020 are forks of some recently award winning descendants of \solver{Maple}-based solver. 
+As can be seen in Table~\ref{tab:solvers-main}, numerous submissions to SAT Competition~2020 are forks of some recent award winning descendants of a \solver{Maple}-based solver. 
 
-Starting as a fork of \solver{Minisat} and the integration of special xor treatment~\cite{Soos:2009:Crypto}, \solver{CryptoMinisat} by Soos continues to be a state-of-the-art and feature-rich SAT solver. 
-One highlight of \solver{CryptoMinisat} is its advanced data-logging capabilities for statistical analysis of SAT solver behavior~\cite{Soos:2019:ChrystalBall}.
+Starting as a fork of \solver{Minisat} with the integration of special xor treatment~\cite{Soos:2009:Crypto},
+\solver{CryptoMinisat} by Soos continues to be a state-of-the-art and feature-rich SAT solver. 
+One highlight of \solver{CryptoMinisat} are its advanced data-logging capabilities for statistical analysis of SAT solver behavior~\cite{Soos:2019:ChrystalBall}.
 
 Many independent and award-winning code-bases can be found among the SAT solvers written by Biere. 
 The sequential SAT solver \solver{Lingeling} has been award winning since SAT Competition~2011 and is still competitive in its parallel version \solver{Plingeling}~\cite{Biere:2012:Lingeling}. 
@@ -1041,11 +1043,12 @@ Kaiser, Hartung & \solver{MapleLCMDist} & \solbert{PauSat} & -- & -- & -- & -- &
 \label{sec:kissat}
 
 Three configurations of \solver{Kissat} were evaluated in this competition, including one default configuration and two specialized configurations which are specifically tailored towards satisfiable and unsatisfiable instances, respectively. 
-\solver{Kissat} received \emph{four awards}, by achieving first place in the Main track, best score on unsatisfiable instances, second best score on satisfiable instances and third place in the Planning track. 
+\solver{Kissat} received \emph{four awards}, by achieving the first place in the Main track, 
+the best score on unsatisfiable instances, the second best score on satisfiable instances and the third place in the Planning track. 
 
 \solver{Kissat} is a low-level re-implementation of \solver{CaDiCaL} with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
 Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-Since conflict-rate has been observed to be too unstable for the use-case, \solver{Kissat} uses the new unit ``ticks'', which is based on the approximate number of cache-line accesses, to measure the length of two alternating restart-modes~\cite{Biere:SC2020}. 
+Since conflict-rate has been observed to be too unstable for the use-case, \solver{Kissat} uses a new unit called ``ticks'', which is based on the approximate number of cache-line accesses, to measure the length of two alternating restart-modes~\cite{Biere:SC2020}. 
 
 Furthermore, \solver{Kissat} exploits autarkies to account for saved phases. 
 In order to keep valuable information of saved phases, before each rephasing step, \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
@@ -1055,8 +1058,9 @@ As such an autarky might contain satisfying assignments which imply disconnected
 \subsubsection{CryptoMiniSat}
 \label{sec:cryptominisat}
 
-\solver{CryptoMiniSat} received \emph{four awards}, first place in the Incremental Library track, second place in the Planning track, third place in the Main track, and third best score on satisfiable instances. 
-Two submitted variants \solver{default} and \solver{LSIDS} scored mostly adjacent ranks in the evaluation of tracks. 
+\solver{CryptoMiniSat} received \emph{four awards}, the first place in the Incremental Library track,
+the second place in the Planning track, the third place in the Main track, and the third best score on satisfiable instances. 
+Two submitted variants, \solver{default} and \solver{LSIDS}, scored mostly adjacent ranks in the evaluation of the tracks. 
 The \solver{LSIDS} variant of \solver{CryptoMiniSat} comes with a new hybrid phase selection approach~\cite{Shaw:2020:LSIDS,Soos:SC2020}.
 
 \solver{CryptoMiniSat} comes with an independent implementation of state-of-the-art hybrid branching heuristics which alternate between classic phase saving and target phase selection~\cite{Biere:SC2019}.
@@ -1071,11 +1075,12 @@ The submitted version of \solver{CryptoMinisat} entails a new optimized implemen
 
 \subsubsection{CaDiCaL AllUip}
 
-Based on \solver{CaDiCaL}, its variants \solver{Trail} and \solver{AllUip} present implementations of a new \emph{Trail Saving} approach~\cite{Hickey:2020:TrailSaving} and improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
+Based on \solver{CaDiCaL}, its variants \solver{Trail} and \solver{AllUip} present implementations of a new \emph{Trail Saving} approach~\cite{Hickey:2020:TrailSaving} 
+and an improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
 The variants including \emph{Stable AllUIP} were the most successful and won the first price in the Planning track. 
 
-\emph{Stable AllUip} resolves additional clauses beyond the 1st Unit Implication Point (1-UIP) and keeps them if they are of smaller size or LBD than the 1-UIP clause. 
+\emph{Stable AllUip} resolves additional clauses beyond the 1st Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size or LBD than the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of such extended learning attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
 The \emph{Trail Saving} variant caches backtracked portions of the trail and uses them to restore decision levels during search if possible~\cite{Hickey:2020:TrailSaving}. 
 
@@ -1095,9 +1100,9 @@ The \solver{Relaxed newTech} variant uses occurrence counts of variables in unsa
 The \solver{F2TRC} fork of \solver{MapleLCMDistCBT} achieved the third best score on unsatisfiable instances. 
 \solver{F2TRC} comes with deterministic re-implementations of former winning strategies in \solver{Maple}, e.g., by replacing time-based intervals through conflict-based intervals~\cite{Kochemazov:SC2020}. 
 
-\solver{F2TRC} introduces improved management of learned clauses in the tree tiers \emph{core}, \emph{tier2} and \emph{local} which are inherited from \solver{CoMinisatPS}~\cite{Oh:2015:satunsat}.
+\solver{F2TRC} introduces improved management of learned clauses in the tree tiers \emph{core}, \emph{tier2} and \emph{local}, which are inherited from \solver{CoMinisatPS}~\cite{Oh:2015:satunsat}.
 A dynamic size limit for the \emph{core} tier triggers the reassignment of inactive clauses from \emph{core} to \emph{tier2}. 
-To counter-act an observed starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size based heuristic~\cite{Kochemazov:SC2020}. 
+To counter-act an observed starving of tier2, the conflict-based heuristic that controls demotion of clauses from \emph{tier2} to \emph{local} was replaced by a size-based heuristic~\cite{Kochemazov:SC2020}. 
 
 
 \subsection{Parallel SAT Solvers}
@@ -1138,20 +1143,20 @@ In the following, we outline the technical reports of the award winning parallel
 \subsubsection{Painless MapleCOMSPS STR} 
 
 \solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless,Liang:2017:Maplecomsps}. 
-The authors submitted a \solver{32} and a \solver{64} threaded variant and won three awards: first place overall, best score on satisfiable and second best score on unsatisfiable instances. 
+The authors submitted a \solver{32} and a \solver{64} threaded variant and won three awards: the first place overall, the best score on satisfiable and the second best score on unsatisfiable instances. 
 In the overall evaluation, the \solver{32} threaded variant achieved slightly better scores than the \solver{64} threaded variant. 
 However, in the separate evaluations on satisfiable and unsatisfiable variants the \solver{32} threaded variants performed much better, such that the runner-up solvers outperformed the \solver{64} threaded variant. 
 
 \solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrent data-structures, such that implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies~\cite{Frioux:2017:Painless}. 
 
 \solver{Painless-MCOMSPS-STR} diversifies mainly via hard-coded configurations of the branching strategies LRB and VSIDS, and via sparse random initialization of variable polarities~\cite{Balyo:2015:HordeSATs}. 
-Two special solver instances perform concurrent clause strengthening~\cite{Wieringa:2013:CCS} Gaussian elimination, respectively. 
-\solver{Painless-MCOMSPS-STR} uses an all-to-all strategy for clause sharing with a fixed size clause buffer and an LBD filter with a dynamic limit~\cite{SC2020}. 
+Two special solver instances perform concurrent clause strengthening~\cite{Wieringa:2013:CCS} and Gaussian elimination, respectively. 
+\solver{Painless-MCOMSPS-STR} uses an all-to-all strategy for clause sharing with a fixed-size clause buffer and an LBD filter with a dynamic limit~\cite{SC2020}. 
 
 
 \subsubsection{Plingeling} 
 
-\solver{Plingeling} achieved the best score on unsatisfiable instances, second place in the overall evaluation, and the third best score on satisfiable instances. 
+\solver{Plingeling} achieved the best score on unsatisfiable instances, the second place in the overall evaluation, and the third best score on satisfiable instances. 
 \solver{Plingeling} is built around the well-known \solver{Lingeling} and did not change since 2016. 
 In a global master queue, \solver{Plingeling} shares unit clauses, equivalences and short clauses with a size limit of~$40$ and an LBD limit of~$8$. 
 \solver{Plingeling} uses random seeds for diversification via variable polarities~\cite{Biere:SC2020,Biere:2012:Lingeling}. 
@@ -1160,7 +1165,7 @@ In a global master queue, \solver{Plingeling} shares unit clauses, equivalences 
 \subsubsection{ManyGlucose}
 
 \solver{ManyGlucose} was submitted in \solver{32} and \solver{64} threaded variants. 
-The \solver{32} threaded variant received two awards in this competition: the overall third place and third best score on unsatisfiable instances. 
+The \solver{32} threaded variant received two awards in this competition: the overall third place and the third best score on unsatisfiable instances. 
 \solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behavior~\cite{Audemard:2018:GlucoseSyrup}~\cite{Audemard:2014:LazyClauseExchange}~\cite{Hamadi:2009:ManySat}. 
 
 
@@ -1176,7 +1181,7 @@ The \solver{32} threaded variant received two awards in this competition: the ov
 \subsection{Massively Parallel SAT Solvers}
 \label{sec:part:cloud}
 
-Five teams submitted a total of $6$ solvers and configuration in the Cloud track. 
+Five teams submitted a total of $6$ solvers and configurations in the Cloud track. 
 In the following, we outline the technical reports of the award winning massively parallel solvers. 
 
 %\begin{table}[t]
@@ -1199,7 +1204,7 @@ In the following, we outline the technical reports of the award winning massivel
 
 \subsubsection{Mallob Mono}
 
-\solver{Mallob} is a fork of the generic massively parallel SAT solver \solver{HordeSAT}~\cite{Balyo:2015:HordeSATs}. 
+\solver{Mallob} is a fork of the generic, massively parallel SAT solver \solver{HordeSAT}~\cite{Balyo:2015:HordeSATs}. 
 \solver{Mallob} performs dynamic load balancing through \emph{malleable job scheduling} in case the input contains several SAT instances of varying priority. 
 This functionality is disabled in the submitted variant \solver{Mallob Mono}. 
 \solver{Mallob} uses \solver{Lingeling-bcj} and as every 14th solver \solver{Mallob} spawns the SLS solver \solver{YalSAT}~\cite{Biere:2018:LingelingYalsat}.
@@ -1216,10 +1221,10 @@ Duplicates are avoided by using a bloom filter which is cleared periodically~\ci
 
 \subsubsection{TopoSAT 2}
 
-\solver{TopoSAT~2} is a massively parallel SAT solver using \solver{Glucose~3}~\cite{Audemard:2018:Glucose}~\cite{Ehlers:2018:Toposat2}. 
+\solver{TopoSAT~2}~\cite{Ehlers:2018:Toposat2} is a massively parallel SAT solver using \solver{Glucose~3}~\cite{Audemard:2018:Glucose}. 
 \solver{TopoSAT~2} uses lock-free clause-exchange for solvers on the same machine, and Message Passing Interface (MPI) to share clauses between machines~\cite{Hamadi:2009:ManySat}. 
 \solver{TopoSAT~2} strengthens clauses before export and delays clause import until the trail-size reaches a local minimum. 
-\solver{Toposat~2} diversifies via strategies used for branching, restarting and clause forgetting~\cite{Ehlers:SC2020}. 
+\solver{Toposat~2} diversifies via strategies used for branching, restarting, and clause forgetting~\cite{Ehlers:SC2020}. 
 
 
 \subsubsection{Slime}
@@ -1237,6 +1242,8 @@ focusing on metrics complementing the PAR-2 score,
 which we used for ranking the solvers in the actual competition.
 
 \subsection{Contributions to the Virtual Best Solver}
+
+\label{subsec:vbs_explained}
 
 The Virtual Best Solver (VBS) is a fictitious solver consisting 
 of all the solvers that actually participated in the competition (or a specific track)
@@ -1475,7 +1482,7 @@ by most of the well performing solvers.
 \subsection{Greedy set cover}
 Another perspective on how much each solver contributes to the state of the art
 can be obtained by attempting to construct a sequential schedule of solvers 
-(rather then relying on an oracle to pick one for each instance, as with VBS)
+(rather than relying on an oracle to pick one for each instance, as with VBS)
 and looking at how big role each solvers plays in such a schedule. Since constructing 
 an optimal schedule tends to be computationally hard, we start here by 
 presenting a useful efficient alternative -- a greedy set cover approach.
@@ -1661,7 +1668,8 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \end{table}
 
 Contributions to the VBS can be well captured by clustering the instance space into instance families. 
-We evaluated the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf. Table~\ref{tab:families}) and report on their place and score in Table~\ref{tab:eval-by-family}. 
+We evaluated the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
+and report their place and score in Table~\ref{tab:eval-by-family}. 
 Interestingly, the overall winning solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
 
 \subsection{Similarity of Solvers}
@@ -1671,7 +1679,7 @@ benchmarks that have not been solved by any solver. For the rest, a PAR-2 score
 is assigned to each instance for every solver,
 % based on the \num{5000}-second timeout
 \emph{i.e.}, we set a score of \num{10000} for unsolved instances.
-Each solver $S$ thus is associated with the PAR-2 scores $S_{1},\dots,S_{316}$.
+Each solver $S$ is thus associated with the PAR-2 scores $S_{1},\dots,S_{316}$.
 % This leaves us with $316$ floats
 % $S_{1},\dots,S_{316}$ for each solver $S$.
 The \emph{similarity} of two solvers $S$
@@ -1696,7 +1704,7 @@ a similarity above \num{0.999}. Therefore the two solvers are joined low in the
 dendrogram.
 % A similar visualization was used for the results of the SAT Race 2015 \cite{Balyo:2015:SATRace}.
 
-One big cluster that we identify consists of the \solver{Maple}-decedents,
+One big cluster that we identify consists of the \solver{Maple}-decedants, 
 all of which are modifications of the winners in the SAT Competition 2018 and
 the SAT Race 2019.
 The similarity within the cluster is high, with the exception of
@@ -1706,14 +1714,14 @@ with a lower similarity to the rest, but a high similarity within. In fact, the 
  % of $0.96$
 besides the aforementioned \solver{CaDiCaL-alluip}, is observed between them.
 The two solvers are both based on
-\solver{MapleLCMDistChronoBT-dl-v2.2} but have different authors.
+\solver{MapleLCMDistChronoBT-dl-v2.2}, but have different authors.
 The high similarity suggest that the
 changes they made either result in a very similar behavior or do not have a
 significant impact on the runtime performance.
 
 The two configurations of \solver{Relaxed} by \emph{Zhang} and \emph{Cai}
-use the same code-base as a lot of solvers in the Maple-Cluster but their
-overall performance is better and closer to the \solver{CMS}-Cluster.
+use the same code-base as a lot of solvers in the \solver{Maple}-cluster, but their
+overall performance is better and closer to the \solver{CMS}-cluster.
 The three \solver{CMS} configurations
 differ in their implementation of stochastic local search
 (SLS) and have similar performance.
@@ -1763,7 +1771,7 @@ described in the tool suite
 % performed the following
 % experiment:
 
-We first use random sampling to select subsets of benchmarks used in the Main track.
+We first use random sampling to select subsets of the benchmarks used in the Main track.
 We start with $316$ benchmarks that have been solved by at least one solver in
 the Main track and remove a number of benchmarks randomly. For each
 possible subset size (1--316) we generate 50 random samples.
@@ -1813,10 +1821,10 @@ $\rho = 0.6839$.
 The mean and standard deviation of the computed correlation coefficients are
 depicted in Figure~\ref{fig:sampleAll}.
 \begin{figure}[h]
-  \label{fig:sampleAll}
   \centering
   \includegraphics[width=0.8\textwidth]{stability/ALL_random_smpling_correlations.png}
   \caption{Mean and standard deviation of rank correlation under removal of random instances over 50 samples for each size}
+   \label{fig:sampleAll}
 \end{figure}
 The rank correlation is high even for relatively small samples.
 The average rank correlation drops below $0.99$ only after randomly removing at least $95$ benchmarks, which is $30\%$ of the considered benchmark set. Accordingly, removing fewer benchmarks randomly has almost no effect on the ranking of the solvers.
@@ -1831,15 +1839,15 @@ the result of current research, we can assume that the submitted families
 together are representative.
 
 \begin{figure}[h]
-  \label{fig:sampleFamily}
   \centering
   \includegraphics[width=0.9\textwidth]{stability/fam_leave_one_out_corr.png}
   \caption{Change of rank correlation under removal of individual benchmark families}
+  \label{fig:sampleFamily}
 \end{figure}
 
 Figure~\ref{fig:sampleFamily} shows the rank
 correlation coefficient resulting from removing a complete benchmark family
-instead of a random subset. As expected, removing a non random subset can have a
+instead of a random subset. As expected, removing a non-random subset can have a
 higher impact on the ranking even if it is small. Removing the $13$ benchmarks
 from the \emph{hgen}-family results in a (still high) rank correlation of
 $0.9895$. Additionally, the ranking of the top five solvers stays the same.
@@ -1848,13 +1856,13 @@ The individual removal of all other benchmarks families results in a rank correl
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
 
-All winning solvers of the \emph{Main} track periodically schedule runs of an SLS solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. 
+All the winning solvers of the \emph{Main} track periodically schedule runs of an SLS solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. 
 
 As can be seen in the \emph{Parallel} track, it is hard to scale SAT solving beyond $32$ threads, as in some occasions the $32$ threaded version of the same solver outperformed its $64$ threaded counterpart. 
 However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classic all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
 
 It is hard to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
-The winner of the \emph{Incremental Library} track showed that it is worth integrating full solver functionality in the incremental use-case. 
+The winner of the \emph{Incremental Library} track showed that it is worth integrating a full solver functionality in the incremental use-case. 
 
 \subsection*{Future Competitions}
 
@@ -1866,8 +1874,8 @@ Many prominent applications of SAT use an \emph{incremental} SAT solver in their
 Those incremental use-cases impose additional challenges on solver authors. 
 The emergence of new fuzzing tools for incremental SAT solvers based on IPASIR can help researchers with also integrating and testing their methods in the incremental use-case.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
 
-The results of the \emph{Planning} track as well as our differentiated analysis of results highlight the individual contributions of many submissions. 
-Our plan for future competitions is, to always run a special track for varying applications alongside the Main track. 
+The results of the \emph{Planning} track as well as our differentiated analysis of the results highlight the individual contributions of many submissions. 
+Our plan for the future competitions is to always run a special track for varying applications alongside the Main track. 
 
 
 \section*{Acknowledgments}
