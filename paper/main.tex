@@ -152,7 +152,7 @@ from the competition, complementing the individual solver descriptions available
  As for benchmarks, we describe how the 2020 benchmark sets were constructed for each of the competition tracks, with 
 an overview of the benchmarks contributed to the 2020 competition.
 In terms of empirical results we provide further analysis on the results going beyond the standard rankings provided
-on the SAT competition web pages (\url{https://satcompetition.github.io/2020/}). 
+on the SAT competition web pages.\footnote{\url{https://satcompetition.github.io/2020/}}. 
 Finally, we also provide a discussion on lessons learned and ideas for future editions of SAT competitions.
 
 The rest of this article is organized as follows. 
@@ -163,14 +163,15 @@ and the computing environments used for executing the competition
 (Section~\ref{sec:overview}).
 We then provide an overview of the benchmark sets used in evaluating the solvers, including their origins and the selection
 process used for constructing the sets (Section~\ref{sec:instances}).
-In Section~\ref{sec:results} we provide an overview of the competition results together with  a survey on the
-the solving strategies implemented distinctly in  top-ranking  solvers. 
-Going considerably beyond the plain competition rankings, we provide more in-depth analysis of the competition 
+In Section~\ref{sec:results} we provide an overview of the competition results %together with a survey on the
+followed by a survey on 
+the solving strategies implemented distinctly in top-ranking solvers in Section~\ref{sec:winners}. 
+Going considerably beyond the plain competition rankings, in Section~\ref{sec:analysis}, we provide more in-depth analysis of the competition 
 data from different perspectives, including correlation analysis of runtime performance of solvers and marginal contributions
 of individual solvers to the ``virtual best solver'' and 
-portfolios constructed from the competing solvers,  (Section~\ref{sec:analysis}.
+portfolios constructed from the competing solvers.
 The article is concluded with future prospects in Section~\ref{sec:conclusion}.
-\todo{Need to decide on final structure regarding the results overview and analysis}
+
 
 \section{Overview of SAT Competition 2020}
 \label{sec:overview}
@@ -853,14 +854,13 @@ closer is future years.
 \end{table}
 
 
-\section{Code-Bases and Winning Strategies}
-\label{sec:analysis}
+\section{Winning Solvers}
+\label{sec:winners}
 
 In the following, we provide an overview of the participating teams and solvers, 
 and summarize new strategies which are implemented in the award winning solvers of this competition. 
-
 We start with a few remarks on the evolution of code-bases of well known SAT solvers in Section~\ref{sec:codebases}. 
-Our review of the winning strategies in this competition starts with sequential (including incremental) SAT solving in Section~\ref{sec:part:seq}, then we continue with parallel SAT solving in Section~\ref{sec:part:par} and conclude with solvers in the cloud track in Section~\ref{sec:part:cloud}. 
+Our review of the winning strategies in this competition starts with sequential solvers in the Main-, Planning-, and Incremental Library track in Section~\ref{sec:part:seq}, then we continue with winners of the Parallel track in Section~\ref{sec:part:par} and conclude with winning solvers in the Cloud track in Section~\ref{sec:part:cloud}. 
 
 
 \subsection{Code-Bases of SAT Solvers: ``On the Shoulders of Giants''}
@@ -1228,6 +1228,7 @@ Even thought its sequential version was unsuccessful in the Main track, the MPI-
 
 
 \section{Differentiated Analysis of Main Track Results}
+\label{sec:analysis}
 
 In this section, we provide additional views on the Main track results,
 focusing on metrics complementing the PAR-2 score, 
