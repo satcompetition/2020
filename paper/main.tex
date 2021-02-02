@@ -1277,8 +1277,8 @@ By quantifying how much each participating solver contributes
 to the performance of the VBS, we may attempt to establish which
 technology (as represented by the solvers) is the most important
 (and to what degree) in the observed state of the art of SAT solving.
-We came up with the following three related metrics conceptually derived
-from the notion of VBS:
+We will here consider the following three related metrics conceptually derived
+from the notion of VBS.
 \begin{description}
 \item[VBS1]
 ``The fastest takes it all'':
@@ -1474,7 +1474,7 @@ Each table shows the first ten solvers sorted according to the respective metric
 %\end{table}
 %\todo{Probably hide tab:vbsMainSAT and tab:vbsMainUNSAT.} 
 
-Table~\ref{tab:vbsMainALL} renders the just described three metrics applied 
+Table~\ref{tab:vbsMainALL} renders the just-described three metrics applied 
 to the full results of the Main track. We can see that the respective leaderboards 
 are generally dominated by \solver{Kissat} and its configurations.
 VBS1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
@@ -1619,7 +1619,7 @@ It is not clear to what degree is the obtained schedule unique and how much it r
 Nevertheless, it is interesting to observe the total number of problems covered, here 286,
 and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with the uniform split and two solvers.
 
-Amusingly, as can be seen from the ``contributes'' column, the presence of \solver{f2trc-DL} in the schedule is not necessary.
+As can be seen from the ``contributes'' column, the presence of \solver{f2trc-DL} in the schedule is not necessary.
 % The following three lines could be skipped without much harm:
 All the 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
 This result, however, does not signify a bug, as Z3 was not asked to produce a schedule with a minimal number of
