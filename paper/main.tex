@@ -1802,6 +1802,12 @@ $r_{\{1,2\}}(S)$ map a solver $S$ to its rank, \emph{i.e.,} $1$ for the best
 performing solver, whereas $48$ is assigned to the solver
 with the highest average PAR-2 score.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.8\textwidth]{stability/ALL_random_smpling_correlations.png}
+  \caption{Mean and standard deviation of rank correlation under removal of random instances over 50 samples for each size}
+   \label{fig:sampleAll}
+\end{figure}
 The coefficient $\rho$ is in the interval $[-1, 1]$, where a rank correlation of
 $1$ means that the two rankings are equal and $-1$ means that one ranking is the
 reverse of the other. To give a better intuition for $\rho$, we list a few
@@ -1820,12 +1826,6 @@ $\rho = 0.6839$.
 
 The mean and standard deviation of the computed correlation coefficients are
 depicted in Figure~\ref{fig:sampleAll}.
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{stability/ALL_random_smpling_correlations.png}
-  \caption{Mean and standard deviation of rank correlation under removal of random instances over 50 samples for each size}
-   \label{fig:sampleAll}
-\end{figure}
 The rank correlation is high even for relatively small samples.
 The average rank correlation drops below $0.99$ only after randomly removing at least $95$ benchmarks, which is $30\%$ of the considered benchmark set. Accordingly, removing fewer benchmarks randomly has almost no effect on the ranking of the solvers.
 Furthermore, removing fewer than $200$ ($63\%$) benchmarks, still results in an average rank correlation above $0.96$.
@@ -1838,7 +1838,7 @@ newly submitted benchmark family originates from a different domain and is often
 the result of current research, we can assume that the submitted families
 together are representative.
 
-\begin{figure}[h]
+\begin{figure}[t]
   \centering
   \includegraphics[width=0.9\textwidth]{stability/fam_leave_one_out_corr.png}
   \caption{Change of rank correlation under removal of individual benchmark families}
@@ -1846,10 +1846,9 @@ together are representative.
 \end{figure}
 
 Figure~\ref{fig:sampleFamily} shows the rank
-correlation coefficient resulting from removing a complete benchmark family
-instead of a random subset. As expected, removing a non-random subset can have a
-higher impact on the ranking even if it is small. Removing the $13$ benchmarks
-from the \emph{hgen}-family results in a (still high) rank correlation of
+correlation coefficient resulting from removing a complete benchmark family. As expected, removing a non-random subset can have a
+higher impact on the ranking even if it is small. Removing the $13$ \emph{hgen} benchmarks
+results in a (still high) rank correlation of
 $0.9895$. Additionally, the ranking of the top five solvers stays the same.
 The individual removal of all other benchmarks families results in a rank correlation above $0.99$.
 
