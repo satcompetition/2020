@@ -201,15 +201,15 @@ The No-Limits track was only evaluated with respect to the benchmarks instances 
 
 The same rules for participation as in Main track applied to the Planning track, in which we evaluated the solvers on 200 benchmarks 
 which all came from the same application domain -- automated planning. 
-Solver submitted to the Main track automatically participated in the Planning track.
+Solvers submitted to the Main track automatically participated in the Planning track.
 It is envisioned that also in the future there will be an ``application promotion'' track,
 each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
-Finally, the Main Track also had the so-called ``Glucose hack'' sub-track. 
-Since in the past several advances in SAT solving required only a small modification of an established solver
+Finally, the Main Track also included the so-called ``Glucose hack'' sub-track. 
+As in the past several advances in SAT solving required only a small modification of an established solver
 to achieve a considerable contribution, this sub-track encouraged participation 
 of small modifications of the Glucose 3.0 SAT solver. The limit for being considered a ``hack''
-was arbitrarily set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
+was---somewhat arbitrarily---set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
 Unfortunately, in 2020 there were not enough participants in this sub-track and we do not report on it 
 in the results section.
 
@@ -218,7 +218,9 @@ in the results section.
 In the Incremental Library track we mimic scenarios
 where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
-the enclosing tool reaches its final state. ``Incremental'' means that
+the enclosing tool reaches its final state. \textcolor{red}{Could mention concrete applications here?}
+``Incremental'' here refers to the 
+idea that
 the individual calls to the SAT solver are not independent, but may share 
 a common subset of the input clauses or differ in the presence of additional 
 unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
@@ -236,26 +238,28 @@ may in general influence which questions will follow next.
 
 \subsubsection{Parallel Track}
 
-The Parallel track evaluates solver performance in wall-clock time on multiple cores.
-The benchmarks and the timeout (5000 seconds) are the same as in the Main track. 
+The Parallel track evaluates the runtime performance in wall-clock time of SAT solvers making use of
+ multiple processor cores.
+The benchmarks and the timeout (5000 seconds) are the same as in the Main track \textcolor{red}{repetitive? also mentioned below?}. 
 Each solver in this track was run on a m4.16xlarge machine from Amazon Web Services (AWS).
 These machines have 64 virtual cores and 256GB of memory. In contrast to the 
 Main track, proof logging for unsatisfiable instances is not required in the Parallel track. 
 
 \subsubsection{Cloud Track}
 
-New this year was the Cloud track, dedicated to evaluating distributed solvers. Similar to the
+New this year was the Cloud track, dedicated to evaluating distributed solvers \textcolor{red}{Not sure
+if terms ``distributed'' vs ``parallel'' are clear, could be more explicitly explained?}. Similar to the
 Parallel track, the solvers ran on the Amazon cloud, but using 100 machines of the
 type m4.4xlarge, which have 16 virtual cores and 64GB of memory. 
 Communication between the machines is possible using MPI and SSH.
 The wall-clock timeout is 1000 seconds and the same benchmarks were used as in
-the Main and Parallel track. 
+the Main and Parallel track. \textcolor{red}{repetitive? also mentioned below?}
 
 \subsection{Mandatory Participation Requirements}
 \label{sec:rules}
 
 The following requirements were imposed for 
-the participation in the competition.
+participating in the competition.
 
 \paragraph{Source Code}
 The source code of submitted SAT solvers had to be made available 
@@ -290,11 +294,11 @@ Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim}
 either in its textual version, which is also very similar to the DIMACS input format,
 or in a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
 %
-Details on certification are further discussed below in Section~\ref{sec:certif}.
+Details on certification are further discussed in Section~\ref{sec:certif}.
 
-\paragraph{Number of submissions}
+\paragraph{Number of Submissions}
 
-Each participant was restricted to be an author of at most four different sequential solvers,
+Each participant was allowed to be an author of at most four different sequential solvers,
 two different parallel solvers, and one ``Glucose hack'' sub-track solver.
 Two solvers were considered different as soon as their sources differed
 or the compilation options were different, or different command line options were used
@@ -335,13 +339,14 @@ not eligible to win any award.
 
 \label{sec:certif}
 
-In all tracks it was required to output a model to certify recognizing a satisfiable instance.
-On the other hand, certificates for unsatisfiable instances (proofs) were required only 
+In all tracks solvers were required to output a model to certify recognizing a satisfiable instance.
+On the other hand, 
+certificates for unsatisfiable instances (proofs) were required only 
 in the Main track (besides the No Limits track).
 In some cases, a solver output the correct result, but the respective certificate was wrong. 
 Such solvers were demoted to the No-limits track of the competition. 
 
-The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
+The proofs were validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
 Afterwards, an independent, formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}, 
 was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
@@ -352,11 +357,11 @@ confirm after {\tt DRAT-trim}. However, there was no case where {\tt DRAT-trim} 
 a proof and {\tt cake\_lpr} would later disagree with the verdict.
 
 
-\subsection{Computing environments}
+\subsection{Computing Environments}
 
 \label{sec:computing}
-The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{starexec},
-whose nodes are equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
+The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{starexec}
+with computing nodes  equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
 (In the Main track, validation then continued for up to \SI{45000}{\second}.)
