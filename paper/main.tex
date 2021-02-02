@@ -98,12 +98,12 @@ Czech Technical University in Prague, Czech Republic\\
 \begin{document}
 
 \begin{abstract}
-The SAT Competitions constitute a well-established series of yearly open international algorithm implementation competitions
+The SAT Competitions constitute a well-established series of yearly open international algorithm implementation competitions,
 focusing on the Boolean satisfiability (or propositional satisfiability, SAT) problem. 
 In this article, we provide
 a detailed account on the 2020 instantiation of the SAT Competition, including the 
  new competition tracks and benchmark selection procedures, overview of solving strategies implemented in top-performing solvers, 
-and a more detailed analysis of the empirical data obtained from running the competition.
+and a detailed analysis of the empirical data obtained from running the competition.
 %SAT Competition 2020 stands in the tradition of the series of annual competitive events which motivate and assess the progress in SAT solving. 
 %This competition was special as it introduced the new cloud track where SAT Solvers that run on hundreds of processors could compete. 
 %Another novelty was the application-specific sub-track of the main track, 
@@ -131,28 +131,28 @@ and certified proof logging and checking capabilities, applications of SAT solve
 have branched from first breakthrough applications in automated planning, test pattern generation and hardware verification
 to thousands of different application settings. 
 
-The success of SAT would not be without the persistent efforts of the SAT community to further develop the performance and robustness
-of SAT solvers. The SAT Competition series, which a history dating back to early 90s, aims to support and provide further incentives 
+The success of SAT would not be possible without the persistent efforts of the SAT community to further develop the performance and robustness
+of SAT solvers. The SAT Competition series, with a history dating back to early 90s, aims to support and provide further incentives 
 for maintaining and furthering this progress. Organized yearly as an international open event, the SAT competitions (and their variants
 in the form of SAT Races and SAT Challenge) have a consistent track record of receiving tens of solver submissions yearly, submitted
 by the community at large for obtaining a snapshot of the current state-of-the-art in practical SAT solving. Alongside participating solvers,
-the competition invite through open calls submissions of benchmark instances representing in particular new interesting applications 
+the competition invites through open calls submissions of benchmark instances representing, in particular, new interesting applications 
 scenarios of SAT solvers. Indeed, in addition to evaluating recently developed solvers, an important aspect of the SAT competition series is
-to construct on a yearly basis new benchmark sets, consisting of instances from various different application settings, which together with benchmark sets from previous years constitute a standard dataset for use in research papers and SAT solver development. 
+to collect on a yearly basis new benchmark sets, consisting of instances from various different application settings, which together with benchmark sets from previous years constitute a standard dataset for use in research papers and SAT solver development. 
 
 This article focuses on the 2020 instantiation of the SAT competitions. 
 To this end, we provide
 a detailed account of SAT Competition 2020 in terms of organizational details, competition tracks,
 participating solvers, benchmarks, and the empirical results from the competition.
-In terms of competition tracks, two new tracks, namely the cloud track and an application-specific track, where introduced in 2020 
+In terms of competition tracks, two new tracks, namely the cloud track and an application-specific track, where introduced in 2020,
 in addition to the already earlier established main, parallel, and incremental tracks; we
-provide motivation and the new organizational details for both of the tracks.
-In terms of solvers, we provide an overview of solving strategies and other details implemented in top-performing solvers
-from the competition, complementing the individual solver descriptions available in the 2020 competition proceedings.
+provide motivation and the new organizational details for both of these new tracks.
+In terms of solvers, we provide an overview of solving strategies and other details implemented in the top-performing solvers
+from the competition, complementing the individual solver descriptions available in the 2020 competition proceedings \cite{SC2020}.
  As for benchmarks, we describe how the 2020 benchmark sets were constructed for each of the competition tracks, with 
 an overview of the benchmarks contributed to the 2020 competition.
 In terms of empirical results we provide further analysis on the results going beyond the standard rankings provided
-on the SAT competition web pages.\footnote{\url{https://satcompetition.github.io/2020/}}. 
+on the SAT competition web pages.\footnote{\url{https://satcompetition.github.io/2020/}}
 Finally, we also provide a discussion on lessons learned and ideas for future editions of SAT competitions.
 
 The rest of this article is organized as follows. 
@@ -165,8 +165,8 @@ We then provide an overview of the benchmark sets used in evaluating the solvers
 process used for constructing the sets (Section~\ref{sec:instances}).
 In Section~\ref{sec:results} we provide an overview of the competition results %together with a survey on the
 followed by a survey on 
-the solving strategies implemented distinctly in top-ranking solvers in Section~\ref{sec:winners}. 
-Going considerably beyond the plain competition rankings, in Section~\ref{sec:analysis}, we provide more in-depth analysis of the competition 
+the solving strategies implemented distinctly in the top-ranking solvers in Section~\ref{sec:winners}. 
+Going considerably beyond the plain competition rankings, in Section~\ref{sec:analysis}, we provide an in-depth analysis of the competition 
 data from different perspectives, including correlation analysis of runtime performance of solvers and marginal contributions
 of individual solvers to the ``virtual best solver'' and 
 portfolios constructed from the competing solvers.
@@ -193,7 +193,7 @@ and the Cloud Track for massively parallel SAT solvers. % using up to 1024 cores
 The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
 
 Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits track and were not eligible for the Main track awards.
-The No-Limits thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) 
+The No-Limits track thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) 
 as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.~Sect.~\ref{sec:rules}).
 However, solvers in No-Limits still competed against all other solvers submitted to the Main Track.
 Thus, to deserve a mention, a No-Limits solver would need to beat all the Main Track participants.
@@ -209,7 +209,7 @@ Finally, the Main Track also had the so-called ``Glucose hack'' sub-track.
 Since in the past several advances in SAT solving required only a small modification of an established solver
 to achieve a considerable contribution, this sub-track encouraged participation 
 of small modifications of the Glucose 3.0 SAT solver. The limit for being considered a ``hack''
-was set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
+was arbitrarily set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
 Unfortunately, in 2020 there were not enough participants in this sub-track and we do not report on it 
 in the results section.
 
@@ -218,7 +218,7 @@ in the results section.
 In the Incremental Library track we mimic scenarios
 where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
-the enclosing tool reaches its final state. Incremental means that
+the enclosing tool reaches its final state. ``Incremental'' means that
 the individual calls to the SAT solver are not independent, but may share 
 a common subset of the input clauses or differ in the presence of additional 
 unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
@@ -227,7 +227,9 @@ Instead of using or extending the DIMACS input format, we realize the Incrementa
 by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
 for SAT applications~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
 enclosing tool on its own benchmark and communicate with the competing SAT solver 
-through this interface API. Not only does the SAT solver in this track
+through this interface API. 
+%
+Not only does the SAT solver in this track
 need to solve a sequence of related problems fast, but its answers to the early questions
 may in general influence which questions will follow next.
 % E.g. Smaller unsat cores may allow the enclosing tool to converge using fewer SAT calls!
@@ -236,13 +238,13 @@ may in general influence which questions will follow next.
 
 The Parallel track evaluates solver performance in wall-clock time on multiple cores.
 The benchmarks and the timeout (5000 seconds) are the same as in the Main track. 
-Each solver run in this track was on a m4.16xlarge machine from Amazon Web Services (AWS).
+Each solver in this track was run on a m4.16xlarge machine from Amazon Web Services (AWS).
 These machines have 64 virtual cores and 256GB of memory. In contrast to the 
-Main track, there is no proof logging for unsatisfiable benchmarks in the Parallel track. 
+Main track, proof logging for unsatisfiable instances is not required in the Parallel track. 
 
 \subsubsection{Cloud Track}
 
-New this year was the Cloud track to evaluated distributed solvers. Similar to the
+New this year was the Cloud track, dedicated to evaluating distributed solvers. Similar to the
 Parallel track, the solvers ran on the Amazon cloud, but using 100 machines of the
 type m4.4xlarge, which have 16 virtual cores and 64GB of memory. 
 Communication between the machines is possible using MPI and SSH.
@@ -286,7 +288,7 @@ the satisfying assignment
 
 Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
 either in its textual version, which is also very similar to the DIMACS input format,
-or on a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
+or in a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
 %
 Details on certification are further discussed below in Section~\ref{sec:certif}.
 
@@ -336,7 +338,7 @@ not eligible to win any award.
 In all tracks it was required to output a model to certify recognizing a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only 
 in the Main track (besides the No Limits track).
-In some cases solvers output the correct result but the respective certificate was wrong. 
+In some cases, a solver output the correct result, but the respective certificate was wrong. 
 Such solvers were demoted to the No-limits track of the competition. 
 
 The proofs were validated in a two step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
@@ -609,7 +611,7 @@ This section describes some high-level observations, including the winners, of t
 We focus on some interesting results. Details about the solvers, including the key and new solving techniques,
 are described in Section~\ref{sec:analysis}.
 
-Four solver participating in the Main track (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trial}, and \solver{CMS-ccnr-lsids}) 
+Four solvers participating in the Main track (\solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trial}, and \solver{CMS-ccnr-lsids}) 
 performed significantly better compared to the others, see Table~\ref{tab:results}.
 Figure~\ref{main:all} shows the cumulative solved instances plot of the best performing solver of the strongest
 10 teams (in short, the top 10 solvers)  together with the Virtual Best Solver (VBS).
