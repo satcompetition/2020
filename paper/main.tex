@@ -194,7 +194,7 @@ and the Cloud Track for massively parallel SAT solvers. % using up to 1024 cores
 
 \subsubsection{The Main, No-Limits, Planning, and ``Glucose hack'' tracks}
 
-The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
+The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the Main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
 
 Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits track and were not eligible for the Main track awards.
 The No-Limits track thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) 
@@ -1184,11 +1184,11 @@ The \solver{32} threaded variant received two awards in this competition: the ov
 
 \subsubsection{Painless Maple} 
 
-\solver{Painless Maple} received the award for second-best performance on satisfiable instances. Interestingly, it 
-at the same time exhibited  worst performance on unsatisfiable instances. 
+\solver{Painless Maple} received the award for second-best performance on satisfiable instances. 
+Interestingly, \solver{Painless Maple}  
+at the same time exhibits worst performance on unsatisfiable instances. 
 \solver{Painless Maple} integrates the solver \solver{ExMapleLCMDistChronoBT} into the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless}. 
-\solver{Painless Maple} uses a sharing strategy in which the solvers are divided into those which only export clauses and others which import \emph{and} export clauses. 
-\solver{Painless Maple} was submitted in two variants \solver{v1} and \solver{v2}. 
+It uses a sharing strategy in which the solvers are divided into those which only export clauses and others which import \emph{and} export clauses and was submitted with two diversification variants \solver{v1} and \solver{v2}. 
 \solver{Painless Maple v1} diversifies via hand-crafted heuristic configurations and \solver{Painless Maple v2} diversifies via randomized initialization of branching heuristics~\cite{SC2020}. 
 
 
@@ -1272,31 +1272,33 @@ By quantifying how much each participating solver contributes
 to the performance of the VBS, we may attempt to establish which
 technology (as represented by the solvers) is the most important
 (and to what degree) in the observed state of the art of SAT solving.
-We will here consider the following three related metrics conceptually derived
+We consider here the following three related metrics conceptually derived
 from the notion of VBS.
+
 \begin{description}
-\item[VBS1]
+\item[VBS-1]
 ``The fastest takes it all'':
 For each solver we count the number of times, it was the fastest to solve an instance.
-\item[VBS2]
+\item[VBS-2]
 ``Time aware, but proportional'':
 A solver $S$ solving an instance $I$ in time $T^S_I$ accrues 
 the following fraction of a point for solving $I$:
 $T^\mathit{VBS}_I/T^S_I$, where $T^\mathit{VBS}_I$ is the solution time of the best solver on $I$.
-\item[VBS3]
+\item[VBS-3]
 ``Split the point for solving'':
 We award each solver $S$ solving an instance $I$ the fraction $1/|\mathcal{S}_I|$ of points, where
 $\mathcal{S}_I$ is the set of solvers solving $I$.
 \end{description}
-We remark that the sum of VBS1 points, as well as VBS3 points, computed across all the solvers
+
+We remark that the sum of VBS-1 points, as well as VBS-3 points, computed across all the solvers
 is equal to the number of instances solved by at least one solver (later denoted \emph{total}).
-This is obvious for VBS1, as exactly one solver scores a point for solving an instance.
-In the case of VBS3, where we discard the information about the solution times, 
+This is obvious for VBS-1, as exactly one solver scores a point for solving an instance.
+In the case of VBS-3, where we discard the information about the solution times, 
 we evenly split the one point reward for solving an instance to those solvers which were successful on it.
 
-In contrast, VBS2 does not have this property as it in general distributes more than one point per instance.
-Similarly to VBS1, it takes the solution time into account,
-and similarly to VBS3 it does not award just the best solver on an instance.
+In contrast, VBS-2 does not have this property as it in general distributes more than one point per instance.
+Similarly to VBS-1, it takes the solution time into account,
+and similarly to VBS-3 it does not award just the best solver on an instance.
 For example, being twice as slow on an instance than the fastest solver results in a half point awarded.
 And, if all the solvers solve an instance with the same solution time,
 each solver scores a whole point for that instance. 
@@ -1492,7 +1494,7 @@ at least among the first 10 solvers.
 One can conclude from this that most of the benchmarks are solved
 by most of the well performing solvers. 
 
-\subsection{Greedy set cover}
+\subsection{Greedy Set Cover}
 Another perspective on how much each solver contributes to the state of the art
 can be obtained by attempting to construct a sequential schedule of solvers 
 (rather than relying on an oracle to pick one for each instance, as with VBS)
@@ -1540,7 +1542,7 @@ is showing up in the table. This is, for example the case of the last listed
 Highlighting unique solutions is a property of the greedy set cover metric
 which we believe is congruent with documenting contributions to the state of the art.
 
-\subsection{Time-limited schedules}
+\subsection{Time-Limited Schedules}
 
 The greedy set cover technique focuses only on solving instances,
 disregarding the time it would take to execute the obtained schedule. We can
@@ -1562,7 +1564,7 @@ of the budget seems to be the original time limit of \SI{5000}{\second}.
 \label{tab:MainUniformTimeSplit}
 \end{table}
 
-By employing a brute-force approach we first constructed a sequences of schedules 
+By employing a brute-force approach, we first construct a sequences of schedules 
 where the $i$-th schedule splits the available time of \SI{5000}{\second} uniformly among
 $i$ solvers and solves the highest number of instances under these constraints.
 The results are presented in Table~\ref{tab:MainUniformTimeSplit}.
@@ -1576,13 +1578,9 @@ problems that were solved actually require quite a large time to
 get ``cracked'' by any solver and thus the advantage of adding more solvers to the schedule
 quickly diminishes.
 
-We complemented this ``uniform time split'' schedule by formulating the schedule construction
-problem as a MaxSMT formula and using the Z3 SMT solver \cite{DBLP:conf/tacas/MouraB08} in its optimization mode \cite{DBLP:conf/sycss/BjornerP14} to solve it.
-For each solver (and its configuration) $S$ we introduced an integer variable $R^S$ denoting 
-the number of seconds $S$ will run in the new schedule. We then constructed a formula with the hard
-constraints $0 \leq R^S$ for every $S$ and $\sum_{S\in\mathcal{S}} R^S \leq 5000$ and with one 
-soft constraint for every instance $I$ of the form
-\[\bigvee_{S \in \mathcal{S}_I} T^S_I \leq R^S,\]
+We complement this ``uniform time split'' schedule by formulating the schedule construction problem as a MaxSMT formula and using the Z3 SMT solver \cite{DBLP:conf/tacas/MouraB08} in its optimization mode \cite{DBLP:conf/sycss/BjornerP14} to solve it.
+For each solver (and its configuration) $S$ we introduce an integer variable $R^S$ denoting the number of seconds $S$ runs in the new schedule. 
+We then construct a formula with the hard constraints $0 \leq R^S$ for every $S$ and $\sum_{S\in\mathcal{S}} R^S \leq 5000$ and with one soft constraint for every instance $I$ of the form \[\bigvee_{S \in \mathcal{S}_I} T^S_I \leq R^S,\]
 where $\mathcal{S}_I$ is the set of solvers which solved the instance $I$ and $T^S_I$ is the time it took solver $S$ to solve $I$ here rounded up to the nearest integer.
 (Note that while $R^S$ are variables, i.e.~unknowns, the $T^S_I$ are known constants in the formula.)
 
@@ -1608,7 +1606,7 @@ constructed using Z3.}
 \end{table}
 
 Finding a solution which satisfies all the hard constraints and as many soft constraints as possible,
-Z3 came up with the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
+Z3 comes up with the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
 The table is sorted by $R^S$, the time the schedule allocates to individual solvers, and skips the zero entries.
 It is not clear to what degree is the obtained schedule unique and how much it relies on each solver being present and for how long.
 Nevertheless, it is interesting to observe the total number of problems covered, here 286,
@@ -1646,7 +1644,7 @@ Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not
 
 The PAR-2 score of the VBS of all $48$ submitted solvers in the Main track is $2431.4$, which is close to 40\% better than the PAR-2 score of $3926.2$ of the single best solver \solver{Kissat-sat}. 
 Given the set of solvers $S$, the set of tuples of size $k$ is defined as follows $P_k := \{ T \mid T \in 2^S \land |T| = k\}$.
-We calculated the PAR-2 score for each VBS created from solver tuples in $P_k$. 
+We calculate the PAR-2 score for each VBS created from solver tuples in $P_k$. 
 In Table~\ref{tab:tuples}, we report on the single best performing $k$-tuple $T_k \in P_k$ ($1 \leq k \leq 7$). 
 
 Interestingly, each of the first five tuples $T_{k \leq 5}$ contains exactly one of the three \solver{Kissat} variants. 
@@ -1681,7 +1679,7 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \end{table}
 
 Contributions to the VBS can be well captured by clustering the instance space into instance families. 
-We evaluated the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
+We evaluate the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
 and report their place and score in Table~\ref{tab:eval-by-family}. 
 Interestingly, the overall winning solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
 
@@ -1706,7 +1704,7 @@ as:
 	similarity(S, S') =\quad 1 - \frac{\sum{|S_{i} - S'_{i}|}}{316 \cdot \num{10000}}
 \]
 % \end{equation}
-We calculated the \emph{similarity} of the $30$ solvers with the
+We calculate the \emph{similarity} of the $30$ solvers with the
 best average PAR-2 score in the Main track. The results are displayed in
 Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. Additionally, the result
 of hierarchically clustering the solvers based on their similarity is
@@ -1728,7 +1726,7 @@ with a lower similarity to the rest, but a high similarity within. In fact, the 
 besides the aforementioned \solver{CaDiCaL-alluip}, is observed between them.
 The two solvers are both based on
 \solver{MapleLCMDistChronoBT-dl-v2.2}, but have different authors.
-The high similarity suggest that the
+The high similarity suggests that the
 changes they made either result in a very similar behavior or do not have a
 significant impact on the runtime performance.
 
@@ -1739,7 +1737,7 @@ The three \solver{CMS} configurations
 differ in their implementation of stochastic local search
 (SLS) and have similar performance.
 The 2020 version of \solver{CaDiCaL}
-performed worse than the modifications based on the 2019 version and
+performs worse than the modifications based on the 2019 version and
 does not quite fit into any cluster.
 
 The last cluster to the left of the heat map is comprised of the other solvers
@@ -1868,14 +1866,14 @@ The individual removal of all other benchmarks families results in a rank correl
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
 
-The 2020 SAT Competition successfully continued the tradition of the SAT Competition series. In 2020, significant advances
-in SAT solver compared to previous years were observed. Some of the more interesting observations on the winning solving 
+The 2020 SAT Competition successfully continues the tradition of the SAT Competition series. In 2020, significant advances
+in SAT solvers compared to previous years are observed. Some of the more interesting observations on the winning solving 
 strategies include the following.
 All the winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
-solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As can be seen in the \emph{Parallel} track, it appear difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$ threaded counterpart. 
+solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As can be seen in the \emph{Parallel} track, it appears difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
 However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classic all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
 It is hard to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
-The winner of the \emph{Incremental Library} track showed that it is worth integrating a full solver functionality in the incremental use-case. 
+The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use-case. 
 
 \subsection*{Future Prospects}
 
