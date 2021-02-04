@@ -222,12 +222,9 @@ in the results section.
 In the Incremental Library track we mimic scenarios
 where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
-the enclosing tool reaches its final state. \textcolor{red}{Could mention concrete applications here?}
-``Incremental'' here refers to the 
-idea that
-the individual calls to the SAT solver are not independent, but may share 
-a common subset of the input clauses or differ in the presence of additional 
-unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
+the enclosing tool reaches its final state. 
+``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
+Examples for applications of incremental SAT solving are Counter-Example Guided Abstraction Refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based Planning~\cite{Balyo:2017:IncrPlanning} or SAT Modulo Theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
 
 Instead of using or extending the DIMACS input format, we realize the Incremental Library track
 by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
