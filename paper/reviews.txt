@@ -1,0 +1,332 @@
+Reviewer #1: AIJ Competition Section Review Form
+===================================
+
+Competition Section papers should describe the competition, its criteria, why it is interesting to
+the AI research community, the results (including how they compare to previous rounds, if
+applicable), and give a summary of the main technical contributions to the field manifested in
+systems participating in the competition. The exposition should be accessible to a broad AI
+audience. Papers may be supplemented by online appendices giving details of participants, problem
+statements, test scores, and even competition-related software. An example paper that was published
+in this new section is Baarslag et al. "Evaluating practical negotiating agents: Results and
+analysis of the 2011 international competition," Artificial Intelligence 198, 73-103, 2013,
+(DOI: http://dx.doi.org/10.1016/j.artint.2012.09.004).
+
+
+Part A
+------
+
+Please answer the following questions "yes/no" and provide appropriate justification as appropriate.
+
+
+CONTENT
+
+Does the paper adequately describe the competition and its criteria? Yes
+
+Does it show sufficient applicability to AI? Yes
+
+Does it sufficiently summarize the main technical contributions of the systems participating in the competition? Yes
+
+Is the presentation of the competition results adequate? Yes
+
+Is the analysis of the results satisfactory? Yes
+
+Does it clearly state what insights have been gained from the competition? Yes
+
+Does it contain a comparison with previous rounds (if applicable)? Yes (somehow)
+
+Does anything need to be added or deleted? Yes (little)
+
+
+FORM
+
+Does the abstract adequately reflect the contents? Yes
+
+Are the summary and conclusions adequate? Yes
+
+Does it contain adequate references? Yes
+
+Is the English satisfactory? Yes
+
+Is the presentation otherwise satisfactory? Yes
+
+Are there an appropriate number of figures? Yes
+
+Do the figures help clarify the concepts in the paper? Yes
+
+
+Part B: DETAILED COMMENTS
+-------------------------
+
+
+Please provide a detailed review of the paper here.
+
+The paper summarizes the settings and results of the SAT competition 2020. As stated by the authors, the SAT competition history dates back to the early 90s, although only in 2002 the competitions have started been systematically organized. Actually, the existence of competitions is undoubtedly one aspect that contributes decisively for the success of the SAT field, apart from attracting the participation of early-stage researchers. Solvers are publicly available and can be used by any kind of researchers, including those who only need to make use of a SAT solver as a black box.
+
+An essential aspect of the SAT competition series, that is appropriately stressed by the authors, is to collect on a yearly basis new benchmark sets. In 2020, this was ensured, requiring solvers submitters to contribute with benchmarks. To avoid a bias in the benchmarks, only some of the contributted benchmarks are used, jointly with a few benchmarks from the previous year(s). The selection process follows a few guidelines and uses randomness. One question for which I missed the answer is to what extent the use of instances from previous years would have affected the solvers' performance of this year competition. In other words, how the use of last years competitions benchmarks would have affected the 2020 ranking. Although this is somehow out of this paper's scope, it would have been made the paper more thorough.
+
+The experimental analysis in the paper goes beyond the standard rankings provided on the SAT competition web pages. This is particularly relevant as the results of the competitions tend to be concise. Also interesting are the conclusions stated in the last section of the paper. My only concern is that a few other conclusions are spread along the paper. It would be better to repeat and systematize the whole bunch of the findings at the end as take away lessons.
+As a final note, given that the 2021 SAT Competition is already in place, it would be nice to write a few lines about it, namely what will change in this edition (namely the Crypto track and the CaDiCaL-Hack subtrack) and why.
+
+Minor details:
+
+How many solvers were disqualified?
+
+Footnote 3 - Are you able to measure the impact of having announced the memory limit of 24GB?
+
+The definition of backbones dates back to Monasson et al. 1998.
+
+Section 4 - Competition Results
+- second line - missing .
+- sixth line - extra )
+
+
+
+Reviewer #2: CONTENT
+
+Does the paper adequately describe the competition and its criteria?
+Yes
+
+Does it show sufficient applicability to AI?
+Yes
+
+Does it sufficiently summarize the main technical contributions of the systems participating in the competition?
+Yes
+
+Is the presentation of the competition results adequate?
+Yes
+
+Is the analysis of the results satisfactory?
+Yes
+
+Does it clearly state what insights have been gained from the competition?
+Yes
+
+Does it contain a comparison with previous rounds (if applicable)?
+Yes
+
+Does anything need to be added or deleted?
+No
+
+FORM
+
+Does the abstract adequately reflect the contents?
+Yes
+
+Are the summary and conclusions adequate?
+Yes
+
+Does it contain adequate references?
+Yes
+
+Is the English satisfactory?
+Yes
+
+Is the presentation otherwise satisfactory?
+Yes
+
+Are there an appropriate number of figures?
+Yes
+
+Do the figures help clarify the concepts in the paper?
+Yes
+
+
+Part B: DETAILED COMMENTS
+-------------------------
+
+This paper presents a technical report of the 2020 SAT competition. The includes an introduction to the competition (including its motivation, tracks, rules/requirements and technical specs), the entrants and results of the competition, as well as additional statistics and data analysis (portfolio solver performance, clustering, heatmaps, etc.) which is likely to be of interest to those who are involved in the SAT competition.
+
+Overall the paper is well written and presents the details/results about the competition clearly. The additional analysis in section 6 was also insightful.
+
+The only minor issue I have with the paper is grammatical in nature.
+I noticed several wording issues in the paper, with a tendency to write overly long and wordy sentences. Some examples include:
+- "has flourished in practice into a success story" -> "in practice" should be removed or put within commas.
+- "which form today" -> should be "which today form"
+- "from first breakthrough" -> "from the first breakthrough"
+- "back to early 90s" -> "back to the early 90s"
+- "answers to the early questions may in general influence which questions" -> "in general" should be removed or put within commas.
+- "results of SAT Competition 2020 Later on" -> "results of SAT Competition 2020. Later on" (period added)
+
+These wording issues do not overly affect the readability of the paper, but I nevertheless encourage a full and detailed proofreading of the paper before publication.
+
+
+
+Reviewer #3: Brief note to the authors: I am not a member of the SAT community (in the sense of actually developing SAT solvers), but have used SAT solvers in my research in the past. I was primarily asked to be a reviewer, since I have organised a similar competition in the past, but in an other area of research.
+
+
+
+Part A
+
+------
+
+Please answer the following questions "yes/no" and provide appropriate justification as appropriate.
+
+
+CONTENT
+
+Is the paper technically sound?
+yes
+
+Does it show sufficient applicability to AI?
+yes
+
+Does it place new results in appropriate context with earlier work?
+yes
+
+Is the paper sufficiently novel? (A paper is novel if the results it describes were not previously published by other authors, and were not previously published by the same authors in any archival journal.)
+yes
+
+
+Is the paper complete? (Generally, a paper is complete if it includes all relevant proofs and/or experimental data, a thorough discussion of connections with the existing literature, and a convincing discussion of the motivations and implications of the presented work.)
+yes
+
+
+Does anything need to be added or deleted?
+yes
+
+Is the result important enough to warrant publication?
+yes
+
+FORM
+Does the abstract adequately reflect the contents?
+yes
+
+Are the summary and conclusions adequate?
+yes
+
+Does it contain adequate references to previous work?
+yes
+
+Does it explain clearly what was done that is new?
+yes
+
+Does it clearly indicate why this work is important?
+yes
+
+Is the English satisfactory?
+yes
+
+Is the presentation otherwise satisfactory?
+yes
+
+Are there an appropriate number of figures?
+yes
+
+Do the figures help clarify the concepts in the paper?
+yes
+
+Part B: DETAILED COMMENTS
+
+-------------------------
+
+
+In this article, the organisers of the SAT Competition 2020 report on the results of the SAT Competition 2020. In addition to reporting on the setting, rules, instance selection, participating solvers, and final results, the authors conduct a rather extensive investigation into the solvers of the Main track.
+
+Generally, I find the explanations and descriptions informative. They serve the purpose of this type of article: to provide information about the competition. One major issues that I want to point out is that the selection of the benchmark instances is not fully described. Since this is *the* description of the SAT competition 2020, a researcher/competitor/future organiser would expect to find all relevant information and possible decision criteria here in this paper. Some details might stem from "common agreements" in the SAT community, but for the sake of an outsider or a new researcher they should be explained.
+For the Main track, there were some decision that were not motivated (magic numbers like 14 and 8). For the planning track there is a description of the types of instances, but not how the individual instances were selected and why. The incremental track as a similar problem. I have written some more detailed comments below.
+
+
+I especially want to highlight the additional evaluation effort put into this article by the authors. The analysis of the VBS, other portfolio techniques, similarity of solvers, and stability of results under a different benchmark selection provide deep insights into the state of the art of SAT solving.
+One thing I find missing in section 6.7. is the effect of *adding* further benchmarks. The authors only investigates what happens when some of the selected instances are removed from the benchmark set. But there are a lot (960 from Table 1, 712 if we only consider the ones that passed the minisat filter) of instances that were not selected. Since this selection was partially random (the 7 SAT and 7 UNSAT instances were selected randomly and if this did not yield 14 again filled up randomly to 14), the selection might have been unstable. This is somewhat unlikely, but should be investigated. It is probably impossible to run the timed runs for all 1260/1012 (well even more, the selection of the 100 old instances also drew from a larger pool) instances and then investigate based on that data. But what you can do is the "inverse" of your current investigation: randomly adding instances. Or alternatively select a second benchmark set in the same way as you selected the first one
+an compare the results.
+Just an idea: Another informative number on this front might be per solver what the largest sub-set of the benchmark is such that this particular solver would win the competition. This can probably be easily determined with an maxSMT or ILP encoding similar to section 6.3.
+
+Overall, the article is informative and good to read. In some places, it reads a bit "quickly written together" and not fully polished to the maximum extend (below I point to a few strange sentences and the like, but it is not much). I would suggest that the authors read the paper one final time before submission to eliminate all issues. The references are somewhat messy and inconsistent -- much more than one would expect form a journal article.
+
+
+I want to extend my thanks to the authors for organising the SAT competition. I deeply appreciate the effort you have put into this
+
+Overall, I recommend to accept the article.
+
+
+
+
+---- Detailed comments
+
+page 3, line 46: Can you provide a reason why you used only the newly submitted instances for the no-limit track? Was this specifically done to not provide a significant advantage to portfolio solvers, which could have made very good guesses for one the already known instances?
+
+page 3/4: Glucose-hack track. It would be nice to mention or reference any previous instance of this track? Was this a new idea for SAT 2020 (including the limit of 1000 chars), or was this something that was already done for a previous SAT competition.
+
+page 4: lie 26: another application is multi-agent path finding [1] (even though the paper's title is SAT module theories, this pertains only to the CBS part, while at the low level, they use a SAT translation)
+the IPASIR API allows for a simple communication with a SAT solver and avoids the indirection via a file. Is there a reason not to force IPASIR support (with exception of assumptions) also for the main track? Is is just to keep everything as simple as possible?
+section 2.1.3. I understand that you want to drop the requirement to produce an unsat certificate. But then you may have a problem if the SAT solver due to a bug thinks it has shown UNSAT early. I presume this is somewhat acceptable with a large benchmark set (then the buggy solver might also say UNSAT for a SAT instance), but it is still a bit questionable and might be briefly discussed here.
+
+page 6:
+line 32: I would suggest: ... we only considered those unsatisfiable formulas as solved that could ...
+line 47: can you specify the CPU speed of the virtual CPUs?
+
+page 7:
+lines 44 and 49: the font of minisat changes.
+line 49: What was the reason for the 10 min cutoff? If any instance that was not solved within 10 minutes my minisat was discarded, why was this not communicated to the instance/solver submitters?
+
+
+page 8:
+line 45: why did you remove 8 of the instances? Was your initial objective to have 300 instances? This should be stated in the beginning.
+Related to this: why did you choose 14 instance per submission?
+Table 1: there are "domains" which have significantly less than 14 selected instances even though more than 14 were available (Termiation Analysis, LAM, Polynomial Multiplication). Notably *none* of the Flood-It Puzzle instances was selected. Why and how were these excluded? Was this only due to minisat solving them within 10 minutes? If so add a new column to Table 1 stating how many instances survived the minisat filter.
+Also there is no explanation why Cryptography has more than 14 instances?
+
+page 9:
+lines 31ff: creating unsolvable instances for planning problems with known minimal makespan, but using satisfiable instances otherwise might introduce a bias. I would guess the latter problems are harder to solve overall (thus no minimal makespans are known), i.e. for the harder planning problems the (presumably) easier problem of finding a satisfying valuation was used. This might be discussed here.
+
+page 10:
+line 24: I would also guess that the planning formula contain a lot of Horn clauses. Numerical values might be interesting here.
+Table 3: Is there a reason for the disparity in number of instances between P, ME, and MS? Since all three source from the same set of planning domains, I would expect an equal distribution and not such an overweight for the sequential Madagascar encoding. Also the sequential encoding is by far the oldest and worst performing one of the encoding (i.e. \exists-step is more modern). How was distribution chosen and why? Generally, how were the instances for the planning track selected? (not the bound, but the individual planning instances)
+You provide a listing of the selected instances (in the footnote), but no reason for the selection. This *must* be explained in this article.
+Section 3.3: Here the specific selection is also unclear. How where the 50 instances selected? I guess the applications were selection based on the availability of the code? I also guess that there were no external submission of applications for the incremental track?
+
+page 11:
+line 36: "Relaxed-newTech" reaches into the margin.
+
+page 12:
+line 37: The sentence about the winners is repeating information. You have stated this already on the previous page.
+
+page 13:
+line 53: Is there any further insight? You simply state that it is presumably challenging to develop a distributed solver, but say nothing about the actual problems that one might face -- or e.g. the worst one Paracooba-March apparently faced. From the graph alone there seems to be something wrong ...
+
+page 14:
+meaning of underline for solvers is not explained in the caption.
+
+page 19:
+line 55: Even though it emphasises your point, "1st" should be written as a word, i.e. "first" (as all numbers below 12).
+
+page 22:
+line 28: this is the first time you use this citation style. Correct would be [71,72,73].
+
+page 23:
+One might also consider a metric in which the log of the time to solve is taken into account (i.e. log(fastest) / log(solver)). This should make the advantage of a faster solver less strong and should show difference between VBS-1 and VBS-2 better.
+Line 57: At least for VBS-3 I would not say that kissat "dominates" the leaderboard as the difference to the next solver is rather small and kisssat-sat evem scores worse than Relaxed-newTech
+
+page 24:
+line 25ff: The VBS-1/2 names are missing a dash in this section.
+line 28: "highlights as first" -> sentence seems to have broken grammar
+line 47: "how big role" -> sounds weird. Rephrase. Maybe an article is missing here?
+line 54: "perhaps" is strange here
+
+page 25:
+line 46: You could also provide more evidence here! E.g. for the k=2 schedule are there instances that are not solved any more (due to lower time limit), but are solved by either of the individual planners (with the full time limit)? You can do the same for K=3..5. This would make a nice addition to Table 8.
+
+page 27:
+line 25: It might be interesting to point out for which instances Scavel01 is used in T_4 and T_5.
+line 35: I would tend to say that it is also outperformed by a wide margin in Timetable (roughly the same margin as in VLsat). Further I would also mention the other families (Hypertree Decomposition, Tournament) where the difference is not so pronounced.
+
+page 28:
+line 52: space missing before citation [82].
+
+page 31:
+line 37 (actually Fig 7): The mean and standard deviation are really hard to discern. Maybe use different colours?
+
+References (are a bit messy. One of the authors should go over them at the time of final submission and make sure they are consistent)
+Don't abbreviate the journal name (e.g. [8],[15]; [15] has the same journal as [6] where no abbreviation is used)
+If DOIs are given, different font-types are used (compare [8] and [23,25])
+Some Conferences note day and location [11,12,13], other don't [22]
+Some Venues only have abbreviations [27] with no full name being mentioned (compare [27] and [32] even for the *same* venue)
+[80] contains the DOI twice ...
+[68] his abbreviating names of all authors except the first and has (probably non-correct) lower-cases in the title
+Some citations have editors (most? e.g. [43]), some don't ([37,40,42])
+
+
+
+[1] Pavel Surynek. Unifying Search-based and Compilation-based Approaches to Multi-agent Path Finding through Satisfiability Modulo Theories, ICAJI 2019
+
+
