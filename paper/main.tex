@@ -1477,14 +1477,14 @@ are generally dominated by \solver{Kissat} and its configurations.
 VBS1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
 in particular on \SI{11.5}{\percent} of all the solved instances.
 
-VBS2 highlights as first \solver{Kissat-sat}. Its leading \SI{32.9}{\percent} of total is a bit harder to 
-interpret: A solver can score \SI{32.9}{\percent} of VBS2 total
+The metric VBS2 identifies as the best solver \solver{Kissat-sat}. Its leading score of \SI{32.9}{\percent} of the total
+is a bit harder to interpret: A solver can score \SI{32.9}{\percent} of VBS2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
 and no others. But we know, thanks to its VBS1, that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
 A solver can also score \SI{32.9}{\percent} of VBS2 total by solving all the solved instances,
 but always being roughly 3 times slower than the VBS. 
-\solver{Kissat-sat} lies obviously somewhere between these two extremes.
+\solver{Kissat-sat} lies (obviously) somewhere between these two extremes.
 
 Finally, according to VBS3, the best solver is \solver{Kissat} with 13.0 points,
 which amounts to \SI{3.3}{\percent} of the distributed total score.
