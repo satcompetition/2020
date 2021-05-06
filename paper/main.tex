@@ -1498,14 +1498,14 @@ by most of the well performing solvers.
 Another perspective on how much each solver contributes to the state of the art
 can be obtained by attempting to construct a sequential schedule of solvers 
 (rather than relying on an oracle to pick one for each instance, as with VBS)
-and looking at how big role each solvers plays in such a schedule. Since constructing 
+and looking at how big a role each solvers plays in such a schedule. Since constructing 
 an optimal schedule tends to be computationally hard, we start here by 
 presenting a useful efficient alternative -- a greedy set cover approach.
 
 With greedy set cover, we start with an empty schedule and iteratively consider 
 each solver for the addition to the schedule obtained so far, picking the one
 with the highest ``marginal contribution'' in terms of the number of problems
-the new schedule will be able to solve. This is perhaps best demonstrated on
+the new schedule will be able to solve. We demonstrate this on
 the actual data from the competition, again taking the Main track results. 
 
 \begin{table}
@@ -1776,7 +1776,7 @@ The main result of the competition is the ranking of the solvers participating
 in the Main track, according to their average PAR-2 score. To evaluate the impact
 of benchmark selection on the solver ranking, we follow the experiments
 described in the tool suite
-\texttt{benchfeature}\cite{benchfeature}.
+\texttt{benchfeature}~\cite{benchfeature}.
 % \footnote{\url{http://fmv.jku.at/benchfeature/}} developed
 % by Fazekas, Kaufmann and Biere.
 % performed the following
