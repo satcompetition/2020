@@ -863,7 +863,8 @@ forthcoming SAT competitions.
 \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}\\
 \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0}
 \end{tabularx}
-\caption{Top 10 Solvers in Main, Planning, Parallel and Cloud Tracks: Place~(Pl.), Score (PAR-2) and Number of Solved Instances~(\#) per Solver}
+\caption{Top 10 Solvers in Main, Planning, Parallel and Cloud Tracks: Place~(Pl.), Score (PAR-2) and Number of Solved Instances~(\#) per Solver.
+Three awardees per track underlined.}
 \label{tab:results}
 \end{table}
 
@@ -1093,7 +1094,7 @@ and an improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}.
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
 The variants including \emph{Stable AllUIP} were the most successful and won  first place in the Planning track. 
 
-\emph{Stable AllUip} resolves additional clauses beyond the 1st Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size or LBD than the 1-UIP clause. 
+\emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size or LBD than the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of such extended learning attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
 The \emph{Trail Saving} variant caches backtracked portions of the trail and uses them to restore decision levels during search if possible~\cite{Hickey:2020:TrailSaving}. 
 
@@ -1179,7 +1180,7 @@ In a global master queue, \solver{Plingeling} shares unit clauses, equivalences 
 
 \solver{ManyGlucose} was submitted in \solver{32} and \solver{64} threaded variants. 
 The \solver{32} threaded variant received two awards in this competition: the overall third place and the third best score on unsatisfiable instances. 
-\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behavior~\cite{Audemard:2018:GlucoseSyrup}~\cite{Audemard:2014:LazyClauseExchange}~\cite{Hamadi:2009:ManySat}. 
+\solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behavior~\cite{Audemard:2018:GlucoseSyrup,Audemard:2014:LazyClauseExchange,Hamadi:2009:ManySat}. 
 
 
 \subsubsection{Painless Maple} 
@@ -1473,22 +1474,22 @@ Each table shows the first ten solvers sorted according to the respective metric
 
 Table~\ref{tab:vbsMainALL} renders the just-described three metrics applied 
 to the full results of the Main track. We can see that the respective leaderboards 
-are generally dominated by \solver{Kissat} and its configurations.
-VBS1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
+are generally dominated by \solver{Kissat} in at least one of its configurations.
+VBS-1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
 in particular on \SI{11.5}{\percent} of all the solved instances.
 
-VBS2 highlights as first \solver{Kissat-sat}. Its leading \SI{32.9}{\percent} of total is a bit harder to 
-interpret: A solver can score \SI{32.9}{\percent} of VBS2 total
+The metric VBS-2 identifies as the best solver \solver{Kissat-sat}. Its leading score of \SI{32.9}{\percent} of the total
+is a bit harder to interpret: A solver can score \SI{32.9}{\percent} of VBS-2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
-and no others. But we know, thanks to its VBS1, that \solver{Kissat-sat} solved \SI{9.8}{\percent}
+and no others. But we know, thanks to its VBS-1, that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
-A solver can also score \SI{32.9}{\percent} of VBS2 total by solving all the solved instances,
+A solver can also score \SI{32.9}{\percent} of VBS-2 total by solving all the solved instances,
 but always being roughly 3 times slower than the VBS. 
-\solver{Kissat-sat} lies obviously somewhere between these two extremes.
+\solver{Kissat-sat} lies (obviously) somewhere between these two extremes.
 
-Finally, according to VBS3, the best solver is \solver{Kissat} with 13.0 points,
+Finally, according to VBS-3, the best solver is \solver{Kissat} with 13.0 points,
 which amounts to \SI{3.3}{\percent} of the distributed total score.
-The VBS3 metric is generally the most evenly distributed one,
+The VBS-3 metric is generally the most evenly distributed one,
 at least among the first 10 solvers. 
 (The last solver got 0.9 points which is \SI{0.221}{\percent} of the total.)
 One can conclude from this that most of the benchmarks are solved
@@ -1552,7 +1553,7 @@ of the budget seems to be the original time limit of \SI{5000}{\second}.
 \begin{table}
 \centering\small
 \begin{tabulary}{\linewidth}{cccL}
-\bf k & \bf Time (s) & \bf Solved & \bf Best Schedule \\
+\bf k & \bf Time\,(s) & \bf Solved & \bf Best Schedule \\
 \hline
 1 & 5000 & 264 & \{ \solver{Kissat-sat} \}\\
 2 & 2500 & 278 & \{ \solver{Kissat-unsat}, \solver{Relaxed-newTech} \}\\
