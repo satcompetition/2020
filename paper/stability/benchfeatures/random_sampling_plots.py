@@ -97,7 +97,7 @@ def random_sampling_plot(data_frame,original_ranks,original_instances,solver_nam
     # plt.xlabel('Number of randomly removed instances',fontsize=16)
     plt.ylabel('Spearman\'s correlation')
     plt.xlabel('Number of randomly removed instances')
-    plt.errorbar(number_of_removed, correlation_mean, correlation_std, linestyle='None', marker='^',elinewidth=1)
+    plt.errorbar(number_of_removed, correlation_mean, correlation_std, marker='.',elinewidth=1)
     plt.hlines([0.8,0.99,0.6,0.4,0.2],0,max(number_of_removed)+5,linestyle='dashed',color='m')
     plt.grid(True)
 
