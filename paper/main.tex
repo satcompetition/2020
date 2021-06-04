@@ -479,7 +479,7 @@ Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instan
 
 We augmented this set with $100$ instances from previous competitions as follows. 
 In order to further balance the amount of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances. 
-With additional constraints, we made sure not to select instances of families which are already represented in the set of 300 new instances. 
+With additional constraints, we made sure not to select instances of families which are already represented in the set of 300 new instances (cf. Table~\ref{tab:families}). 
 We also excluded random, agile and planning instances (due to the Planning track). 
 The final selection of benchmark instances contains $135$ satisfiable, $135$ unsatisfiable, and $130$ instances of unknown result (cf.~Table~\ref{tab:final}). 
 
@@ -1911,6 +1911,13 @@ It is hard to integrate and test sophisticated state-of-the-art methods in an in
 The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use-case. 
 
 \subsection*{Future Prospects}
+
+In the instance selection, the author-wise balancing of satisfiable and unsatisfiable instances was often counter-productive and did not lead to a more balanced overall selection of new instances. 
+Moreover, this practice discriminated against authors of purely satisfiable or unsatifiable sets of instances. 
+Also the hardness criterion of 10 \solver{Minisat} minutes was higher than the hardness criterion of 1 \solver{Minisat} minute of the BYOB rule. 
+In future competitions, we will not balance by \emph{satisfiablity} on the author level, we will be more consistent or clear with our \emph{hardness} criteria, and we will specify what it means for an instance to be counted as \emph{unknown}. 
+
+
 
 The \emph{Portfolio rule} has been established to prohibit participation of pure solver portfolios and to stimulate development of new code-bases. 
 The rule was challenged in this competition, as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
