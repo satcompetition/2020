@@ -415,48 +415,50 @@ $S \leftarrow \emptyset$\;
 \label{algo:select}
 \end{algorithm}
 
+\newcommand{\curly}[1]{\multirow{3}{*}{$\hspace{-1em}\left\rbrace\begin{array}{r}~\\#1\\~\end{array}\right.$}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 \begin{table}[t]
 \centering\small
-\begin{tabular}{llrr}
-\bf Family & \bf Author & \bf Submitted & \bf Selected\\
+\begin{tabularx}{.94\linewidth}{llRrRr}
+\bf Family & \bf Author & \multicolumn{2}{l}{\bf Submitted} & \multicolumn{2}{l}{\bf Selected}\\
 \hline\arrayrulecolor{lightgray}
-0/1 Integer Programming & \multirow{4}{*}{Riveros} & 6 & 2 \\
-Fermat &  & 8 & 5 \\
-Schur Coloring &  & 4 & 2 \\
-Sum Subset &  & 5 & 2 \\
+0/1 Integer Programming & \multirow{4}{*}{Riveros} & 6 & & 2 & \\
+Fermat &  & 8 & & 5 & \\
+Schur Coloring &  & 4 & & 2 & \\
+Sum Subset &  & 5 & & 2 & \\
 \hline
-Anti-Bandwidth & Biere & 187 & 14 \\
-Baseball Lineup & Hickey & 40 & 13 \\
-Bit-Vector & Preiner & 393 & 14 \\
-Cellular Automata & Chowdhury & 20 & 12 \\
-CNF Miter & Manthey & 38 & 7 \\
-Coloring & Oostema & 14 & 14 \\
-Core-based Generator & Hartung & 20 & 14 \\
-Cover & Gacek & 18 & 13 \\
-\hline
-\multirow{3}{*}{Cryptography} & Paxian & \multirow{3}{*}{106} & \multirow{3}{*}{34} \\
- & Shaw &  &  \\
- & Soos &  &  \\
-\hline
-Discrete Logarithm & Jingchao & 20 & 7 \\
-Edge Matching & Holten & 58 & 7 \\
-Flood-It Puzzle & Stiphout & 40 & 0 \\
-HGen & Guanfeng & 20 & 13 \\
-Hypertree Decomposition & Schidler & 56 & 14 \\
-Influence Maximization & Kochemazov & 20 & 14 \\
-Lam Discrete Geometry & Nejati & 20 & 9 \\
-Polynomial Multiplication & Maoluo & 20 & 8 \\
-Station Repacking & Newman & 20 & 12 \\
-Stedman Triples & Johnson & 23 & 7 \\
-Tensors & Savicky & 20 & 14 \\
-Termination Analysis & Yolcu & 12 & 7 \\
-Timetable & Djamegni & 20 & 14 \\
-Tournament & Heule & 16 & 14 \\
-Vlsat & Bouvier & 36 & 14 \\
+Anti-Bandwidth & Biere & 187 & & 14 & \\
+Baseball Lineup & Hickey & 40 & & 13 & \\
+Bit-Vector & Preiner & 393 & & 14 & \\
+Cellular Automata & Chowdhury & 20 & & 12 & \\
+CNF Miter & Manthey & 38 & & 7 & \\
+Coloring & Oostema & 14 & & 14 & \\
+Core-based Generator & Hartung & 20 & & 14 & \\
+Cover & Gacek & 18 & & 13 & \\
+%\hline
+\multirow{3}{*}{Cryptography} & Paxian & 50 & \arraycolsep=1pt\curly{106} & 6 & \arraycolsep=1pt\curly{34} \\
+ & Shaw & 20 & & 14 & \\
+ & Soos & 36 & & 14 & \\
+%\hline
+Discrete Logarithm & Jingchao & 20 & & 7 & \\
+Edge Matching & Holten & 58 & & 7 & \\
+Flood-It Puzzle & Stiphout & 40 & & 0 & \\
+HGen & Guanfeng & 20 & & 13 & \\
+Hypertree Decomposition & Schidler & 56 & & 14 & \\
+Influence Maximization & Kochemazov & 20 & & 14 & \\
+Lam Discrete Geometry & Nejati & 20 & & 9 & \\
+Polynomial Multiplication & Maoluo & 20 & & 8 & \\
+Station Repacking & Newman & 20 & & 12 & \\
+Stedman Triples & Johnson & 23 & & 7 & \\
+Tensors & Savicky & 20 & & 14 & \\
+Termination Analysis & Yolcu & 12 & & 7 & \\
+Timetable & Djamegni & 20 & & 14 & \\
+Tournament & Heule & 16 & & 14 & \\
+Vlsat & Bouvier & 36 & & 14 & \\
 \arrayrulecolor{black}
 \hline
-\multicolumn{2}{r}{$\Sigma$} & 1260 & 300
-\end{tabular}
+\multicolumn{2}{r}{$\Sigma$} & 1260 & & 300 & 
+\end{tabularx}
 \caption{Families and amounts of newly submitted instances}
 \label{tab:families}
 \end{table}
