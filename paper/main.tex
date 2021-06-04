@@ -468,17 +468,21 @@ in 2020.
 By this rule, solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that the standard Minisat SAT solver
 must need more than a minute to solve it and the authors own solver does not run into a timeout for the instance. 
 
-As can be seen in Table~\ref{tab:families}, $27$ authors contributed a set of $1260$ previously unseen benchmark instances from
-a wide range of different instance families. 
-In order to compile a balanced set of $300$ benchmark instances, we first removed  instances solved by \solver{Minisat} in less than $10$ minutes, thus obtaining a reduced set of $1012$ instances. 
-We considered a maximum of $14$ submissions per author using a procedure detailed as Algorithm~\ref{algo:select}. 
-Per author, if possible, we first randomly selected $7$ satisfiable and $7$ unsatisfiable instances (Lines~3 and~4). 
-If this did not yield a total of $14$ instances, we added instances of yet unknown result (Lines~5--7). 
+As can be seen in Table~\ref{tab:families}, $27$ authors contributed a set of $1260$ previously unseen benchmark instances from a wide range of different instance families. 
+In order to create a balanced set of 300 new benchmarks and 100 old benchmarks, i.e., instances seen in previous competitions, we executed the following steps of \emph{rule-based randomization}. 
+
+To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than 10 minutes. 
+From the resulting 1012 instances, we randomly selected $k$ instances per author, with a minimum $k$ such that the result set contains at least 300 instances.
+Algorithm~\ref{algo:select} depicts the details. 
+We randomly selected $7$ satisfiable and $7$ unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of $14$ instances (Lines~5--7). 
 Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
 
-To obtain the final compilation of $400$ benchmark instances, we augmented this set with $100$ instances which have been used in previous competitions. 
-We randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances to yield a total of $135$ satisfiable, $135$ unsatisfiable, and $130$ instances of unknown result. 
-Furthermore, we made sure not to select instances of families which are already represented in the set of newly submitted instances and moreover excluded random, agile and planning instances (due to the Planning track). 
+We augmented this set with $100$ instances from previous competitions as follows. 
+In order to further balance the amount of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances. 
+With additional constraints, we made sure not to select instances of families which are already represented in the set of 300 new instances. 
+We also excluded random, agile and planning instances (due to the Planning track). 
+The final selection of benchmark instances contains $135$ satisfiable, $135$ unsatisfiable, and $130$ instances of unknown result (cf.~Table~\ref{tab:final}). 
+
 
 \begin{table}[t]
 \centering\small
