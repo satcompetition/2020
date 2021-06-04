@@ -182,7 +182,7 @@ The article is concluded with future prospects in Section~\ref{sec:conclusion}.
 
 In this section, we describe the individual 2020 SAT Competition tracks,
 explain the requirements for participation % input/output and proof formats,
-and the ranking criteria, as well as
+and the ranking criteria, as well as describe
 the computing infrastructure used for executing the competition.
 
 \subsection{Competition Tracks}
@@ -194,26 +194,38 @@ and the Cloud Track for massively parallel SAT solvers. % using up to 1024 cores
 
 \subsubsection{The Main, No-Limits, Planning, and ``Glucose hack'' tracks}
 
-The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. To participate in the Main track, solvers needed to output certificates both for the satisfiable and the unsatisfiable answer. Moreover, the source code of the solver had to be made publicly available. 
+The focus of the traditional Main track is on sequential SAT solvers and their evaluation on structured, non-random benchmarks coming from various application areas. 
 
-Solvers not complying with either of the above criteria were only evaluated in a so-called No-Limits track and were not eligible for the Main track awards.
+To participate in the Main track, solvers needed to output certificates for both the satisfiable and the unsatisfiable instances. Moreover, the source code of the solver were required 
+to be made publicly available. 
+Solvers not complying with either of these two criteria were only evaluated in a so-called No-Limits track and were not eligible for the Main track awards.
 The No-Limits track thus enabled participation of closed-source solvers (not being able or willing to expose the source code for legal or other reasons) 
 as well as portfolio solvers (combining two or more core SAT solvers developed by different groups of authors; c.f.~Sect.~\ref{sec:rules}).
 However, solvers in No-Limits still competed against all other solvers submitted to the Main Track.
-Thus, to deserve a mention, a No-Limits solver would need to beat all the Main Track participants.
-The No-Limits track was only evaluated with respect to the benchmarks instances which were \emph{newly} submitted to SAT Competition 2020.
+Thus, to deserve a mention, a No-Limits solver would need rank among the best-performing solvers among the Main Track participants.
+The No-Limits track was only evaluated with respect  \emph{newly} submitted benchmark instances, i.e., on instances
+which were submitted to SAT Competition 2020.
 
-The same rules for participation as in Main track applied to the Planning track, in which we evaluated the solvers on 200 benchmarks 
-which all came from the same application domain -- automated planning. 
+Complementing the generality advocated by the standard SAT Competition tracks, in which solvers are evaluated
+on a set of benchmarks including instances from various types of different problem domains, for 2020 
+the organizers aimed to experiment with the potential of a more application-specific track,
+each year highlighting a different problem domain where the SAT solving technology helps to advance the state of the art.
+In 2020, the Planning track represented the first trial instantiation of this idea.
+The focus of this track was specifically on efficiently solving
+instances arising from the domain of SAT-based automated planning.\textcolor{red}{Add references} 
+Automated planning was chosen as the target problem domain of this first instantiation of the domain-specific tracks
+due to its centrality as oneof the first breakthrough applications of SAT solvers.
+To this end, solvers participating in the Planning
+track were evaluated on 200 benchmark instances encoding planning problems.
+The same rules for participation as in the Main track applied to the Planning track.
 Solvers submitted to the Main track automatically participated in the Planning track.
-It is envisioned that also in the future there will be an ``application promotion'' track,
-each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
 Finally, the Main Track also included the so-called ``Glucose hack'' sub-track. 
 As in the past several advances in SAT solving required only a small modification of an established solver
 to achieve a considerable contribution, this sub-track encouraged participation 
-of small modifications of the Glucose 3.0 SAT solver. The limit for being considered a ``hack''
-was---somewhat arbitrarily---set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
+of small modifications of the Glucose 3.0 SAT solver.\textcolor{red}{Add reference} The limit for participating in the Hack track
+was---somewhat arbitrarily\footnote{The specific threshold for edit distance is not central here; the idea is essentially to only allow relatively small changes to the Glucose
+code base, i.e., ``quick hacks'' to Glucose.}---set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
 Unfortunately, in 2020 there were not enough participants in this sub-track and we do not report on it 
 in the results section.
 
