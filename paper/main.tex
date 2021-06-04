@@ -209,13 +209,11 @@ Solvers submitted to the Main track automatically participated in the Planning t
 It is envisioned that also in the future there will be an ``application promotion'' track,
 each time highlighting a different area where the SAT solving technology helps to advance the state of the art.
 
-Finally, the Main Track also included the so-called ``Glucose hack'' sub-track. 
-As in the past several advances in SAT solving required only a small modification of an established solver
-to achieve a considerable contribution, this sub-track encouraged participation 
-of small modifications of the Glucose 3.0 SAT solver. The limit for being considered a ``hack''
-was---somewhat arbitrarily---set to 1000 non-space character edit distance from the sources of Glucose provided by the organizers. 
-Unfortunately, in 2020 there were not enough participants in this sub-track and we do not report on it 
-in the results section.
+The traditional Hack track (est. 2009 as \solver{Minisat} Hack track) was organized as a sub-track of the Main track for hacks of \solver{Glucose 3}. 
+In the past, several advances in SAT solving required only small modifications of an established solver to achieve a considerable contribution. 
+Hack tracks encourage participation of such small modifications. 
+The limit for being considered a ``hack'' was---somewhat arbitrarily---set to 1000 non-space character edit distance from the sources of \solver{Glucose 3}. 
+Unfortunately, in 2020 there were not enough participants in this sub-track such that we do not report on it in the results section.
 
 \subsubsection{Incremental Library Track}
 
@@ -307,8 +305,7 @@ or the compilation options were different, or different command line options wer
 \paragraph{Portfolio Solvers}
 
 Apart from the No-limits track, participants were not allowed to submit a portfolio of solvers,
-i.e., a combination of two or more core SAT solvers developed by different groups of authors.\footnote{
-In other words, a submission of a combination of solvers was only possible if all the authors of all the parts
+i.e., a combination of two or more core SAT solvers developed by different groups of authors.\footnote{In other words, a submission of a combination of solvers was only possible if all the authors of all the parts
 were explicitly listed. This means that all the authors had to be notified if such participation
 was planned and had to consider it carefully, also taking into account the limited number of submissions per author
 as specified by the previous rule.}
@@ -462,22 +459,22 @@ Vlsat & Bouvier & 36 & & 14 & \\
 
 The ``Bring Your Own Benchmarks'' (BYOB) rule, first  established in SAT Competition 2017~\cite{SC2017}, was again followed
 in 2020.
-By this rule, solver authors are required to submit $20$ new benchmark instances in order to participate in the competition. At least $10$ of these instances are required to be ``interesting'', meaning that \solver{Minisat} must not solve it in less than one minute. 
+By this rule, solver authors are required to submit 20~new benchmark instances in order to participate in the competition. At least 10~of these instances are required to be ``interesting'', meaning that \solver{Minisat} must not solve it in less than one minute. 
 
-As can be seen in Table~\ref{tab:families}, $27$ authors contributed a set of $1260$ previously unseen benchmark instances from a wide range of different instance families. 
+As can be seen in Table~\ref{tab:families}, 27~authors contributed a set of 1260~previously unseen benchmark instances from a wide range of different instance families. 
 In order to create a balanced set of 300 new benchmarks and 100 old benchmarks, i.e., instances from previous competitions, we executed the following steps of \emph{rule-based randomization}. 
 
 To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than 10 minutes. 
-From the resulting 1012 instances, we randomly selected $k$ instances per author, with a minimum $k$ such that the result set contains at least 300 instances.
+From the resulting 1012 instances, we randomly selected $k$~instances per author, with a minimum $k$~such that the result set contains at least 300 instances.
 Algorithm~\ref{algo:select} depicts the details. 
-We randomly selected $7$ satisfiable and $7$ unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of $14$ instances (Lines~5--7). 
-Of the such obtained $308$ instances, we randomly removed $8$ satisfiable instances, yielding a total of $114$ satisfiable, $78$ unsatisfiable and $108$ instances of unknown result. 
+We randomly selected 7~satisfiable and 7~unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of 14~instances (Lines~5--7). 
+Of the such obtained 308~instances, we randomly removed 8~satisfiable instances, yielding a total of 114~satisfiable, 78~unsatisfiable and 108~instances of unknown result. 
 
-We augmented this set with $100$ instances from previous competitions as follows. 
-In order to further balance the amount of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected $21$ satisfiable, $57$ unsatisfiable and $22$ unknown instances. 
-With additional constraints, we made sure not to select instances of families which are already represented in the set of 300 new instances (cf. Table~\ref{tab:families}). 
+We augmented this set with 100 instances from previous competitions as follows. 
+In order to further balance the amount of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected 21~satisfiable, 57~unsatisfiable and 22~unknown instances. 
+With additional constraints, we made sure not to select instances of families which are already represented in the set of~300 new instances (cf. Table~\ref{tab:families}). 
 We also excluded random, agile and planning instances (due to the Planning track). 
-The final selection of benchmark instances contains $135$ satisfiable, $135$ unsatisfiable, and $130$ instances of unknown result (cf.~Table~\ref{tab:final}). 
+The final selection of benchmark instances contains 135~satisfiable, 135~unsatisfiable, and 130~instances of unknown result (cf.~Table~\ref{tab:final}). 
 
 
 \begin{table}[t]
@@ -1917,6 +1914,10 @@ The IPASIR interface facilitates the integration of SAT solvers into incremental
 In contrast to benchmarking with instances given in DIMACS CNF, there are only a couple of benchmark applications available for the Incremental track which are also less organized. 
 This calls for the creation of a more diverse and organized repository of applications for incremental SAT solvers. 
 Proper benchmarking and new tools for testing incremental SAT solvers can help solver authors to deal with the more complex use-case.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
+
+This year the Hack track was organized for hacks of \solver{Glucose 3}. 
+In the next competition, we plan on moving to the well structured and documented state-of-the-art SAT solver \solver{CaDiCaL}. 
+The \solver{CaDiCaL-alluip} solver -- which is a modified \solver{CaDiCaL} -- has shown competitive performance in this competitition.  
 
 The \emph{Portfolio rule} has been established to prohibit participation of pure solver portfolios and to stimulate development of new code-bases. 
 The rule was challenged in this competition, as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
