@@ -662,8 +662,7 @@ In this section we provide a high-level overview of the results of SAT Competiti
 Later on, we give more details about the solvers, including the key and new solving techniques
 (Section~\ref{sec:winners}) and more in-depth analysis of the results (Section~\ref{sec:analysis}).
 
-Four solvers participating in the Main track, namely \solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trial}, and \solver{CMS-ccnr-lsids},
-performed significantly better that all other solvers submitted to the Main track, see Table~\ref{tab:results}.
+The four solvers \solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trail}, and \solver{CMS-ccnr-lsids} performed significantly better that all other solvers submitted to the Main track (cf. Table~\ref{tab:results}).
 Figure~\ref{main:all} shows the cumulative solved instances plot of the best-performing solver of the strongest
 10 teams (in short, the top-10 solvers)  together with the Virtual Best Solver (VBS---see also~\ref{subsec:vbs_explained}).
 The four top solvers all have a different code base, which is rare and has not been observed for many years.
@@ -671,7 +670,7 @@ Also, in recent competitions, the top solvers were much closer to each other in 
 The winning solver is \solver{Kissat-sat} and the runner-up is \solver{Relaxed-newTech}. Notice that 
 \solver{Relaxed-newTech} solved more instances within the 2000-second limit.
 Third place, based on the PAR-2 score, went to \solver{CMS-ccnr-lsids}. It solved two fewer instances
-compared to \solver{CaDiCaL-alluip-trial}, but solved various formulas much more quickly. 
+compared to \solver{CaDiCaL-alluip-trail}, but solved various formulas much more quickly. 
 Since the SAT Competition nowadays applies the PAR-2 score for ranking solvers, such cases have been observed several times. 
 
 
@@ -704,7 +703,7 @@ see Figure~\ref{main:unsat}. Only \solver{Kissat-unsat}, the winner of the Main 
 performed significantly better compared to all other participants. It is therefore not surprising
 that the VBS is reasonably close to \solver{Kissat-unsat}. \solver{Kissat} is a new solver that has been implemented in C, while most solvers are implemented in C++. Further 
 details about \solver{Kissat} are given in Section~\ref{sec:kissat}.
-The solvers \solver{CaDiCaL-trial}
+The solvers \solver{CaDiCaL-trail}
 and \solver{f2trc-s} placed, respectively, second and third in the Main UNSAT track.
 
 \begin{figure}[ht]
@@ -714,8 +713,8 @@ and \solver{f2trc-s} placed, respectively, second and third in the Main UNSAT tr
 \label{main:unsat}
 \end{figure}
 
-The competition in the Planning Track was more tight. \solver{CaDiCaL-alliup-trial}, the winning solver, 
-solved only one instance more compared to the runner up \solver{CMS-ccnr-lsids}. Their PAR-2 score is 
+The competition in the Planning Track was more tight. The winning solver \solver{CaDiCaL-alliup-trail} solved only one instance more compared to the runner up \solver{CMS-ccnr-lsids}. 
+Their PAR-2 score is 
 quite close as well. The third ranked solver, \solver{Kissat}, solved fewer instances, but its fast runtimes
 on several instances resulted in a strong PAR-2 score. Notice that these three solvers were also strong in the Main track. 
 Apparently none of the participating solvers was optimized for planning instances. 
@@ -1205,7 +1204,7 @@ However, in the separate evaluations on satisfiable and unsatisfiable variants t
 
 \solver{Painless-MCOMSPS-STR} diversifies mainly via hard-coded configurations of the branching strategies LRB and VSIDS, and via sparse random initialization of variable polarities~\cite{Balyo:2015:HordeSATs}. 
 Two special solver instances perform concurrent clause strengthening~\cite{Wieringa:2013:CCS} and Gaussian elimination, respectively. 
-\solver{Painless-MCOMSPS-STR} uses an all-to-all strategy for clause sharing with a fixed-size clause buffer and an LBD filter with a dynamic limit~\cite{SC2020}. 
+Regarding sharing, \solver{Painless-MCOMSPS-STR} uses an all-to-all strategy with a fixed-size clause buffer and an LBD filter with a dynamic limit~\cite{SC2020}. 
 
 
 \subsubsection{Plingeling} 
