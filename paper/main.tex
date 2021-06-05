@@ -1101,9 +1101,9 @@ the best score on unsatisfiable instances, the second best score on satisfiable 
 
 \solver{Kissat} is a low-level re-implementation of \solver{CaDiCaL} with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
 Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-Since conflict-rate has been observed to be too unstable for the use-case, \solver{Kissat} uses a new unit called ``ticks'', which is based on the approximate number of cache-line accesses, to measure the length of two alternating restart-modes~\cite{Biere:SC2020}. 
+Since conflict-number has been observed to be too unstable for measuring the length of two alternating restart-modes, \solver{Kissat} uses the new unit ``ticks'' which approximates the number of cache-line accesses in unit-propagation~\cite{Biere:SC2020}. 
 
-Furthermore, \solver{Kissat} exploits autarkies to account for saved phases. 
+\solver{Kissat} also exploits autarkies to account for saved phases. 
 In order to keep valuable information of saved phases, before each rephasing step, \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
 As such an autarky might contain satisfying assignments which imply disconnected components, those variables are subject to subsequent variable elimination. 
 
