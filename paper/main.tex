@@ -230,6 +230,10 @@ The limit for being considered a ``hack'' was---somewhat arbitrarily\footnote{Th
 code base, i.e., ``quick hacks'' to Glucose.}---set to 1000 non-space character edit distance from the sources of \solver{Glucose 3}. 
 Unfortunately, in 2020 there were not enough participants in this sub-track such that we do not report on it in the results section.
 
+We evaluated all 64 submitted solver configurations of which eight have been explicitly submitted to the No-Limits track, and four configurations were demoted to the No-Limits track due to wrong certificates. 
+A total of six configurations got disqualified due to wrong answers. 
+This left us with 46 configurations of 22 solvers inluding one Glucose hack. 
+
 
 \subsubsection{Incremental Library Track}
 
@@ -251,6 +255,8 @@ need to solve a sequence of related problems fast, but its answers to the early 
 may, in general, influence which questions will follow next.
 % E.g. Smaller unsat cores may allow the enclosing tool to converge using fewer SAT calls!
 
+In this competition, two of the six submissions got disqualified, such that we had only four solvers competing in the Incremental track. 
+
 \subsubsection{Parallel Track}
 
 The Parallel track evaluates the runtime performance in wall-clock time of SAT solvers making use of multiple processor cores.
@@ -261,6 +267,8 @@ are the same as in the Main track.
 %These machines have 64 virtual cores and 256GB of memory. 
 However, in contrast to the Main track, proof logging for unsatisfiable instances is not required in the Parallel track. 
 
+In the Parallel track, we evaluated ten solvers (in 14 configurations) out of which three solvers got disqualified due to wrong answers. 
+
 \subsubsection{Cloud Track}
 
 New this year was the Cloud track, dedicated to evaluating distributed solvers running on multiple machines in a network. 
@@ -268,6 +276,7 @@ New this year was the Cloud track, dedicated to evaluating distributed solvers r
 %Similar to the Parallel track, the solvers ran on the Amazon cloud, but using 100 machines of the type m4.4xlarge, which have 16 virtual cores and 64GB of memory. 
 Communication between the machines is possible using MPI and SSH.
 %The wall-clock timeout is 1000 seconds and the same benchmarks were used as in the Main and Parallel track. \textcolor{red}{repetitive? also mentioned below?}
+We evaluated six solvers in this track. 
 
 \subsection{Mandatory Participation Requirements}
 \label{sec:rules}
