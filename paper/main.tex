@@ -291,7 +291,7 @@ We received six solver submissions to the Cloud track.
 \label{sec:rules}
 
 The following requirements were imposed for 
-participating in the competition.
+participating in SAT Competition 2020.
 
 \paragraph{Source Code}
 The source code of submitted SAT solvers had to be made available 
@@ -299,38 +299,40 @@ The source code of submitted SAT solvers had to be made available
 
 \paragraph{Description}
 A short system description was required for each solver submission,
-including a list of all the solver's authors and explaining any non-standard algorithmic
-techniques and data structures, as well as references to the relevant literature.
-These system descriptions have been collected and published in the competition
-proceedings \cite{SC2020}.
+including a list of all  authors involved in developing the solver,  description of any non-standard algorithmic
+techniques and data structures implemented in the sovler, as well as references to the relevant literature.
+These system descriptions have been collected and made available publically in the non-refereed competition
+proceedings~\cite{SC2020}.
 
 \paragraph{Benchmarks}
-To participate in the Main track, each team had to submit 20 new benchmark instances.
-This rule guaranteed that the competition could be run on instances mostly unseen to the solver
+The authors of solvers participating in the Main track were required 
+  to submit 20 ``new'' benchmark instances.
+The exact details of this rule are further explained in Section~\ref{sec:byob}.
+In short, this rule guaranteed that the competition could be run on instances mostly unseen to the solver
 developers prior to the competition. Moreover, by making these benchmarks publicly available
 after the competition, the SAT community benefits by having an ever growing repository 
 of diverse problems to target with the next developments.
-
-The exact details of this rule are further explained in Section~\ref{sec:byob}.
-Also the descriptions of the benchmarks have been published \cite{SC2020}.
+The descriptions of the submitted benchmarks are also made available in the competition proceedings~\cite{SC2020}.
 
 \paragraph{Input and Output Format}
 
 The benchmark instances were presented to the solvers in the de facto standard
-DIMACS input format for propositional formulas in conjunctive normal form.
+DIMACS input format for propositional formulas in conjunctive normal form (CNF).
 A simple extension of this format was to be adhered to when printing 
 the satisfying assignment 
 (see, e.g., \cite{DBLP:journals/jsat/HeuleJS19}, Section 2.4).
 
-Proofs of unsatisfiability were to be emitted in the DRAT format~\cite{DRATtrim},
-either in its textual version, which is also very similar to the DIMACS input format,
-or in a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
+Where required, proofs of unsatisfiability were to be output in the DRAT format~\cite{DRATtrim},
+either in its textual version---which is also very similar to the DIMACS input format---or 
+in a more compact binary version (for more details, see \cite{satComp2020www}, Unsat Certificates).
 %
 Details on certification are further discussed in Section~\ref{sec:certif}.
 
 \paragraph{Number of Submissions}
 
-Each participant was allowed to be an author of at most four different sequential solvers,
+Due to the shear number of participants in the SAT Competitions, in order to make it
+feasible to run the whole competition, specific limits were set on the number of submitted solvers.
+In particular, each solver author was allowed to be an author of at most four different sequential solvers,
 two different parallel solvers, and one ``Glucose hack'' sub-track solver.
 Two solvers were considered different as soon as their sources differed
 or the compilation options were different, or different command line options were used
@@ -343,10 +345,9 @@ i.e., a combination of two or more core SAT solvers developed by different group
 were explicitly listed. This means that all the authors had to be notified if such participation
 was planned and had to consider it carefully, also taking into account the limited number of submissions per author
 as specified by the previous rule.}
-
 This rule is mainly meant to encourage the SAT community to invest more effort into developing new solver code bases.
 Moreover, while we acknowledge that research on solver selection tools that typically orchestrate portfolio solvers 
-is interesting, it is not the focus of the SAT competition.
+is interesting, it is not at present the focus of the SAT competitions.
 
 
 \paragraph{Organizers}
@@ -357,36 +358,38 @@ The organizers of the competition were not allowed to participate.
 Solvers were ranked using a PAR-2 score based on a \num{5000}-second timeout.
 A PAR-2 system assigns as many points as the amount of time (in seconds) it took the solver
 to solve a particular instance and twice the time limit, i.e.~\num{10000} points,
-if the instance was not solved. This means that lowers scores are better.
-We generally report the \emph{average score} of each solver across a benchmark set.
+if the instance was not solved. In particular, this mean that the lower the score a solver
+obtained, the better the solver performs.
+%We generally report the \emph{average score} of each solver across a benchmark set.
 
-A SAT solver was disqualified if it produced a wrong answer. 
-Specifically, if a solver reported ``unsatisfiable'' on an instance that 
+A  solver was disqualified if it produced a wrong answer:
+specifically, if a solver reported ``unsatisfiable'' on an instance that 
 was proven to be satisfiable by some other solver, or reported ``satisfiable'' 
 but provided a wrong certificate. Solvers disqualified from the competition were
-not eligible to win any award. 
+not eligible for awards.
 
 \subsection{Certificates}
 
 \label{sec:certif}
 
-In all tracks solvers were required to output a model to certify recognizing a satisfiable instance.
+In all tracks solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question)
+ to certify recognizing a satisfiable instance.
 On the other hand, 
 certificates for unsatisfiable instances (proofs) were required only 
-in the Main track (besides the No Limits track).
+in the Main track (besides the No-Limits track).
 In some cases, a solver output the correct result, but the respective certificate was wrong. 
-Such solvers were demoted to the No-limits track of the competition. 
+Such solvers were demoted to the No-Limits track of the competition. 
 
 The proofs were validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
 was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
-Afterwards, an independent, formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}, 
+Afterwards, an independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}
 was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
-In the Main track, we only considered solved those unsatisfiable formulas that 
-could be validated by {\tt DRAT-trim}.
-There were several cases where {\tt cake\_lpr} ran out of resources before being able to 
-confirm after {\tt DRAT-trim}. However, there was no case where {\tt DRAT-trim} would accept
+In the Main track, only those unsatisfiable benchmark instances for which the proof emitted by a specific solver
+could be validated by {\tt DRAT-trim} were considered solved by the  solver.
+It should be noted that, while there were several cases where {\tt cake\_lpr} ran out of resources before 
+there was no case where {\tt DRAT-trim} would accept
 a proof and {\tt cake\_lpr} would later disagree with the verdict.
-
+\textcolor{red}{This is pretty vague... does not really say if there were proofs that could not be validated with DRAT-trim??}
 
 \subsection{Computing Environments}
 
@@ -395,18 +398,19 @@ The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{
 with computing nodes  equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
-(In the Main track, validation then continued for up to \SI{45000}{\second}.)
+In the Main track, proof validation was limited to \SI{45000}{\second} per proof.)
 The solvers were allowed to use the full \SI{128}{\giga\byte} of RAM.\footnote{
 Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
 was by mistake advertised on the competition web page prior to solver submission.
 This could have resulted in some solvers not ``daring'' to use the full \SI{128}{\giga\byte}
-in the competition.}
+in the competition. We do not, however, have concrete evidence to support this possibility.}
+
 The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{2.66}{\giga\hertz}
 (4-Core) processors and \SI{24}{\giga\byte} of RAM.
-
-%As noted above, 
 The Parallel track was run on AWS m4.16xlarge machines with 64 virtual CPUs and 256 GB
-of memory, while the Cloud track was run on AWS m4.4xlarge machines with 16 virtual CPUs and 64 GB of
+of memory, while the Cloud track was run on AWS\textcolor{red}{Was AWS spelled out a single time before this? I now notice that
+we do not really mention Amazon much, should we mention it more specifically?}
+ m4.4xlarge machines with 16 virtual CPUs and 64 GB of
 memory. These tracks used wall-clock timeouts of \SI{5000}{\second} and \SI{1000}{\second}, respectively.
 
 \section{Benchmarks}
