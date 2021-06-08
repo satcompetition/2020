@@ -506,9 +506,10 @@ As a results, as detailed in Table~\ref{tab:families}, 27 authors contributed a 
 
 We decided to include a total of 
 300 new benchmarks and a further 100 benchmarks from previous SAT Competitions to the main benchmark set of the 2020 competition.
-A key aim of benchmark selection is to ensure that the number of benchmarks included in the benchmark set from different problem domains 
-is balanced across the problem domains.
-With these considerations in mind, to construct the benchmark set, we executed the following steps of \emph{rule-based randomization}. 
+Key aims of benchmark selection is to ensure that (i) the benchmark set includes enough many relatively hard-to-solve instances
+in order to differentiate the overall runtime performances of the competing solvers (without actually running the competing solvers during benchmark selection); 
+(ii)~the number of benchmarks included in the benchmark set from different problem domains 
+is balanced across the problem domains, and that (iii) the benchmark set is also balanced in terms of the number of unsatisfiable and satisfiable instances included in the set.
 
 To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than 10 minutes.\footnote{We note that
 the limit of 10 minutes is again somewhat arbitrary.
@@ -516,15 +517,21 @@ This 10-min runtime hardness filter essentially aims to make sure that enough in
 Unfortunately this time the 10-min limit enforced  was much greater that the requirements imposed for  ``interesting'' benchmark instances
 by the BYOB rule. It could be more sensible to impose the some 10-min limited also for an instance being ``interesting''. However, this would require more efforts
 at least in terms of computation times from the solver authors in order to construct a set of 20 interesting new benchmarks required by the BYOB rule.}
-From the resulting 1012 instances, we randomly selected $k$~instances per author, with a minimum $k$~such that the result set contains at least 300 instances.
-Algorithm~\ref{algo:select} depicts the details. 
-We randomly selected 7~satisfiable and 7~unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of 14~instances (Lines~5--7). 
-Of the such obtained 308~instances, we randomly removed 8~satisfiable instances, yielding a total of 114~satisfiable, 78~unsatisfiable and 108~instances of unknown result. 
-We augmented this set with 100 instances from previous competitions as follows. 
-In order to further balance the amount of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected 21~satisfiable, 57~unsatisfiable and 22~unknown instances. 
-With additional constraints, we made sure not to select instances of families which are already represented in the set of~300 new instances (cf. Table~\ref{tab:families}). 
+
+From the resulting 1012 instances, in order to obtain a balanced benchmark set, 
+we randomly selected $k$~instances per author using the value  $k$ which ensured that  the resulting set contains at least 300 instances.
+This \emph{rule-based randomization} procedure is detailed as
+Algorithm~\ref{algo:select}. Specifically,
+we randomly selected 7~satisfiable and 7~unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of 14~instances (Lines~5--7). 
+Of the such obtained 308~instances, we randomly removed 8~satisfiable instances, yielding a total of 114~satisfiable, 78~unsatisfiable and 108~instances of unknown satisfiability
+status.
+ 
+We augmented the then obtained set of 300 new benchmarks with 100 instances from previous SAT competitions as follows. 
+In order to further balance the number of satisfiable and unsatisfiable instances in the new benchmark set, we randomly selected 21~satisfiable, 57~unsatisfiable and 22~unknown instances. 
+With additional constraints, we made sure not to select instances from benchmark 
+families which are already represented in the set of~300 new instances (cf. Table~\ref{tab:families}). 
 We also excluded random, agile and planning instances (due to the Planning track). 
-The final selection of benchmark instances contains 135~satisfiable, 135~unsatisfiable, and 130~instances of unknown result (cf.~Table~\ref{tab:final}). 
+The final main benchmark set  contains 135~satisfiable, 135~unsatisfiable, and 130~instances of ``unknown'' status (cf.~Table~\ref{tab:final}). 
 
 
 \begin{table}[t]
