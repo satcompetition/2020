@@ -132,11 +132,11 @@ central computational tool for solving real-world problem instances of various k
 With standardized input formats, readily-available APIs for incremental applications,
 and certified proof logging and checking capabilities, applications of SAT solver technology
 have branched from the first breakthrough applications in automated planning, test pattern generation and hardware verification
-to thousands of different application settings. 
+to thousands of different application settings. \textcolor{red}{Add various references to the several things in this sentence}
 
 The success of SAT would not be possible without the persistent efforts of the SAT community to further improve the performance and robustness
 of SAT solvers. The SAT Competition series, with a history dating back to early 90s, aims to support and provide further incentives 
-for maintaining this progress. Organized yearly as an international open event, the SAT competitions (and their variants
+for maintaining this progress. Organized yearly as an international open event, SAT Competitions (and their variants
 in the forms of SAT Races and a SAT Challenge)~\cite{DBLP:journals/amai/SimonBH05,DBLP:conf/sat/BerreS03,DBLP:conf/sat/BerreS04,DBLP:journals/aim/JarvisaloBRS12,DBLP:journals/ai/BalintBJS15,DBLP:conf/aaai/BalyoHJ17,DBLP:journals/jsat/HeuleJS19}
  have a consistent track record in receiving tens of solver submissions yearly, submitted
 by the community at large for obtaining a snapshot of the current state-of-the-art in practical SAT solving. Alongside participating solvers,
@@ -230,53 +230,62 @@ The limit for being considered a ``hack'' was---somewhat arbitrarily\footnote{Th
 code base, i.e., ``quick hacks'' to Glucose.}---set to 1000 non-space character edit distance from the sources of \solver{Glucose 3}. 
 Unfortunately, in 2020 there were not enough participants in this sub-track such that we do not report on it in the results section.
 
-We evaluated all 64 submitted solver configurations of which eight have been explicitly submitted to the No-Limits track, and four configurations were demoted to the No-Limits track due to wrong certificates. 
-A total of six configurations got disqualified due to wrong answers. 
-This left us with 46 configurations of 22 solvers inluding one Glucose hack. 
+We evaluated all 64 solver submissions (including different configurations of specific solvers) 
+to the Main track. Out of the 64 solvers, eight were explicitly submitted to the No-Limits track. Four solvers
+ were demoted to the No-Limits track due to outputting invalid unsatisfiability proof certificates. 
+Six solvers were disqualified due to outputting truth assignments which did not satisfy the corresponding benchmark instance.
+This left us with 46 configurations of 22 solvers, inluding only one Glucose hack.
 
 
 \subsubsection{Incremental Library Track}
 
-In the Incremental Library track we mimic scenarios
+In the Incremental Library track the underlying idea is to mimic scenarios
 where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
 the enclosing tool reaches its final state. 
-``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}. 
-Examples for applications of incremental SAT solving are Counter-Example Guided Abstraction Refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based Planning~\cite{Balyo:2017:IncrPlanning} or SAT Modulo Theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
+``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}.\textcolor{red}{Should we not cite the 2004 temporal induction paper by Niklases here?}
+Examples for applications of incremental SAT solving are counterexample-guided eastraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning} and satisfiability modulo theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
 
-Instead of using or extending the DIMACS input format, we realize the Incremental Library track
-by relying on the general incremental interface IPASIR (Re-entrant Incremental Solver API) 
-for SAT applications~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
+Instead of using or extending the DIMACS input format, in the the Incremental Library track
+a general incremental interface called IPASIR (Re-entrant Incremental Solver API) 
+is employed~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
 enclosing tool on its own benchmark and communicate with the competing SAT solver 
 through this interface API. 
 %
-Not only does the SAT solver in this track
-need to solve a sequence of related problems fast, but its answers to the early questions
-may, in general, influence which questions will follow next.
+SAT solvers submitted to this track need hence implement the require interface.
+Furthermore, it should be noted that the solutions output by a solver may, in general, influence
+the fortchoming invocations of the solver.
 % E.g. Smaller unsat cores may allow the enclosing tool to converge using fewer SAT calls!
 
-In this competition, two of the six submissions got disqualified, such that we had only four solvers competing in the Incremental track. 
+Six solver were submitted to the Incremental Library track.
+Two of the six solvers were disqualified due to outputting wrong answers.
 
 \subsubsection{Parallel Track}
 
-The Parallel track evaluates the runtime performance in wall-clock time of SAT solvers making use of multiple processor cores.
+The Parallel track evaluates the runtime performance of SAT solvers making use of multiple processor cores
+in terms of wall-clock time.
 The benchmarks %and the timeout (5000 seconds) 
 are the same as in the Main track. 
 %\textcolor{red}{repetitive? also mentioned below?}. 
 %Each solver in this track was run on a m4.16xlarge machine from Amazon Web Services (AWS).
 %These machines have 64 virtual cores and 256GB of memory. 
-However, in contrast to the Main track, proof logging for unsatisfiable instances is not required in the Parallel track. 
+In contrast to the Main track, proof logging for unsatisfiable instances is not required in the Parallel track. 
 
-In the Parallel track, we evaluated ten solvers (in 14 configurations) out of which three solvers got disqualified due to wrong answers. 
+A total of 14 solver configurations, based on 10 solvers, were submitted to the Parallel track.
+Three solver configurations were disqualified due to wrong answers.
+
 
 \subsubsection{Cloud Track}
 
-New this year was the Cloud track, dedicated to evaluating distributed solvers running on multiple machines in a network. 
+
+The Cloud track was a new development in the SAT Competitions for 2020.
+The track focuses on  evaluating distributed solvers running on multiple machines in a network. 
 %\textcolor{red}{Not sure if terms ``distributed'' vs ``parallel'' are clear, could be more explicitly explained?}. 
 %Similar to the Parallel track, the solvers ran on the Amazon cloud, but using 100 machines of the type m4.4xlarge, which have 16 virtual cores and 64GB of memory. 
 Communication between the machines is possible using MPI and SSH.
 %The wall-clock timeout is 1000 seconds and the same benchmarks were used as in the Main and Parallel track. \textcolor{red}{repetitive? also mentioned below?}
-We evaluated six solvers in this track. 
+We received six solver submissions to the Cloud track.
+
 
 \subsection{Mandatory Participation Requirements}
 \label{sec:rules}
