@@ -245,7 +245,8 @@ where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
 the enclosing tool reaches its final state. 
 ``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}.\textcolor{red}{Should we not cite the 2004 temporal induction paper by Niklases here?}
-Examples for applications of incremental SAT solving are counterexample-guided eastraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning} and satisfiability modulo theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
+Examples for applications of incremental SAT solving are counterexample-guided eastraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning},
+multi-agent path finding~\cite{DBLP:conf/ijcai/Surynek19}, and satisfiability modulo theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
 
 Instead of using or extending the DIMACS input format, in the the Incremental Library track
 a general incremental interface called IPASIR (Re-entrant Incremental Solver API) 
@@ -255,7 +256,7 @@ through this interface API.
 %
 SAT solvers submitted to this track need hence implement the require interface.
 Furthermore, it should be noted that the solutions output by a solver may, in general, influence
-the fortchoming invocations of the solver.
+the forthcoming invocations of the solver.
 % E.g. Smaller unsat cores may allow the enclosing tool to converge using fewer SAT calls!
 
 Six solver were submitted to the Incremental Library track.
