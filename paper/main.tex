@@ -135,7 +135,7 @@ have branched from the first breakthrough applications in automated planning, te
 to thousands of different application settings. \textcolor{red}{Add various references to the several things in this sentence}
 
 The success of SAT would not be possible without the persistent efforts of the SAT community to further improve the performance and robustness
-of SAT solvers. The SAT Competition series, with a history dating back to early 90s, aims to support and provide further incentives 
+of SAT solvers. The SAT Competition series, with a history dating back to the early 90s, aims to support and provide further incentives 
 for maintaining this progress. Organized yearly as an international open event, SAT Competitions (and their variants
 in the forms of SAT Races and a SAT Challenge)~\cite{DBLP:journals/amai/SimonBH05,DBLP:conf/sat/BerreS03,DBLP:conf/sat/BerreS04,DBLP:journals/aim/JarvisaloBRS12,DBLP:journals/ai/BalintBJS15,DBLP:conf/aaai/BalyoHJ17,DBLP:journals/jsat/HeuleJS19}
  have a consistent track record in receiving tens of solver submissions yearly, submitted
@@ -205,8 +205,8 @@ Without limit, submissions could be solvers that use a lookup table or similar t
 Thus, the No-Limits track was only evaluated with respect to \emph{newly} submitted benchmark instances, i.e., on instances which were submitted to SAT Competition~2020. 
 
 However, solvers in No-Limits still competed against all other solvers submitted to the Main Track.
-Thus, to deserve a mention, a No-Limits solver would need rank among the best-performing solvers among the Main Track participants.
-The top ranked solvers in the No-Limits track were the same as in the Main track. 
+Thus, to deserve a mention, a No-Limits solver would need to rank among the best-performing solvers among the Main Track participants.
+In 2020, the top ranked solvers in the No-Limits track were the same as in the Main track. 
 This also indicates the stability of results under the exclusion of old benchmark instances. 
 
 Complementing the generality advocated by the standard SAT Competition tracks, in which solvers are evaluated
@@ -217,7 +217,7 @@ In 2020, the Planning track represented the first trial instantiation of this id
 The focus of this track was specifically on efficiently solving
 instances arising from the domain of SAT-based automated planning.\textcolor{red}{Add references} 
 Automated planning was chosen as the target problem domain of this first instantiation of the domain-specific tracks
-due to its centrality as oneof the first breakthrough applications of SAT solvers.
+due to its centrality as one of the first breakthrough applications of SAT solvers.
 To this end, solvers participating in the Planning
 track were evaluated on 200 benchmark instances encoding planning problems.
 The same rules for participation as in the Main track applied to the Planning track.
@@ -228,13 +228,14 @@ In the past, several advances in SAT solving required only small modifications o
 Hack tracks encourage participation of such small modifications. 
 The limit for being considered a ``hack'' was---somewhat arbitrarily\footnote{The specific threshold for edit distance is not central here; the idea is essentially to only allow relatively small changes to the Glucose
 code base, i.e., ``quick hacks'' to Glucose.}---set to 1000 non-space character edit distance from the sources of \solver{Glucose 3}. 
-Unfortunately, in 2020 there were not enough participants in this sub-track such that we do not report on it in the results section.
+Unfortunately, in 2020 there were not enough participants in this sub-track and so we do not report on it in the results section.
 
 We evaluated all 64 solver submissions (including different configurations of specific solvers) 
 to the Main track. Out of the 64 solvers, eight were explicitly submitted to the No-Limits track. Four solvers
  were demoted to the No-Limits track due to outputting invalid unsatisfiability proof certificates. 
 Six solvers were disqualified due to outputting truth assignments which did not satisfy the corresponding benchmark instance.
-This left us with 46 configurations of 22 solvers, inluding only one Glucose hack.
+This left us with 46 configurations of 22 solvers, including % only 
+one Glucose hack.
 
 
 \subsubsection{Incremental Library Track}
