@@ -1239,8 +1239,8 @@ To counter-act an observed starving of tier2, the conflict-based heuristic that 
 \subsection{Parallel SAT Solvers}
 \label{sec:part:par}
 
-Six teams submitted a total of $10$ solvers and configurations in the Parallel track. 
-In the following, we outline the award-winning parallel solvers. 
+Six teams submitted a total of $10$ solvers and configurations to the Parallel track. 
+In the following, we outline  the best-performing parallel solver implementations. 
 
 %\begin{table}[b]
 %\centering\small
@@ -1274,12 +1274,15 @@ In the following, we outline the award-winning parallel solvers.
 \subsubsection{Painless MapleCOMSPS STR} 
 
 \solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless,Liang:2017:Maplecomsps}. 
-The authors submitted a \solver{32} and a \solver{64} threaded variant and won three awards: the first place overall, the best score on satisfiable and the second best score on unsatisfiable instances. 
-In the overall evaluation, the \solver{32} threaded variant achieved slightly better scores than the \solver{64} threaded variant. 
-However, in the separate evaluations on satisfiable and unsatisfiable variants the \solver{32} threaded variants performed much better, such that the runner-up solvers outperformed the \solver{64} threaded variant. 
+The authors submitted a \solver{32} and a \solver{64} threaded variant, which alltogether won three awards, achieving
+ the first place overall, the best score on satisfiable and the second-best score on unsatisfiable instances. 
+The \solver{32} threaded variant achieved slightly better scores than the \solver{64} threaded variant overall
+Furthermore, 
+ the \solver{32} threaded variants geared towards either satisfiable or unsatisfiable instances 
+showed much better  than the the \solver{64} threaded variants. \textcolor{red}{Not sure if I got this right: did the submit variants of the solver geared specifically towards SAT and UNSAT, resp.? The writing was really confusing here...}
+% such that the runner-up solvers outperformed the \solver{64} threaded variant. 
 
-\solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrent data-structures, such that implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies~\cite{Frioux:2017:Painless}. 
-
+\solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrent data-structures. Due to this,  implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies~\cite{Frioux:2017:Painless}. 
 \solver{Painless-MCOMSPS-STR} diversifies mainly via hard-coded configurations of the branching strategies LRB and VSIDS, and via sparse random initialization of variable polarities~\cite{Balyo:2015:HordeSATs}. 
 Two special solver instances perform concurrent clause strengthening~\cite{Wieringa:2013:CCS} and Gaussian elimination, respectively. 
 Regarding sharing, \solver{Painless-MCOMSPS-STR} uses an all-to-all strategy with a fixed-size clause buffer and an LBD filter with a dynamic limit~\cite{SC2020}. 
@@ -1287,7 +1290,8 @@ Regarding sharing, \solver{Painless-MCOMSPS-STR} uses an all-to-all strategy wit
 
 \subsubsection{Plingeling} 
 
-\solver{Plingeling} obtained the best score on unsatisfiable instances, the second place in the overall evaluation, and the third best score on satisfiable instances. 
+The parallel solver 
+\solver{Plingeling} achieved the best score on unsatisfiable instances, the second place in the overall evaluation, and the third-best score on satisfiable instances. 
 \solver{Plingeling} is built around the well-known \solver{Lingeling} and did not change since 2016. 
 In a global master queue, \solver{Plingeling} shares unit clauses, equivalences and short clauses with a size limit of~$40$ and an LBD limit of~$8$. 
 \solver{Plingeling} uses random seeds for diversification via variable polarities~\cite{Biere:SC2020,Biere:2012:Lingeling}. 
@@ -1296,7 +1300,7 @@ In a global master queue, \solver{Plingeling} shares unit clauses, equivalences 
 \subsubsection{ManyGlucose}
 
 \solver{ManyGlucose} was submitted in \solver{32} and \solver{64} threaded variants. 
-The \solver{32} threaded variant received two awards in this competition: the overall third place and the third best score on unsatisfiable instances. 
+The \solver{32} threaded variant won two awards in this competition, achieving the overall third place as well as the third-best score on unsatisfiable instances. 
 \solver{ManyGlucose} is a fork of \solver{GlucoseSyrup} that uses strategies known from \solver{ManySat} to achieve deterministic solver behavior~\cite{Audemard:2018:GlucoseSyrup,Audemard:2014:LazyClauseExchange,Hamadi:2009:ManySat}. 
 
 
@@ -1310,11 +1314,11 @@ It uses a sharing strategy in which the solvers are divided into those which onl
 \solver{Painless Maple v1} diversifies via hand-crafted heuristic configurations and \solver{Painless Maple v2} diversifies via randomized initialization of branching heuristics~\cite{SC2020}. 
 
 
-\subsection{Massively Parallel SAT Solvers}
+\subsection{Massively Parallel SAT Solvers in the Cloud Track}
 \label{sec:part:cloud}
 
 Five teams submitted a total of $6$ solvers and configurations in the Cloud track. 
-In the following, we outline the award-winning massively parallel solvers. 
+In the following, we outline the best-performing massively parallel solver implementations. 
 
 %\begin{table}[t]
 %\centering\small
@@ -1341,29 +1345,28 @@ In the following, we outline the award-winning massively parallel solvers.
 This functionality is disabled in the submitted variant \solver{Mallob Mono}. 
 \solver{Mallob} uses \solver{Lingeling-bcj} and as every 14th solver \solver{Mallob} spawns the stochastic local search solver \solver{YalSAT}~\cite{Biere:2018:LingelingYalsat}.
 Diversification is done via randomized sparse initialization of branching scores. 
-
 \solver{Mallob} shares clauses by organizing solvers in a binary tree in which clauses are asynchronously aggregated in a buffer which is passed along this tree from its leafs to the root. 
 Each node performs a three-way merge of its local export buffer and the two incoming buffers. 
 The aggregate that approaches the root of the binary tree is then broadcast to all solvers~\cite{Schreiber:SC2020}. 
-
 \solver{Mallob} uses a global clause size limit and a dynamic size limit for the sharing buffer, which depends on its position in the binary tree and is larger the closer we get to the root. 
 Clauses are sorted by their size during aggregation, such that smaller clauses are preferred over longer clauses. 
-Duplicates are avoided by using a bloom filter which is cleared periodically~\cite{Schreiber:SC2020}. 
+Duplicates are avoided by using a Bloom filter which is cleared periodically~\cite{Schreiber:SC2020}. 
 
 
 \subsubsection{TopoSAT 2}
 
 \solver{TopoSAT~2}~\cite{Ehlers:2018:Toposat2} is a massively parallel SAT solver using \solver{Glucose~3}~\cite{Audemard:2018:Glucose}. 
-\solver{TopoSAT~2} uses lock-free clause-exchange for solvers on the same machine and the message passing interface (MPI) to share clauses between machines~\cite{Hamadi:2009:ManySat}. 
-\solver{TopoSAT~2} strengthens clauses before export and delays clause import until the trail-size reaches a local minimum. 
-\solver{Toposat~2} diversifies via strategies used for branching, restarting, and clause forgetting~\cite{Ehlers:SC2020}. 
+The solver
+ uses lock-free clause-exchange for solvers on the same machine and the message passing interface (MPI) to share clauses between machines~\cite{Hamadi:2009:ManySat}. 
+\solver{TopoSAT~2} also strengthens clauses before export and delays clause import until the trail-size reaches a local minimum, as well as
+diversifies via strategies used for branching, restarting, and clause forgetting~\cite{Ehlers:SC2020}. 
 
 
 \subsubsection{Slime}
 
 \solver{Slime} is built from \solver{MapleLCMDistChronoBT} and was first submitted as a sequential solver to SAT Race~2019 with a new phase selection heuristic~\cite{Riveros:SC2019}. 
-The new submitted version of \solver{Slime} comes with periodic randomization in geometrically increasing intervals~\cite{Riveros:SC2020}. 
-Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} won the third price in the Cloud track. 
+The new version of \solver{Slime} submitted to the 2020 competition came with periodic randomization in geometrically increasing intervals~\cite{Riveros:SC2020}. 
+Even thought its sequential version was unsuccessful in the Main track, the MPI-based cloud version of \solver{Slime} achieved the third place in the Cloud track. 
 
 
 \section{Differentiated Analysis of Main Track Results}
