@@ -1392,37 +1392,36 @@ were solved by at least one solver and solves each instance in the best observed
 By quantifying how much each participating solver contributes
 to the performance of the VBS, we may attempt to establish which
 technology (as represented by the solvers) is the most important
-(and to what degree) in the observed state of the art of SAT solving.
+(and to what degree) in the observed state of the art in SAT solving.
 We consider here the following three related metrics conceptually derived
 from the notion of VBS.
 
 \begin{description}
 \item[VBS-1]
 ``The fastest takes it all'':
-For each solver we count the number of times, it was the fastest to solve an instance.
+For each solver, we count the number of times the solver was the fastest to solve an instance.
 \item[VBS-2]
 ``Time aware, but proportional'':
 A solver $S$ solving an instance $I$ in time $T^S_I$ accrues 
 the following fraction of a point for solving $I$:
-$T^\mathit{VBS}_I/T^S_I$, where $T^\mathit{VBS}_I$ is the solution time of the best solver on $I$.
+$T^\mathit{VBS}_I/T^S_I$, where $T^\mathit{VBS}_I$ is the runtime of the best solver on $I$.
 \item[VBS-3]
 ``Split the point for solving'':
 We award each solver $S$ solving an instance $I$ the fraction $1/|\mathcal{S}_I|$ of points, where
 $\mathcal{S}_I$ is the set of solvers solving $I$.
 \end{description}
 
-We remark that the sum of VBS-1 points, as well as VBS-3 points, computed across all the solvers
+We remark that the sum of VBS-1 points as well as the sum of VBS-3 points computed across all the solvers
 is equal to the number of instances solved by at least one solver (later denoted \emph{total}).
 This is obvious for VBS-1, as exactly one solver scores a point for solving an instance.
 In the case of VBS-3, where we discard the information about the solution times, 
-we evenly split the one point reward for solving an instance to those solvers which were successful on it.
-
+we evenly split the one point reward for solving an instance among those solvers which succeeded in solving the instance.
 In contrast, VBS-2 does not have this property as it in general distributes more than one point per instance.
-Similarly to VBS-1, it takes the solution time into account,
-and similarly to VBS-3 it does not award just the best solver on an instance.
-For example, being twice as slow on an instance than the fastest solver results in a half point awarded.
-And, if all the solvers solve an instance with the same solution time,
-each solver scores a whole point for that instance. 
+Similarly as VBS-1, it takes the solution time into account.
+Similarly as VBS-3, it does not award just the best solver on an instance.
+For example, a solver that uses twice as much runtime as  the fastest solver on an instance received half a point.
+Further, if all the solvers solve an instance equally fast,
+each solver receives a whole point for the instance. 
 
 \begin{table}
 %\setlength\tabcolsep{1.5pt}
@@ -1592,42 +1591,42 @@ Each table shows the first ten solvers sorted according to the respective metric
 %\end{table}
 %\todo{Probably hide tab:vbsMainSAT and tab:vbsMainUNSAT.} 
 
-Table~\ref{tab:vbsMainALL} renders the just-described three metrics applied 
+Table~\ref{tab:vbsMainALL} provides the result of applying the just-described three metrics 
 to the full results of the Main track. We can see that the respective leaderboards 
 are generally dominated by \solver{Kissat} in at least one of its configurations.
 VBS-1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
 in particular on \SI{11.5}{\percent} of all the solved instances.
 
-The metric VBS-2 identifies as the best solver \solver{Kissat-sat}. Its leading score of \SI{32.9}{\percent} of the total
-is a bit harder to interpret: A solver can score \SI{32.9}{\percent} of VBS-2 total
+The metric VBS-2 identifies \solver{Kissat-sat} as the best solver. Its leading score of \SI{32.9}{\percent} of the total
+is somewhat more difficult to interpret, though: a solver can score \SI{32.9}{\percent} of VBS-2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
-and no others. But we know, thanks to its VBS-1, that \solver{Kissat-sat} solved \SI{9.8}{\percent}
+and no others. Howeer,  we see from its VBS-1 score that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
 A solver can also score \SI{32.9}{\percent} of VBS-2 total by solving all the solved instances,
-but always being roughly 3 times slower than the VBS. 
-\solver{Kissat-sat} lies (obviously) somewhere between these two extremes.
+but always being roughly three times slower than the VBS. 
+The performance of \solver{Kissat-sat} lies (obviously) somewhere between these two extremes.
 
 Finally, according to VBS-3, the best solver is \solver{Kissat} with 13.0 points,
 which amounts to \SI{3.3}{\percent} of the distributed total score.
 The VBS-3 metric is generally the most evenly distributed one,
 at least among the first 10 solvers. 
-(The last solver got 0.9 points which is \SI{0.221}{\percent} of the total.)
+(The last solver receives 0.9 points which is \SI{0.221}{\percent} of the total.)
 One can conclude from this that most of the benchmarks are solved
-by most of the well performing solvers. 
+by most of the well-performing solvers. 
 
 \subsection{Greedy Set Cover}
 Another perspective on how much each solver contributes to the state of the art
 can be obtained by attempting to construct a sequential schedule of solvers 
-(rather than relying on an oracle to pick one for each instance, as with VBS)
-and looking at how big a role each solvers plays in such a schedule. Since constructing 
+(rather than relying on an oracle to pick one solver for each instance, as with VBS)
+and observing how big a role each solvers plays in such a schedule. Since constructing 
 an optimal schedule tends to be computationally hard, we start here by 
-presenting a useful efficient alternative -- a greedy set cover approach.
+presenting a a computationally more efficient alternative---a greedy set cover approach.
 
 With greedy set cover, we start with an empty schedule and iteratively consider 
 each solver for the addition to the schedule obtained so far, picking the one
 with the highest ``marginal contribution'' in terms of the number of problems
 the new schedule will be able to solve. We demonstrate this on
-the actual data from the competition, again taking the Main track results. 
+the actual data from the competition, again focusing in particular on the Main track results. 
 
 \begin{table}
 \centering\small
