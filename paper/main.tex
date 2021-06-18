@@ -1653,19 +1653,23 @@ the actual data from the competition, again focusing in particular on the Main t
 
 A greedy set cover of the solved instances by solvers of the Main track is presented in Table~\ref{tab:gscMain}. 
 In the first iteration, the solver which solved the highest number of instances is selected; in our case it was \solver{Kissat-sat} with 264 instances as we know already from Table~\ref{tab:results}.
-Given those 264 instances as already covered, \solver{CaDiCaL-alluip} was the best in further contributing to the set by additional $22$ instances in iteration $2$.
+With these
+ 264 instances already covered, \solver{CaDiCaL-alluip} is the best in further contributing to the set by additional $22$ instances in iteration $2$.
 We can see that the further iterations tend to add very little,
 with the final four iterations adding one instance each. Note that each solver
-that managed to solve an instance uniquely (i.e.~being the only solver to do so)
-is showing up in the table. This is, for example the case of the last listed  
-\solver{exp-V-LGB-MLD-CBT-DL}.
-Highlighting unique solutions is a property of the greedy set cover metric
+that managed to solve an instance uniquely (i.e., being the only solver that solved a particular instance)
+showis up in the greedy set cover. 
+% for example the case of the last listed  
+%\solver{exp-V-LGB-MLD-CBT-DL}.
+Highlighting solvers that uniquely solve instance is a property of the greedy set cover metric
 which we believe is congruent with documenting contributions to the state of the art.
+\textcolor{red}{congruent...? maybe a better choice of words here?}
 
 \subsection{Time-Limited Schedules}
 
-The greedy set cover technique focuses only on solving instances,
-disregarding the time it would take to execute the obtained schedule. We can
+The greedy set cover 
+disregards the time it would take to execute the obtained ``schedule'' of running the solvers covering instances. 
+However, we can
 also look at schedules that would fit in a prescribed time budget. A natural choice
 of the budget seems to be the original time limit of \SI{5000}{\second}.
 
@@ -1684,7 +1688,7 @@ of the budget seems to be the original time limit of \SI{5000}{\second}.
 \label{tab:MainUniformTimeSplit}
 \end{table}
 
-By employing a brute-force approach, we first construct a sequences of schedules 
+To this end, by employing a brute-force approach, we first construct a sequences of schedules 
 where the $i$-th schedule splits the available time of \SI{5000}{\second} uniformly among
 $i$ solvers and solves the highest number of instances under these constraints.
 The results are presented in Table~\ref{tab:MainUniformTimeSplit}.
@@ -1693,8 +1697,8 @@ when using two solvers instead of one (although allowing each to only use half o
 does not continue further with additional solvers allowed,
 although its still better to use three solvers in a fair time split 
 (and cover 272 instances) than just one.
-One could use this observation to conjecture that the really hard 
-problems that were solved actually require quite a large time to 
+Based on this observation, it is plausible  that the really hard 
+instance that were solved actually may require quite large runtime to 
 get ``cracked'' by any solver and thus the advantage of adding more solvers to the schedule
 quickly diminishes.
 
@@ -1726,8 +1730,8 @@ constructed using Z3.}
 \end{table}
 
 Finding a solution which satisfies all the hard constraints and as many soft constraints as possible,
-Z3 comes up with the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
-The table is sorted by $R^S$, the time the schedule allocates to individual solvers, and skips the zero entries.
+Z3 provided  the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
+The table is sorted by $R^S$, the time the schedule allocates to individual solvers, with zero entries ignored.
 It is not clear to what degree is the obtained schedule unique and how much it relies on each solver being present and for how long.
 Nevertheless, it is interesting to observe the total number of problems covered, here 286,
 and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with the uniform split and two solvers.
@@ -1735,7 +1739,7 @@ and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with 
 As can be seen from the ``contributes'' column, the presence of \solver{f2trc-DL} in the schedule is not necessary.
 % The following three lines could be skipped without much harm:
 All the 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
-This result, however, does not signify a bug, as Z3 was not asked to produce a schedule with a minimal number of
+This result is due to the fact that Z3 was not asked to produce a schedule with a minimal number of
 participating solvers.
 Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not increase the overall total.
 
@@ -1771,7 +1775,7 @@ Interestingly, each of the first five tuples $T_{k \leq 5}$ contains exactly one
 For $i < 5$ the relation $T_{i} \subset T_{i+1}$ holds only under projection to base solvers due to the fluctuating variants of \solver{Kissat}. 
 The composition changes more strongly in $T_6$. 
 Interestingly, we now have both variants $\{ \solver{Kissat-sat}, \solver{Kissat-unsat} \} \subset T_6$, and moreover it holds that $T_6 \subset T_7$.
-All solvers in $T_{k \leq 7}$ belong the top performing solvers which received an award in the Main track, with the only exception being $\solver{Scavel01} \in T_4 \cap T_5$ (cf.~Table~\ref{tab:results}). 
+All solvers in $T_{k \leq 7}$ are among the top-performing solvers which received awards in the Main track, with the only exception of $\solver{Scavel01} \in T_4 \cap T_5$ (cf.~Table~\ref{tab:results}). 
 
 
 \subsection{Score per Instance Family} 
@@ -1798,10 +1802,10 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \label{tab:eval-by-family}
 \end{table}
 
-Contributions to the VBS can be well captured by clustering the instance space into instance families. 
+Contributions to the VBS can becaptured by clustering the instance space into instance families. 
 We evaluate the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
 and report their place and score in Table~\ref{tab:eval-by-family}. 
-Interestingly, the overall winning solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
+Interestingly, the overall best solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
 
 \subsection{Similarity of Solvers}
 To investigate the similarity of solvers from the Main track, we define a
@@ -1825,7 +1829,7 @@ as:
 \]
 % \end{equation}
 We calculate the \emph{similarity} of the $30$ solvers with the
-best average PAR-2 score in the Main track. The results are displayed in
+best average PAR-2 score in the Main track. The results are shown in
 Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. Additionally, the result
 of hierarchically clustering the solvers based on their similarity is
 illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
@@ -1835,35 +1839,35 @@ a similarity above \num{0.999}. Therefore the two solvers are joined low in the
 dendrogram.
 % A similar visualization was used for the results of the SAT Race 2015 \cite{Balyo:2015:SATRace}.
 
-One big cluster that we identify consists of the \solver{Maple}-decedants, 
+Interestingly, one identifiable large cluster consists of the \solver{Maple}-decedants, 
 all of which are modifications of the winners in the SAT Competition 2018 and
 the SAT Race 2019.
 The similarity within the cluster is high, with the exception of
 \solver{Scavel} and \solver{exp\_V\_MLD\_CBT\_DL}.
 They form a sub-cluster
-with a lower similarity to the rest, but a high similarity within. In fact, the highest measured similarity,
+with a lower similarity compared to the rest, but a high similarity within. In fact, the highest measured similarity,
  % of $0.96$
 besides the aforementioned \solver{CaDiCaL-alluip}, is observed between them.
 The two solvers are both based on
 \solver{MapleLCMDistChronoBT-dl-v2.2}, but have different authors.
-The high similarity suggests that the
+This high similarity suggests that the
 changes they made either result in a very similar behavior or do not have a
 significant impact on the runtime performance.
 
 The two configurations of \solver{Relaxed} by \emph{Zhang} and \emph{Cai}
-use the same code-base as a lot of solvers in the \solver{Maple}-cluster, but their
-overall performance is better and closer to the \solver{CMS}-cluster.
+use the same code-base as a lot of solvers in the \solver{Maple}-cluster. However, the
+overall performance of the solver is better and closer to the \solver{CMS}-cluster.
 The three \solver{CMS} configurations
 differ in their implementation of stochastic local search
 (SLS) and have similar performance.
 The 2020 version of \solver{CaDiCaL}
-performs worse than the modifications based on the 2019 version and
+exhibit weaker performance than the modifications based on the 2019 version and
 does not quite fit into any cluster.
 
-The last cluster to the left of the heat map is comprised of the other solvers
-originally written by \emph{Biere}. Interesting to note is that the
+The leftmost cluster in the heat map is comprised of the other solvers
+originally written by \emph{Biere}. What is interesting to note is that the
 \solver{Kissat} configuration specialized for unsatisfiable instances joins the
-others in the cluster high in the dendrogram. In fact \solver{Kissat-unsat} has
+others configurations in the cluster high in the dendrogram. In fact \solver{Kissat-unsat} has
 the lowest average similarity to all other solvers in the top 30.
 This suggests its importance for an optimal
 portfolio.
