@@ -985,29 +985,33 @@ Three awardees per track underlined.}
 \section{Winning Solvers}
 \label{sec:winners}
 
-In the following, we provide an overview of the participating teams and solvers, 
-and summarize new strategies which are implemented in the award-winning solvers of this competition. 
-We start with a few remarks on the evolution of code-bases of well known SAT solvers in Section~\ref{sec:codebases}. 
-Our review of the winning strategies in this competition starts with sequential solvers in the Main, Planning, and Incremental Library tracks in Section~\ref{sec:part:seq},
-then we continue with winners of the Parallel track in Section~\ref{sec:part:par} and conclude with winning solvers in the Cloud track in Section~\ref{sec:part:cloud}. 
+In this section we will provide an overview of the participating teams and solvers, 
+and summarize new strategies implemented in the best-performing solvers of the 2020 competition. 
+We start with a few remarks on the evolution of code-bases of well-known SAT solvers. % in Section~\ref{sec:codebases}. 
+%Our review of the winning strategies in this competition starts with sequential solvers in the Main, Planning, and Incremental Library tracks in Section~\ref{sec:part:seq},
+%then we continue with winners of the Parallel track in Section~\ref{sec:part:par} and conclude with winning solvers in the Cloud track in Section~\ref{sec:part:cloud}. 
 
 
-\subsection{Code-Bases of SAT Solvers: ``On the Shoulders of Giants''}
+\subsection{Evolution of SAT Solver Code-Bases: ``On the Shoulders of Giants''}
 \label{sec:codebases}
 
-Progress in SAT solvers is often based on successful modifications of existing code-bases. 
-One well-known tree of development is rooted in the code-base of \solver{Minisat} by E\'en and S\"orensson~\cite{Niklas:2003:Minisat}. 
-A well-known fork of \solver{Minisat} is \solver{Glucose} by Audemard and Simon~\cite{Audemard:2018:Glucose} which introduced the influential literal block distance (LBD) for weighing clauses in forgetting heuristics~\cite{Audemard:2009:Glucose}. 
-The SAT solver \solver{RISS} by Manthey is a successful and award-winning fork of \solver{Glucose} in combination with the \solver{Coprocessor}~\cite{Manthey:2012:Coprocessor2} preprocessor. 
+Progress in SAT solvers is often based on successful modifications of existing and openly available solver code-bases. 
+One well-known tree of code-base evaluation is rooted in the code-base of \solver{Minisat} by E\'en and S\"orensson~\cite{Niklas:2003:Minisat}. 
+A well-known fork of \solver{Minisat} is \solver{Glucose} by Audemard and Simon~\cite{Audemard:2018:Glucose}. 
+In particular, \solver{Glucose} introduced the influential literal block distance (LBD) heuristics for deciding which learned clauses to keep and which 
+ones to forget during search~\cite{Audemard:2009:Glucose}. 
+The SAT solver \solver{RISS} by Manthey is a further fork of \solver{Glucose}, combining \solver{Glucose}  with 
+ the \solver{Coprocessor}~\cite{Manthey:2012:Coprocessor2} preprocessor. 
 
-Another, more recent line of development in SAT solvers
-is rooted in the \solver{CoMinisatPS} fork of \solver{Minisat} by Oh which introduced three-tier clause-management~\cite{Oh:2015:satunsat}. 
+A further, more recent line of evolution in SAT solvers
+is rooted in the \solver{CoMinisatPS} by Oh, which is itself a again a fork of \solver{Minisat}, introduced three-tier clause-management~\cite{Oh:2015:satunsat}. 
+Building on \solver{CoMinisatPS}, 
 The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heuristics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
-The then award-winning variant \solver{MapleCOMSPS} by Liang et al.~is an implementation of a hybrid branching heuristic of classic variable-state independent decaying sum (VSIDS)~\cite{Zhang:2001:ClauseLearning} and the newer learning rate based branching (LRB) in \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
+The at-the-time award-winning variant \solver{MapleCOMSPS} by Liang et al.~implements a hybrid branching heuristic of classic variable-state independent decaying sum (VSIDS)~\cite{Zhang:2001:ClauseLearning} and the newer learning rate based branching (LRB) of \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
 
-In SAT Competition 2017, Luo et al.~integrated learned clause minimization based on unit propagation (\solver{LCM}) in their award-winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
-Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}. 
-They introduced their award-winning \solver{Maple\_LCM\_Dist\_ChronoBT} in SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
+For SAT Competition 2017, Luo et al.~integrated learned clause minimization based on unit propagation (\solver{LCM}) in their award-winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
+Using \solver{Maple\_LCM\_Dist}, Ryvchin and Nadel successfully integrated conditional chronological backtracking (\solver{ChronoBT})~\cite{Nadel:2018:CBT}, with
+the introduction of the award-winning solver \solver{Maple\_LCM\_Dist\_ChronoBT} in SAT Competition~2018~\cite{Ryvchin:SC2018:MapleChronoBT}. 
 
 Kochemazov et al.~improved three-tier clause-management by persisting
 additional clauses through hash-based detection of repeatedly learned clauses and presented their award-winning~\solver{MapleLCMDistChronoBT-DL} in SAT Race~2019~\cite{Kochemazov:SC2019:MapleChronoBTDL}. 
@@ -1020,10 +1024,11 @@ One highlight of \solver{CryptoMinisat} are its advanced data-logging capabiliti
 Many independent and award-winning code-bases can be found among the SAT solvers written by Biere. 
 The sequential SAT solver \solver{Lingeling} has been award-winning since SAT Competition~2011 and is still competitive in its parallel version \solver{Plingeling}~\cite{Biere:2012:Lingeling}. 
 As of SAT Competition~2017, \solver{CaDiCaL} % \cite{Biere:SC2020} - or cite some older proceedings to match the "As of SAT Competition~2017" part?
-by Biere is another independent, award-winning and structured implementation of the state-of-the-art in SAT solving. 
-Its improved re-implementation \solver{Kissat}~\cite{Biere:SC2020} won in several of this competitions sequential tracks by a large margin. 
+by Biere is another independent representative of state-of-the-art SAT solvers.
+Its improved re-implementation \solver{Kissat}~\cite{Biere:SC2020} was quite successful in the 2020 competition.
 
-The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time in this competition and introduced several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
+The sequential variant of the \emph{new code-base} \solver{ParaFrost} by Osama and Wijs was submitted for the first time to the 2020 SAT Competition,
+ introducing several interesting new concepts~\cite{Osama:SC2020:Parafrost}. 
 
 
 \subsection{Sequential SAT Solvers}
@@ -1035,7 +1040,8 @@ $18$ teams submitted a total of $48$ solvers and configurations to the Main trac
 %Submissions to the Incremental Library track have been evaluated with respect to $6$ different applications -- each with $50$ benchmark instances. 
 %
 Table~\ref{tab:solvers-main} displays an overview of the participating teams, base solvers and their variants. 
-In the following sections, we outline the technical reports of the award winning solvers. 
+In the following, we provide a short overview of the best-performing solvers of 2020, based mainly on the solver descriptions submitted
+to the 2020 competition proceedings by the authors of the individual solvers.
 
 
 \begin{table}[h!]
@@ -1169,31 +1175,29 @@ Kaiser, Hartung & \solver{MapleLCMDist} & \solbert{PauSat} & -- & -- & -- & -- &
 \subsubsection{Kissat} 
 \label{sec:kissat}
 
-Three configurations of \solver{Kissat} were evaluated in this competition, including one default configuration and two specialized configurations which are specifically tailored towards satisfiable and unsatisfiable instances, respectively. 
-\solver{Kissat} received \emph{four awards}, by achieving the first place in the Main track, 
-the best score on unsatisfiable instances, the second best score on satisfiable instances and the third place in the Planning track. 
+Three configurations of \solver{Kissat} were submitted to the 2020  competition, including one default configuration and two specialized configurations which are specifically tailored towards satisfiable and unsatisfiable instances, respectively. 
+\solver{Kissat} received \emph{four awards},achieving the first place in the Main track, 
+the best score on unsatisfiable instances, the second-best score on satisfiable instances and the third place in the Planning track. 
 
 \solver{Kissat} is a low-level re-implementation of \solver{CaDiCaL} with new sophisticated lazy data-structures for clause state monitoring, e.g., through binary clause inlining, sentinel values and bit stuffing~\cite{Biere:SC2019,Biere:SC2020}. 
 Moreover, forward subsumption for learned clauses is mostly replaced by vivification algorithms~\cite{ChuMinLi:2020:Vivification}. 
-Since conflict-number has been observed to be too unstable for measuring the length of two alternating restart-modes, \solver{Kissat} uses the new unit ``ticks'' which approximates the number of cache-line accesses in unit-propagation~\cite{Biere:SC2020}. 
-
+Since conflict number has been observed to be too unstable for measuring the length of two alternating restart modes, \solver{Kissat} uses the new unit ``ticks'' which approximates the number of cache-line accesses in unit-propagation~\cite{Biere:SC2020}. 
 \solver{Kissat} also exploits autarkies to account for saved phases. 
-In order to keep valuable information of saved phases, before each rephasing step, \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
+In order to keep valuable information of saved phases, before each rephasing step \solver{Kissat} computes the largest autarky for the assignment implied by the current saved phases~\cite{Kiesl:2019:Autarkies}. 
 As such an autarky might contain satisfying assignments which imply disconnected components, those variables are subject to subsequent variable elimination. 
 
 
 \subsubsection{CryptoMiniSat}
 \label{sec:cryptominisat}
 
-\solver{CryptoMiniSat} received \emph{four awards}: the first place in the Incremental Library track,
+\solver{CryptoMiniSat} received \emph{four awards}, achieving the first place in the Incremental Library track,
 the second place in the Planning track, the third place in the Main track, and the third-best score on satisfiable instances. 
-Two submitted variants, \solver{default} and \solver{LSIDS}, scored mostly adjacent ranks in the evaluation of the tracks. 
-The \solver{LSIDS} variant of \solver{CryptoMiniSat} comes with a new hybrid phase selection approach~\cite{Shaw:2020:LSIDS,Soos:SC2020}.
+Two submitted variants, \solver{default} and \solver{LSIDS}, scored mostly adjacent ranks in the individual competition tracks.
 
+The \solver{LSIDS} variant of \solver{CryptoMiniSat} comes with a new hybrid phase selection approach~\cite{Shaw:2020:LSIDS,Soos:SC2020}.
 \solver{CryptoMiniSat} comes with an independent implementation of state-of-the-art hybrid branching heuristics which alternate between classic phase saving and target phase selection~\cite{Biere:SC2019}.
 \solver{CryptoMiniSat-CCAnr} regularly schedules short periods of local search and imports the best assignment for phase selection---a procedure which is known as ``rephasing'' from CaDiCaL~\cite{Biere:SC2019}.
 In addition, \solver{CryptoMiniSat-CCAnr} bumps the VSIDS scores of the first 100 variables in those clauses which the SLS solver weighs most hard to satisfy~\cite{Soos:SC2020}.
-
 Inprocessing has been extended to include ternary resolution and more vivification~\cite{ChuMinLi:2020:Vivification}. 
 \solver{CryptoMinisat} alternates decay factors of its branching heuristics, thus avoiding the restriction to a ``single best'' configuration~\cite{Soos:SC2020}. 
 The submitted version of \solver{CryptoMinisat} entails a new optimized implementation of Gauss-Jordan Elimination~\cite{Soos:2020:CNFXOR}. 
@@ -1205,7 +1209,7 @@ The submitted version of \solver{CryptoMinisat} entails a new optimized implemen
 Based on \solver{CaDiCaL}, its variants \solver{Trail} and \solver{AllUip} present implementations of a new \emph{Trail Saving} approach~\cite{Hickey:2020:TrailSaving} 
 and an improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}. 
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
-The variants including \emph{Stable AllUIP} were the most successful and won  first place in the Planning track. 
+The variants including \emph{Stable AllUIP} were the most successful in the 2020 competition, achieving in particular the  first place in the Planning track. 
 
 \emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size or LBD than the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of such extended learning attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
@@ -1216,7 +1220,7 @@ The \emph{Trail Saving} variant caches backtracked portions of the trail and use
 
 The \solver{Relaxed} fork of \solver{MapleLCMDistCBT-DL} was first presented in SAT Race 2019~\cite{Xindi:SC2019}. 
 In SAT Competition~2020, its variant \solver{newTech} showed a good performance especially on satisfiable instances. 
-The solver received two awards: second place in the Main track and the best score on satisfiable instances. 
+The solver received two awards, achieving the second place in the Main track and the best score on satisfiable instances. 
 
 \solver{Relaxed} integrates short runs of the local search solver \solver{CCAnr} through periodic export and import of assignments~\cite{Xindi:SC2019} and uses a probabilistic schedule for switching between $10$ phase selection modes. 
 The \solver{Relaxed newTech} variant uses occurrence counts of variables in unsatisfied clauses during stochastic local search runs to recalculate variable priorities for their modified branching heuristic~\cite{Xindi:SC2020}. 
