@@ -1896,8 +1896,7 @@ portfolio.
 
 % \subsection{Solver Ranking Robustness}
 \subsection{Influence of Benchmark Selection on Solver Ranking}
-The main result of the competition is the ranking of the solvers participating
-in the Main track, according to their average PAR-2 score. To evaluate the impact
+To evaluate the impact
 of benchmark selection on the solver ranking, we follow the experiments
 described in the tool suite
 \texttt{benchfeature}~\cite{benchfeature}.
@@ -1905,12 +1904,10 @@ described in the tool suite
 % by Fazekas, Kaufmann and Biere.
 % performed the following
 % experiment:
-
-We first use random sampling to select subsets of the benchmarks used in the Main track.
+In particular, we first use random sampling to select subsets of the benchmarks used in the Main track.
 We start with $316$ benchmarks that have been solved by at least one solver in
 the Main track and remove a number of benchmarks randomly. For each
 possible subset size (1--316) we generate 50 random samples.
-
 The solvers are assigned a new rank in ascending order of their PAR-2 score on
 each random sample. Note that we never encounter a tie. This ranking can be
 seen as an estimate of the original ranking.
@@ -1919,10 +1916,10 @@ positive conclusion about the robustness of the ranking.
 % We draw a positive conclusion about the robustness of the original ranking, if
 % even the resulting estimate from relatively small random samples
 % are good approximations.
+
 To determine how similar an estimate is to the original ranking, we calculate
 the \emph{Spearman's rank correlation coefficient} of the two rankings.
 % and compute the correlation coefficient.
-
 Spearman's rank correlation coefficient
 for two rankings $r_{1}$ and $r_{2}$
 is defined by the following equation:
@@ -1963,8 +1960,7 @@ The mean and standard deviation of the computed correlation coefficients are
 depicted in Figure~\ref{fig:sampleAll}.
 The rank correlation is high even for relatively small samples.
 The average rank correlation drops below $0.99$ only after randomly removing at least $95$ benchmarks, which is $30\%$ of the considered benchmark set. Accordingly, removing fewer benchmarks randomly has almost no effect on the ranking of the solvers.
-Furthermore, removing fewer than $200$ ($63\%$) benchmarks, still results in an average rank correlation above $0.96$.
-
+Furthermore, removing fewer than $200$ ($63\%$) benchmarks still results in an average rank correlation above $0.96$.
 This suggests that the impact of the random selection in Algorithm~\ref{algo:select} on the solver ranking is limited.
 % \ref{sec:byob}
 The collected data cannot show whether all of the benchmarks originally
@@ -1991,42 +1987,48 @@ The individual removal of all other benchmarks families results in a rank correl
 \label{sec:conclusion}
 
 The 2020 SAT Competition successfully continues the tradition of the SAT Competition series. In 2020, significant advances
-in SAT solvers compared to previous years are observed. Some of the more interesting observations on the winning solving 
+in SAT solvers compared to previous years were observed. Some of the more interesting observations on the winning solving 
 strategies include the following.
 All the winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
-solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As can be seen in the \emph{Parallel} track, it appears difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
+solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As observed
+from the results of the\emph{Parallel} track, it appears difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
 However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classic all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
-It is hard to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
+It appear challenging to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
 The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use-case. 
 
 \subsection*{Future Prospects}
 
-In the instance selection, the author-wise balancing of satisfiable and unsatisfiable instances was often counter-productive and did not lead to a more balanced overall selection of new instances. 
-Moreover, this practice discriminated against authors of purely satisfiable or unsatifiable sets of instances. 
-Also the hardness criterion of 10 \solver{Minisat} minutes was higher than the hardness criterion of 1 \solver{Minisat} minute of the BYOB rule. 
-In future competitions, we will not balance by \emph{satisfiablity} on the author level, we will be more consistent or clear with our \emph{hardness} criteria, and we will specify what it means for an instance to be counted as \emph{unknown}.
+In the instance selection, the author-wise balancing of satisfiable and unsatisfiable instances turned out often counter-productive as it 
+did not lead to a more balanced overall selection of new instances. 
+Moreover, this practice discriminated against authors who submitted solely satisfiable or unsatisfiable  instances. 
+The hardness criterion of 10 \solver{Minisat} minutes was set higher than the hardness criterion of 1 \solver{Minisat} minute of the ``bring your own benchmarks'' rule, 
+which can be viewed as problematic. As lessons learned
+in future competitions we will not aim balance by satisfiability status on the benchmarks author level. will aim to be more consistent with the imposed \emph{hardness} criteria
+for benchmark selection, and will also make sure to clearly communicate what it means for an instance to be counted as \emph{unknown}.
 
 The IPASIR interface facilitates the integration of SAT solvers into incremental applications. 
-In contrast to benchmarking with instances given in DIMACS CNF, there are only a couple of benchmark applications available for the Incremental track which are also less organized. 
-This calls for the creation of a more diverse and organized repository of applications for incremental SAT solvers. 
-Proper benchmarking and new tools for testing incremental SAT solvers can help solver authors to deal with the more complex use-case.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
+In contrast to benchmarking with instances given in the 
+DIMACS CNF format, there are only few benchmark applications available for the Incremental track.
+This calls for more community-level efforts for constructing a more diverse and well-organized repository of applications for incremental SAT solvers. 
+Proper benchmarking and new tools for testing incremental SAT solvers may also help solver authors to deal with the more complex use-cases.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
 
 This year the Hack track was organized for hacks of \solver{Glucose 3}. 
 In the next competition, we plan on moving to the well structured and documented state-of-the-art SAT solver \solver{CaDiCaL}. 
-The \solver{CaDiCaL-alluip} solver -- which is a modified \solver{CaDiCaL} -- has shown competitive performance in this competitition. 
+The \solver{CaDiCaL-alluip} solver---which is a modified \solver{CaDiCaL}---has shown competitive performance in this competitition. 
 
-The first instantiation of an Application track has been a Planning track. 
-The results show that different solvers take the lead when we only evaluate for a single application. 
+The first instantiation of an Application track was the Planning track organized as a one-time track in 2020.. 
+The results show that different solvers take the lead when we only evaluate for a single application, when compared to the overall Main track results.
 We intend to run further instantiations of the Application track. 
-In the next competition, we will compile a set of 200 cryptographic benchmark instances for a Crypto track. 
+While essentially none of the solvers that participated in the Planning track seemd particularly optimized for Planning instance, we hope
+in future iterations the community will pick up on the challenge of optimizing SAT solvers towards different focus applications, as a complementary
+challenge when compared to the generality of the Main track.
+In the next competition, the  planned focus of Application track will be on SAT solver applications in cryptology.
 
-The \emph{Portfolio rule} has been established to prohibit participation of pure solver portfolios and to stimulate development of new code-bases. 
-The rule was challenged in this competition, as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
-Therefore, the \emph{Portfolio rule} will receive some refinement in future competitions. 
-
-The results of the \emph{Planning} track as well as our differentiated analysis of the results highlight the individual contributions of many submissions. 
-Our plan for the future competitions is to always run a special track for varying applications alongside the Main track. 
-
+The portfolio rule has been established to prohibit participation of pure solver portfolios, in order to stimulate development of new code-bases and
+to ensure fair competition among  sequential solvers.
+The rule was challenged in this competition as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
+We aim to revisit and refine the portfolio rule in future instantiations of the competition in order to ensure that the rule does not unnecessarily hinder interesting 
+algorithmic developments in SAT solving.
 
 \section*{Acknowledgments}
 The authors thank StarExec for their support and resources to run the Main and the Planning tracks, and Amazon Web Services 
