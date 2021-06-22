@@ -699,7 +699,7 @@ For this application, we selected $50$ instances from \texttt{MaxSAT Evaluation 
 Here we used $50$ instances from \texttt{QBF Evaluation 2019}.\footnote{\url{http://www.qbflib.org/qbfeval19.php}}
 
 \paragraph{Planning (SAS+)}
-We selected $50$ planning instances to evaluate incremental SAT solvers with \textsf{Pasar}, a planner which uses counterexample-guided abstraction refinement (CEGAR)~\cite{Froleyks:2019:Pasar}. 
+We selected $50$ planning instances to evaluate incremental SAT solvers with \textsf{Pasar}, a planner which uses counterexample-guided abstraction refinement (CEGAR)~\cite{Pasar19}. 
 
 
 \section{Competition Results}
@@ -709,6 +709,9 @@ In this section we provide a high-level overview of the results of SAT Competiti
 %We focus on some interesting results.
 Later on, we will provide overview of some of the key and new solving techniques implemented in best-performing solvers
 (Section~\ref{sec:winners}) and as well as more in-depth analysis of the competition results (Section~\ref{sec:analysis}).
+
+An overview of the top-10 solvers in each of the competition tracks discussed in the following
+is provided in Table~\ref{tab:results}.
 
 \section{Main Track}
 
@@ -1006,7 +1009,7 @@ The SAT solver \solver{RISS} by Manthey is a further fork of \solver{Glucose}, c
 A further, more recent line of evolution in SAT solvers
 is rooted in the \solver{CoMinisatPS} by Oh, which is itself a again a fork of \solver{Minisat}, introduced three-tier clause-management~\cite{Oh:2015:satunsat}. 
 Building on \solver{CoMinisatPS}, 
-The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heuristics at SAT Competition 2016~\cite{Liang:2016:LRB}. 
+The SAT solver \solver{Maple} appeared as a series of forks presenting innovative branching heuristics at SAT Competition 2016~\cite{MapleSAT}. 
 The at-the-time award-winning variant \solver{MapleCOMSPS} by Liang et al.~implements a hybrid branching heuristic of classic variable-state independent decaying sum (VSIDS)~\cite{Zhang:2001:ClauseLearning} and the newer learning rate based branching (LRB) of \solver{CoMinisatPS}~\cite{Liang:2016:MapleCOMSPS}. 
 
 For SAT Competition 2017, Luo et al.~integrated learned clause minimization based on unit propagation (\solver{LCM}) in their award-winning \solver{Maple\_LCM\_Dist}~\cite{Luo:2017:LCM} which also uses the new branching heuristic \solver{Distance (Dist)} in an initial solving period~\cite{Xiao:2017:MapleLCMDist}. 
