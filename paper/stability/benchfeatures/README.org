@@ -101,12 +101,11 @@ Removed demoted solver:
 48 solvers participated in main track
 removed 200 planning bechmarks
 316 solved benchmarks are left
-removed 100 old benchmarks
-Benchmarks solved by none: 65
+Benchmarks solved by none: 84
 | result   |   benchmark |
 |----------+-------------|
-| SAT      |         156 |
-| UNSAT    |          79 |
+| SAT      |         182 |
+| UNSAT    |         134 |
 :end:
 
 ** dictionary
@@ -161,7 +160,7 @@ d.to_csv('benchmark_families.csv', sep=',', index=False)
 :end:
 
 * switch to new only
-#+onlyNew: t
+#+onlyNew:
 #+begin_src python
 mv("plots/", "allPlots")
 cmd("mkdir plots")
@@ -183,41 +182,24 @@ python3 par2_generator.py
 [[file:random_sampling_plots.py::fig.set_size_inches(9.6, 6.8)][adjust figure size]]
 fig = plt.figure()
 fig.set_size_inches(9.6, 6.8)
+[[file:random_sampling_plots.py::plt.errorbar(number_of_removed, correlation_mean, correlation_std, marker='', color='C1', ecolor='C0', elinewidth=1)][colors]]
 #+begin_src sh :results verbatim drawer
 python3 random_sampling_plots.py
 #+end_src
 
 #+RESULTS:
 :results:
-Eliminating 65 unsolved instances from the data.
-Found 156 SAT and 79 UNSAT problems from 235 problems.
+Eliminating 84 unsolved instances from the data.
+Found 182 SAT and 134 UNSAT problems from 316 problems.
 Mean and standard deviation of
  ranking correlations at random problem instance removals
 (repeated 50x each simple random sampling)
 0.00-0.20: 0 (0.00 %)
-0.20-0.40: 0 (0.00 %)
-0.40-0.60: 3 (1.28 %)
-0.60-0.80: 9 (3.83 %)
-0.80-0.99: 159 (67.66 %)
-0.99-1.00: 64 (27.23 %)
-Mean and standard deviation of ranking correlations
- at random problem instance removals considering only SAT instances
-(repeated 50x each simple random sampling)
-0.00-0.20: 0 (0.00 %)
-0.20-0.40: 0 (0.00 %)
-0.40-0.60: 2 (1.28 %)
-0.60-0.80: 6 (3.85 %)
-0.80-0.99: 120 (76.92 %)
-0.99-1.00: 28 (17.95 %)
-Mean and standard deviation of ranking correlations
- at random problem instance removals considering only UNSAT instances
-(repeated 50x each simple random sampling)
-0.00-0.20: 0 (0.00 %)
-0.20-0.40: 1 (1.27 %)
-0.40-0.60: 2 (2.53 %)
-0.60-0.80: 8 (10.13 %)
-0.80-0.99: 60 (75.95 %)
-0.99-1.00: 8 (10.13 %)
+0.20-0.40: 1 (0.32 %)
+0.40-0.60: 2 (0.63 %)
+0.60-0.80: 10 (3.16 %)
+0.80-0.99: 204 (64.56 %)
+0.99-1.00: 99 (31.33 %)
 :end:
 ** Executing family_and_SAT_random_sampling_plots.py
 [[file:family_and_SAT_random_sampling_plots.py::plt.xticks(range(runs),corr_s, rotation = 90)][bugfix]] plt.xticks(range(runs - 1),corr_s, rotation = 90)
