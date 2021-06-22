@@ -132,7 +132,7 @@ central computational tool for solving real-world problem instances of various k
 With standardized input formats, readily-available APIs for incremental applications,
 and certified proof logging and checking capabilities, applications of SAT solver technology
 have branched from the first breakthrough applications in automated planning, test pattern generation and hardware verification
-to thousands of different application settings. \textcolor{red}{Add various references to the several things in this sentence}
+to thousands of different application settings. 
 
 The success of SAT would not be possible without the persistent efforts of the SAT community to further improve the performance and robustness
 of SAT solvers. The SAT Competition series, with a history dating back to the early 90s, aims to support and provide further incentives 
@@ -215,7 +215,7 @@ the organizers aimed to experiment with the potential of a more application-spec
 each year highlighting a different problem domain where the SAT solving technology helps to advance the state of the art.
 In 2020, the Planning track represented the first trial instantiation of this idea.
 The focus of this track was specifically on efficiently solving
-instances arising from the domain of SAT-based automated planning.\textcolor{red}{Add references} 
+instances arising from the domain of SAT-based automated planning~\cite{Kautz1992}.
 Automated planning was chosen as the target problem domain of this first instantiation of the domain-specific tracks
 due to its centrality as one of the first breakthrough applications of SAT solvers.
 To this end, solvers participating in the Planning
@@ -224,7 +224,7 @@ The same rules for participation as in the Main track applied to the Planning tr
 Solvers submitted to the Main track automatically participated in the Planning track.
 
 The traditional Hack track (established 
-2009 as \solver{Minisat} Hack track) was organized as a sub-track of the Main track for hacks of \solver{Glucose 3}\textcolor{red}{Add reference}. 
+2009 as \solver{Minisat} Hack track) was organized as a sub-track of the Main track for hacks of \solver{Glucose 3}~\cite{Audemard:2018:Glucose}.
 In the past, several advances in SAT solving required only small modifications of an established solver to achieve a considerable contribution. 
 Hack tracks encourage participation of such small modifications. 
 The limit for being considered a ``hack'' was---somewhat arbitrarily\footnote{The specific threshold for edit distance is not central here; the idea is essentially to only allow relatively small changes to the Glucose
@@ -246,7 +246,7 @@ In the Incremental Library track the underlying idea is to mimic scenarios
 where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
 the enclosing tool reaches its final state. 
-``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}.\textcolor{red}{Should we not cite the 2004 temporal induction paper by Niklases here?}
+``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Niklas:2003:Incremental,Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}.
 Examples for applications of incremental SAT solving are counterexample-guided abstraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning},
 multi-agent path finding~\cite{DBLP:conf/ijcai/Surynek19}, and satisfiability modulo theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
 
@@ -414,8 +414,7 @@ in the competition. We do not, however, have concrete evidence to support this p
 The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{2.66}{\giga\hertz}
 (4-Core) processors and \SI{24}{\giga\byte} of RAM.
 The Parallel track was run on AWS m4.16xlarge machines with 64 virtual CPUs and 256 GB
-of memory, while the Cloud track was run on AWS\textcolor{red}{Was AWS spelled out a single time before this? I now notice that
-we do not really mention Amazon much, should we mention it more specifically?}
+of memory, while the Cloud track was run on Amazon Web Services (AWS)
  m4.4xlarge machines with 16 virtual CPUs and 64 GB of
 memory. These tracks used wall-clock timeouts of \SI{5000}{\second} and \SI{1000}{\second}, respectively.
 
@@ -786,8 +785,6 @@ The PAR-2 scores of these two solvers were
 quite similar as well. The third ranked solver, \solver{Kissat}, solved fewer instances, but its fast runtimes
 on several instances resulted in a strong PAR-2 score. Notice that these three solvers were also strong in the Main track. 
 It should be noted that, somewhat disappointingly,  none of the participating solvers were actually optimized for planning instances. 
-
-\textcolor{red}{Hmm we don't have any result tables or anything??}
 
 \subsection{Parallel Track}
 
@@ -1664,9 +1661,9 @@ that managed to solve an instance uniquely (i.e., being the only solver that sol
 shows up in the greedy set cover.
 % for example the case of the last listed  
 %\solver{exp-V-LGB-MLD-CBT-DL}.
-Highlighting solvers that uniquely solve instance is a property of the greedy set cover metric
-which we believe is congruent with documenting contributions to the state of the art.
-\textcolor{red}{congruent...? maybe a better choice of words here?}
+Highlighting solvers that uniquely solve instance is a property of 
+Indeed, the greedy set cover metric highlights solvers which are able to uniquely solve specific benchmark instances
+and thereby contributing to the current state of the art.
 
 \subsection{Time-Limited Schedules}
 
