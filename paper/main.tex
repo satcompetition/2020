@@ -694,7 +694,7 @@ which are input to a cardinality constraint~\cite{Philipp:2015:PBLib}.
 The MaxSAT problem is then solved by incrementally minimizing the bound of the cardinality constraint. 
 For this application, we selected $50$ instances from \texttt{MaxSAT Evaluation 2019}.\footnote{\url{https://maxsat-evaluations.github.io/2019/}}
 
-\paragraph{Quantified Boolean Formulas (QBF)}
+\paragraph{Quantified Boolean Formulas}
 \textsf{Ijtihad} is a QBF solver which uses counterexample-guided expansion to incrementally solve a given QBF instance with a SAT solver~\cite{Bloem:2018:QBFSAT}. 
 Here we used $50$ instances from \texttt{QBF Evaluation 2019}.\footnote{\url{http://www.qbflib.org/qbfeval19.php}}
 
@@ -793,7 +793,7 @@ It should be noted that, somewhat disappointingly,  none of the participating so
 
 Turning to the Parallel track, Figure~\ref{fig:res-parallel} shows the performance of
 all participating parallel solvers. 
-The best solver in the Parallel track is \solver{Painless-MCOMSPS-STR32}. Interestingly,
+The best solver here is \solver{Painless-MCOMSPS-STR32}. Interestingly,
 this solver used 32 threads on the 64 virtual cores that were available. In fact, it has been observed in already 
 recent earlier 
 SAT competitions that using fewer threads than the number of available virtual cores can be helpful; as threads compete 
