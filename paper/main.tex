@@ -247,7 +247,7 @@ where a SAT solver is used as a back-end solver in a more complex tool
 (typically solving a harder problem than SAT) and is called multiple times before 
 the enclosing tool reaches its final state. 
 ``Incremental'' here refers to the idea that the individual calls to the SAT solver are not independent, but may share a common subset of the input clauses or differ in the presence of additional unit clause assumptions~\cite{Nadel:2014:Incremental,Fazekas:2019:IncrementalInprocessing}.\textcolor{red}{Should we not cite the 2004 temporal induction paper by Niklases here?}
-Examples for applications of incremental SAT solving are counterexample-guided eastraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning},
+Examples for applications of incremental SAT solving are counterexample-guided abstraction refinement (CEGAR) based approaches, e.g., for Bounded Model Checking~\cite{Strichman:2005:ARBMC}, SAT-based planning~\cite{Balyo:2017:IncrPlanning},
 multi-agent path finding~\cite{DBLP:conf/ijcai/Surynek19}, and satisfiability modulo theories (SMT) solvers~\cite{Brummayer:2009:Boolector}. 
 
 Instead of using or extending the DIMACS input format, in the the Incremental Library track
@@ -306,8 +306,8 @@ The source code of submitted SAT solvers had to be made available
 \paragraph{Description}
 A short system description was required for each solver submission,
 including a list of all  authors involved in developing the solver,  description of any non-standard algorithmic
-techniques and data structures implemented in the sovler, as well as references to the relevant literature.
-These system descriptions have been collected and made available publically in the non-refereed competition
+techniques and data structures implemented in the solver, as well as references to the relevant literature.
+These system descriptions have been collected and made available publicly in the non-refereed competition
 proceedings~\cite{SC2020}.
 
 \paragraph{Benchmarks}
@@ -680,7 +680,7 @@ We selected $50$ of the smallest and easiest satisfiable instances from previous
 
 Variables which have to be assigned in all partial models of a formula as \emph{essential} (as opposed to \emph{don't care}-values)~\cite{Bryant:1987:Essentials}. 
 The application \textsf{genipaessentials} incrementally determines essential variables in a given satisfiable formula~\cite{Balyo:2015:SATRace}. 
-For this applicaiton, we used the same $50$  satisfiable instances as for  backbone computation.
+For this application, we used the same $50$  satisfiable instances as for  backbone computation.
 
 \paragraph{Longest Simple Paths (LSP)}
 
@@ -819,7 +819,7 @@ The clear winner of the Cloud track is \solver{Mallob-Mono} and the runner-up is
 \solver{Mallob-Mono} was able to solve more instances in 1000 seconds than the 
 winner of the Parallel Track in 5000 seconds, which shows the potential of distributed SAT solving. 
 The other four participants performed significantly worse. 
-The massive parallelism in distributed SAT solving imposes additional challanges on scalable information sharing and search diversification. 
+The massive parallelism in distributed SAT solving imposes additional challenges on scalable information sharing and search diversification.
 Since 2020 was the first year of this track, we expect a tighter competition in the future. 
 
 
@@ -1277,7 +1277,7 @@ In the following, we outline  the best-performing parallel solver implementation
 \subsubsection{Painless MapleCOMSPS STR} 
 
 \solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless,Liang:2017:Maplecomsps}. 
-The authors submitted a \solver{32} and a \solver{64} threaded variant, which alltogether won three awards, achieving
+The authors submitted a \solver{32} and a \solver{64} threaded variant, which altogether won three awards, achieving
  the first place overall, the best score on satisfiable and the second-best score on unsatisfiable instances. 
 The \solver{32} threaded variant achieved slightly better scores than the \solver{64} threaded variant overall
 Furthermore, 
@@ -1376,7 +1376,7 @@ Even thought its sequential version was unsuccessful in the Main track, the MPI-
 \label{sec:analysis}
 
 In this section, we provide additional analysis of the Main track results, going beyond the rankings.
-In paricular, we focus on metrics complementing the PAR-2 score used for ranking the solvers in the actual competition.
+In particular, we focus on metrics complementing the PAR-2 score used for ranking the solvers in the actual competition.
 
 \subsection{Contributions to the Virtual Best Solver}
 
@@ -1603,7 +1603,7 @@ in particular on \SI{11.5}{\percent} of all the solved instances.
 The metric VBS-2 identifies \solver{Kissat-sat} as the best solver. Its leading score of \SI{32.9}{\percent} of the total
 is somewhat more difficult to interpret, though: a solver can score \SI{32.9}{\percent} of VBS-2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
-and no others. Howeer,  we see from its VBS-1 score that \solver{Kissat-sat} solved \SI{9.8}{\percent}
+and no others. However, we see from its VBS-1 score that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
 A solver can also score \SI{32.9}{\percent} of VBS-2 total by solving all the solved instances,
 but always being roughly three times slower than the VBS. 
@@ -1661,7 +1661,7 @@ With these
 We can see that the further iterations tend to add very little,
 with the final four iterations adding one instance each. Note that each solver
 that managed to solve an instance uniquely (i.e., being the only solver that solved a particular instance)
-showis up in the greedy set cover. 
+shows up in the greedy set cover.
 % for example the case of the last listed  
 %\solver{exp-V-LGB-MLD-CBT-DL}.
 Highlighting solvers that uniquely solve instance is a property of the greedy set cover metric
@@ -1805,7 +1805,7 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \label{tab:eval-by-family}
 \end{table}
 
-Contributions to the VBS can becaptured by clustering the instance space into instance families. 
+Contributions to the VBS can be captured by clustering the instance space into instance families.
 We evaluate the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
 and report their place and score in Table~\ref{tab:eval-by-family}. 
 Interestingly, the overall best solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
@@ -1842,7 +1842,7 @@ a similarity above \num{0.999}. Therefore the two solvers are joined low in the
 dendrogram.
 % A similar visualization was used for the results of the SAT Race 2015 \cite{Balyo:2015:SATRace}.
 
-Interestingly, one identifiable large cluster consists of the \solver{Maple}-decedants, 
+Interestingly, one identifiable large cluster consists of the \solver{Maple}-descendants,
 all of which are modifications of the winners in the SAT Competition 2018 and
 the SAT Race 2019.
 The similarity within the cluster is high, with the exception of
@@ -2017,12 +2017,12 @@ Proper benchmarking and new tools for testing incremental SAT solvers may also h
 
 This year the Hack track was organized for hacks of \solver{Glucose 3}. 
 In the next competition, we plan on moving to the well structured and documented state-of-the-art SAT solver \solver{CaDiCaL}. 
-The \solver{CaDiCaL-alluip} solver---which is a modified \solver{CaDiCaL}---has shown competitive performance in this competitition. 
+The \solver{CaDiCaL-alluip} solver---which is a modified \solver{CaDiCaL}---has shown competitive performance in this competition.
 
 The first instantiation of an Application track was the Planning track organized as a one-time track in 2020.. 
 The results show that different solvers take the lead when we only evaluate for a single application, when compared to the overall Main track results.
 We intend to run further instantiations of the Application track. 
-While essentially none of the solvers that participated in the Planning track seemd particularly optimized for Planning instance, we hope
+While essentially none of the solvers that participated in the Planning track seemed particularly optimized for Planning instance, we hope
 in future iterations the community will pick up on the challenge of optimizing SAT solvers towards different focus applications, as a complementary
 challenge when compared to the generality of the Main track.
 In the next competition, the  planned focus of Application track will be on SAT solver applications in cryptology.
