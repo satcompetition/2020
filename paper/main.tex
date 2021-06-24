@@ -378,24 +378,17 @@ not eligible for awards.
 
 \label{sec:certif}
 
-In all tracks solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question)
- to certify recognizing a satisfiable instance.
-On the other hand, 
-certificates for unsatisfiable instances (proofs) were required only 
-in the Main track (besides the No-Limits track).
+In all tracks solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question) to certify recognizing a satisfiable instance.
+On the other hand, certificates for unsatisfiable instances (proofs) were required only in the Main track (besides the No-Limits track). 
 In some cases, a solver output the correct result, but the respective certificate was wrong. 
-Such solvers were demoted to the No-Limits track of the competition. 
+Such solvers were \emph{demoted to the No-Limits track} of the competition. 
 
-The proofs were validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim}
-was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file.
-Afterwards, an independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub}
-was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
-In the Main track, only those unsatisfiable benchmark instances for which the proof emitted by a specific solver
-could be validated by {\tt DRAT-trim} were considered solved by the  solver.
-It should be noted that, while there were several cases where {\tt cake\_lpr} ran out of resources before 
-there was no case where {\tt DRAT-trim} would accept
-a proof and {\tt cake\_lpr} would later disagree with the verdict.
-\textcolor{red}{This is pretty vague... does not really say if there were proofs that could not be validated with DRAT-trim??}
+The proofs were validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim} was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file. 
+Afterwards, an independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub} was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
+
+In a few cases {\tt DRAT-trim} ran into the verification timeout of 40000 seconds. 
+In the Main track, only those unsatisfiable benchmark instances for which the emitted proof could be validated at least by {\tt DRAT-trim} were considered solved by the solver. 
+While there were several cases where {\tt cake\_lpr} ran out of resources, there was no case where {\tt DRAT-trim} would accept a proof and {\tt cake\_lpr} would later disagree with the verdict.
 
 \subsection{Computing Environments}
 
@@ -713,7 +706,7 @@ Later on, we will provide overview of some of the key and new solving techniques
 An overview of the top-10 solvers in each of the competition tracks discussed in the following
 is provided in Table~\ref{tab:results}.
 
-\section{Main Track}
+\subsection{Main Track}
 
 Starting with the Main track, 
 Figure~\ref{main:all} shows the cumulative solved instances plot of the best-performing solver of the strongest
@@ -1212,7 +1205,7 @@ and an improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}.
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
 The variants including \emph{Stable AllUIP} were the most successful in the 2020 competition, achieving in particular the  first place in the Planning track. 
 
-\emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size or LBD than the 1-UIP clause. 
+\emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size and with an LBD not larger than that of the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of such extended learning attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
 The \emph{Trail Saving} variant caches backtracked portions of the trail and uses them to restore decision levels during search if possible~\cite{Hickey:2020:TrailSaving}. 
 
@@ -1275,13 +1268,8 @@ In the following, we outline  the best-performing parallel solver implementation
 \subsubsection{Painless MapleCOMSPS STR} 
 
 \solver{Painless-MCOMSPS-STR} integrates the solver \solver{MapleCOMSPS} in the \solver{Painless} parallelization framework~\cite{Frioux:2017:Painless,Liang:2017:Maplecomsps}. 
-The authors submitted a \solver{32} and a \solver{64} threaded variant, which altogether won three awards, achieving
- the first place overall, the best score on satisfiable and the second-best score on unsatisfiable instances. 
-The \solver{32} threaded variant achieved slightly better scores than the \solver{64} threaded variant overall
-Furthermore, 
- the \solver{32} threaded variants geared towards either satisfiable or unsatisfiable instances 
-showed much better  than the the \solver{64} threaded variants. \textcolor{red}{Not sure if I got this right: did the submit variants of the solver geared specifically towards SAT and UNSAT, resp.? The writing was really confusing here...}
-% such that the runner-up solvers outperformed the \solver{64} threaded variant. 
+The authors submitted a \solver{32} and a \solver{64} threaded variant, which altogether won three awards, achieving the first place overall, the best score on satisfiable and the second-best score on unsatisfiable instances. 
+Interestingly, the \solver{32} threaded variant performed better than the \solver{64} threaded variant. 
 
 \solver{Painless} uses a generic interface to integrate a solver and abstracts away the implementation details of parallelism and concurrent data-structures. Due to this,  implementations in \solver{Painless} boil down to implementing parallelization and clause sharing strategies~\cite{Frioux:2017:Painless}. 
 \solver{Painless-MCOMSPS-STR} diversifies mainly via hard-coded configurations of the branching strategies LRB and VSIDS, and via sparse random initialization of variable polarities~\cite{Balyo:2015:HordeSATs}. 
