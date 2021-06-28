@@ -419,7 +419,7 @@ memory. These tracks used wall-clock timeouts of 5,000 seconds and 1,000 seconds
 \section{Benchmarks}
 \label{sec:instances}
 
-For data-driven selection of benchmark instances, we used GBD~Tools\footnote{\url{See https://pypi.org/project/gbd-tools/}} which facilitates querying for instances with desired properties, e.g., by instance author, family, result or solver runtime~\cite{Iser:2018:GBD}. 
+For data-driven selection of benchmark instances, we used GBD~Tools\footnote{See \url{https://pypi.org/project/gbd-tools/}} which facilitates querying for instances with desired properties, e.g., by instance author, family, result or solver runtime~\cite{Iser:2018:GBD}. 
 We also use GBD~Tools for distributing benchmark instances and their attributes to the general public.\footnote{See \url{https://gbd.iti.kit.edu}} 
 
 \subsection{Selection of Instances}
@@ -498,14 +498,12 @@ Vlsat & Bouvier & 36 & & 14 & \\
 \label{tab:families}
 \end{table}
 
-The ``Bring Your Own Benchmarks'' (BYOB) rule, first  established in SAT Competition 2017~\cite{SC2017}, was again followed
-in 2020.
-By this rule, solver authors are required to submit 20 ``new'' benchmark instances to accompany a solver submission in order to participate in the competition. 
-New refers to the fact that instances contained in benchmark sets from earlier SAT Competitions are not allowed.
-Furthermore, a least 10 of the required 20 instances are required to be ``interesting'', interpreted in loose terms by
- the standard \solver{Minisat} SAT solving needing at least one minute of runtime (on typical computing hardware) to solve an instance.
+The ``Bring Your Own Benchmarks'' (BYOB) rule, first  established in SAT Competition 2017~\cite{SC2017}, was again followed in 2020. 
+By this rule, solver authors are required to submit 20 benchmark instances to accompany a solver submission in order to participate in the competition. 
+These benchmarks have to be ``new'' in the sense that instances included in benchmark sets from previous SAT competitions are not allowed. 
+Furthermore, at least ten of the required 20 instances are required to be ``interesting'', interpreted in loose terms by the standard \solver{Minisat} SAT solving needing at least one minute of runtime (on typical computing hardware) to solve an instance. 
 It should be noted that new benchmarks could be submitted to the competition without needing to submit a solver.
-As a results, as detailed in Table~\ref{tab:families}, 27 authors contributed a set of 1260 new benchmark instances from a wide range of different instance families. 
+As a results, as detailed in Table~\ref{tab:families}, 27 authors contributed a set of 1,260 new benchmark instances from a wide range of different instance families. 
 
 We decided to include a total of 
 300 new benchmarks and a further 100 benchmarks from previous SAT Competitions to the main benchmark set of the 2020 competition.
@@ -513,20 +511,19 @@ Key aims of benchmark selection is to ensure that (i) the benchmark set includes
 in order to differentiate the overall runtime performances of the competing solvers (without actually running the competing solvers during benchmark selection); 
 (ii)~the number of benchmarks included in the benchmark set from different problem domains 
 is balanced across the problem domains, and that (iii) the benchmark set is also balanced in terms of the number of unsatisfiable and satisfiable instances included in the set.
-
-To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than 10 minutes.\footnote{We note that
-the limit of 10 minutes is again somewhat arbitrary.
-This 10-min runtime hardness filter essentially aims to make sure that enough instances are included in the final benchmark set which allow for distinguishing in terms of relative performance between the best-performing competing solvers.
-Unfortunately this time the 10-min limit enforced  was much greater that the requirements imposed for  ``interesting'' benchmark instances
-by the BYOB rule. It could be more sensible to impose the some 10-min limited also for an instance being ``interesting''. However, this would require more efforts
-at least in terms of computation times from the solver authors in order to construct a set of 20 interesting new benchmarks required by the BYOB rule.}
-
-From the resulting 1012 instances, in order to obtain a balanced benchmark set, 
+\newpage
+To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than ten minutes.\footnote{We note that
+the limit of ten minutes is again somewhat arbitrary.
+This runtime hardness filter essentially aims to make sure that enough instances are included in the final benchmark set which allow for distinguishing in terms of relative performance between the best-performing competing solvers.
+Unfortunately this limit was much greater that the requirements imposed for  ``interesting'' benchmark instances
+by the BYOB rule. It could be more sensible to impose the same ten minutes limit also for an instance being ``interesting''. However, this would require more efforts
+at least in terms of computation times from the solver authors in order to construct a set of interesting new benchmarks required by the BYOB rule.}
+From the resulting 1,012 instances, in order to obtain a balanced benchmark set, 
 we randomly selected $k$~instances per author using the value  $k$ which ensured that  the resulting set contains at least 300 instances.
 This \emph{rule-based randomization} procedure is detailed as
 Algorithm~\ref{algo:select}. Specifically,
-we randomly selected 7~satisfiable and 7~unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of 14~instances (Lines~5--7). 
-Of the such obtained 308~instances, we randomly removed 8~satisfiable instances, yielding a total of 114~satisfiable, 78~unsatisfiable and 108~instances of unknown satisfiability
+we randomly selected seven satisfiable and seven unsatisfiable instances per author (Lines~3 and~4) and added instances of yet unknown result if this did not yield a total of 14~instances (Lines~5--7). 
+Of the such obtained 308~instances, we randomly removed eight satisfiable instances, yielding a total of 114~satisfiable, 78~unsatisfiable and 108~instances of unknown satisfiability
 status.
  
 We augmented the then obtained set of 300 new benchmarks with 100 instances from previous SAT competitions as follows. 
@@ -598,16 +595,16 @@ and 2018 \footnote{\url{https://bitbucket.org/ipc2018-classical/domains}}. We
 only selected planning domains with \emph{unit cost} and eliminated those that
 % are designed to be challenging for the grounding routine and
 take more than 100 GB of memory to encode into SAT. We ran both Pasar and
-Madagascars $\exists$-configuration with a timeout of 3 hours on the
+Madagascars $\exists$-configuration with a timeout of three hours on the
 remaining instances to find the minimal makespans. For each planning task where
 this process did not timeout, we generated a pair of satisfiable and
 unsatisfiable SAT instances. A significant number of instances from this set were not used
-as \solver{Minisat} could solve them in under $10$ minutes.
+as \solver{Minisat} could solve them in under ten minutes.
 % From those we discarded the SAT formulas that \solver{Minisat} can solve in
 % under $10$ minutes.
 We augmented the remaining domains with the last unsatisfiable formulas
-generated for planning task where the minimal makespan could not be found.
-To generate the missing benchmarks we use a \emph{sequential} encoding
+generated for planning tasks where the minimal makespan could not be found.
+To generate the missing benchmarks, we use a \emph{sequential} encoding
 % , where the minimal makespan equals the length of the shortest valid plan
 together with bounds\footnote{Upper and lower bounds on plan length are available for
 	some planning tasks from the \emph{Optimal track} that have \emph{unit cost}
@@ -616,9 +613,9 @@ together with bounds\footnote{Upper and lower bounds on plan length are availabl
 In addition to the classical planning problems, we also included SAT instances
 generated by \emph{Tree-REX} \cite{TreeRex19}, a planner for \emph{Hierarchical
 	Task-networks} (HTN).
-  In HTN planning additional domain knowledge besides the problem description is provided.
+  In HTN planning, additional domain knowledge besides the problem description is provided.
 The HTN benchmarks were provided by
-the solver author.
+the author of \emph{Tree-REX}.
 
 % - 86 out of 100 biggest (number of clauses) are planning
 % - 109 / 200 in the planning track are not solved by any solver
@@ -653,7 +650,7 @@ planning instances. The average for the Main track instances is below $60$\%.
 Table \ref{tab:planningBenchmarkDist} shows the number of benchmarks generated
 by each encoding.
 For a complete list of the encoded planning tasks we refer to the
-generation script\footnote{\url{https://satcompetition.github.io/2020/downloads/planning_generator.tar.xz}}.
+generation script.\footnote{\url{https://satcompetition.github.io/2020/downloads/planning_generator.tar.xz}}
 The benchmarks of the Planning track adhere to the following naming convention:
 ${\langle \texttt{SAT/UNSAT} \rangle\_\langle \texttt{encoding} \rangle\_\langle
 			\texttt{name} \rangle\_\langle \texttt{makespan}
