@@ -511,7 +511,7 @@ Key aims of benchmark selection is to ensure that (i) the benchmark set includes
 in order to differentiate the overall runtime performances of the competing solvers (without actually running the competing solvers during benchmark selection); 
 (ii)~the number of benchmarks included in the benchmark set from different problem domains 
 is balanced across the problem domains, and that (iii) the benchmark set is also balanced in terms of the number of unsatisfiable and satisfiable instances included in the set.
-\newpage
+
 To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than ten minutes.\footnote{We note that
 the limit of ten minutes is again somewhat arbitrary.
 This runtime hardness filter essentially aims to make sure that enough instances are included in the final benchmark set which allow for distinguishing in terms of relative performance between the best-performing competing solvers.
@@ -700,11 +700,10 @@ We selected $50$ planning instances to evaluate incremental SAT solvers with \te
 \section{Competition Results}
 \label{sec:results}
 
-In this section we provide a high-level overview of the results of SAT Competition 2020.
+In this section, we provide a high-level overview of the results of SAT Competition 2020.
 %We focus on some interesting results.
-Later on, we will provide overview of some of the key and new solving techniques implemented in best-performing solvers
-(Section~\ref{sec:winners}) and as well as more in-depth analysis of the competition results (Section~\ref{sec:analysis}).
-
+Later on, we will provide an overview of some of the key and new solving techniques implemented in best-performing solvers
+(Section~\ref{sec:winners}) as well as a more in-depth analysis of the competition results (Section~\ref{sec:analysis}).
 An overview of the top-10 solvers in each of the competition tracks discussed in the following
 is provided in Table~\ref{tab:results}.
 
@@ -712,7 +711,7 @@ is provided in Table~\ref{tab:results}.
 
 Starting with the Main track, 
 Figure~\ref{main:all} shows the cumulative solved instances plot of the best-performing solver of the strongest
-10 teams (in short, the top-10 solvers)  together with the Virtual Best Solver (VBS---see also~\ref{subsec:vbs_explained}).
+ten teams (in short, the top-10 solvers)  together with the Virtual Best Solver (VBS---see also~\ref{subsec:vbs_explained}).
 The best-performing  solver overall on the combination of satisfiable and unsatisfiable instances
 is \solver{Kissat-sat} and the runner-up is \solver{Relaxed-newTech}. Notice that
 \solver{Relaxed-newTech} solved more instances within the 2000-second limit.
@@ -726,7 +725,7 @@ in the recent past competitions.
 The four solvers \solver{Kissat-sat}, \solver{Relaxed-newTech}, \solver{CaDiCaL-alluip-trail}, and \solver{CMS-ccnr-lsids} 
 performed significantly better that all other solvers submitted to the Main track (cf. Table~\ref{tab:results}).
 A very interesting observation is that these four top solvers all have a different code base. This has not been observed for many years; more typically
-many of the best-performing solver have been based on same code bases.
+many of the best-performing solvers have been based on same code bases.
 
 The majority of the overall performance differences
  between the top-4 solvers and the other solvers 
@@ -734,7 +733,7 @@ is due to performance differences on satisfiable instances;
 see Figure~\ref{main:sat}. Indeed, in recent years, several techniques have been added to SAT solvers to improve
 their performance on satisfiable instance. Examples of such techniques are the integration of a local search
 solver and alternating between a SAT mode (infrequent restarts) and an UNSAT mode (frequent restarts
-and variable-move-to-front~\cite{Ryan:2004:Thesis}). The best-performing solver in  Main SAT track on satisfiable instances is \solver{Relaxed-newTech}, followed by
+and variable-move-to-front~\cite{Ryan:2004:Thesis}). The best-performing solver in the Main SAT track on satisfiable instances is \solver{Relaxed-newTech}, followed by
 \solver{Kissat-sat} and \solver{CMS-ccnr-lsids}.
 
 
@@ -759,7 +758,7 @@ Overall, solvers performed much more similarly on
 unsatisfiable instances than on satisfiable instances;
 see Figure~\ref{main:unsat} for the runtime performance on unsatisfiable instances. 
 Only \solver{Kissat-unsat}, the winner of the Main UNSAT track, 
-performed significantly than all other participating solvers. 
+performed significantly better than all other participating solvers. 
 It is therefore not surprising
 that the VBS is reasonably close to \solver{Kissat-unsat}. %\solver{Kissat} is a new solver that has been implemented in C, while most solvers are implemented in C++. Further 
 %details about \solver{Kissat} are given in Section~\ref{sec:kissat}.
