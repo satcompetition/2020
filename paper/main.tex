@@ -148,7 +148,7 @@ This article focuses on the 2020 instantiation of the SAT Competitions.
 To this end, we provide
 a detailed account of SAT Competition 2020 in terms of organizational details, competition tracks,
 participating solvers, benchmarks, and the empirical results from the competition.
-In terms of competition tracks, two new tracks, namely the cloud track and an application-specific track, where introduced in 2020,
+In terms of competition tracks, two new tracks, namely the cloud track and an application-specific track, were introduced in 2020,
 in addition to the already earlier established main, parallel, and incremental tracks; we
 provide motivation and the new organizational details for both of these new tracks.
 In terms of solvers, we provide an overview of solving strategies and other details implemented in the top-performing solvers
@@ -159,7 +159,7 @@ In terms of empirical results we provide further analysis on the competition res
 on the SAT competition web pages.\footnote{\url{https://satcompetition.github.io/2020/}}
 Finally, we also provide a discussion on lessons learned and ideas for future editions of SAT competitions.
 
-The rest of this article is organized as follows. 
+This article is organized as follows. 
 We start by providing an overview on the competition, including details on and motivations for the several
 competition tracks, the rules and other technical requirements of the competition, the ranking schemes used
 in evaluating the competing solvers, 
@@ -254,9 +254,9 @@ Instead of using or extending the DIMACS input format, in the the Incremental Li
 a general incremental interface called IPASIR (Re-entrant Incremental Solver API) 
 is employed~\cite{Balyo:2015:SATRace}. The idea is that we actually run the 
 enclosing tool on its own benchmark and communicate with the competing SAT solver 
-through this interface API. 
+through this interface. 
 %
-SAT solvers submitted to this track need hence implement the require interface.
+SAT solvers that are submitted for this track must hence implement the interface.
 Furthermore, it should be noted that the solutions output by a solver may, in general, influence
 the forthcoming invocations of the solver.
 % E.g. Smaller unsat cores may allow the enclosing tool to converge using fewer SAT calls!
@@ -317,11 +317,11 @@ The exact details of this rule are further explained in Section~\ref{sec:byob}.
 In short, this rule guaranteed that the competition could be run on instances mostly unseen to the solver
 developers prior to the competition. Moreover, by making these benchmarks publicly available
 after the competition, the SAT community benefits by having an ever growing repository 
-of diverse problems to target with the next developments.
+of diverse problems that next developments will target.
 The descriptions of the submitted benchmarks are also made available in the competition proceedings~\cite{SC2020}.
 
 \paragraph{Input and Output Format}
-
+No-limits
 The benchmark instances were presented to the solvers in the de facto standard
 DIMACS input format for propositional formulas in conjunctive normal form (CNF).
 A simple extension of this format was to be adhered to when printing 
@@ -346,7 +346,7 @@ or the compilation options were different, or different command line options wer
 
 \paragraph{Portfolio Solvers}
 
-Apart from the No-limits track, participants were not allowed to submit a portfolio of solvers,
+Apart from the No-Limits track, participants were not allowed to submit a portfolio of solvers,
 i.e., a combination of two or more core SAT solvers developed by different groups of authors.\footnote{In other words, a submission of a combination of solvers was only possible if all the authors of all the parts
 were explicitly listed. This means that all the authors had to be notified if such participation
 was planned and had to consider it carefully, also taking into account the limited number of submissions per author
@@ -364,7 +364,7 @@ The organizers of the competition were not allowed to participate.
 Solvers were ranked using a PAR-2 score based on a \num{5000}-second timeout.
 A PAR-2 system assigns as many points as the amount of time (in seconds) it took the solver
 to solve a particular instance and twice the time limit, i.e.~\num{10000} points,
-if the instance was not solved. In particular, this mean that the lower the score a solver
+if the instance was not solved. In particular, this means that the lower the score a solver
 obtained, the better the solver performs.
 %We generally report the \emph{average score} of each solver across a benchmark set.
 
@@ -378,7 +378,7 @@ not eligible for awards.
 
 \label{sec:certif}
 
-In all tracks solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question) to certify recognizing a satisfiable instance.
+In all tracks, solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question) to certify recognizing a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only in the Main track (besides the No-Limits track). 
 In some cases, a solver output the correct result, but the respective certificate was wrong. 
 Such solvers were demoted to the No-Limits track of the competition. 
@@ -401,8 +401,8 @@ there was no case where {\tt DRAT-trim} would accept a proof and {\tt cake\_lpr}
 The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{starexec}
 with computing nodes  equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
-The time limit enforced on each solver for solving an instance was \SI{5000}{\second}. 
-In the Main track, proof validation was limited to \SI{45000}{\second} per proof.)
+The time limit enforced on each solver for solving an instance was 5,000 seconds. 
+In the Main track, proof validation was limited to 40,000 seconds per proof.)
 The solvers were allowed to use the full \SI{128}{\giga\byte} of RAM.\footnote{
 Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
 was by mistake advertised on the competition web page prior to solver submission.
@@ -414,7 +414,7 @@ The Incremental Library Track was run on computers with 2x Intel Xeon E5430 \SI{
 The Parallel track was run on AWS m4.16xlarge machines with 64 virtual CPUs and 256 GB
 of memory, while the Cloud track was run on Amazon Web Services (AWS)
  m4.4xlarge machines with 16 virtual CPUs and 64 GB of
-memory. These tracks used wall-clock timeouts of \SI{5000}{\second} and \SI{1000}{\second}, respectively.
+memory. These tracks used wall-clock timeouts of 5,000 seconds and 1,000 seconds, respectively.
 
 \section{Benchmarks}
 \label{sec:instances}
