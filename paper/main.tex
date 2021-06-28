@@ -381,14 +381,19 @@ not eligible for awards.
 In all tracks solvers were required to output a solution (a satisfying truth assignment, i.e., a model on the instance in question) to certify recognizing a satisfiable instance.
 On the other hand, certificates for unsatisfiable instances (proofs) were required only in the Main track (besides the No-Limits track). 
 In some cases, a solver output the correct result, but the respective certificate was wrong. 
-Such solvers were \emph{demoted to the No-Limits track} of the competition. 
+Such solvers were demoted to the No-Limits track of the competition. 
 
-The proofs were validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim} was used for initial checking and optimizing the emitted proof, deriving a so-called LRAT proof file. 
-Afterwards, an independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub} was used for validating the LRAT proof as a correct proof of unsatisfiability of the given formula.
+Each unsatisfiability proof produced by 
+each solver was validated in a two-step fashion. First, the tool {\tt DRAT-trim}~\cite{DRATtrim} was used for initial checking and optimizing the 
+ proof, thereby obtaining a so-called LRAT proof file. 
+An independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub} was then used for validating the 
+LRAT proof as a correct proof of unsatisfiability.
 
-In a few cases {\tt DRAT-trim} ran into the verification timeout of 40000 seconds. 
-In the Main track, only those unsatisfiable benchmark instances for which the emitted proof could be validated at least by {\tt DRAT-trim} were considered solved by the solver. 
-While there were several cases where {\tt cake\_lpr} ran out of resources, there was no case where {\tt DRAT-trim} would accept a proof and {\tt cake\_lpr} would later disagree with the verdict.
+In a few cases {\tt DRAT-trim} ran into the verification timeout of 40,000 seconds. 
+In the Main track, only those unsatisfiable benchmark instances for which the proof produced by a solver 
+could be validated at least by {\tt DRAT-trim} were considered solved by the solver. 
+While there were several cases where {\tt cake\_lpr} ran out of resources, 
+there was no case where {\tt DRAT-trim} would accept a proof and {\tt cake\_lpr} would not.
 
 \subsection{Computing Environments}
 
@@ -1205,7 +1210,8 @@ and an improved clause-learning \emph{Stable AllUIP}~\cite{Bacchus:SC2020}.
 Submitted were the three variants \solver{Trail}, \solver{AllUip} and \solver{AllUip+Trail}. 
 The variants including \emph{Stable AllUIP} were the most successful in the 2020 competition, achieving in particular the  first place in the Planning track. 
 
-\emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size and with an LBD not larger than that of the 1-UIP clause. 
+\emph{Stable AllUip} resolves additional clauses beyond the First Unit Implication Point (1-UIP) and keeps them whenever they are of smaller size and their 
+LBD not greater than that of the 1-UIP clause. 
 By monitoring the frequency of clauses which successfully pass that filter, the solver dynamically limits the amount of such extended learning attempts~\cite{Zhang:2001:ClauseLearning,Bacchus:SC2020}.
 The \emph{Trail Saving} variant caches backtracked portions of the trail and uses them to restore decision levels during search if possible~\cite{Hickey:2020:TrailSaving}. 
 
