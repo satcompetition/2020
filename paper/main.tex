@@ -1641,7 +1641,7 @@ the actual data from the competition, again focusing in particular on the Main t
 A greedy set cover of the solved instances by solvers of the Main track is presented in Table~\ref{tab:gscMain}. 
 In the first iteration, the solver which solved the highest number of instances is selected; in our case it was \solver{Kissat-sat} with 264 instances as we know already from Table~\ref{tab:results}.
 With these 264 instances already covered,
-\solver{CaDiCaL-alluip} is the best in further contributing to the set by additional $22$ instances in iteration $2$.
+\solver{CaDiCaL-alluip} is the best in further contributing to the set by additional $22$ instances in the second iteration.
 We can see that the further iterations tend to add very little,
 with the final four iterations adding one instance each. Note that each solver
 that managed to solve an instance uniquely (i.e., being the only solver that solved a particular instance)
@@ -1759,7 +1759,9 @@ We calculate the PAR-2 score for each VBS created from solver tuples in $P_k$.
 In Table~\ref{tab:tuples}, we report on the single best performing $k$-tuple $T_k \in P_k$ ($1 \leq k \leq 7$). 
 
 Interestingly, each of the first five tuples $T_{k \leq 5}$ contains exactly one of the three \solver{Kissat} variants. 
+The set $T_2$ is composed of the two winners of the Main SAT and Main UNSAT tracks. 
 For $i < 5$ the relation $T_{i} \subset T_{i+1}$ holds only under projection to base solvers due to the fluctuating variants of \solver{Kissat}. 
+
 The composition changes more strongly in $T_6$. 
 Interestingly, we now have both variants $\{ \solver{Kissat-sat}, \solver{Kissat-unsat} \} \subset T_6$, and moreover it holds that $T_6 \subset T_7$.
 All solvers in $T_{k \leq 7}$ are among the top-performing solvers which received awards in the Main track, with the only exception of $\solver{Scavel01} \in T_4 \cap T_5$ (cf.~Table~\ref{tab:results}). 
@@ -1789,7 +1791,7 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 \label{tab:eval-by-family}
 \end{table}
 
-Contributions to the VBS can be captured by clustering the instance space into instance families.
+Contributions to the VBS can be captured by clustering the instances by their family. 
 We evaluate the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
 and report their places and scores in Table~\ref{tab:eval-by-family}. 
 Interestingly, the overall best solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
@@ -1800,11 +1802,11 @@ similarity metric based on the measured runtimes. We start by removing $84$
 benchmarks that have not been solved by any solver. For the rest, a PAR-2 score
 is assigned to each instance for every solver,
 % based on the \num{5000}-second timeout
-\emph{i.e.}, we set a score of \num{10000} for unsolved instances.
+i.e., we set a score of 10,000 for unsolved instances.
 Each solver $S$ is thus associated with the PAR-2 scores $S_{1},\dots,S_{316}$.
 % This leaves us with $316$ floats
 % $S_{1},\dots,S_{316}$ for each solver $S$.
-The \emph{similarity} of two solvers $S$
+The \textsf{similarity} of two solvers $S$
 and $S'$, normalized to the interval $[0,1]$ is defined
 as:
 % by Equation~\ref{eq-similarity}.
@@ -1812,14 +1814,14 @@ as:
 % \begin{equation}
 % \label{eq-similarity}
 \[
-	similarity(S, S') =\quad 1 - \frac{\sum{|S_{i} - S'_{i}|}}{316 \cdot \num{10000}}
+	\mathsf{similarity}(S, S') =\quad 1 - \frac{\sum{|S_{i} - S'_{i}|}}{316 \cdot \num{10000}}
 \]
 % \end{equation}
-We calculate the \emph{similarity} of the $30$ solvers with the
+We calculate the \textsf{similarity} of the $30$ solvers with the
 best average PAR-2 score in the Main track. The results are shown in
 Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. 
 Additionally, the result
-of hierarchically clustering the solvers based on their similarity is
+of hierarchically clustering the solvers based on their \textsf{similarity} is
 illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
 are joined reflects how similar they are. For example, enabling \emph{trail saving}
 in \solver{CaDiCaL-alluip} has no impact on the runtime, resulting in
@@ -1919,7 +1921,7 @@ is defined by the following equation:
 \]
 % \end{equation}
 where $n$ is the number of solvers in the Main track ($48$), and the rankings
-$r_{\{1,2\}}(S)$ map a solver $S$ to its rank, \emph{i.e.,} $1$ for the best
+$r_{\{1,2\}}(S)$ map a solver $S$ to its rank, i.e., $1$ for the best
 performing solver, whereas $48$ is assigned to the solver
 with the highest average PAR-2 score.
 
@@ -1980,7 +1982,7 @@ in SAT solvers compared to previous years were observed. Some of the more intere
 strategies include the following.
 All winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
 solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As observed
-from the results of the\emph{Parallel} track, it appears difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
+from the results of the \emph{Parallel} track, it appears difficult to make proper use of more than $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
 However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classical all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
 It appears challenging to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use case. 
 The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use case. 
@@ -2012,7 +2014,7 @@ We intend to run further instantiations of the Application track.
 While none of the solvers that participated in the Planning track seemed particularly optimized for planning instances, we hope that
 in future iterations the community will pick up on the challenge of optimizing SAT solvers towards different focus applications, as a complementary
 challenge when compared to the generality of the Main track.
-In the next competition, the  planned focus of Application track will be on SAT solver applications in cryptology.
+In the next competition, the  planned focus of Application track will be on SAT solver applications in cryptography.
 
 The portfolio rule has been established to prohibit the participation of pure solver portfolios
 to stimulate the development of new codebases and
