@@ -1359,7 +1359,7 @@ Even thought its sequential version was unsuccessful in the Main track, the MPI-
 \section{Differentiated Analysis of Main Track Results}
 \label{sec:analysis}
 
-In this section, we provide additional analysis of the Main track results, going beyond the rankings.
+In this section, we provide an additional analysis of the Main track results, going beyond the rankings.
 In particular, we focus on metrics complementing the PAR-2 score used for ranking the solvers in the actual competition.
 
 \subsection{Contributions to the Virtual Best Solver}
@@ -1367,14 +1367,14 @@ In particular, we focus on metrics complementing the PAR-2 score used for rankin
 \label{subsec:vbs_explained}
 
 The Virtual Best Solver (VBS) is a fictitious solver consisting 
-of all the solvers that actually participated in the competition (or a specific track)
+of all solvers that actually participated in the competition (or a specific track)
 and an oracle which, when given an input instance,
 invokes  the  solver which performed the best on that instance.
-In this way, the performance of the VBS highlights a certain upper bound 
-on performance achievable in principle by the 
+This way, the performance of the VBS highlights a certain upper bound 
+on the performance achievable in principle by the 
  participating solvers (cf.~the figures in Section~\ref{sec:results}). 
 
-One can see that the VBS solves all the instances that
+One can see that the VBS solves all instances that
 were solved by at least one solver and solves each instance in the best observed time.
 By quantifying how much each participating solver contributes
 to the performance of the VBS, we may attempt to establish which
@@ -1398,16 +1398,16 @@ We award each solver $S$ solving an instance $I$ the fraction $1/|\mathcal{S}_I|
 $\mathcal{S}_I$ is the set of solvers solving $I$.
 \end{description}
 
-We remark that the sum of VBS-1 points as well as the sum of VBS-3 points computed across all the solvers
+We remark that the sum of VBS-1 points as well as the sum of VBS-3 points computed across all solvers
 is equal to the number of instances solved by at least one solver (later denoted \emph{total}).
 This is obvious for VBS-1, as exactly one solver scores a point for solving an instance.
 In the case of VBS-3, where we discard the information about the solution times, 
-we evenly split the one point reward for solving an instance among those solvers which succeeded in solving the instance.
+we evenly split the one-point reward for solving an instance among those solvers which succeeded in solving the instance.
 In contrast, VBS-2 does not have this property as it in general distributes more than one point per instance.
 Similarly as VBS-1, it takes the solution time into account.
 Similarly as VBS-3, it does not award just the best solver on an instance.
-For example, a solver that uses twice as much runtime as  the fastest solver on an instance received half a point.
-Further, if all the solvers solve an instance equally fast,
+For example, a solver that uses twice as much runtime as the fastest solver on an instance receives a half a point.
+Furthermore, if all solvers solve an instance equally fast,
 each solver receives a whole point for the instance. 
 
 \begin{table}
@@ -1582,22 +1582,22 @@ Table~\ref{tab:vbsMainALL} provides the result of applying the just-described th
 to the full results of the Main track. We can see that the respective leaderboards 
 are generally dominated by \solver{Kissat} in at least one of its configurations.
 VBS-1 tells us that \solver{Kissat-unsat} was most often the fastest solver,
-in particular on \SI{11.5}{\percent} of all the solved instances.
+in particular on \SI{11.5}{\percent} of the solved instances.
 
 The metric VBS-2 identifies \solver{Kissat-sat} as the best solver. Its leading score of \SI{32.9}{\percent} of the total
-is somewhat more difficult to interpret, though: a solver can score \SI{32.9}{\percent} of VBS-2 total
+is more difficult to interpret, though: a solver can score \SI{32.9}{\percent} of VBS-2 total
 by solving \SI{32.9}{\percent} of the solved instances in the best observed time
 and no others. However, we see from its VBS-1 score that \solver{Kissat-sat} solved \SI{9.8}{\percent}
 of the solved instances in the best observed time (and some others).
-A solver can also score \SI{32.9}{\percent} of VBS-2 total by solving all the solved instances,
+A solver can also score \SI{32.9}{\percent} of VBS-2 total by solving all solved instances,
 but always being roughly three times slower than the VBS. 
-The performance of \solver{Kissat-sat} lies (obviously) somewhere between these two extremes.
+The performance of \solver{Kissat-sat} lies (clearly) somewhere between these two extremes.
 
 Finally, according to VBS-3, the best solver is \solver{Kissat} with 13.0 points,
 which amounts to \SI{3.3}{\percent} of the distributed total score.
 The VBS-3 metric is generally the most evenly distributed one,
 at least among the first 10 solvers. 
-(The last solver receives 0.9 points which is \SI{0.221}{\percent} of the total.)
+(The last solver receives 0.9 points, which is \SI{0.221}{\percent} of the total.)
 One can conclude from this that most of the benchmarks are solved
 by most of the well-performing solvers. 
 
@@ -1605,9 +1605,9 @@ by most of the well-performing solvers.
 Another perspective on how much each solver contributes to the state of the art
 can be obtained by attempting to construct a sequential schedule of solvers 
 (rather than relying on an oracle to pick one solver for each instance, as with VBS)
-and observing how big a role each solvers plays in such a schedule. Since constructing 
+and observing how big role each solver plays in such a schedule. Since constructing 
 an optimal schedule tends to be computationally hard, we start here by 
-presenting a a computationally more efficient alternative---a greedy set cover approach.
+presenting a computationally more efficient alternative---a greedy set cover approach.
 
 With greedy set cover, we start with an empty schedule and iteratively consider 
 each solver for the addition to the schedule obtained so far, picking the one
@@ -1640,22 +1640,22 @@ the actual data from the competition, again focusing in particular on the Main t
 
 A greedy set cover of the solved instances by solvers of the Main track is presented in Table~\ref{tab:gscMain}. 
 In the first iteration, the solver which solved the highest number of instances is selected; in our case it was \solver{Kissat-sat} with 264 instances as we know already from Table~\ref{tab:results}.
-With these
- 264 instances already covered, \solver{CaDiCaL-alluip} is the best in further contributing to the set by additional $22$ instances in iteration $2$.
+With these 264 instances already covered,
+\solver{CaDiCaL-alluip} is the best in further contributing to the set by additional $22$ instances in iteration $2$.
 We can see that the further iterations tend to add very little,
 with the final four iterations adding one instance each. Note that each solver
 that managed to solve an instance uniquely (i.e., being the only solver that solved a particular instance)
 shows up in the greedy set cover.
 % for example the case of the last listed  
 %\solver{exp-V-LGB-MLD-CBT-DL}.
-Highlighting solvers that uniquely solve instance is a property of 
+% Highlighting solvers that uniquely solve an instance is a property of 
 Indeed, the greedy set cover metric highlights solvers which are able to uniquely solve specific benchmark instances
-and thereby contributing to the current state of the art.
+and thereby contribute to the current state of the art.
 
 \subsection{Time-Limited Schedules}
 
-The greedy set cover 
-disregards the time it would take to execute the obtained ``schedule'' of running the solvers covering instances. 
+The greedy set cover disregards the time it would take to execute 
+the obtained ``schedule'' (of running the solvers that jointly cover all solved instances).
 However, we can
 also look at schedules that would fit in a prescribed time budget. A natural choice
 of the budget seems to be the original time limit of \SI{5000}{\second}.
@@ -1675,25 +1675,25 @@ of the budget seems to be the original time limit of \SI{5000}{\second}.
 \label{tab:MainUniformTimeSplit}
 \end{table}
 
-To this end, by employing a brute-force approach, we first construct a sequences of schedules 
+To this end, by employing a brute-force approach, we first construct a sequence of schedules 
 where the $i$-th schedule splits the available time of \SI{5000}{\second} uniformly among
 $i$ solvers and solves the highest number of instances under these constraints.
 The results are presented in Table~\ref{tab:MainUniformTimeSplit}.
 We can see that the initial increase from 264 to 278 of ``covered'' instances 
 when using two solvers instead of one (although allowing each to only use half of the time)
 does not continue further with additional solvers allowed,
-although its still better to use three solvers in a fair time split 
+although it is still better to use three solvers in a fair time split 
 (and cover 272 instances) than just one.
-Based on this observation, it is plausible  that the really hard 
-instance that were solved actually may require quite large runtime to 
+Based on this observation, it is plausible that the really hard 
+instances that were solved actually may require quite large runtime to 
 get ``cracked'' by any solver and thus the advantage of adding more solvers to the schedule
 quickly diminishes.
 
 We complement this ``uniform time split'' schedule by formulating the schedule construction problem as a MaxSMT formula and using the Z3 SMT solver \cite{DBLP:conf/tacas/MouraB08} in its optimization mode \cite{DBLP:conf/sycss/BjornerP14} to solve it.
 For each solver (and its configuration) $S$ we introduce an integer variable $R^S$ denoting the number of seconds $S$ runs in the new schedule. 
-We then construct a formula with the hard constraints $0 \leq R^S$ for every $S$ and $\sum_{S\in\mathcal{S}} R^S \leq 5000$ and with one soft constraint for every instance $I$ of the form \[\bigvee_{S \in \mathcal{S}_I} T^S_I \leq R^S,\]
+We then construct a formula with  hard constraints $0 \leq R^S$ for every $S$ and $\sum_{S\in\mathcal{S}} R^S \leq 5000$ and with one soft constraint for every instance $I$ of the form \[\bigvee_{S \in \mathcal{S}_I} T^S_I \leq R^S,\]
 where $\mathcal{S}_I$ is the set of solvers which solved the instance $I$ and $T^S_I$ is the time it took solver $S$ to solve $I$ here rounded up to the nearest integer.
-(Note that while $R^S$ are variables, i.e.~unknowns, the $T^S_I$ are known constants in the formula.)
+(Note that while $R^S$ are variables, i.e.,~unknowns, the $T^S_I$ are known constants in the formula.)
 
 \begin{table}
 \centering\small
@@ -1716,7 +1716,7 @@ constructed using Z3.}
 \label{tab:MainZ3Schedule}
 \end{table}
 
-Finding a solution which satisfies all the hard constraints and as many soft constraints as possible,
+Finding a solution which satisfies all hard constraints and as many soft constraints as possible,
 Z3 provided  the schedule shown in Table~\ref{tab:MainZ3Schedule} (in under two hours on a single core of a \SI{2.30}{\giga\hertz} CPU).
 The table is sorted by $R^S$, the time the schedule allocates to individual solvers, with zero entries ignored.
 It is not clear to what degree is the obtained schedule unique and how much it relies on each solver being present and for how long.
@@ -1725,7 +1725,7 @@ and compare it to the 278 achieved in Table~\ref{tab:MainUniformTimeSplit} with 
 
 As can be seen from the ``contributes'' column, the presence of \solver{f2trc-DL} in the schedule is not necessary.
 % The following three lines could be skipped without much harm:
-All the 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
+The 15 instances this solver solves under 76 seconds were already covered by the preceding three solvers.
 This result is due to the fact that Z3 was not asked to produce a schedule with a minimal number of
 participating solvers.
 Indeed, allowing any other solver to run for the 76 ``wasted'' seconds would not increase the overall total.
@@ -1791,12 +1791,12 @@ Vlsat 					& 27 & 7149.7 &  5 & 5307.5 &  \bf 1 & 5026.4\\
 
 Contributions to the VBS can be captured by clustering the instance space into instance families.
 We evaluate the runtimes of the three winning solvers of the Main track on those new families which are represented by at least $14$ instances (cf.~Table~\ref{tab:families})
-and report their place and score in Table~\ref{tab:eval-by-family}. 
+and report their places and scores in Table~\ref{tab:eval-by-family}. 
 Interestingly, the overall best solver \solver{Kissat-sat} is outperformed by the second and third ranked solvers \solver{Relaxed-newTech} and \solver{CMS-ccnr-lsids} on the \emph{Anti-Bandwidth}, \emph{Vlsat}, and \emph{Influence Maximization} families by a large margin. 
 
 \subsection{Similarity of Solvers}
 To investigate the similarity of solvers from the Main track, we define a
-similarity metric based on measured runtimes. We start by removing $84$
+similarity metric based on the measured runtimes. We start by removing $84$
 benchmarks that have not been solved by any solver. For the rest, a PAR-2 score
 is assigned to each instance for every solver,
 % based on the \num{5000}-second timeout
@@ -1817,23 +1817,25 @@ as:
 % \end{equation}
 We calculate the \emph{similarity} of the $30$ solvers with the
 best average PAR-2 score in the Main track. The results are shown in
-Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. Additionally, the result
+Figure~\ref{fig-similarity-main} as a \emph{heat map}, similar to the visualization in \cite{Balyo:2015:SATRace}. 
+Additionally, the result
 of hierarchically clustering the solvers based on their similarity is
 illustrated as a \emph{dendrogram}. The height at which two solvers or clusters
-are joined reflects how similar they are. For example, enabling the \emph{trail
-  saving} in \solver{CaDiCaL-alluip} has no impact on the runtime, resulting in
-a similarity above \num{0.999}. Therefore the two solvers are joined low in the
+are joined reflects how similar they are. For example, enabling \emph{trail saving}
+in \solver{CaDiCaL-alluip} has no impact on the runtime, resulting in
+a similarity above \num{0.999}. Therefore, the two solvers are joined low in the
 dendrogram.
 % A similar visualization was used for the results of the SAT Race 2015 \cite{Balyo:2015:SATRace}.
 
 Interestingly, one identifiable large cluster consists of the \solver{Maple}-descendants,
 all of which are modifications of the winners in the SAT Competition 2018 and
 the SAT Race 2019.
-The similarity within the cluster is high, with the exception of
+The similarity within the cluster is high, except for
 \solver{Scavel} and \solver{exp\_V\_MLD\_CBT\_DL}.
-They form a sub-cluster
-with a lower similarity compared to the rest, but a high similarity within. In fact, the highest measured similarity,
- % of $0.96$
+They form a subcluster
+with a lower similarity compared to the rest, but a high similarity within. 
+In fact, the highest measured similarity,
+% of $0.96$
 besides the aforementioned \solver{CaDiCaL-alluip}, is observed between them.
 The two solvers are both based on
 \solver{MapleLCMDistChronoBT-dl-v2.2}, but have different authors.
@@ -1842,19 +1844,19 @@ changes they made either result in a very similar behavior or do not have a
 significant impact on the runtime performance.
 
 The two configurations of \solver{Relaxed} by \emph{Zhang} and \emph{Cai}
-use the same code-base as a lot of solvers in the \solver{Maple}-cluster. However, the
+use the same codebase as a lot of solvers in the \solver{Maple}-cluster. However, the
 overall performance of the solver is better and closer to the \solver{CMS}-cluster.
 The three \solver{CMS} configurations
 differ in their implementation of stochastic local search
 (SLS) and have similar performance.
 The 2020 version of \solver{CaDiCaL}
-exhibit weaker performance than the modifications based on the 2019 version and
+exhibits weaker performance than the modifications based on the 2019 version and
 does not quite fit into any cluster.
 
-The leftmost cluster in the heat map is comprised of the other solvers
+The leftmost cluster in the heat map is comprised of other solvers
 originally written by \emph{Biere}. What is interesting to note is that the
 \solver{Kissat} configuration specialized for unsatisfiable instances joins the
-others configurations in the cluster high in the dendrogram. In fact \solver{Kissat-unsat} has
+others configurations in the cluster high in the dendrogram. In fact, \solver{Kissat-unsat} has
 the lowest average similarity to all other solvers in the top 30.
 This suggests its importance for an optimal
 portfolio.
@@ -1936,7 +1938,7 @@ of two adjacent solvers, resulting in a high rank correlation $\rho = 0.9999$.
 Several small changes also result in a high rank correlation; repeating the same
 modification as before $n/2$ times to switch all pairs of adjacent solvers in
 rank still gives a value of $\rho = 0.9974$. On the other hand, switching the
-highest ranked solver (\solver{Kissat-sat}) with the lowest,
+highest ranked solver (\solver{Kissat-sat}) with the lowest
 results in a rank correlation of $\rho = 0.7602$. Moving \solver{Kissat-sat} to
 the bottom of the ranking while moving every other solver up one rank gives a
 higher $\rho = 0.8776$. Doing the same to all three \solver{Kissat}
@@ -1964,11 +1966,11 @@ together are representative.
 \end{figure}
 
 Figure~\ref{fig:sampleFamily} shows the rank
-correlation coefficient resulting from removing a complete benchmark family. As expected, removing a non-random subset can have a
+correlation coefficient resulting from removing a complete benchmark family. As expected, removing a nonrandom subset can have a
 higher impact on the ranking even if it is small. Removing the $13$ \emph{hgen} benchmarks
 results in a (still high) rank correlation of
 $0.9895$. Additionally, the ranking of the top five solvers stays the same.
-The individual removal of all other benchmarks families results in a rank correlation above $0.99$.
+The individual removal of all other benchmark families results in a rank correlation above $0.99$.
 
 \section{Conclusion and Prospects}
 \label{sec:conclusion}
