@@ -1978,45 +1978,47 @@ The individual removal of all other benchmark families results in a rank correla
 The 2020 SAT Competition successfully continues the tradition of the SAT Competition series. In 2020, significant advances
 in SAT solvers compared to previous years were observed. Some of the more interesting observations on the winning solving 
 strategies include the following.
-All the winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
+All winning solvers of the \emph{Main} track periodically schedule runs of a stochastic local search (SLS)
 solver and import statistical information generated in unsuccessful SLS runs to reconfigure weights in their branching heuristics. As observed
 from the results of the\emph{Parallel} track, it appears difficult to make proper use of more that $32$ threads for SAT solving, as in some occasions the $32$-threaded version of the same solver outperformed its $64$-threaded counterpart. 
-However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classic all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
-It appear challenging to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use-case. 
-The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use-case. 
+However, from the winner in the massively parallel \emph{Cloud} track, we can learn that classical all-to-all clause-sharing can be outperformed by a more sophisticated clause-sharing architecture. 
+It appears challenging to integrate and test sophisticated state-of-the-art methods in an incremental SAT solver and thus solvers usually disable parts of their features in the incremental use case. 
+The winner of the \emph{Incremental Library} track shows that it is worth integrating a full solver functionality in the incremental use case. 
 
-\subsection*{Future Prospects}
+\subsection*{Prospects}
 
-In the instance selection, the author-wise balancing of satisfiable and unsatisfiable instances turned out often counter-productive as it 
+In the instance selection, the author-wise balancing of satisfiable and unsatisfiable instances turned out often counterproductive as it 
 did not lead to a more balanced overall selection of new instances. 
 Moreover, this practice discriminated against authors who submitted solely satisfiable or unsatisfiable  instances. 
 The hardness criterion of 10 \solver{Minisat} minutes was set higher than the hardness criterion of 1 \solver{Minisat} minute of the ``bring your own benchmarks'' rule, 
-which can be viewed as problematic. As lessons learned
-in future competitions we will not aim balance by satisfiability status on the benchmarks author level. will aim to be more consistent with the imposed \emph{hardness} criteria
+which can be viewed as problematic. As lessons learned,
+in future competitions we will not aim to balance the benchmarks by satisfiability status on author level,
+will aim to be more consistent with the imposed \emph{hardness} criteria
 for benchmark selection, and will also make sure to clearly communicate what it means for an instance to be counted as \emph{unknown}.
 
 The IPASIR interface facilitates the integration of SAT solvers into incremental applications. 
 In contrast to benchmarking with instances given in the 
-DIMACS CNF format, there are only few benchmark applications available for the Incremental track.
+DIMACS CNF format, there are only a few benchmark applications available for the Incremental track.
 This calls for more community-level efforts for constructing a more diverse and well-organized repository of applications for incremental SAT solvers. 
-Proper benchmarking and new tools for testing incremental SAT solvers may also help solver authors to deal with the more complex use-cases.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
+Proper benchmarking and new tools for testing incremental SAT solvers may also help solver authors to deal with more complex use cases.\footnote{\url{https://github.com/fkutzner/IncrementalMonkey}} 
 
-This year the Hack track was organized for hacks of \solver{Glucose 3}. 
-In the next competition, we plan on moving to the well structured and documented state-of-the-art SAT solver \solver{CaDiCaL}. 
+This year, the Hack track was organized for hacks of \solver{Glucose 3}. 
+In the next competition, we plan on moving to the well-structured and documented state-of-the-art SAT solver \solver{CaDiCaL}. 
 The \solver{CaDiCaL-alluip} solver---which is a modified \solver{CaDiCaL}---has shown competitive performance in this competition.
 
-The first instantiation of an Application track was the Planning track organized as a one-time track in 2020.. 
+The first instantiation of an Application track was the Planning track organized as a one-time track in 2020. 
 The results show that different solvers take the lead when we only evaluate for a single application, when compared to the overall Main track results.
 We intend to run further instantiations of the Application track. 
-While essentially none of the solvers that participated in the Planning track seemed particularly optimized for Planning instance, we hope
+While none of the solvers that participated in the Planning track seemed particularly optimized for planning instances, we hope that
 in future iterations the community will pick up on the challenge of optimizing SAT solvers towards different focus applications, as a complementary
 challenge when compared to the generality of the Main track.
 In the next competition, the  planned focus of Application track will be on SAT solver applications in cryptology.
 
-The portfolio rule has been established to prohibit participation of pure solver portfolios, in order to stimulate development of new code-bases and
+The portfolio rule has been established to prohibit the participation of pure solver portfolios
+to stimulate the development of new codebases and
 to ensure fair competition among  sequential solvers.
-The rule was challenged in this competition as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated sub-systems in their own code-base. 
-We aim to revisit and refine the portfolio rule in future instantiations of the competition in order to ensure that the rule does not unnecessarily hinder interesting 
+The rule was challenged in this competition as it can be hurtful to cooperation in the community when solver authors use the work of other researchers as fully integrated subsystems in their own codebase. 
+We aim to revisit and refine the portfolio rule in future instantiations of the competition to ensure that the rule does not unnecessarily hinder interesting 
 algorithmic developments in SAT solving.
 
 \section*{Acknowledgments}
