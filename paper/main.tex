@@ -389,7 +389,7 @@ each solver was validated in a two-step fashion. First, the tool {\tt DRAT-trim}
 An independent formally-verified checker {\tt cake\_lpr} \cite{cakeLprGithub} was then used for validating the 
 LRAT proof as a correct proof of unsatisfiability.
 
-In a few cases {\tt DRAT-trim} ran into the verification timeout of 40,000 seconds. 
+In a few cases {\tt DRAT-trim} ran into the verification timeout of 45,000 seconds. 
 In the Main track, only those unsatisfiable benchmark instances for which the proof produced by a solver 
 could be validated at least by {\tt DRAT-trim} were considered solved by the solver. 
 While there were several cases where {\tt cake\_lpr} ran out of resources, 
@@ -402,7 +402,7 @@ The Main, No-Limits, and Planning tracks were run on the StarExec cluster \cite{
 with computing nodes  equipped with Intel Xeon \SI{2.4}{\giga\hertz} processors 
 and \SI{128}{\giga\byte} of memory.
 The time limit enforced on each solver for solving an instance was 5,000 seconds. 
-In the Main track, proof validation was limited to 40,000 seconds per proof.)
+In the Main track, proof validation was limited to 45,000 seconds per proof.)
 The solvers were allowed to use the full \SI{128}{\giga\byte} of RAM.\footnote{
 Unfortunately, the memory limit of \SI{24}{\giga\byte}, that was used in the previous years,
 was by mistake advertised on the competition web page prior to solver submission.
@@ -512,7 +512,7 @@ in order to differentiate the overall runtime performances of the competing solv
 (ii)~the number of benchmarks included in the benchmark set from different problem domains 
 is balanced across the problem domains, and that (iii) the benchmark set is also balanced in terms of the number of unsatisfiable and satisfiable instances included in the set.
 
-To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than ten minutes.\footnote{We note that
+To compile the set of 300 new instances, we first applied a hardness criterion by filtering out all instances solved by \solver{Minisat} in less than ten minutes.\footnote{Note that
 the limit of ten minutes is again somewhat arbitrary.
 This runtime hardness filter essentially aims to make sure that enough instances are included in the final benchmark set which allow for distinguishing in terms of relative performance between the best-performing competing solvers.
 Unfortunately this limit was much greater that the requirements imposed for  ``interesting'' benchmark instances
